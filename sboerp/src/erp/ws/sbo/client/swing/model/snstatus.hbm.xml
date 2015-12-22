@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 27, 2013 2:41:56 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="erp.ws.sbo.client.swing.model.snstatus" table="[@SNStatus]" schema="dbo" catalog="NQS">
+        <id name="sn" type="string">
+            <column name="SN" length="50" />
+            <generator class="assigned" />
+        </id>
+        <property name="ifWh" type="boolean">
+            <column name="ifWH" not-null="true" />
+        </property>
+        <property name="wareHouse" type="string">
+            <column name="WareHouse" length="50" />
+        </property>
+        <property name="cardcode" type="string">
+            <column name="Cardcode" length="50" />
+        </property>
+        <property name="ifPsn" type="boolean">
+            <column name="ifPSN" not-null="true" />
+        </property>
+        <property name="ifInPsn" type="boolean">
+            <column name="ifInPSN" not-null="true" />
+        </property>
+        <property name="paSn" type="string">
+            <column name="PaSN" length="50" />
+        </property>
+        <property name="ifdes" type="java.lang.Boolean">
+            <column name="ifdes" />
+        </property>
+        <property name="itemcode" type="string">
+            <column name="itemcode" length="20" not-null="true"/>
+        </property>
+        <property name="length" type="java.lang.Double">
+            <column name="length" precision="53" scale="0" />
+        </property>
+        <property name="sweight" type="java.lang.Double">
+            <column name="sweight" precision="53" scale="0" />
+        </property>
+        <property name="weight" type="java.lang.Double">
+            <column name="weight" precision="53" scale="0" />
+        </property>
+        <property name="pweight" type="java.lang.Double">
+            <column name="pweight" precision="53" scale="0" />
+        </property>
+        <property name="cweight" type="java.lang.Double">
+            <column name="cweight" precision="53" scale="0" />
+        </property>
+        <property name="datetime" type="timestamp">
+            <column name="datetime" length="23" not-null="true" />
+        </property>
+        <property name="updatetime" type="timestamp">
+            <column name="updatetime" length="23" />
+        </property>
+        <property name="mno" type="string">
+            <column name="mno" length="50" />
+        </property>
+        <property name="qc" type="string">
+            <column name="qc" length="20" />
+        </property>
+        <property name="fwh" type="string">
+            <column name="fwh" length="20" />
+        </property>
+        <property name="company" type="string">
+            <column name="company" length="50" not-null="true"/>
+        </property>
+         <property name="qsn" type="java.lang.Integer">
+            <column name="qsn"/>
+        </property>
+    </class>
+</hibernate-mapping>
