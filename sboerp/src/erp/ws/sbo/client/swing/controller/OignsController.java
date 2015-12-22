@@ -626,7 +626,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		            sns=isn.queryByDocId(v.getTxt_createcode().getText());
 		            if(sns==null)
 		            {
-		                SNL snl=new SNL(v.getDsv());							   
+		                SNL snl=new SNL(v.getDsv());
 						if(snl.createSN(v))
 						{
 						  sns=isn.queryByDocId(v.getTxt_createcode().getText());							 			         	
@@ -813,9 +813,14 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		    v.getCom_whsin().setSelectedItem( new  ComboBoxItem(v.getOd().getValuethrheader(0,"仓库").toString(),v.getOd().getValuethrheader(0,"仓库").toString()));
 		    v.getCom_whsin().setEnabled(false);
 		    
-		    v.getTxt_length().setEditable(true);		    
+		    v.getTxt_length().setEditable(true);	
 		    v.getTxt_length().setText("0");
-		    v.getTxt_length().setEditable(false);
+		    if(v.getOd().getValuethrheader(0,"是否米段线").toString().equals("否")||v.getOd().getValuethrheader(0,"是否米段线").toString().equals("N"))
+			{
+		       v.getTxt_length().setEditable(false);
+			}
+		    
+		   
 		    v.getJt().setRowSelectionInterval(0, 0);
 		}
 		else if(e.getSource()==dmv.getjButtonadd())

@@ -39,7 +39,9 @@ public class SNL {
 	private Object[][] ob;
 	private DbUtils<?,?> dbu=new DbUtils<ColDocTitle,DocTitle>();	
 	private snstatus sns=new snstatus();
-	private Set<String> setsn=new HashSet<String>();	
+	private Set<String> setsn=new HashSet<String>(),setsn1=new HashSet<String>();	
+	private snstatus sns1=new snstatus();
+	private SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
 	public SNL()
     {
     	
@@ -509,8 +511,7 @@ public class SNL {
     }
     //检查序列号区域序列号本身是否有问题，并去除重复项
     public boolean verificationSN(JTextArea SN,boolean ifout,DeSNView v) throws BadLocationException{
-    	snstatus sns1=new snstatus();
-     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+    	
     	Highlighter highlighter=null;
     	highlighter=SN.getHighlighter();
     	highlighter.removeAllHighlights();
@@ -521,8 +522,8 @@ public class SNL {
 		s = m.replaceAll(""); 
 		
     	String[] sns=s.split(",");
-    	Set<String> setsn=new HashSet<String>();//所有去除重复序列号的集合
-    	Set<String> setsn1=new HashSet<String>();//所有重复项序列号集合
+    	setsn=new HashSet<String>();//所有去除重复序列号的集合
+    	setsn1=new HashSet<String>();//所有重复项序列号集合
     	for(int i=0;i<sns.length;i++)
     	{    
     		if(sns[i]==null||(sns[i]!=null&&sns[i].equals("")))
@@ -639,7 +640,12 @@ public class SNL {
     		JOptionPane.showInputDialog(null,"这些序列号重复录入:"+text);	
     		return false;
     	}
-    	//最后验证序列号区域中的数据与开窗中是否一致
+    	
+    	return true;
+    }
+    //检查序列号区域与开窗是否一致
+    public boolean verificationSNA_dialog(JTextArea SN,DeSNView v){
+
     	boolean ifh=false;
     	for(String str : setsn)
     	{
@@ -672,8 +678,24 @@ public class SNL {
     				+"在开窗中有"+String.valueOf(ci));	
     		return false;
     	}
+    	
+    	
     	return true;
+    	
     }
+  //检查序列号区域与单身
+    public boolean verificationSNA_details(JTextArea SN,DeSNView v){
+		
+    	for(String str : setsn)
+    	{
+    		sns1=snst.queryByDocId(str);   
+    		
+    	}
+    	
+    	return true;
+    	
+    }
+    
     public boolean verificationPSN(JTextArea SN) throws BadLocationException{
     	snstatus sns1=new snstatus();
      	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
@@ -890,6 +912,36 @@ public class SNL {
 	}
 	public void setV(DeSNView v) {
 		this.v = v;
+	}
+	public snstatus getSns() {
+		return sns;
+	}
+	public void setSns(snstatus sns) {
+		this.sns = sns;
+	}
+	public Set<String> getSetsn() {
+		return setsn;
+	}
+	public void setSetsn(Set<String> setsn) {
+		this.setsn = setsn;
+	}
+	public Set<String> getSetsn1() {
+		return setsn1;
+	}
+	public void setSetsn1(Set<String> setsn1) {
+		this.setsn1 = setsn1;
+	}
+	public snstatus getSns1() {
+		return sns1;
+	}
+	public void setSns1(snstatus sns1) {
+		this.sns1 = sns1;
+	}
+	public SNStatus getSnst() {
+		return snst;
+	}
+	public void setSnst(SNStatus snst) {
+		this.snst = snst;
 	}
 	
 	

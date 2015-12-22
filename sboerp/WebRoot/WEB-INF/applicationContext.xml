@@ -173,6 +173,11 @@
 			<ref bean="sessionFactory"/>
 		</property>
 	</bean>
+	<bean id="SNL" class="erp.ws.sbo.utils.SNL">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
 	<bean id="DeSN" class="erp.ws.sbo.dao.impl.DeSN">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory"/>

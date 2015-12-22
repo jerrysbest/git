@@ -24,6 +24,9 @@ import erp.ws.sbo.utils.SNL;
 public class OignAdvSN implements IAdvSN<OignView> {
 
 	private AboutView av;
+	private SNL snl=(SNL)appMain.ctx.getBean("SNL");
+	private snstatus sns1=new snstatus();
+	private SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
 	@Override
     public void add(OignView v,String SN,boolean ifdraft,String objtype,String Direction,boolean ifpasn,int rowid)
     {		
@@ -318,7 +321,27 @@ public class OignAdvSN implements IAdvSN<OignView> {
 	@Override
 	public boolean bfcverification(OignView v) {
 		// TODO Auto-generated method stub
-		return false;
+		if(!snl.verificationSNA_dialog(v.getJta_SN(), v.getDsv())){
+			return false;
+		}
+		
+		for(String str : snl.getSetsn())
+    	{
+            sns1=snst.queryByDocId(str);  
+            b:
+            for(int i=0;i<v.getOd().getRowCount();i++)
+            {
+            	if(sns1.getItemcode().equals(v.getOd().getValuethrheader(i, "物料代码"))
+            		&&sns1.getWareHouse().equals(v.getOd().getValuethrheader(i, "仓库"))
+            		&&sns1.getLength().equals(v.getOd().getValuethrheader(i, "米段")))
+            	{
+            		break b;
+            	}
+            }
+    		
+    	}
+    	
+    	return true;
 	}
 	
 
