@@ -52,7 +52,7 @@ public final class appMain {
     public static IProductTrees  oProductTree;
     public static  int lRetCode,lErrCode;
     public static String sErrMsg,user1;
-    public static ListTab lt=new ListTab();//Container of hql select result which similar with a table in c#
+    
     public static IUserTablesMD  oUserTableMD;
     public static IUserFieldsMD  oUserFieldsMD;
     
@@ -70,6 +70,7 @@ public final class appMain {
 	public static LoginView lg;
 	public static FootView fv;
 	public static String rpurl,Mno;
+	public static ListTab lt=new ListTab();//Container of hql select result which similar with a table in c#
    
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

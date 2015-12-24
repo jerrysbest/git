@@ -35,6 +35,7 @@
 	<classpathentry kind="lib" path="lib/DJNativeSwing-SWT.jar"/>
 	<classpathentry kind="lib" path="lib/swt.jar"/>
 	<classpathentry kind="lib" path="lib/jxl.jar"/>
+	<classpathentry kind="lib" path="lib/com.springsource.org.apache.commons.pool-1.5.3.jar"/>
 	<classpathentry including="**/*.java" kind="src" output="target/classes" path="src">
 		<attributes>
 			<attribute name="optional" value="true"/>
@@ -67,7 +68,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/slf4j-api-1.5.8.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/slf4j-log4j12-1.5.8.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/javassist-3.9.0.GA.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/com.springsource.org.apache.commons.pool-1.5.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/commons-dbcp.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/antlr-2.7.6.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/pentaho/pentaho-publisher-1.6.0.jar"/>

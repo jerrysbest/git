@@ -51,7 +51,43 @@
                 </goals>  
             </execution>  
         </executions>  
-    </plugin>  
+    </plugin> 
+        <plugin>  
+        <groupId>org.apache.maven.plugins</groupId>  
+        <artifactId>maven-jar-plugin</artifactId>  
+        <version>2.4</version>  
+        <configuration>  
+            <archive>  
+                <manifest>  
+                    <addClasspath>true</addClasspath>  
+                    <classpathPrefix>lib/</classpathPrefix>  
+                    <mainClass>erp.ws.sbo.client.swing.app.appMain</mainClass>  
+                </manifest>  
+            </archive>  
+        </configuration>  
+    </plugin> 
+    <!--   
+    <plugin>  
+        <groupId>org.apache.maven.plugins</groupId>  
+        <artifactId>maven-shade-plugin</artifactId>  
+        <version>1.4</version>  
+        <configuration>  
+          <transformers>  
+            <transformer implementation = "org.apache.maven.plugins.shade.resource.MainifestResourceTransformer">  
+            <mainClass>erp.ws.sbo.client.swing.app.appMain</mainClass>  
+            </transformer>  
+          </transformers>  
+        </configuration>  
+        <executions>  
+          <execution>  
+            <phase>package</phase>  
+            <goals>  
+              <goal>shade</goal>  
+            </goals>  
+          </execution>  
+        </executions>  
+      </plugin> 
+      -->  
     </plugins>
   </build>
   <dependencies>
@@ -110,32 +146,8 @@
   		<artifactId>spring-orm</artifactId>
   		<version>3.0.5.RELEASE</version>
   	</dependency>
-  	<dependency>
-  		<groupId>org.apache.commons</groupId>
-  		<artifactId>commons-dbcp2</artifactId>
-  		<version>2.1.1</version>
-  	</dependency>
-  	<dependency>
-		<groupId>javax.comm</groupId>
-		<artifactId>comm</artifactId>
-		<version>2.0.3</version>
-    </dependency>
-  	<dependency>
-  		<groupId>org.apache.commons</groupId>
-  		<artifactId>commons-collections4</artifactId>
-  		<version>4.1</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>org.dom4j</groupId>
-  		<artifactId>dom4j</artifactId>
-  		<version>2.0.0-RC1</version>
-  	</dependency>
   	
-  	<dependency>
-  		<groupId>com.hynnet</groupId>
-  		<artifactId>jacob</artifactId>
-  		<version>1.18</version>
-  	</dependency>
+  	
   	<dependency>
   		<groupId>javassist</groupId>
   		<artifactId>javassist</artifactId>
@@ -145,11 +157,6 @@
   		<groupId>jaxen</groupId>
   		<artifactId>jaxen</artifactId>
   		<version>1.1.1</version>
-  	</dependency>
-  	<dependency>
-  		<groupId>jexcelapi</groupId>
-  		<artifactId>jxl</artifactId>
-  		<version>2.4.2</version>
   	</dependency>
   	<dependency>
   		<groupId>log4j</groupId>
@@ -173,55 +180,86 @@
   		<artifactId>swing-layout</artifactId>
   		<version>1.0.3</version>
   	</dependency> 	
-  	<!-- local jar -->
+  	<dependency>
+       	<groupId>commons-dbcp</groupId>
+       	<artifactId>commons-dbcp</artifactId>
+       	<version>1.2.2</version>
+       </dependency>
+       <dependency>
+       	<groupId>commons-collections</groupId>
+       	<artifactId>commons-collections</artifactId>
+       	<version>3.2</version>
+       </dependency>
+       <dependency>
+       	<groupId>commons-pool</groupId>
+       	<artifactId>commons-pool</artifactId>
+       	<version>1.6</version>
+       </dependency>
+       <dependency>
+       	<groupId>org.codehaus.mojo.hibernate3</groupId>
+       	<artifactId>maven-hibernate3</artifactId>
+       	<version>2.0</version>
+       	<type>pom</type>
+       </dependency>
+       <dependency>
+       	<groupId>com.hynnet</groupId>
+       	<artifactId>sqljdbc4-chs</artifactId>
+       	<version>4.0.2206.100</version>
+       </dependency>
+       <dependency>
+       	<groupId>com.hynnet</groupId>
+       	<artifactId>jacob-jdk15</artifactId>
+       	<version>1.18</version>
+       </dependency>
+     <!-- local jar -->
     <dependency>  
-	    <groupId>com.sap.sboapi</groupId>  
+	    <groupId>sap.sbo.sboapi</groupId>  
 	    <artifactId>sboapi</artifactId>  
-        <version>8.8.2</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/sboapi.jar</systemPath>  
+        <version>8.8</version>   
     </dependency> 	
     <dependency>  
-	     <groupId>com.sap.sbowrapper</groupId>  
+	     <groupId>sap.sbo.sbowrapper</groupId>  
 	     <artifactId>sbowrapper</artifactId>  
-         <version>8.8.2</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/sbowrapper.jar</systemPath>  
+         <version>8.8</version>   
       </dependency>
+   
       <dependency>  
-	    <groupId>com.self.datepicker</groupId>  
+	    <groupId>com.AbsoluteLayout</groupId>  
+	    <artifactId>AbsoluteLayout</artifactId>  
+        <version>2.0.3</version>  
+      </dependency>
+    <!--  
+      <dependency>  
+	    <groupId>com.self.comm</groupId>  
+	    <artifactId>comm</artifactId>  
+        <version>2.0.3</version>  
+        <scope>system</scope>    
+        <systemPath>${project.basedir}/lib/comm.jar</systemPath>  
+      </dependency>
+      -->
+      <dependency>  
+	    <groupId>com.datepicker</groupId>  
 	    <artifactId>datepicker</artifactId>  
-        <version>8.8.2</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/datepicker.jar</systemPath>  
+        <version>1.0.0</version>  
       </dependency>
+      <!--  
       <dependency>  
-	    <groupId>com.self.DJNativeSwing</groupId>  
-	    <artifactId>DJNativeSwing.jar</artifactId>  
+	    <groupId>com.self.commons.dbcp</groupId>  
+	    <artifactId>commons-dbcp</artifactId>  
         <version>8.8.2</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/DJNativeSwing.jar</systemPath>  
+        <scope>system</scope>         
+        <systemPath>${project.basedir}/lib/commons-dbcp.jar</systemPath>  
       </dependency>
+      
       <dependency>  
-	    <groupId>com.self.DJNativeSwing-SWT</groupId>  
-	    <artifactId>DJNativeSwing-SWT</artifactId>  
-        <version>8.8.2</version>  
+	    <groupId>com.self.commons.collections</groupId>  
+	    <artifactId>commons-collections</artifactId>  
+        <version>3.1.0</version>  
         <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/DJNativeSwing-SWT.jar</systemPath>  
+      
+        <systemPath>${project.basedir}/lib/commons-collections-3.1.jar</systemPath>  
       </dependency>
-      <dependency>  
-	    <groupId>com.self.hibernate3</groupId>  
-	    <artifactId>hibernate3</artifactId>  
-        <version>8.8.2</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/hibernate3.jar</systemPath>  
-      </dependency>
+      -->
       <dependency>  
 	    <groupId>com.self.jgoodiescommon</groupId>  
 	    <artifactId>jgoodies-common</artifactId>  
@@ -278,23 +316,15 @@
         <!--本地jar的路径,相对或者绝对都可以-->  
         <systemPath>${project.basedir}/lib/jxl.jar</systemPath>  
       </dependency>
-      <dependency>  
-	    <groupId>com.self.log4j</groupId>  
-	    <artifactId>log4j</artifactId>  
-        <version>1.2.14</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/log4j-1.2.14.jar</systemPath>  
-      </dependency>
+      <!-- 
       <dependency>  
 	    <groupId>com.self.sqljdbc4</groupId>  
 	    <artifactId>sqljdbc4</artifactId>  
         <version>1.2.14</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
+        <scope>system</scope>   
         <systemPath>${project.basedir}/lib/sqljdbc4.jar</systemPath>  
       </dependency>
-     
+      -->
        <dependency>  
 	    <groupId>com.self.swt</groupId>  
 	    <artifactId>swt</artifactId>  
@@ -335,159 +365,167 @@
         <!--本地jar的路径,相对或者绝对都可以-->  
         <systemPath>${project.basedir}/lib/DJNativeSwing-SWT.jar</systemPath>  
       </dependency>
+      <dependency>  
+	    <groupId>com.springsource.net.sf.cglib</groupId>  
+	    <artifactId>net.sf.cglib</artifactId>  
+        <version>2.2.0</version>  
+        <scope>system</scope>  
+        <!--本地jar的路径,相对或者绝对都可以-->  
+        <systemPath>${project.basedir}/lib/com.springsource.net.sf.cglib-2.2.0.jar</systemPath>  
+      </dependency>
+      <!--  
+      <dependency>  
+	    <groupId>com.springsource.org.aopalliance</groupId>  
+	    <artifactId>aopalliance</artifactId>  
+        <version>1.0.0</version>  
+        <scope>system</scope>         
+        <systemPath>${project.basedir}/lib/com.springsource.org.aopalliance-1.0.0.jar</systemPath>  
+      </dependency>
+      
+      <dependency>  
+	    <groupId>com.springsource.org.apache.commons.logging</groupId>  
+	    <artifactId>org.apache.commons.logging</artifactId>  
+        <version>1.1.1</version>  
+        <scope>system</scope>  
+        
+        <systemPath>${project.basedir}/lib/com.springsource.org.apache.commons.logging-1.1.1.jar</systemPath>  
+      </dependency>
+      
+      <dependency>  
+	    <groupId>com.springsource.org.apache.commons.pool</groupId>  
+	    <artifactId>org.apache.commons.pool</artifactId>  
+        <version>1.5.3</version>  
+        <scope>system</scope>  
+        
+        <systemPath>${project.basedir}/lib/com.springsource.org.apache.commons.pool-1.5.3.jar</systemPath>  
+      </dependency>
+      -->
+      <dependency>  
+	    <groupId>com.springsource.org.apache.log4j</groupId>  
+	    <artifactId>org.apache.log4j</artifactId>  
+        <version>1.2.15</version>  
+        <scope>system</scope>  
+        <!--本地jar的路径,相对或者绝对都可以-->  
+        <systemPath>${project.basedir}/lib/com.springsource.org.apache.log4j-1.2.15.jar</systemPath>  
+      </dependency>
+       <dependency>  
+	    <groupId>com.springsource.org.aspectj.weaver</groupId>  
+	    <artifactId>org.aspectj.weaver</artifactId>  
+        <version>1.6.8</version>  
+        <scope>system</scope>  
+        <!--本地jar的路径,相对或者绝对都可以-->  
+        <systemPath>${project.basedir}/lib/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar</systemPath>  
+      </dependency>
+       <dependency>  
+	    <groupId>org.springframework.transaction</groupId>  
+	    <artifactId>springframework.transaction</artifactId>  
+        <version>3.0.5</version>  
+        <scope>system</scope>  
+        <!--本地jar的路径,相对或者绝对都可以-->  
+        <systemPath>${project.basedir}/lib/org.springframework.transaction-3.0.5.RELEASE.jar</systemPath>  
+      </dependency>
       <!-- pentaho -->
       <dependency>  
-	     <groupId>com.pentaho.bsf</groupId>  
+	     <groupId>pentaho.bsf</groupId>  
 	     <artifactId>bsf</artifactId>  
          <version>2.4.0</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/bsf-2.4.0.jar</systemPath>  
        </dependency>
        <dependency>  
-	     <groupId>com.pentaho.bsh</groupId>  
+	     <groupId>pentaho.bsh</groupId>  
 	     <artifactId>bsh</artifactId>  
          <version>1.3.0</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/bsh-1.3.0.jar</systemPath>  
        </dependency>
        <dependency>  
-	     <groupId>com.pentaho.jitext</groupId>  
-	     <artifactId>jitext</artifactId>  
+	     <groupId>jfreereport.output.support.itext</groupId>  
+	     <artifactId>jfreeroutputsitext</artifactId>  
          <version>0.8.7</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/jfreereport-output-support-itext-0.8.7.jar</systemPath>  
        </dependency>
 
        <dependency>  
-	     <groupId>com.pentaho.libbase</groupId>  
-	     <artifactId>libbase-1.2.2</artifactId>  
-         <version>1.2.2</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/libbase-1.2.2.jar</systemPath>  
+	     <groupId>pentaho.libbase</groupId>  
+	     <artifactId>libbase</artifactId>  
+         <version>1.2.2</version>   
        </dependency>
        <dependency>  
-	     <groupId>com.pentaho.libdocbundle</groupId>  
+	     <groupId>pentaho.libdocbundle</groupId>  
 	     <artifactId>libdocbundle</artifactId>  
          <version>1.2.3</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/libdocbundle-1.2.3.jar</systemPath>  
        </dependency>
        <dependency>  
-	     <groupId>com.pentaho.libfonts</groupId>  
+	     <groupId>pentaho.libfonts</groupId>  
 	     <artifactId>libfonts</artifactId>  
          <version>1.2.3</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/libfonts-1.2.3.jar</systemPath>  
        </dependency>
        <dependency>  
-	     <groupId>com.pentaho.libformat</groupId>  
+	     <groupId>pentaho.libformat</groupId>  
 	     <artifactId>libformat</artifactId>  
          <version>1.2.4</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/libformat-1.2.4.jar</systemPath>  
        </dependency>
        <dependency>  
-	     <groupId>com.pentaho.libformula</groupId>  
+	     <groupId>pentaho.libformula</groupId>  
 	     <artifactId>libformula</artifactId>  
          <version>1.2.3</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/libformula-1.2.3.jar</systemPath>  
        </dependency>
        <dependency>  
-	     <groupId>com.pentaho.libloader</groupId>  
+	     <groupId>pentaho.libloader</groupId>  
 	     <artifactId>libloader</artifactId>  
          <version>1.2.3</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/libloader-1.2.3.jar</systemPath>  
        </dependency>
        <dependency>  
-	     <groupId>com.pentaho.libpixie</groupId>  
+	     <groupId>pentaho.libpixie</groupId>  
 	     <artifactId>libpixie</artifactId>  
          <version>1.2.2</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/libpixie-1.2.2.jar</systemPath>  
        </dependency>
        <dependency>  
-	     <groupId>com.pentaho.librepository</groupId>  
+	     <groupId>pentaho.librepository</groupId>  
 	     <artifactId>librepository</artifactId>  
-         <version>1.2.3</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/librepository-1.2.3.jar</systemPath>  
+         <version>1.2.3</version>   
        </dependency>
        <dependency>  
-	     <groupId>com.pentaho.libserializer</groupId>  
+	     <groupId>pentaho.libserializer</groupId>  
 	     <artifactId>libserializer</artifactId>  
          <version>1.2.2</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/libserializer-1.2.2.jar</systemPath>  
        </dependency>
        <dependency>  
-	     <groupId>com.pentaho.libswing</groupId>  
+	     <groupId>pentaho.libswing</groupId>  
 	     <artifactId>libswing</artifactId>  
          <version>1.2.4</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/libswing-1.2.4.jar</systemPath>  
        </dependency>
        <dependency>  
-	     <groupId>com.pentaho.libxml</groupId>  
+	     <groupId>pentaho.libxml</groupId>  
 	     <artifactId>libxml</artifactId>  
-         <version>1.2.2</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/libxml-1.2.2.jar</systemPath>  
+         <version>1.2.2</version>   
        </dependency>
        <dependency>  
-	     <groupId>com.pentaho.connections</groupId>  
-	     <artifactId>pentaho-connections</artifactId>  
-         <version>2.2.3</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/pentaho-connections-2.2.3.jar</systemPath>  
+	     <groupId>pentaho.connections</groupId>  
+	     <artifactId>pconnections</artifactId>  
+         <version>2.2.3</version>   
        </dependency>
        <dependency>  
-	     <groupId>com.pentaho.publisher</groupId>  
-	     <artifactId>pentaho-publisher</artifactId>  
+	     <groupId>pentaho.publisher</groupId>  
+	     <artifactId>publisher</artifactId>  
          <version>1.6.0</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/pentaho-publisher-1.6.0.jar</systemPath>  
        </dependency>
        <dependency>  
-	     <groupId>com.pentaho.reporting.engine.classic.core</groupId>  
-	     <artifactId>pentaho-reporting-engine-classic-core</artifactId>  
-         <version>3.8.2.GA</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/pentaho-reporting-engine-classic-core-3.8.2-GA.jar</systemPath>  
+	     <groupId>pentaho.reporting.engine.classic.core</groupId>  
+	     <artifactId>prenginecc</artifactId>  
+         <version>3.8.2-GA</version>  
        </dependency>
        <dependency>  
-	     <groupId>com.pentaho.reporting.engine.classic.extensions</groupId>  
-	     <artifactId>pentaho-reporting-engine-classic-extensions</artifactId>  
-         <version>3.8.2.GA</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/pentaho-reporting-engine-classic-extensions-3.8.2-GA.jar</systemPath>  
+	     <groupId>pentaho.reporting.engine.classic.extensions</groupId>  
+	     <artifactId>prenginece</artifactId>  
+         <version>3.8.2-GA</version>  
        </dependency>
         <dependency>  
-	     <groupId>com.pentaho.reporting.engine.legacy.charts</groupId>  
-	     <artifactId>pentaho-reporting-engine-legacy-charts</artifactId>  
-         <version>3.8.2.GA</version>  
-         <scope>system</scope>  
-         <!--本地jar的路径,相对或者绝对都可以-->  
-         <systemPath>${project.basedir}/lib/pentaho/pentaho-reporting-engine-legacy-charts-3.8.2-GA.jar</systemPath>  
+	     <groupId>pentaho.reporting.engine.legacy.charts</groupId>  
+	     <artifactId>prenginelc</artifactId>  
+         <version>3.8.2-GA</version>  
        </dependency>
+        
+        <dependency>
+        	<groupId>javax.comm</groupId>
+        	<artifactId>comm</artifactId>
+        	<version>2.0.3</version>
+        </dependency>
   </dependencies>
 </project>

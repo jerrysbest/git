@@ -16,7 +16,7 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">
-					<!-- org.hibernate.dialect.SQLServerDialect -->
+					
 					erp.ws.sbo.client.swing.util.general.JerrysSQLServerDialect
 				</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
@@ -114,7 +114,7 @@
 	<bean id="dataSource-common" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
 		</property>
-		<property name="url" value="jdbc:sqlserver://192.168.52.2:1433;databasename=sbo-common">
+		<property name="url" value="jdbc:sqlserver://192.168.52.2:1433;databasename=SBO-COMMON">
 		</property>
 		<property name="username" value="sa"/>
 		<property name="password" value="123"/> 
@@ -126,7 +126,7 @@
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">
-					<!--org.hibernate.dialect.SQLServerDialect-->
+					
 					erp.ws.sbo.client.swing.util.general.JerrysSQLServerDialect
 				</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
@@ -173,11 +173,7 @@
 			<ref bean="sessionFactory"/>
 		</property>
 	</bean>
-	<bean id="SNL" class="erp.ws.sbo.utils.SNL">
-		<property name="sessionFactory">
-			<ref bean="sessionFactory"/>
-		</property>
-	</bean>
+	
 	<bean id="DeSN" class="erp.ws.sbo.dao.impl.DeSN">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory"/>
@@ -340,29 +336,7 @@
 	<bean id="PaSNBizDoc" class="erp.ws.sbo.client.swing.dao.impl.PaSNBizDoc"/>
 	<bean id="PaSNQDoc" class="erp.ws.sbo.client.swing.dao.impl.PaSNQDoc"/>
 		
-	<!-- interceptor AOP
-	<bean id="beforeAdvice" class="com.dragon.Advice.BeforeAdvice"></bean>
-	<bean id="afterAdvice" class="com.dragon.Advice.AfterAdvice"></bean>
-	<bean id="compareInterceptor" class="com.dragon.Advice.CompareInterceptor"></bean>
-	<bean id="studenttarget" class="com.dragon.study.Impl.StudentImpl"></bean>
+	    
 	
-	<bean id="student" class="org.springframework.aop.framework.ProxyFactoryBean">
-	  <property name="proxyInterfaces">
-	    <value>com.dragon.study.IStudent</value>
-	  </property>
-	  <property name="interceptorNames">
-	    <list>
-	     <value>beforeAdvice</value>
-	     <value>afterAdvice</value>
-	    <value>compareInterceptor</value>  
-	    </list>
-	  </property>
-	  <property name="target">
-	    <ref bean="studenttarget"/>
-	  </property>
-	
-	</bean>   
-	-->    
-	<!-- AOP 5 methods of declarative transaction http://www.sjsjw.com/kf_other/article/55_26704_11000.asp -->
 	
 </beans>
