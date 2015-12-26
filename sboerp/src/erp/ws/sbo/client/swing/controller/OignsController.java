@@ -37,6 +37,7 @@ import erp.ws.sbo.client.swing.model.ColDocTitle;
 import erp.ws.sbo.client.swing.model.DocTitle;
 import erp.ws.sbo.client.swing.model.snstatus;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocLineModel.docLineStatus;
+import erp.ws.sbo.client.swing.tablemodel.AbstractDocLineModel.rowStatus;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocTitleModel.docTitleStatus;
 import erp.ws.sbo.client.swing.util.general.ComboBoxItem;
 import erp.ws.sbo.client.swing.view.DocMenu.DocMenuView;
@@ -215,13 +216,23 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			            snsp.print(v.getTxt_width().getText(), v.getTxt_height().getText(), "5", "8", "0", "0", "0", "128", v.getTxt_createcode().getText(),v);	        
 			            snsp.print(v.getTxt_width().getText(), v.getTxt_height().getText(), "5", "8", "0", "0", "0", "128", v.getTxt_createcode().getText(),v);	  			             
 			            //重置
-			            //if(v.getcom)
-			            v.getTxt_pweight().setText("0");	
-			            v.getTxt_weight().setText("0");	
-			            v.getTxt_cweight().setText("0");	 					
-	 			    	v.getTxt_sweight().setText("0"); 			        
-						v.getTxt_deviation().setText("0");
-						v.getTxt_createcode().setText("");
+			            if(new BigDecimal(v.getTxt_length().getText()).equals(new BigDecimal(0)))
+			            {
+			            	v.getTxt_pweight().setText("-1");	
+			                v.getTxt_weight().setText("-1");	
+				            v.getTxt_cweight().setText("0");	 					
+		 			    	v.getTxt_sweight().setText("0"); 			        
+							v.getTxt_deviation().setText("0");
+							v.getTxt_createcode().setText("");
+			            }
+			            else{
+				            v.getTxt_pweight().setText("0");	
+				            v.getTxt_weight().setText("0");	
+				            v.getTxt_cweight().setText("0");	 					
+		 			    	v.getTxt_sweight().setText("0"); 			        
+							v.getTxt_deviation().setText("0");
+							v.getTxt_createcode().setText("");
+			            }
 			        }
 			        catch(NullPointerException e3)
 			        {
@@ -637,12 +648,24 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 					Snprint snsp=new Snprint(v);
 			        snsp.print(v.getTxt_width().getText(), v.getTxt_height().getText(), "5", "8", "0", "0", "0", "128", v.getTxt_createcode().getText(),v);	        
 			        snsp.print(v.getTxt_width().getText(), v.getTxt_height().getText(), "5", "8", "0", "0", "0", "128", v.getTxt_createcode().getText(),v);	        					          	        
-			        v.getTxt_pweight().setText("0");	
-		            v.getTxt_weight().setText("0");	
-		            v.getTxt_cweight().setText("0");	 					
- 			    	v.getTxt_sweight().setText("0"); 			        
-					v.getTxt_deviation().setText("0");
-					v.getTxt_createcode().setText("");
+			        //重置
+		            if(new BigDecimal(v.getTxt_length().getText()).equals(new BigDecimal(0)))
+		            {
+		            	v.getTxt_pweight().setText("-1");	
+		                v.getTxt_weight().setText("-1");	
+			            v.getTxt_cweight().setText("0");	 					
+	 			    	v.getTxt_sweight().setText("0"); 			        
+						v.getTxt_deviation().setText("0");
+						v.getTxt_createcode().setText("");
+		            }
+		            else{
+			            v.getTxt_pweight().setText("0");	
+			            v.getTxt_weight().setText("0");	
+			            v.getTxt_cweight().setText("0");	 					
+	 			    	v.getTxt_sweight().setText("0"); 			        
+						v.getTxt_deviation().setText("0");
+						v.getTxt_createcode().setText("");
+		            }
 		        }
 		        catch(NullPointerException e1)
 		        {
@@ -667,13 +690,11 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			}
 		}
 		else if(e.getSource()==v.getCom_type())
-		{
-			
+		{			
 			if(Integer.valueOf(((ComboBoxItem)v.getCom_type().getSelectedItem()).getValue().toString())==0)
 			{			    
 				v.getTxt_cppo().setVisible(true);				       	
-				v.getCom_plist().setVisible(false);	
-				
+				v.getCom_plist().setVisible(false);					
 				v.getCom_whs().setVisible(false);
 				v.getJta_SN().setVisible(true);
 				v.getBt_cppo().setVisible(true);
@@ -755,6 +776,22 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			 
 		   }
 		}
+		else if(e.getSource()==v.getCom_snware())
+		{
+			//是序列号设置表体不可编辑
+			if(Integer.valueOf(((ComboBoxItem)v.getCom_snware().getSelectedItem()).getValue().toString())==1)
+			{
+				v.getOd().setGridStatus(docLineStatus.add);
+				v.getOd().setrowStatus(rowStatus.sn);
+				
+			}
+			else{
+				v.getOd().setGridStatus(docLineStatus.add);
+				v.getOd().setrowStatus(rowStatus.nsn);
+			
+			}
+			
+		}
 		else if(e.getSource()==v.getBt_cppo())
 		{
 			int[] i=v.getJt2().getSelectedRows();
@@ -834,6 +871,8 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			//something about docline
 			v.getOd().setDocLineStatus(docLineStatus.oign);
 			v.getOd().setGridStatus(docLineStatus.add);
+			
+			
 			dmv.setadd();
 		}
 		else if(e.getSource()==dmv.getjButtoncpsource())
@@ -1361,6 +1400,12 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	public void focusLost(FocusEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	public DaoFactory<OignView> getDocf() {
+		return docf;
+	}
+	public void setDocf(DaoFactory<OignView> docf) {
+		this.docf = docf;
 	}
 
 }

@@ -72,16 +72,13 @@ public class LoginsController implements ActionListener{
 		    	appMain.oCompany.setDbPassword(appMain.config.getDbuserpas());
 		    	appMain.oCompany.setUserName("manager");
 		    	appMain.oCompany.setPassword("qwer"); 
-		    	JOptionPane.showMessageDialog(null,"0");
-		    	JOptionPane.showMessageDialog(null,appMain.oCompany);
 		    	int success = appMain.oCompany.connect();  
-		    	JOptionPane.showMessageDialog(null,"success"+success);
 		    	if(success != 0){  
 		            SBOErrorMessage errorMessage = appMain.oCompany.getLastError();  
 		            System.out.println(errorMessage.getErrorMessage());  
 		            JOptionPane.showMessageDialog(null,errorMessage.getErrorMessage());           
 		        }else{   
-		        	JOptionPane.showMessageDialog(null,"1");
+		        
 			        appMain.user1=v.getTf_user1().getText().toString().trim();
 			        //JOptionPane.showMessageDialog(null,v.getMNo_comp().getSelectedItem());
 			        appMain.Mno=((ComboBoxItem)v.getMNo_comp().getSelectedItem()).getValue().toString();

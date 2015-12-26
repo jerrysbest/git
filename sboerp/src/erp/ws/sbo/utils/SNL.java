@@ -683,18 +683,6 @@ public class SNL {
     	return true;
     	
     }
-  //检查序列号区域与单身
-    public boolean verificationSNA_details(JTextArea SN,DeSNView v){
-		
-    	for(String str : setsn)
-    	{
-    		sns1=snst.queryByDocId(str);   
-    		
-    	}
-    	
-    	return true;
-    	
-    }
     
     public boolean verificationPSN(JTextArea SN) throws BadLocationException{
     	snstatus sns1=new snstatus();

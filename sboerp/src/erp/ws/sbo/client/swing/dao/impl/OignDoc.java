@@ -72,6 +72,25 @@ public class OignDoc implements IDoc<OignView>{
 		this.v=v;	
 		if(Integer.valueOf(((ComboBoxItem)v.getCom_type().getSelectedItem()).getValue().toString())==0)
 		{
+			//验证序列号
+			 hql="select U_enable from dbo.[@SMS] where code='OIGNSN' ";
+			 ob=appMain.lt.sqlclob(hql,0,1);
+			 if(ob==null||(ob!=null&&ob.length==0))
+			 {													     
+				  JOptionPane.showMessageDialog(null,"请设置是否开启生产收货序列号");
+				  return;
+		
+			 }
+			 if(ob[0][0].toString().equals("Y"))
+			 {
+				 if(Integer.valueOf(((ComboBoxItem)v.getCom_snware().getSelectedItem()).getValue().toString())==1)
+				{				
+					 if(!v.getOc().getDocf().getIAdvSN().bfcverification(v))
+				     {
+					   return;
+				     }
+				}
+			 }
 			try {
 				//oidoc=SBOCOMUtil.newDocuments(appMain.oCompany,SBOCOMConstants.BoObjectTypes_Document_oInventoryGenEntry);
 				oidoc=SBOCOMUtil.newDocuments(appMain.oCompany,SBOCOMConstants.BoObjectTypes_Document_oDrafts);

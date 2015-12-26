@@ -24,6 +24,8 @@ import erp.ws.sbo.utils.SNL;
 public class OignAdvSN implements IAdvSN<OignView> {
 
 	private AboutView av;
+	private String hql;
+	private Object[][] ob;
 	private SNL snl=new SNL();
 	private snstatus sns1=new snstatus();
 	private ISNStatus snst=new SNStatus();
@@ -175,173 +177,65 @@ public class OignAdvSN implements IAdvSN<OignView> {
 		  }
 		
     }
-	/**
-	 * 此方法需要被重写
-	 */
-	public void delete(DeSNView v,String SN)
-	{
-	    
-	}
-
+	
 	@Override
-    public boolean verification(OignView v)
-    {
-    	//check  snstatus
-    	SNL snl=new SNL();
-    	try {
-			if(!snl.verificationSN(v.getJta_SN(), false,v.getDsv()))
-			{
-				return false;
-			}
-		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	/*
-    	 * check if the jta_sn compatible with the itemcode details
-    	 * 1.check if they have the same amount
-    	 * 2.check if each sn in jta_sn has the right item with the right itemcode,length,warehouse,weight
-    	 */
-    	
-		String s =new String(v.getJta_SN().getText()); 
-		Pattern pat = Pattern.compile("\\s*|\t|\r|\n"); 		   
-		Matcher m = pat.matcher(s); 
-		s = m.replaceAll(""); 
-	    String[] a = s.split(",");  
-	    boolean p=false;
-		HashSet<String> result = new HashSet<String>();		
-		 
-		//fist,compare the sn of jta_sn an desnview,check if it  has duplicate records
-	    for(int i=0;i<a.length;i++)
-	    {
-	    	for(int j=0;j<v.getDsv().getOd().getRowCount();j++)
-			{
-	    		if(v.getDsv().getOd().getValuethrheader(j, "序列号")==null||(v.getDsv().getOd().getValuethrheader(j, "序列号")!=null&&v.getDsv().getOd().getValuethrheader(j, "序列号").toString().equals("")))
-				{
-					 continue;
-				}
-	    		if(a[i].toString().equals(v.getDsv().getOd().getValuethrheader(j, "序列号").toString()))
-	    		{
-	    			p=true;
-	    			break;
-	    		}
-	    		if(!p)
-	    		{
-	    			JOptionPane.showMessageDialog(null,"SN一致性检查出错：SN显示区的sn"+v.getDsv().getOd().getValuethrheader(j, "序列号").toString()+"在SN开窗中不被包含。");	  
-	    			return false;
-	    		}
-			}
-	    }	
-		result = new HashSet<String>();
-		for(int i=0;i<v.getDsv().getOd().getRowCount();i++)
-		{
-			if(v.getDsv().getOd().getValuethrheader(i, "序列号")==null||(v.getDsv().getOd().getValuethrheader(i, "序列号")!=null&&v.getDsv().getOd().getValuethrheader(i, "序列号").toString().equals("")))
-			{
-				 continue;
-			}
-			if(!result.add(v.getDsv().getOd().getValuethrheader(i, "序列号").toString()))
-			{
-				JOptionPane.showMessageDialog(null,"SN一致性检查出错：SN开窗的sn"+v.getDsv().getOd().getValuethrheader(i, "序列号").toString()+"重复");	  
-				return false;
-			}
-			if(!v.getJta_SN().getText().contains(v.getDsv().getOd().getValuethrheader(i, "序列号").toString()))
-			{
-				JOptionPane.showMessageDialog(null,"SN一致性检查出错：开窗中的sn"+v.getDsv().getOd().getValuethrheader(i, "序列号").toString()+"在SN显示区不被包含。");	  
-				return false;
-			}			 		      			
-		}
-		 	  
-		//if consistency verification,then compare desnview and v.getod()
-	    for(int i=0;i<v.getOd().getRowCount();i++)
-		{
-	    	if(v.getOd().getValuethrheader(i, "物料代码")==null||(v.getOd().getValuethrheader(i, "物料代码")!=null&&v.getOd().getValuethrheader(i, "物料代码").toString().equals("")))
-			{
-				 continue;
-			}
-	    	Integer gs=0;
-	    	BigDecimal zl=new BigDecimal(0);
-	    	for(int j=0;j<v.getDsv().getOd().getRowCount();j++)
-			{
-	    		if(v.getDsv().getOd().getValuethrheader(j, "序列号")==null||(v.getDsv().getOd().getValuethrheader(j, "序列号")!=null&&v.getDsv().getOd().getValuethrheader(j, "序列号").toString().equals("")))
-				{
-					 continue;
-				}
-	    	    ISNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");	
-	            snstatus sns=new snstatus();
-	            sns=isn.queryByDocId(v.getDsv().getOd().getValuethrheader(j, "序列号").toString());
-	            if(sns==null)
-	 	       {
-	 	    	   JOptionPane.showMessageDialog(null,v.getDsv().getOd().getValuethrheader(j, "序列号").toString()+"不存在，请检查");
-	 	    	   return false;
-	 	       }
-	    		if(new BigDecimal(sns.getLength()).setScale(2, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP))
-	    		   &&(v.getOd().getValuethrheader(i, "是否米段线").toString().equals("N")||v.getOd().getValuethrheader(i, "是否米段线").toString().equals("否"))
-	    		   &&sns.getItemcode().toString().equals(v.getOd().getValuethrheader(i, "物料代码").toString())
-	    		   &&v.getDsv().getOd().getValuethrheader(j, "行号").toString().equals(v.getOd().getValuethrheader(i, "序号").toString()))
-	    		{
-	    			gs=gs+1;
-	    			zl=zl.add(new BigDecimal(sns.getCweight()).setScale(3, BigDecimal.ROUND_HALF_UP));
-	    		}
-	    		if(new BigDecimal(sns.getLength()).setScale(2, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(v.getOd().getValuethrheader(i, "米段").toString()).setScale(2, BigDecimal.ROUND_HALF_UP))
-	    		   &&(v.getOd().getValuethrheader(i, "是否米段线").toString().equals("Y")||v.getOd().getValuethrheader(i, "是否米段线").toString().equals("是"))
- 	    		   &&sns.getItemcode().toString().equals(v.getOd().getValuethrheader(i, "物料代码").toString())
- 	    		   &&v.getDsv().getOd().getValuethrheader(j, "行号").toString().equals(v.getOd().getValuethrheader(i, "序号").toString()))
- 	    		{
- 	    			gs=gs+1;
- 	    			zl=zl.add(new BigDecimal(sns.getCweight()).setScale(3, BigDecimal.ROUND_HALF_UP));
- 	    		}    		
-			} 
-	    	if(!(gs==Integer.valueOf(new BigDecimal(v.getOd().getValuethrheader(i, "生产数量").toString()).setScale(0, BigDecimal.ROUND_HALF_UP).toString())
-	    	  ||zl.equals(new BigDecimal(v.getOd().getValuethrheader(i, "实际库存数量").toString()).setScale(3, BigDecimal.ROUND_HALF_UP))))
-	    	{
-	    		JOptionPane.showMessageDialog(null,"SN一致性检查出错：序号"+v.getOd().getValuethrheader(i, "序号").toString()+"物料"+v.getOd().getValuethrheader(i, "物料代码").toString()+"米段"+v.getOd().getValuethrheader(i, "米段").toString()+"个数或者重量与开窗中不一致");	  
-	    		return false;
-	    	}
-	    	
-		      			
-		}
-	    return true;
-    	
-    }
-	@Override
-	public boolean snverification(OignView v) {
-		// TODO Auto-generated method stub
-		SNL snl=new SNL();
-		try {
-			if(!snl.verificationSN(v.getJta_SN(), true,v.getDsv()))
-			{
-				return false;
-			}
-		} catch (BadLocationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return true;
-	}
-	@Override
+	//this method compare if the jta_sn equals with item details
 	public boolean bfcverification(OignView v) {
 		// TODO Auto-generated method stub
-		if(!snl.verificationSNA_dialog(v.getJta_SN(), v.getDsv())){
-			return false;
-		}
 		
+		try {
+			if(!(snl.verificationSN(v.getJta_SN(), false,v.getDsv())&&snl.verificationSNA_dialog(v.getJta_SN(), v.getDsv())))
+			{
+				return false;
+			}
+
+		} catch (BadLocationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		int c=0;
+		BigDecimal weit=new BigDecimal("0.000"),weit1=new BigDecimal("0.000");
 		for(String str : snl.getSetsn())
     	{
             sns1=snst.queryByDocId(str);  
-            b:
-            for(int i=0;i<v.getOd().getRowCount();i++)
-            {
-            	if(sns1.getItemcode().equals(v.getOd().getValuethrheader(i, "物料代码"))
-            		&&sns1.getWareHouse().equals(v.getOd().getValuethrheader(i, "仓库"))
-            		&&sns1.getLength().equals(v.getOd().getValuethrheader(i, "米段")))
-            	{
-            		break b;
-            	}
-            }
-    		
+            weit=weit.add(new BigDecimal(sns1.getCweight()).setScale(3, BigDecimal.ROUND_HALF_UP));  		
     	}
+		 for(int i=0;i<v.getOd().getRowCount();i++)
+         {
+			 
+			 if((v.getOd().getValuethrheader(i, "物料代码")!=null&&!v.getOd().getValuethrheader(i, "物料代码").toString().equals("")))
+         	{
+				hql="select isnull(U_usn,'N') from oitm where itemcode='"+v.getOd().getValuethrheader(i, "物料代码").toString()+"' ";
+				ob=appMain.lt.sqlclob(hql,0,1);				
+				if(ob[0][0].toString().equals("N"))
+				{
+				   continue;
+				}
+         		c+=Integer.valueOf(v.getOd().getValuethrheader(i, "实际收货个数").toString());
+         		weit1=weit1.add(new BigDecimal(v.getOd().getValuethrheader(i, "实际库存个数").toString()).setScale(3, BigDecimal.ROUND_HALF_UP));        		
+         	}
+         }
+		 if(!(c==snl.getSetsn().size()&&weit1.compareTo(weit)==0))
+		 {			 
+			JOptionPane.showMessageDialog(null,"序列号区域与表体的个数("+String.valueOf(snl.getSetsn().size())+","+String.valueOf(c)+")或者重量("+weit.toString()+","+weit1.toString()+")不一致"); 
+			return false;
+		 }
     	
     	return true;
+	}
+
+
+	@Override
+	public boolean verification(OignView v) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	@Override
+	public boolean snverification(OignView v) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 	
 

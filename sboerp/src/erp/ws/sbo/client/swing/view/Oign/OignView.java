@@ -191,7 +191,7 @@ public class OignView extends JInternalFrame{
     JTextField txt_rsum = new JTextField(15);
     JTextField txt_psum = new JTextField(15);
     JTextField txt_csum = new JTextField(15);
-    JButton bt_cppo=new JButton();
+    JButton bt_cppo=new JButton();    
     
     JMyTable jt;
     JTable jt1;
@@ -884,6 +884,7 @@ public class OignView extends JInternalFrame{
 		     this.txt_length.addFocusListener(oc);
 		     this.txt_length.addKeyListener(oc);
 		     this.com_specification.addActionListener(oc);
+		     this.com_snware.addActionListener(oc);
 		     this.txt_pweight.addKeyListener(oc);
 		     jta_SN.addKeyListener(oc);
 	      }
