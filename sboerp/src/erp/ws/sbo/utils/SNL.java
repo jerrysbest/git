@@ -41,7 +41,7 @@ public class SNL {
 	private snstatus sns=new snstatus();
 	private Set<String> setsn=new HashSet<String>(),setsn1=new HashSet<String>();	
 	private snstatus sns1=new snstatus();
-	private SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+	private ISNStatus snst=new SNStatus();
 	public SNL()
     {
     	
@@ -937,10 +937,10 @@ public class SNL {
 	public void setSns1(snstatus sns1) {
 		this.sns1 = sns1;
 	}
-	public SNStatus getSnst() {
+	public ISNStatus getSnst() {
 		return snst;
 	}
-	public void setSnst(SNStatus snst) {
+	public void setSnst(ISNStatus snst) {
 		this.snst = snst;
 	}
 	

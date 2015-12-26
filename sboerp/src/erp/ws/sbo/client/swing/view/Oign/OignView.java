@@ -86,7 +86,7 @@ public class OignView extends JInternalFrame{
     JLabel lab_SN = new JLabel("SN码");
     JLabel lab_cppo = new JLabel("查询订单");
     JLabel lab_plist = new JLabel("价格清单");
-    JLabel lab_docn = new JLabel("单号");
+    JLabel lab_docn = new JLabel("单号,id号");
     JLabel lab_memo = new JLabel("备注");
     JLabel lab_msum = new JLabel("实际收货个数");
     JLabel lab_wsum = new JLabel("标准库存数量");
@@ -182,6 +182,7 @@ public class OignView extends JInternalFrame{
     JTextArea jta_memo=new JTextArea(6,20);
     DatePicker txt_date  = new DatePicker(pane1,new Date());
     JTextField txt_docn = new JTextField(13);
+    JTextField txt_docnid = new JTextField(13);
     JTextField txt_status = new JTextField(13);
     JTextArea jta_SN=new JTextArea(8,25);
     JTextField txt_cppo = new JTextField(13);
@@ -254,6 +255,7 @@ public class OignView extends JInternalFrame{
 		 com_snware.setPrototypeDisplayValue("xxxxxxxxxxxxxxxxx");
 		 
 		 this.txt_docn.setEditable(false);
+		 this.txt_docnid.setEditable(false);
 		 this.txt_cweight.setEditable(false);
 		 this.txt_deviation.setEditable(false);
 		 this.txt_createcode.setEditable(false);
@@ -298,6 +300,8 @@ public class OignView extends JInternalFrame{
 		 lay.putConstraint(SpringLayout.NORTH, lab_docn, 10, SpringLayout.NORTH, pane1);
 		 lay.putConstraint(SpringLayout.EAST, txt_docn, -100,SpringLayout.EAST, pane1);
 		 lay.putConstraint(SpringLayout.NORTH, txt_docn, 10, SpringLayout.NORTH, pane1);
+		 lay.putConstraint(SpringLayout.EAST, txt_docnid, -50,SpringLayout.EAST, pane1);
+		 lay.putConstraint(SpringLayout.NORTH, txt_docnid, 10, SpringLayout.NORTH, pane1);
 		 lay.putConstraint(SpringLayout.EAST, lab_user, -250,SpringLayout.EAST, pane1);
 		 lay.putConstraint(SpringLayout.NORTH, lab_user, 40, SpringLayout.NORTH, pane1);
 		 lay.putConstraint(SpringLayout.EAST, com_users, -100,SpringLayout.EAST, pane1);
@@ -325,6 +329,7 @@ public class OignView extends JInternalFrame{
 		 pane1.add(com_snware);
 		 pane1.add(lab_docn);
 		 pane1.add(txt_docn);
+		 pane1.add(txt_docnid);
 		 pane1.add(lab_cppo);
 		 pane1.add(txt_cppo);
 		 pane1.add(bt_cppo);
@@ -1833,6 +1838,14 @@ public class OignView extends JInternalFrame{
 
 	public void setTxt_status(JTextField txt_status) {
 		this.txt_status = txt_status;
+	}
+
+	public JTextField getTxt_docnid() {
+		return txt_docnid;
+	}
+
+	public void setTxt_docnid(JTextField txt_docnid) {
+		this.txt_docnid = txt_docnid;
 	}
 
 }

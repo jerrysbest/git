@@ -45,9 +45,12 @@ public class OignDocTitleModel extends AbstractDocTitleModel<ColDocTitle, DocTit
 			((OignView)view).getCom_whs().setEditable(false);
 			((OignView)view).getCom_users().setEditable(false);
 			((OignView)view).getCom_plist().setEditable(false);
-			hql="select isnull(max(docEntry),0) from Odrf where objtype='59'";
+			hql="select isnull(max(docnum),0) from Odrf where objtype='59'";
 			Integer Ndoce= (Integer) appMain.lt.sqlclob(hql, 0, 1)[0][0]+1;		
 			((OignView)view).getTxt_docn().setText(Ndoce.toString());	
+			hql="select isnull(max(docEntry),0) from Odrf where objtype='59'";
+			Ndoce= (Integer) appMain.lt.sqlclob(hql, 0, 1)[0][0]+1;	
+			((OignView)view).getTxt_docnid().setText(Ndoce.toString());	
 			((OignView)view).getTxt_cppo().setText("");	
 			((OignView)view).getTxt_status().setText("");	
 			((OignView)view).getDsv().getOd().setGridStatus(docLineStatus.add);

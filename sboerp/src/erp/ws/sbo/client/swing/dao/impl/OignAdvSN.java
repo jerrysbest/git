@@ -24,9 +24,9 @@ import erp.ws.sbo.utils.SNL;
 public class OignAdvSN implements IAdvSN<OignView> {
 
 	private AboutView av;
-	private SNL snl=(SNL)appMain.ctx.getBean("SNL");
+	private SNL snl=new SNL();
 	private snstatus sns1=new snstatus();
-	private SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+	private ISNStatus snst=new SNStatus();
 	@Override
     public void add(OignView v,String SN,boolean ifdraft,String objtype,String Direction,boolean ifpasn,int rowid)
     {		
@@ -34,9 +34,9 @@ public class OignAdvSN implements IAdvSN<OignView> {
 			JOptionPane.showMessageDialog(null,"没有行被选中,请选中某行");	  
 			return;
 		}
-		ISNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");	
+		snst=new SNStatus();	
         snstatus sns=new snstatus();
-        sns=isn.queryByDocId(SN);
+        sns=snst.queryByDocId(SN);
         Object[] obj;	
         Integer snid=0;
         String warehouse="";

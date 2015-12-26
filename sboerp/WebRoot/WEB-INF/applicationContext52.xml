@@ -4,7 +4,7 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
 		</property>
-		<property name="url" value="jdbc:sqlserver://127.0.0.1:1433;databasename=NQS">
+		<property name="url" value="jdbc:sqlserver://192.168.52.2:1433;databasename=NQS">
 		</property>
 		<property name="username" value="sa"/>
 		<property name="password" value="123"/> 
@@ -114,7 +114,7 @@
 	<bean id="dataSource-common" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
 		</property>
-		<property name="url" value="jdbc:sqlserver://127.0.0.1:1433;databasename=sbo-common">
+		<property name="url" value="jdbc:sqlserver://192.168.52.2:1433;databasename=sbo-common">
 		</property>
 		<property name="username" value="sa"/>
 		<property name="password" value="123"/> 
@@ -145,9 +145,9 @@
 	
 		</bean>
 	<bean id="appconfig" class="erp.ws.sbo.client.swing.app.appConfigBean">
-		<property name="dserver" value="127.0.0.1">
+		<property name="dserver" value="192.168.52.2">
 		</property>
-		<property name="lserver" value="127.0.0.1">
+		<property name="lserver" value="192.168.52.2">
 		</property>
 		<property name="comdb" value="NQS">
 		</property>
@@ -173,6 +173,7 @@
 			<ref bean="sessionFactory"/>
 		</property>
 	</bean>
+
 	<bean id="DeSN" class="erp.ws.sbo.dao.impl.DeSN">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory"/>

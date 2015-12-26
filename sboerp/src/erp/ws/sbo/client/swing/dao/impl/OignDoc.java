@@ -413,10 +413,10 @@ public class OignDoc implements IDoc<OignView>{
 		}		
 		if(dod.equals("生产收货"))
 		{			
-			hql="select a.docNum,a.usersign,c.U_Name,a.docdate from oign a " +
+			hql="select a.docNum,a.usersign,c.U_Name,a.docdate,a.docEntry from oign a " +
 				"inner join ign1 b on a.docentry=b.docentry " +
 				"inner join ousr c on a.usersign=c.userid " +
-				"where b.basetype='202' and a.docNum='"+id+"'";
+				"where b.basetype='202' and a.docEntry='"+id+"'";
 			 ob = appMain.lt.sqlclob(hql,0,1); 
 			 if(ob==null||ob.length==0)
 			 {
@@ -435,6 +435,7 @@ public class OignDoc implements IDoc<OignView>{
 			 v.getCom_users().setSelectedItem(Cbi); 
 			 v.getCom_type().setSelectedItem(new ComboBoxItem(0,"生产收货"));		
 			 v.getTxt_docn().setText(id.toString());
+			 v.getTxt_docnid().setText(ob[0][4].toString());
 			 v.getTxt_date().setText(ob[0][3].toString());
 			 v.getTxt_status().setText("生产收货");
 			 v.getTxt_status().setEditable(false); 
@@ -447,7 +448,7 @@ public class OignDoc implements IDoc<OignView>{
 			 	 "inner join oitm c on b.itemcode=c.itemcode " +
 			 	 "inner join owor d on d.docentry=b.baseEntry " +
 			 	 "left join ousr e on e.userid=d.usersign " +
-				 "where b.basetype='202' and a.docNum='"+id+"'";
+				 "where b.basetype='202' and a.docEntry='"+id+"'";
 			 v.getOd().updatetable(hql,0);		
 			 v.getCom_plist().setVisible(false);
 			 v.getCom_whs().setVisible(false);
@@ -465,7 +466,7 @@ public class OignDoc implements IDoc<OignView>{
 			   		"from [@desn] a " +
 			   		"inner join ign1 b on a.docentry=b.docentry and a.linenum=b.u_snid " +
 			   		"inner join oign c on b.docentry=c.docentry " +
-			   		"where c.docNum='"+v.getTxt_docn().getText().trim()+"' and a.Ifdraft='0' and a.objtype='59' and b.basetype='202'";
+			   		"where c.docEntry='"+v.getTxt_docnid().getText().trim()+"' and a.Ifdraft='0' and a.objtype='59' and b.basetype='202'";
 					v.getDsv().getOd().updatetable(hql, 0);
 					v.getJta_SN().setText("");
 					 ob=appMain.lt.sqlclob(hql,0,1000);
@@ -480,10 +481,10 @@ public class OignDoc implements IDoc<OignView>{
 			 }
 		}
 		else if(dod.equals("收货草稿")){
-			hql="select a.docNum,a.usersign,c.U_Name,a.docdate from odrf a " +
+			hql="select a.docNum,a.usersign,c.U_Name,a.docdate,a.docEntry from odrf a " +
 				"inner join drf1 b on a.docentry=b.docentry " +
 				"inner join ousr c on a.usersign=c.userid " +
-				"where b.basetype='202' and a.docNum='"+id+"'";
+				"where b.basetype='202' and a.docEntry='"+id+"'";
 				 ob = appMain.lt.sqlclob(hql,0,1); 
 				 if(ob==null||ob.length==0)
 				 {
@@ -502,10 +503,11 @@ public class OignDoc implements IDoc<OignView>{
 				 v.getCom_users().setSelectedItem(Cbi); 
 				 v.getCom_type().setSelectedItem(new ComboBoxItem(0,"生产收货"));		
 				 v.getTxt_docn().setText(id.toString());
+				 v.getTxt_docnid().setText(ob[0][4].toString());
 				 v.getTxt_date().setText(ob[0][3].toString());
 				 v.getTxt_status().setText("收货草稿");
 				 v.getTxt_status().setEditable(false); 
-				 hql="select 0, b.u_snid,d.docNum,c.itemcode,c.itemname,b.u_Ymd,b.u_mtmd,c.salunitmsr," +
+				 hql="select 0, b.u_snid,d.docEntry,c.itemcode,c.itemname,b.u_Ymd,b.u_mtmd,c.salunitmsr," +
 				 	 "unitQty=convert(decimal(18,3),isnull(d.U_length,0)*isnull(c.u_mtzl,0)/isnull(c.u_mtmd,0))," +
 				 	 "d.u_qty,gs=isnull(b.u_gs,0),b.unitmsr,b.u_zz,b.quantity,b.u_scwc," +
 				 	 "'',b.whscode,b.u_ckck,d.plannedqty,d.cmpltqty,convert(nvarchar(10),d.duedate,23),e.U_name " +
@@ -514,7 +516,7 @@ public class OignDoc implements IDoc<OignView>{
 				 	 "inner join oitm c on b.itemcode=c.itemcode " +
 				 	 "inner join owor d on d.docentry=b.baseEntry " +
 				 	 "left join ousr e on e.userid=d.usersign " +
-					 "where b.basetype='202' and a.docNum='"+id+"'";
+					 "where b.basetype='202' and a.docEntry='"+id+"'";
 				 v.getOd().updatetable(hql,0);		
 				 v.getCom_plist().setVisible(false);
 				 v.getCom_whs().setVisible(false);
@@ -532,7 +534,7 @@ public class OignDoc implements IDoc<OignView>{
 				   		"from [@desn] a " +
 				   		"inner join drf1 b on a.docentry=b.docentry and a.linenum=b.u_snid " +
 				   		"inner join odrf c on b.docentry=c.docentry " +
-				   		"where c.docNum='"+v.getTxt_docn().getText().trim()+"' and a.Ifdraft='1' and a.objtype='59' and b.basetype='202'";
+				   		"where c.docEntry='"+v.getTxt_docnid().getText().trim()+"' and a.Ifdraft='1' and a.objtype='59' and b.basetype='202'";
 						v.getDsv().getOd().updatetable(hql, 0);
 						v.getJta_SN().setText("");
 						 ob=appMain.lt.sqlclob(hql,0,1000);
@@ -548,12 +550,12 @@ public class OignDoc implements IDoc<OignView>{
 		}
 		else{
 			hql="select a.docNum,a.userSign,c.U_Name,a.filler,b.whsname,a.groupnum,d.listname," +
-				"date=convert(nvarchar(10),a.docdate,23) " +
+				"date=convert(nvarchar(10),a.docdate,23),a.docEntry " +
 				" from owtr a " +
 				"inner join owhs b on b.whscode=a.filler " +
 				"inner join ousr c on c.userid=a.usersign " +
 				"left join opln d on d.listnum=a.groupnum " +
-				"where a.docNum='"+id+"'";
+				"where a.docEntry='"+id+"'";
 			 ob = appMain.lt.sqlclob(hql,0,1); 
 			 if(ob==null||ob.length==0)
 			 {
@@ -578,6 +580,7 @@ public class OignDoc implements IDoc<OignView>{
 			 v.getCom_whs().setSelectedItem(new ComboBoxItem(ob[0][3].toString(),ob[0][4].toString()));
 			 v.getCom_plist().setSelectedItem(new ComboBoxItem(ob[0][5].toString(),ob[0][6].toString()));
 			 v.getTxt_docn().setText(id.toString());
+			 v.getTxt_docnid().setText(ob[0][8].toString());
 			 v.getTxt_date().setText(ob[0][7].toString());
 			 v.getTxt_status().setText("库存转储");
 			 v.getTxt_status().setEditable(false); 
@@ -587,7 +590,7 @@ public class OignDoc implements IDoc<OignView>{
 			 	 "'',b.whscode,'','','','','' from owtr a " +
 			 	 "inner join wtr1 b on a.docentry=b.docentry " +
 			 	 "inner join oitm c on b.itemcode=c.itemcode " +
-				  "where  a.docNum='"+id+"'";
+				  "where  a.docEntry='"+id+"'";
 			 v.getOd().updatetable(hql,0);		
 			 hql = "select U_enable from [@SMS] where code='OIGNSN'";
 			 ob=appMain.lt.sqlclob(hql,0,1);
@@ -603,7 +606,7 @@ public class OignDoc implements IDoc<OignView>{
 			   		"from [@desn] a " +
 			   		"inner join wtr1 b on a.docentry=b.docentry and a.linenum=b.u_snid " +
 			   		"inner join owtr c on b.docentry=c.docentry " +
-			   		"where c.docNum='"+v.getTxt_docn().getText().trim()+"' and a.Ifdraft='0' and a.objtype='59'";
+			   		"where c.docEntry='"+v.getTxt_docnid().getText().trim()+"' and a.Ifdraft='0' and a.objtype='59'";
 					v.getDsv().getOd().updatetable(hql, 0);
 					v.getJta_SN().setText("");
 					 ob=appMain.lt.sqlclob(hql,0,1000);

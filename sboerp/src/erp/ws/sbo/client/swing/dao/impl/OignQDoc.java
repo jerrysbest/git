@@ -27,11 +27,11 @@ public class OignQDoc implements IQDoc{
 	 		           
 	 		if(!plist.getBegindocid().equals(""))
 	 		{
-	 			hql+="and p.docNum>='"+plist.getBegindocid()+"' ";	 			
+	 			hql+="and p.docEntry>='"+plist.getBegindocid()+"' ";	 			
 	 		}
 	 		if(!plist.getEnddocid().equals(""))
 	 		{
-	 			hql+="and p.docNum<='"+plist.getEnddocid()+"' ";
+	 			hql+="and p.docEntry<='"+plist.getEnddocid()+"' ";
 	 		}
 	 		if(plist.getBegincardCode().length()!=0)
 	 		{
@@ -72,11 +72,11 @@ public class OignQDoc implements IQDoc{
 	            " where 1=1 and b.lineStatus='O'and p.docStatus='O' and p.objtype='59'";
 			 if(!plist.getBegindocid().equals(""))
 	 		{
-	 			hql+="and p.docNum>='"+plist.getBegindocid()+"' ";	 			
+	 			hql+="and p.docEntry>='"+plist.getBegindocid()+"' ";	 			
 	 		}
 	 		if(!plist.getEnddocid().equals(""))
 	 		{
-	 			hql+="and p.docNum<='"+plist.getEnddocid()+"' ";
+	 			hql+="and p.docEntry<='"+plist.getEnddocid()+"' ";
 	 		}
 	 		if(plist.getBegincardCode().length()!=0)
 	 		{
@@ -115,11 +115,11 @@ public class OignQDoc implements IQDoc{
 			            " where 1=1  ";
 					 if(!plist.getBegindocid().equals(""))
 			 		{
-			 			hql+="and p.docNum>='"+plist.getBegindocid()+"' ";	 			
+			 			hql+="and p.docEntry>='"+plist.getBegindocid()+"' ";	 			
 			 		}
 			 		if(!plist.getEnddocid().equals(""))
 			 		{
-			 			hql+="and p.docNum<='"+plist.getEnddocid()+"' ";
+			 			hql+="and p.docEntry<='"+plist.getEnddocid()+"' ";
 			 		}
 			 		if(plist.getBegincardCode().length()!=0)
 			 		{
