@@ -32,6 +32,7 @@ import erp.ws.sbo.client.swing.view.MainForm.MainFormView;
 import erp.ws.sbo.client.swing.view.MainMenu.MainMenuView;
 import erp.ws.sbo.dao.impl.Userauther;
 import erp.ws.sbo.utils.ListTab;
+import erp.ws.sbo.utils.Queue;
 
 
 public final class appMain {
@@ -44,6 +45,7 @@ public final class appMain {
 	public static IPayments oinpay; // doc object
 	public static IJournalEntries oje; // doc object
 	public static IDocuments odoc; // doc object
+	public static Queue queue; // Queue object
 	public static IProductionOrders opdoc; // doc object
 	public static IDocuments qodelNotes; // draft object
 	public static IDocuments qodoc; // draft object

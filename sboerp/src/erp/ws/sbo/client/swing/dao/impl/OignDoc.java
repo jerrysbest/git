@@ -147,7 +147,7 @@ public class OignDoc implements IDoc<OignView>{
 					System.out.println("生产收货或者库存转储sbo接口出错1");
 				}
 			}	
-		
+		    appMain.queue.insert(oidoc);
 			appMain.lRetCode=oidoc.add();	
 			if(appMain.lRetCode!=0)
 			{ 
