@@ -89,8 +89,8 @@ public class SNL {
     		//更新序列号状态，草稿的话不应该更新
             if(!Ifdraft)
             {
-        	  snstatus sns=new snstatus();
-        	  SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+        	  sns=new snstatus();
+        	  snst=(SNStatus)appMain.ctx.getBean("SNStatus");
            	  sns=snst.queryByDocId(v.getOd().getValuethrheader(i, "序列号").toString());
            	  if(in.equals("I"))
            	  {
@@ -134,8 +134,8 @@ public class SNL {
     	
 	    passUtilDate = f.parse(f.format(new Date()));
 	 
-    	snstatus sns=new snstatus();
-     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+    	sns=new snstatus();
+     	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
      	sns.setSn(v.getTxt_createcode().getText().toString());
      	sns.setIfWh(false);
      	sns.setIfPsn(false);
@@ -173,8 +173,8 @@ public class SNL {
     	
 	    passUtilDate = f.parse(f.format(new Date()));
 	 
-    	snstatus sns=new snstatus();
-     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+    	sns=new snstatus();
+     	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
      	sns.setSn(v.getTxt_createcode().getText().toString());
      	sns.setIfWh(false);
      	sns.setIfPsn(false);
@@ -270,8 +270,8 @@ public class SNL {
     	
 	    passUtilDate = f.parse(f.format(new Date()));
 	 
-    	snstatus sns=new snstatus();
-     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+    	sns=new snstatus();
+     	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
      	sns.setSn(Psn);
      	sns.setIfWh(false);
      	sns.setIfPsn(true);
@@ -377,8 +377,8 @@ public class SNL {
     	
 	    passUtilDate = f.parse(f.format(new Date()));
 	 
-    	snstatus sns=new snstatus();
-     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+    	sns=new snstatus();
+     	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
      	sns.setSn(Psn);
      	sns.setIfWh(false);
      	sns.setIfPsn(true);
@@ -420,8 +420,8 @@ public class SNL {
     	
 	    passUtilDate = f.parse(f.format(new Date()));
 	 
-    	snstatus sns=new snstatus();
-     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+    	sns=new snstatus();
+     	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
      	sns.setSn(v.getTxt_tsn().getText().toString());
      	sns.setIfWh(false);
      	sns.setIfPsn(true);
@@ -466,8 +466,8 @@ public class SNL {
     	
 	    passUtilDate = f.parse(f.format(new Date()));
 	 
-    	snstatus sns=new snstatus();
-     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+    	sns=new snstatus();
+     	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
      	String Psn="";
      	sns.setSn(Psn);
      	sns.setIfWh(false);
@@ -685,8 +685,8 @@ public class SNL {
     }
     
     public boolean verificationPSN(JTextArea SN) throws BadLocationException{
-    	snstatus sns1=new snstatus();
-     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+    	sns1=new snstatus();
+     	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
     	Highlighter highlighter=null;
     	highlighter=SN.getHighlighter();
     	highlighter.removeAllHighlights();
@@ -763,8 +763,8 @@ public class SNL {
     }
     //目前是和verificationPSN功能一样
     public boolean verificationPSN_afs(JTextArea SN) throws BadLocationException{
-    	snstatus sns1=new snstatus();
-     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+    	sns1=new snstatus();
+     	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
     	Highlighter highlighter=null;
     	highlighter=SN.getHighlighter();
     	highlighter.removeAllHighlights();
