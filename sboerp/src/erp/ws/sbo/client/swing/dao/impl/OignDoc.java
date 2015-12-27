@@ -366,7 +366,7 @@ public class OignDoc implements IDoc<OignView>{
 	public Integer getfirst() {
 		// TODO Auto-generated method stub		
 		
-		hql = "SELECT min(a.docentry) from odrf a inner join drf1 b on a.docentry=b.docentry where and a.docStatus='O' b.objtype='59' and b.basetype='202'";
+		hql = "SELECT min(a.docentry) from odrf a inner join drf1 b on a.docentry=b.docentry where a.docStatus='O' and b.objtype='59' and b.basetype='202'";
         ob = appMain.lt.sqlclob(hql,0,1);
          if(ob==null||ob.length==0)
          {
@@ -380,7 +380,7 @@ public class OignDoc implements IDoc<OignView>{
 	@Override
 	public Integer getprev(int id) {
 		// TODO Auto-generated method stub
-		 hql = "SELECT  max(a.docentry)  from odrf a inner join drf1 b on a.docentry=b.docentry where and a.docStatus='O' a.objtype='59' and b.basetype='202' and a.docentry<'"+id+"'";
+		 hql = "SELECT  max(a.docentry)  from odrf a inner join drf1 b on a.docentry=b.docentry where a.docStatus='O' and a.objtype='59' and b.basetype='202' and a.docentry<'"+id+"'";
          ob = appMain.lt.sqlclob(hql,0,1);
           if(ob==null||ob.length==0)
           {
@@ -496,7 +496,7 @@ public class OignDoc implements IDoc<OignView>{
 			 }
 		}
 		else if(dod.equals("收货草稿")){
-			hql="select a.docNum,a.usersign,c.U_Name,a.docdate,a.docEntry from odrf a " +
+			hql="select a.docNum,a.usersign,c.U_Name,a.docdate,a.docEntry,case when a.docstatus='O' then '未清' else '已清' end from odrf a " +
 				"inner join drf1 b on a.docentry=b.docentry " +
 				"inner join ousr c on a.usersign=c.userid " +
 				"where b.basetype='202' and a.docEntry='"+id+"'";
@@ -522,6 +522,8 @@ public class OignDoc implements IDoc<OignView>{
 				 v.getTxt_date().setText(ob[0][3].toString());
 				 v.getTxt_status().setText("收货草稿");
 				 v.getTxt_status().setEditable(false); 
+				 v.getTxt_status1().setText(ob[0][5].toString());
+				 v.getTxt_status1().setEditable(false); 
 				 hql="select 0, b.u_snid,d.docEntry,c.itemcode,c.itemname,b.u_Ymd,b.u_mtmd,c.salunitmsr," +
 				 	 "unitQty=convert(decimal(18,3),isnull(d.U_length,0)*isnull(c.u_mtzl,0)/isnull(c.u_mtmd,0))," +
 				 	 "d.u_qty,gs=isnull(b.u_gs,0),b.unitmsr,b.u_zz,b.quantity,b.u_scwc," +
@@ -649,6 +651,22 @@ public class OignDoc implements IDoc<OignView>{
 	@Override
 	public void close(OignView v)
 	{
+		if(v.getTxt_status().getText().equals("收货草稿"))
+		{		
+			try {
+				appMain.odoc=SBOCOMUtil.newDocuments(appMain.oCompany,SBOCOMConstants.BoObjectTypes_Document_oDrafts);
+				 if(appMain.odoc.getByKey(Integer.valueOf(v.getTxt_docnid().getText())))
+		         {
+					 hql = "update odrf set docStatus='C' WHERE docentry='"+v.getTxt_docnid().getText()+"'";
+					 dbu.exeSql(hql);
+		             v.getTxt_status1().setText("已清");
+		         }
+			} catch (SBOCOMException e1) {
+				// TODO Auto-generated catch block			
+				e1.printStackTrace();			
+			}	
+		}
+		
 		
 	}
 	public OignView getV() {

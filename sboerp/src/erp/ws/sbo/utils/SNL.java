@@ -41,7 +41,7 @@ public class SNL {
 	private snstatus sns=new snstatus();
 	private Set<String> setsn=new HashSet<String>(),setsn1=new HashSet<String>();	
 	private snstatus sns1=new snstatus();
-	private ISNStatus snst=new SNStatus();
+	private SNStatus snst;
 	public SNL()
     {
     	
@@ -510,8 +510,7 @@ public class SNL {
      	return true;
     }
     //检查序列号区域序列号本身是否有问题，并去除重复项
-    public boolean verificationSN(JTextArea SN,boolean ifout,DeSNView v) throws BadLocationException{
-    	
+    public boolean verificationSN(JTextArea SN,boolean ifout,DeSNView v) throws BadLocationException{   	
     	Highlighter highlighter=null;
     	highlighter=SN.getHighlighter();
     	highlighter.removeAllHighlights();
@@ -524,6 +523,7 @@ public class SNL {
     	String[] sns=s.split(",");
     	setsn=new HashSet<String>();//所有去除重复序列号的集合
     	setsn1=new HashSet<String>();//所有重复项序列号集合
+    	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
     	for(int i=0;i<sns.length;i++)
     	{    
     		if(sns[i]==null||(sns[i]!=null&&sns[i].equals("")))
@@ -567,7 +567,7 @@ public class SNL {
     	    {
     		  continue;
     	    }
-    		if(!setsn.add(sns[i]))
+    		if(!this.getSetsn().add(sns[i]))
     		{
     			setsn1.add(sns[i]);
     		}
@@ -643,8 +643,8 @@ public class SNL {
     	
     	return true;
     }
-    //检查序列号区域与开窗是否一致
-    public boolean verificationSNA_dialog(JTextArea SN,DeSNView v){
+    //检查序列号区域与开窗是否一致,必须先执行verificationSN，否则setsn会有问题
+    public boolean verificationSNA_dialog(JTextArea SN,DeSNView v,Set<String> setsn){
 
     	boolean ifh=false;
     	for(String str : setsn)
@@ -925,10 +925,10 @@ public class SNL {
 	public void setSns1(snstatus sns1) {
 		this.sns1 = sns1;
 	}
-	public ISNStatus getSnst() {
+	public SNStatus getSnst() {
 		return snst;
 	}
-	public void setSnst(ISNStatus snst) {
+	public void setSnst(SNStatus snst) {
 		this.snst = snst;
 	}
 	

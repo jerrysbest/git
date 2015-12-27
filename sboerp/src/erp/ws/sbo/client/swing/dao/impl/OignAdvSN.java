@@ -2,9 +2,6 @@ package erp.ws.sbo.client.swing.dao.impl;
 
 import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
-import java.util.HashSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -14,10 +11,8 @@ import erp.ws.sbo.client.swing.app.appMain;
 import erp.ws.sbo.client.swing.dao.IAdvSN;
 import erp.ws.sbo.client.swing.model.snstatus;
 import erp.ws.sbo.client.swing.util.general.ComboBoxItem;
-import erp.ws.sbo.client.swing.view.DeSN.DeSNView;
 import erp.ws.sbo.client.swing.view.MainMenu.AboutView;
 import erp.ws.sbo.client.swing.view.Oign.OignView;
-import erp.ws.sbo.dao.ISNStatus;
 import erp.ws.sbo.dao.impl.SNStatus;
 import erp.ws.sbo.utils.SNL;
 
@@ -28,17 +23,18 @@ public class OignAdvSN implements IAdvSN<OignView> {
 	private Object[][] ob;
 	private SNL snl=new SNL();
 	private snstatus sns1=new snstatus();
-	private ISNStatus snst=new SNStatus();
+	//private ISNStatus snst=new SNStatus();
 	@Override
     public void add(OignView v,String SN,boolean ifdraft,String objtype,String Direction,boolean ifpasn,int rowid)
     {		
 		if(rowid==-1){
 			JOptionPane.showMessageDialog(null,"没有行被选中,请选中某行");	  
 			return;
-		}
-		snst=new SNStatus();	
-        snstatus sns=new snstatus();
-        sns=snst.queryByDocId(SN);
+		}		
+		//snst=new SNStatus();
+		SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+        sns1=new snstatus();
+        sns1=snst.queryByDocId(SN);
         Object[] obj;	
         Integer snid=0;
         String warehouse="";
@@ -46,7 +42,7 @@ public class OignAdvSN implements IAdvSN<OignView> {
         SimpleDateFormat f=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");	
         for(int i=0;i<v.getDsv().getOd().getRowCount();i++)
 		 {
-     	     if(v.getDsv().getOd().getValuethrheader(i, "序列号")!=null&&v.getDsv().getOd().getValuethrheader(i, "序列号").toString().equals(sns.getSn().toString()))
+     	     if(v.getDsv().getOd().getValuethrheader(i, "序列号")!=null&&v.getDsv().getOd().getValuethrheader(i, "序列号").toString().equals(sns1.getSn().toString()))
 			 {     	    	
      	    	  if(av==null)
 			      {
@@ -65,21 +61,21 @@ public class OignAdvSN implements IAdvSN<OignView> {
 			    	  }
 			    	
 			    	}
-				   av.getTxtpnQserpDevelopedBy().setText("序列号"+sns.getSn()+"在开窗中已存在");
+				   av.getTxtpnQserpDevelopedBy().setText("序列号"+sns1.getSn()+"在开窗中已存在");
 				   return;
 			 }
 		 }
 		//for(int i=0;i<v.getOd().getRowCount();i++)
 		//{
-			if(!new BigDecimal(sns.getLength()).setScale(2, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP))
-			 &&v.getOd().getValuethrheader(rowid, "物料代码")!=null&&v.getOd().getValuethrheader(rowid, "物料代码").toString().equals(sns.getItemcode())
-			 &&v.getOd().getValuethrheader(rowid, "仓库")!=null&&v.getOd().getValuethrheader(rowid, "仓库").toString().equals(sns.getWareHouse())
-			 &&new BigDecimal(v.getOd().getValuethrheader(rowid, "米段").toString()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(sns.getLength()).setScale(3, BigDecimal.ROUND_HALF_UP))
+			if(!new BigDecimal(sns1.getLength()).setScale(2, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP))
+			 &&v.getOd().getValuethrheader(rowid, "物料代码")!=null&&v.getOd().getValuethrheader(rowid, "物料代码").toString().equals(sns1.getItemcode())
+			 &&v.getOd().getValuethrheader(rowid, "仓库")!=null&&v.getOd().getValuethrheader(rowid, "仓库").toString().equals(sns1.getWareHouse())
+			 &&new BigDecimal(v.getOd().getValuethrheader(rowid, "米段").toString()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(sns1.getLength()).setScale(3, BigDecimal.ROUND_HALF_UP))
 			 &&(v.getOd().getValuethrheader(rowid, "是否米段线").toString().equals("Y")||v.getOd().getValuethrheader(rowid, "是否米段线").toString().equals("是")))
 			{		
 				Double sl=Double.valueOf(v.getOd().getValuethrheader(rowid, "实际库存数量").toString());
 				v.getOd().setValuethrheader(Integer.valueOf(new BigDecimal(v.getOd().getValuethrheader(rowid, "实际收货个数").toString()).setScale(0, BigDecimal.ROUND_HALF_UP).toString())+1,rowid,"实际收货个数");					
-				v.getOd().setValuethrheader(sl+sns.getCweight(), rowid, "实际库存数量");	
+				v.getOd().setValuethrheader(sl+sns1.getCweight(), rowid, "实际库存数量");	
 				snid=Integer.valueOf(v.getOd().getValuethrheader(rowid, "序号").toString());
 				//v.getOd().setValuethrheader(((ComboBoxItem)v.getCom_whsin().getSelectedItem()).getValue().toString(), rowid, "仓库");
 				warehouse=v.getOd().getValuethrheader(rowid, "仓库").toString();
@@ -88,15 +84,15 @@ public class OignAdvSN implements IAdvSN<OignView> {
 				  cardcode=v.getOd().getValuethrheader(rowid, "伙伴代码").toString();
 				}
 			}
-			else if(new BigDecimal(sns.getLength()).setScale(2, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP))
-					 &&v.getOd().getValuethrheader(rowid, "物料代码")!=null&&v.getOd().getValuethrheader(rowid, "物料代码").toString().equals(sns.getItemcode())
-					 &&v.getOd().getValuethrheader(rowid, "仓库")!=null&&v.getOd().getValuethrheader(rowid, "仓库").toString().equals(sns.getWareHouse())
+			else if(new BigDecimal(sns1.getLength()).setScale(2, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP))
+					 &&v.getOd().getValuethrheader(rowid, "物料代码")!=null&&v.getOd().getValuethrheader(rowid, "物料代码").toString().equals(sns1.getItemcode())
+					 &&v.getOd().getValuethrheader(rowid, "仓库")!=null&&v.getOd().getValuethrheader(rowid, "仓库").toString().equals(sns1.getWareHouse())
 					 &&(v.getOd().getValuethrheader(rowid, "是否米段线").toString().equals("N")||v.getOd().getValuethrheader(rowid, "是否米段线").toString().equals("否")))
 			{		
 				Double sl=Double.valueOf(v.getOd().getValuethrheader(rowid, "实际库存数量").toString());				
 				v.getOd().setValuethrheader(Integer.valueOf(new BigDecimal(v.getOd().getValuethrheader(rowid, "实际收货个数").toString()).setScale(0, BigDecimal.ROUND_HALF_UP).toString())+1,rowid,"实际收货个数");					
 				v.getOd().valueChanged(rowid, v.getOd().getcolumnindex("实际收货个数"), v.getOd().getValuethrheader(rowid, "物料代码").toString(), "");
-				v.getOd().setValuethrheader(sl+sns.getCweight(), rowid, "实际库存数量");	
+				v.getOd().setValuethrheader(sl+sns1.getCweight(), rowid, "实际库存数量");	
 				v.getOd().valueChanged(rowid, v.getOd().getcolumnindex("实际库存数量"), v.getOd().getValuethrheader(rowid, "物料代码").toString(), "");
 				snid=Integer.valueOf(v.getOd().getValuethrheader(rowid, "序号").toString());
 				v.getOd().setValuethrheader(((ComboBoxItem)v.getCom_whsin().getSelectedItem()).getValue().toString(), rowid, "仓库");
@@ -123,18 +119,18 @@ public class OignAdvSN implements IAdvSN<OignView> {
          obj=new Object[v.getDsv().getOd().getColumnCount()];	
 		 for(int i=0;i<v.getDsv().getOd().getRowCount();i++)
 		 {
-			if(v.getDsv().getOd().getValuethrheader(i, "物料代码")!=null&&v.getDsv().getOd().getValuethrheader(i, "物料代码").toString().equals(sns.getItemcode())
-			&&new BigDecimal(v.getDsv().getOd().getValuethrheader(i, "米段").toString()).setScale(2, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(sns.getLength()).setScale(2, BigDecimal.ROUND_HALF_UP)))
+			if(v.getDsv().getOd().getValuethrheader(i, "物料代码")!=null&&v.getDsv().getOd().getValuethrheader(i, "物料代码").toString().equals(sns1.getItemcode())
+			&&new BigDecimal(v.getDsv().getOd().getValuethrheader(i, "米段").toString()).setScale(2, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(sns1.getLength()).setScale(2, BigDecimal.ROUND_HALF_UP)))
 			{						
 				v.getDsv().getOd().insertRow(i+1, obj);
-				v.getDsv().getOd().setValuethrheader(sns.getItemcode(), i+1, "物料代码");	
-				v.getDsv().getOd().setValuethrheader(sns.getLength(), i+1, "米段");	
-				v.getDsv().getOd().setValuethrheader(sns.getSn(), i+1, "序列号");
+				v.getDsv().getOd().setValuethrheader(sns1.getItemcode(), i+1, "物料代码");	
+				v.getDsv().getOd().setValuethrheader(sns1.getLength(), i+1, "米段");	
+				v.getDsv().getOd().setValuethrheader(sns1.getSn(), i+1, "序列号");
 				v.getDsv().getOd().setValuethrheader(ifdraft, i+1, "是否草稿");
 				v.getDsv().getOd().setValuethrheader(objtype, i+1, "对象类型");
 				v.getDsv().getOd().setValuethrheader(v.getTxt_docn().getText(), i+1, "单号");
 				v.getDsv().getOd().setValuethrheader(snid, i+1, "行号");
-				v.getDsv().getOd().setValuethrheader(sns.getCweight(), i+1, "重量");
+				v.getDsv().getOd().setValuethrheader(sns1.getCweight(), i+1, "重量");
 				v.getDsv().getOd().setValuethrheader(Direction, i+1, "方向");
 				v.getDsv().getOd().setValuethrheader(ifpasn, i+1, "是否大序列号");
 				v.getDsv().getOd().setValuethrheader("", i+1, "所属大序列号");
@@ -148,14 +144,14 @@ public class OignAdvSN implements IAdvSN<OignView> {
 			}
 			else if(v.getDsv().getOd().getValuethrheader(i, "物料代码")==null||v.getDsv().getOd().getValuethrheader(i, "物料代码").toString().equals(""))
 			{						
-				v.getDsv().getOd().setValuethrheader(sns.getItemcode(),i, "物料代码");	
-				v.getDsv().getOd().setValuethrheader(sns.getLength(), i, "米段");	
-				v.getDsv().getOd().setValuethrheader(sns.getSn(),i, "序列号");
+				v.getDsv().getOd().setValuethrheader(sns1.getItemcode(),i, "物料代码");	
+				v.getDsv().getOd().setValuethrheader(sns1.getLength(), i, "米段");	
+				v.getDsv().getOd().setValuethrheader(sns1.getSn(),i, "序列号");
 				v.getDsv().getOd().setValuethrheader(ifdraft,i, "是否草稿");
 				v.getDsv().getOd().setValuethrheader(objtype,i, "对象类型");
 				v.getDsv().getOd().setValuethrheader(v.getTxt_docn().getText(),i, "单号");
 				v.getDsv().getOd().setValuethrheader(snid,i, "行号");
-				v.getDsv().getOd().setValuethrheader(sns.getCweight(),i, "重量");
+				v.getDsv().getOd().setValuethrheader(sns1.getCweight(),i, "重量");
 				v.getDsv().getOd().setValuethrheader(Direction,i, "方向");
 				v.getDsv().getOd().setValuethrheader(ifpasn,i, "是否大序列号");
 				v.getDsv().getOd().setValuethrheader("",i, "所属大序列号");
@@ -182,9 +178,9 @@ public class OignAdvSN implements IAdvSN<OignView> {
 	//this method compare if the jta_sn equals with item details
 	public boolean bfcverification(OignView v) {
 		// TODO Auto-generated method stub
-		
+		snl=new SNL();
 		try {
-			if(!(snl.verificationSN(v.getJta_SN(), false,v.getDsv())&&snl.verificationSNA_dialog(v.getJta_SN(), v.getDsv())))
+			if(!(snl.verificationSN(v.getJta_SN(), false,v.getDsv())&&snl.verificationSNA_dialog(v.getJta_SN(), v.getDsv(),snl.getSetsn())))
 			{
 				return false;
 			}
@@ -197,6 +193,7 @@ public class OignAdvSN implements IAdvSN<OignView> {
 		BigDecimal weit=new BigDecimal("0.000"),weit1=new BigDecimal("0.000");
 		for(String str : snl.getSetsn())
     	{
+			SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
             sns1=snst.queryByDocId(str);  
             weit=weit.add(new BigDecimal(sns1.getCweight()).setScale(3, BigDecimal.ROUND_HALF_UP));  		
     	}
@@ -211,8 +208,8 @@ public class OignAdvSN implements IAdvSN<OignView> {
 				{
 				   continue;
 				}
-         		c+=Integer.valueOf(v.getOd().getValuethrheader(i, "实际收货个数").toString());
-         		weit1=weit1.add(new BigDecimal(v.getOd().getValuethrheader(i, "实际库存个数").toString()).setScale(3, BigDecimal.ROUND_HALF_UP));        		
+         		c+=new BigDecimal(v.getOd().getValuethrheader(i, "实际收货个数").toString()).intValue();
+         		weit1=weit1.add(new BigDecimal(v.getOd().getValuethrheader(i, "实际库存数量").toString()).setScale(3, BigDecimal.ROUND_HALF_UP));        		
          	}
          }
 		 if(!(c==snl.getSetsn().size()&&weit1.compareTo(weit)==0))

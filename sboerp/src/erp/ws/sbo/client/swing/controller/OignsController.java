@@ -610,9 +610,9 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		else if(e.getActionCommand().equals("选择序列号")&&v.getOd().ds.getValue()==5)
 		{
 						
-			ISNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");	
-            snstatus sns=new snstatus();
-            sns=isn.queryByDocId(((JTextField)v.getCom_selcode().getEditor().getEditorComponent()).getText());
+			SNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");	
+            snstatus sns=new snstatus(); 
+            sns=isn.queryByDocId(((JTextField)v.getCom_selcode().getEditor().getEditorComponent()).getText());   
             v.getTxt_MNo().setText(sns.getMno());
             v.getTxt_length().setText(sns.getLength().toString());
             v.getTxt_pweight().setText(sns.getPweight().toString());
@@ -893,14 +893,12 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	    	   JOptionPane.showMessageDialog(null, "无此权限");
 	    	   return;
 	        }
-			if(v.getTxt_status().getText().equals("收货草稿"))
-			{
-		   
-				docf.getIdoc().ctarget(v, Integer.valueOf(v.getTxt_docnid().getText()));
-			   
+			if(v.getTxt_status().getText().equals("收货草稿")&&v.getTxt_status1().getText().equals("未清"))
+			{		   
+			   docf.getIdoc().ctarget(v, Integer.valueOf(v.getTxt_docnid().getText()));			   
 			}
 			else{
-				JOptionPane.showMessageDialog(null, "只有收货草稿才能生成生产收货单");
+			   JOptionPane.showMessageDialog(null, "只有未清的收货草稿才能生成生产收货单");
 			}
 		}
 		else if(e.getSource()==dmv.getjButtonremend())
