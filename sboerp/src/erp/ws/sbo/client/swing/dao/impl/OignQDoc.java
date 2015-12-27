@@ -16,7 +16,7 @@ public class OignQDoc implements IQDoc{
 		SimpleDateFormat f=new SimpleDateFormat("yyyy-MM-dd");
 		 if(plist.getDraft().equals("1"))
 		 {
-	 		hql="select distinct 0,type='生产收货',p.docNum,p.docDate,'','',q.user_code,q.u_name ,"+
+	 		hql="select distinct 0,type='生产收货',p.docEntry,p.docDate,'','',q.user_code,q.u_name ,"+
 	           " '', ''," +
 	           "''," +
 	           "'' " + 		         
@@ -27,11 +27,11 @@ public class OignQDoc implements IQDoc{
 	 		           
 	 		if(!plist.getBegindocid().equals(""))
 	 		{
-	 			hql+="and p.docNum>='"+plist.getBegindocid()+"' ";	 			
+	 			hql+="and p.docEntry>='"+plist.getBegindocid()+"' ";	 			
 	 		}
 	 		if(!plist.getEnddocid().equals(""))
 	 		{
-	 			hql+="and p.docNum<='"+plist.getEnddocid()+"' ";
+	 			hql+="and p.docEntry<='"+plist.getEnddocid()+"' ";
 	 		}
 	 		if(plist.getBegincardCode().length()!=0)
 	 		{
@@ -61,7 +61,7 @@ public class OignQDoc implements IQDoc{
 		 }
 		 else if(plist.getDraft().equals("0"))
 		 {
-			 hql="select distinct 0,type='收货草稿',p.docNum,p.docDate," + 				
+			 hql="select distinct 0,type='收货草稿',p.docEntry,p.docDate," + 				
  				"'','',"+
 	            " q.user_code,q.u_name,'',''," +
 	            "''," +
@@ -72,11 +72,11 @@ public class OignQDoc implements IQDoc{
 	            " where 1=1 and b.lineStatus='O'and p.docStatus='O' and p.objtype='59'";
 			 if(!plist.getBegindocid().equals(""))
 	 		{
-	 			hql+="and p.docNum>='"+plist.getBegindocid()+"' ";	 			
+	 			hql+="and p.docEntry>='"+plist.getBegindocid()+"' ";	 			
 	 		}
 	 		if(!plist.getEnddocid().equals(""))
 	 		{
-	 			hql+="and p.docNum<='"+plist.getEnddocid()+"' ";
+	 			hql+="and p.docEntry<='"+plist.getEnddocid()+"' ";
 	 		}
 	 		if(plist.getBegincardCode().length()!=0)
 	 		{
@@ -104,38 +104,38 @@ public class OignQDoc implements IQDoc{
 	 		}
 		 }
 		 else{
-			 hql="select distinct 0,type='库存转储',p.docNum,p.docDate," + 				
+			 hql="select distinct 0,type='库存转储',p.docEntry,p.docDate," + 				
 		 				"'','',"+
-			            " q.user_code,q.u_name,'',''," +
+			            " p.filler,q.whsname,'',''," +
 			            "''," +
 			            "'' " + 		         
 			            " from Owtr p " +
-			            "inner join ousr q on q.userid=p.usersign " +
+			            "inner join owhs q on q.whscode=p.filler " +
 			            " inner join wtr1 b on p.docentry=b.docentry " +
 			            " where 1=1  ";
 					 if(!plist.getBegindocid().equals(""))
 			 		{
-			 			hql+="and p.docNum>='"+plist.getBegindocid()+"' ";	 			
+			 			hql+="and p.docEntry>='"+plist.getBegindocid()+"' ";	 			
 			 		}
 			 		if(!plist.getEnddocid().equals(""))
 			 		{
-			 			hql+="and p.docNum<='"+plist.getEnddocid()+"' ";
+			 			hql+="and p.docEntry<='"+plist.getEnddocid()+"' ";
 			 		}
 			 		if(plist.getBegincardCode().length()!=0)
 			 		{
-			 			
+			 			hql+="and p.usersign>='"+plist.getBeginsaleperson()+"' ";
 			 		}
 			 		if(plist.getEndcardCode().length()!=0)
 			 		{
-			 			
+			 			hql+="and p.usersign<='"+plist.getBeginsaleperson()+"' ";
 			 		}
 			 		if(!plist.getBeginsaleperson().equals(""))
 			 		{
-			 			hql+="and q.user_code>='"+plist.getBeginsaleperson()+"' ";
+			 			hql+="and q.whscode>='"+plist.getBegincardCode()+"' ";
 			 		}
 			 		if(!plist.getEndsaleperson().equals(""))
 			 		{
-			 			hql+="and q.user_code<='"+plist.getEndsaleperson()+"' ";
+			 			hql+="and q.whscode<='"+plist.getEndcardCode()+"' ";
 			 		}
 			 		if(plist.getBegindate()!=null)
 			 		{   		 			

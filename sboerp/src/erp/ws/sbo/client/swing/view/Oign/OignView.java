@@ -86,7 +86,7 @@ public class OignView extends JInternalFrame{
     JLabel lab_SN = new JLabel("SN码");
     JLabel lab_cppo = new JLabel("查询订单");
     JLabel lab_plist = new JLabel("价格清单");
-    JLabel lab_docn = new JLabel("单号");
+    JLabel lab_docn = new JLabel("单号,id号");
     JLabel lab_memo = new JLabel("备注");
     JLabel lab_msum = new JLabel("实际收货个数");
     JLabel lab_wsum = new JLabel("标准库存数量");
@@ -181,8 +181,10 @@ public class OignView extends JInternalFrame{
     JComboBox com_type=new JComboBox();
     JTextArea jta_memo=new JTextArea(6,20);
     DatePicker txt_date  = new DatePicker(pane1,new Date());
-    JTextField txt_docn = new JTextField(13);
-    JTextField txt_status = new JTextField(13);
+    JTextField txt_docn = new JTextField(8);
+    JTextField txt_docnid = new JTextField(8);
+    JTextField txt_status = new JTextField(8);
+    JTextField txt_status1 = new JTextField(8);
     JTextArea jta_SN=new JTextArea(8,25);
     JTextField txt_cppo = new JTextField(13);
     JTextField txt_msum = new JTextField(15);
@@ -190,7 +192,7 @@ public class OignView extends JInternalFrame{
     JTextField txt_rsum = new JTextField(15);
     JTextField txt_psum = new JTextField(15);
     JTextField txt_csum = new JTextField(15);
-    JButton bt_cppo=new JButton();
+    JButton bt_cppo=new JButton();    
     
     JMyTable jt;
     JTable jt1;
@@ -254,6 +256,7 @@ public class OignView extends JInternalFrame{
 		 com_snware.setPrototypeDisplayValue("xxxxxxxxxxxxxxxxx");
 		 
 		 this.txt_docn.setEditable(false);
+		 this.txt_docnid.setEditable(false);
 		 this.txt_cweight.setEditable(false);
 		 this.txt_deviation.setEditable(false);
 		 this.txt_createcode.setEditable(false);
@@ -268,6 +271,7 @@ public class OignView extends JInternalFrame{
 		 this.txt_sweight.setEditable(false);
 		 this.txt_weight.setEditable(false);
 		 this.txt_status.setEditable(false);
+		 this.txt_status1.setEditable(false);
 		 this.bt_cweight.setEnabled(false);
 		 this.bt_weight.setEnabled(false);
 		 
@@ -296,8 +300,10 @@ public class OignView extends JInternalFrame{
 		 lay.putConstraint(SpringLayout.NORTH, bt_cppo, 130, SpringLayout.NORTH, pane1);
 		 lay.putConstraint(SpringLayout.EAST, lab_docn, -250,SpringLayout.EAST, pane1);
 		 lay.putConstraint(SpringLayout.NORTH, lab_docn, 10, SpringLayout.NORTH, pane1);
-		 lay.putConstraint(SpringLayout.EAST, txt_docn, -100,SpringLayout.EAST, pane1);
+		 lay.putConstraint(SpringLayout.EAST, txt_docn, -150,SpringLayout.EAST, pane1);
 		 lay.putConstraint(SpringLayout.NORTH, txt_docn, 10, SpringLayout.NORTH, pane1);
+		 lay.putConstraint(SpringLayout.EAST, txt_docnid, -40,SpringLayout.EAST, pane1);
+		 lay.putConstraint(SpringLayout.NORTH, txt_docnid, 10, SpringLayout.NORTH, pane1);
 		 lay.putConstraint(SpringLayout.EAST, lab_user, -250,SpringLayout.EAST, pane1);
 		 lay.putConstraint(SpringLayout.NORTH, lab_user, 40, SpringLayout.NORTH, pane1);
 		 lay.putConstraint(SpringLayout.EAST, com_users, -100,SpringLayout.EAST, pane1);
@@ -308,8 +314,10 @@ public class OignView extends JInternalFrame{
 		 lay.putConstraint(SpringLayout.NORTH, txt_date, 70, SpringLayout.NORTH, pane1);
 		 lay.putConstraint(SpringLayout.EAST, lab_status, -250,SpringLayout.EAST, pane1);
 		 lay.putConstraint(SpringLayout.NORTH, lab_status, 100, SpringLayout.NORTH, pane1);
-		 lay.putConstraint(SpringLayout.EAST, txt_status, -100,SpringLayout.EAST, pane1);
+		 lay.putConstraint(SpringLayout.EAST, txt_status, -130,SpringLayout.EAST, pane1);
 		 lay.putConstraint(SpringLayout.NORTH, txt_status, 100, SpringLayout.NORTH, pane1);
+		 lay.putConstraint(SpringLayout.EAST, txt_status1, -10,SpringLayout.EAST, pane1);
+		 lay.putConstraint(SpringLayout.NORTH, txt_status1, 100, SpringLayout.NORTH, pane1);
 
 		 pane1.add(lab_date);
 		 pane1.add(txt_date);
@@ -325,11 +333,13 @@ public class OignView extends JInternalFrame{
 		 pane1.add(com_snware);
 		 pane1.add(lab_docn);
 		 pane1.add(txt_docn);
+		 pane1.add(txt_docnid);
 		 pane1.add(lab_cppo);
 		 pane1.add(txt_cppo);
 		 pane1.add(bt_cppo);
 		 pane1.add(lab_status);
 		 pane1.add(txt_status);
+		 pane1.add(txt_status1);
 		 
 		 pane7.setLayout(lay7);
 		 com_port=new JComboBox();
@@ -879,6 +889,7 @@ public class OignView extends JInternalFrame{
 		     this.txt_length.addFocusListener(oc);
 		     this.txt_length.addKeyListener(oc);
 		     this.com_specification.addActionListener(oc);
+		     this.com_snware.addActionListener(oc);
 		     this.txt_pweight.addKeyListener(oc);
 		     jta_SN.addKeyListener(oc);
 	      }
@@ -1833,6 +1844,22 @@ public class OignView extends JInternalFrame{
 
 	public void setTxt_status(JTextField txt_status) {
 		this.txt_status = txt_status;
+	}
+
+	public JTextField getTxt_status1() {
+		return txt_status1;
+	}
+
+	public void setTxt_status1(JTextField txt_status1) {
+		this.txt_status1 = txt_status1;
+	}
+
+	public JTextField getTxt_docnid() {
+		return txt_docnid;
+	}
+
+	public void setTxt_docnid(JTextField txt_docnid) {
+		this.txt_docnid = txt_docnid;
 	}
 
 }

@@ -171,7 +171,7 @@ public class OworDoc implements IDoc<OworView>{
 	public Integer getfirst() {
 		// TODO Auto-generated method stub		
 		
-		  hql = "SELECT min(docNum) from Owor";
+		  hql = "SELECT min(docEntry) from Owor";
           ob = appMain.lt.sqlclob(hql,0,1);
            if(ob==null||ob.length==0)
            {
@@ -185,7 +185,7 @@ public class OworDoc implements IDoc<OworView>{
 	@Override
 	public Integer getprev(int id) {
 		// TODO Auto-generated method stub
-		  hql = "SELECT  docNum from Owor where docNum<'"+id+"' order by docNum desc";
+		  hql = "SELECT  docEntry from Owor where docEntry<'"+id+"' order by docEntry desc";
           ob = appMain.lt.sqlclob(hql,0,1);
            if(ob==null||ob.length==0)
            {
@@ -199,7 +199,7 @@ public class OworDoc implements IDoc<OworView>{
 	@Override
 	public Integer getnext(int id) {
 		// TODO Auto-generated method stub
-		  hql = "SELECT  docNum  from Owor where docNum>'"+id+"'";
+		  hql = "SELECT  docEntry  from Owor where docEntry>'"+id+"'";
           ob = appMain.lt.sqlclob(hql,0,1);
           if(ob==null||ob.length==0)
           {
@@ -213,7 +213,7 @@ public class OworDoc implements IDoc<OworView>{
 	@Override
 	public Integer getlast() {
 		// TODO Auto-generated method stub
-		  hql = "SELECT max(docNum) from Owor";
+		  hql = "SELECT max(docEntry) from Owor";
           ob = appMain.lt.sqlclob(hql,0,1);
           if(ob==null||ob.length==0)
           {
@@ -236,11 +236,12 @@ public class OworDoc implements IDoc<OworView>{
      		"type=(case a.Type when 'S' then '标准' when 'D' then '拆分' when 'P' then '特殊' else '' end)," +
      		"a.plannedQty,a.cmpltQty,a.postdate,a.duedate,a.usersign," +
      		"a.comments,a.wareHouse, b.invntryuom,b.salunitmsr,c.U_Name,b.itemname,d.whsname," +
-     		"U_Length=isnull(a.U_Length,'0'),U_Qty=isnull(a.U_Qty,'0'),u_ymd=isnull(U_Ymd,'N') from Owor a " +
+     		"U_Length=isnull(a.U_Length,'0'),U_Qty=isnull(a.U_Qty,'0'),u_ymd=isnull(U_Ymd,'N'),a.docNum "+
+     		"from Owor a " +
      		"inner join oitm b on a.itemcode=b.itemcode " +
      		"inner join ousr c on a.usersign=c.userid " +
      		"inner join owhs d on a.warehouse=d.whscode " +
-     		"where a.docNum='"+id+"'";			
+     		"where a.docEntry='"+id+"'";			
 		 ob = appMain.lt.sqlclob(hql,0,1); 
 		 if(ob==null||ob.length==0)
 		 {
@@ -315,7 +316,8 @@ public class OworDoc implements IDoc<OworView>{
 	     v.getCom_users().setEditable(false);
 	     v.getCom_form().setEnabled(false);
 	     v.getCom_form().setEditable(false);
-		 v.getTxt_docn().setText(id.toString());
+		 v.getTxt_docn().setText(ob[0][18].toString());
+		 v.getTxt_docnid().setText(id.toString());
 		 v.getTxt_date().setText(ob[0][5].toString());
 		 v.getTxt_duedate().setText(ob[0][6].toString());
 		 v.getTxt_itemname().setText(ob[0][13].toString());
@@ -331,7 +333,7 @@ public class OworDoc implements IDoc<OworView>{
            "from Wor1 p " +
            "inner join owor a on a.docentry=p.docentry "+
            "inner join Oitm b on p.itemcode=b.itemcode " +
-           "where a.docNum='"+id+"'";			
+           "where a.docEntry='"+id+"'";			
 	     v.getOd().updatetable(hql,0);			
 	}
 	@Override

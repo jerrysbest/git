@@ -40,8 +40,8 @@ public class SNL {
 	private snstatus sns=new snstatus();
 	private Set<String> setsn=new HashSet<String>(),setsn1=new HashSet<String>();	
 	private snstatus sns1=new snstatus();
-	//private SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
-	private SNStatus snst=new SNStatus();
+	private SNStatus snst;
+
 	public SNL()
     {
     	
@@ -89,9 +89,8 @@ public class SNL {
     		//更新序列号状态，草稿的话不应该更新
             if(!Ifdraft)
             {
-        	  snstatus sns=new snstatus();
-        	  //SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
-        	  snst=new SNStatus();
+        	  sns=new snstatus();
+        	  snst=(SNStatus)appMain.ctx.getBean("SNStatus");
            	  sns=snst.queryByDocId(v.getOd().getValuethrheader(i, "序列号").toString());
            	  if(in.equals("I"))
            	  {
@@ -136,8 +135,7 @@ public class SNL {
 	    passUtilDate = f.parse(f.format(new Date()));
 	 
     	snstatus sns=new snstatus();
-     	//SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
-    	snst=new SNStatus();
+     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
      	sns.setSn(v.getTxt_createcode().getText().toString());
      	sns.setIfWh(false);
      	sns.setIfPsn(false);
@@ -176,7 +174,7 @@ public class SNL {
 	    passUtilDate = f.parse(f.format(new Date()));
 	 
     	snstatus sns=new snstatus();
-     	//SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
      	snst=new SNStatus();
      	sns.setSn(v.getTxt_createcode().getText().toString());
      	sns.setIfWh(false);
@@ -206,8 +204,7 @@ public class SNL {
     	}   
     	//验证
     	setsn=new HashSet<String>();	
-    	//ISNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");
-    	snst=new SNStatus();
+    	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
     	try {
 			if(!verificationPSN(v.getJta_SN()))
 			{
@@ -275,8 +272,7 @@ public class SNL {
 	    passUtilDate = f.parse(f.format(new Date()));
 	 
     	snstatus sns=new snstatus();
-     	//SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
-    	snst=new SNStatus();
+     	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
      	sns.setSn(Psn);
      	sns.setIfWh(false);
      	sns.setIfPsn(true);
@@ -315,8 +311,7 @@ public class SNL {
     	}   
     	//验证
     	setsn=new HashSet<String>();	
-    	//ISNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");
-    	snst=new SNStatus();
+    	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
     	try {
 			if(!verificationPSN(v.getJta_SN()))
 			{
@@ -384,8 +379,7 @@ public class SNL {
 	    passUtilDate = f.parse(f.format(new Date()));
 	 
     	snstatus sns=new snstatus();
-     	//SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
-     	snst=new SNStatus();
+     	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
      	sns.setSn(Psn);
      	sns.setIfWh(false);
      	sns.setIfPsn(true);
@@ -428,8 +422,7 @@ public class SNL {
 	    passUtilDate = f.parse(f.format(new Date()));
 	 
     	snstatus sns=new snstatus();
-     	//SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
-     	snst=new SNStatus();
+     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
      	sns.setSn(v.getTxt_tsn().getText().toString());
      	sns.setIfWh(false);
      	sns.setIfPsn(true);
@@ -475,8 +468,7 @@ public class SNL {
 	    passUtilDate = f.parse(f.format(new Date()));
 	 
     	snstatus sns=new snstatus();
-     	//SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
-     	snst=new SNStatus();
+     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
      	String Psn="";
      	sns.setSn(Psn);
      	sns.setIfWh(false);
@@ -519,8 +511,7 @@ public class SNL {
      	return true;
     }
     //检查序列号区域序列号本身是否有问题，并去除重复项
-    public boolean verificationSN(JTextArea SN,boolean ifout,DeSNView v) throws BadLocationException{
-    	
+    public boolean verificationSN(JTextArea SN,boolean ifout,DeSNView v) throws BadLocationException{   	
     	Highlighter highlighter=null;
     	highlighter=SN.getHighlighter();
     	highlighter.removeAllHighlights();
@@ -533,6 +524,7 @@ public class SNL {
     	String[] sns=s.split(",");
     	setsn=new HashSet<String>();//所有去除重复序列号的集合
     	setsn1=new HashSet<String>();//所有重复项序列号集合
+    	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
     	for(int i=0;i<sns.length;i++)
     	{    
     		if(sns[i]==null||(sns[i]!=null&&sns[i].equals("")))
@@ -576,7 +568,7 @@ public class SNL {
     	    {
     		  continue;
     	    }
-    		if(!setsn.add(sns[i]))
+    		if(!this.getSetsn().add(sns[i]))
     		{
     			setsn1.add(sns[i]);
     		}
@@ -652,8 +644,8 @@ public class SNL {
     	
     	return true;
     }
-    //检查序列号区域与开窗是否一致
-    public boolean verificationSNA_dialog(JTextArea SN,DeSNView v){
+    //检查序列号区域与开窗是否一致,必须先执行verificationSN，否则setsn会有问题
+    public boolean verificationSNA_dialog(JTextArea SN,DeSNView v,Set<String> setsn){
 
     	boolean ifh=false;
     	for(String str : setsn)
@@ -692,23 +684,10 @@ public class SNL {
     	return true;
     	
     }
-  //检查序列号区域与单身
-    public boolean verificationSNA_details(JTextArea SN,DeSNView v){
-		
-    	for(String str : setsn)
-    	{
-    		sns1=snst.queryByDocId(str);   
-    		
-    	}
-    	
-    	return true;
-    	
-    }
     
     public boolean verificationPSN(JTextArea SN) throws BadLocationException{
     	snstatus sns1=new snstatus();
-     	//SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
-     	snst=new SNStatus();
+     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
     	Highlighter highlighter=null;
     	highlighter=SN.getHighlighter();
     	highlighter.removeAllHighlights();
@@ -786,8 +765,7 @@ public class SNL {
     //目前是和verificationPSN功能一样
     public boolean verificationPSN_afs(JTextArea SN) throws BadLocationException{
     	snstatus sns1=new snstatus();
-     	//SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
-     	snst=new SNStatus();
+     	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
     	Highlighter highlighter=null;
     	highlighter=SN.getHighlighter();
     	highlighter.removeAllHighlights();

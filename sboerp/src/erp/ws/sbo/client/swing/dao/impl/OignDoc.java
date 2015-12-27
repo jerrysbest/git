@@ -72,6 +72,25 @@ public class OignDoc implements IDoc<OignView>{
 		this.v=v;	
 		if(Integer.valueOf(((ComboBoxItem)v.getCom_type().getSelectedItem()).getValue().toString())==0)
 		{
+			//验证序列号
+			 hql="select U_enable from dbo.[@SMS] where code='OIGNSN' ";
+			 ob=appMain.lt.sqlclob(hql,0,1);
+			 if(ob==null||(ob!=null&&ob.length==0))
+			 {													     
+				  JOptionPane.showMessageDialog(null,"请设置是否开启生产收货序列号");
+				  return;
+		
+			 }
+			 if(ob[0][0].toString().equals("Y"))
+			 {
+				 if(Integer.valueOf(((ComboBoxItem)v.getCom_snware().getSelectedItem()).getValue().toString())==1)
+				{				
+					 if(!v.getOc().getDocf().getIAdvSN().bfcverification(v))
+				     {
+					   return;
+				     }
+				}
+			 }
 			try {
 				//oidoc=SBOCOMUtil.newDocuments(appMain.oCompany,SBOCOMConstants.BoObjectTypes_Document_oInventoryGenEntry);
 				oidoc=SBOCOMUtil.newDocuments(appMain.oCompany,SBOCOMConstants.BoObjectTypes_Document_oDrafts);
@@ -117,7 +136,7 @@ public class OignDoc implements IDoc<OignView>{
 			        	 JOptionPane.showMessageDialog(null,v.getOd().getValuethrheader(i, "生产订单号").toString()+"生产订单号不正确");
 			        	 return;
 			        }		           
-			        JOptionPane.showMessageDialog(null,ob[0][0].toString());
+			        //JOptionPane.showMessageDialog(null,ob[0][0].toString());
 			        oidoc.getLines().setBaseEntry(Integer.valueOf(ob[0][0].toString()));
 					oidoc.getLines().setTransactionType(SBOCOMConstants.BoTransactionTypeEnum_botrntComplete);
 					oidoc.getLines().getUserFields().getFields().item("U_Mtmd").setValue(Double.valueOf( v.getOd().getValuethrheader(i, "米段").toString()));
@@ -189,10 +208,6 @@ public class OignDoc implements IDoc<OignView>{
 					   Connection con = session1.connection(); 
    			    	   Statement sta;								
 							sta = con.createStatement();
-//							hql = "update a  set a.basetype='202' from drf1 a inner join "
-//									+ " odrf b "
-//									+ "on b.docentry=a.docentry where a.docentry='"+appMain.oCompany.getNewObjectKey()+"'";								
-//							sta.execute(hql);	
 							hql = "update a  set a.U_cqty=b.gs from owor a inner join "
 								+ " (select baseentry,gs=sum(U_Gs) from drf1 where basetype='202' group by baseentry) b "
 								+ "on b.baseentry=a.docentry where a.docentry='"+ob[0][0].toString()+"'";								
@@ -351,7 +366,7 @@ public class OignDoc implements IDoc<OignView>{
 	public Integer getfirst() {
 		// TODO Auto-generated method stub		
 		
-		hql = "SELECT min(a.docentry) from odrf a inner join drf1 b on a.docentry=b.docentry where b.objtype='59'";
+		hql = "SELECT min(a.docentry) from odrf a inner join drf1 b on a.docentry=b.docentry where a.docStatus='O' and b.objtype='59' and b.basetype='202'";
         ob = appMain.lt.sqlclob(hql,0,1);
          if(ob==null||ob.length==0)
          {
@@ -365,7 +380,7 @@ public class OignDoc implements IDoc<OignView>{
 	@Override
 	public Integer getprev(int id) {
 		// TODO Auto-generated method stub
-		 hql = "SELECT  max(a.docentry)  from odrf a inner join drf1 b on a.docentry=b.docentry where a.objtype='59' and a.docentry<'"+id+"'";
+		 hql = "SELECT  max(a.docentry)  from odrf a inner join drf1 b on a.docentry=b.docentry where a.docStatus='O' and a.objtype='59' and b.basetype='202' and a.docentry<'"+id+"'";
          ob = appMain.lt.sqlclob(hql,0,1);
           if(ob==null||ob.length==0)
           {
@@ -379,7 +394,7 @@ public class OignDoc implements IDoc<OignView>{
 	@Override
 	public Integer getnext(int id) {
 		// TODO Auto-generated method stub
-		hql = "SELECT  a.docentry  from odrf a inner join drf1 b on a.docentry=b.docentry where a.objtype='59' and a.docentry>'"+id+"'";
+		hql = "SELECT  a.docentry  from odrf a inner join drf1 b on a.docentry=b.docentry where a.objtype='59' and b.basetype='202' and a.docStatus='O' and a.docentry>'"+id+"'";
         ob = appMain.lt.sqlclob(hql,0,1);
         if(ob==null||ob.length==0)
         {
@@ -393,7 +408,7 @@ public class OignDoc implements IDoc<OignView>{
 	@Override
 	public Integer getlast() {
 		// TODO Auto-generated method stub
-		  hql = "SELECT max(a.docentry) from odrf a inner join drf1 b on a.docentry=b.docentry where a.objtype='59'";
+		  hql = "SELECT max(a.docentry) from odrf a inner join drf1 b on a.docentry=b.docentry where a.objtype='59' and b.basetype='202' and a.docStatus='O'";
           ob = appMain.lt.sqlclob(hql,0,1);
           if(ob==null||ob.length==0)
           {
@@ -413,10 +428,10 @@ public class OignDoc implements IDoc<OignView>{
 		}		
 		if(dod.equals("生产收货"))
 		{			
-			hql="select a.docNum,a.usersign,c.U_Name,a.docdate from oign a " +
+			hql="select a.docNum,a.usersign,c.U_Name,a.docdate,a.docEntry from oign a " +
 				"inner join ign1 b on a.docentry=b.docentry " +
 				"inner join ousr c on a.usersign=c.userid " +
-				"where b.basetype='202' and a.docNum='"+id+"'";
+				"where b.basetype='202' and a.docEntry='"+id+"'";
 			 ob = appMain.lt.sqlclob(hql,0,1); 
 			 if(ob==null||ob.length==0)
 			 {
@@ -434,7 +449,8 @@ public class OignDoc implements IDoc<OignView>{
 		     ComboBoxItem  Cbi=new ComboBoxItem(ob[0][1].toString(),ob[0][2].toString());		     
 			 v.getCom_users().setSelectedItem(Cbi); 
 			 v.getCom_type().setSelectedItem(new ComboBoxItem(0,"生产收货"));		
-			 v.getTxt_docn().setText(id.toString());
+			 v.getTxt_docn().setText(ob[0][0].toString());
+			 v.getTxt_docnid().setText(ob[0][4].toString());
 			 v.getTxt_date().setText(ob[0][3].toString());
 			 v.getTxt_status().setText("生产收货");
 			 v.getTxt_status().setEditable(false); 
@@ -447,7 +463,7 @@ public class OignDoc implements IDoc<OignView>{
 			 	 "inner join oitm c on b.itemcode=c.itemcode " +
 			 	 "inner join owor d on d.docentry=b.baseEntry " +
 			 	 "left join ousr e on e.userid=d.usersign " +
-				 "where b.basetype='202' and a.docNum='"+id+"'";
+				 "where b.basetype='202' and a.docEntry='"+id+"'";
 			 v.getOd().updatetable(hql,0);		
 			 v.getCom_plist().setVisible(false);
 			 v.getCom_whs().setVisible(false);
@@ -465,7 +481,7 @@ public class OignDoc implements IDoc<OignView>{
 			   		"from [@desn] a " +
 			   		"inner join ign1 b on a.docentry=b.docentry and a.linenum=b.u_snid " +
 			   		"inner join oign c on b.docentry=c.docentry " +
-			   		"where c.docNum='"+v.getTxt_docn().getText().trim()+"' and a.Ifdraft='0' and a.objtype='59' and b.basetype='202'";
+			   		"where c.docEntry='"+v.getTxt_docnid().getText().trim()+"' and a.Ifdraft='0' and a.objtype='59' and b.basetype='202'";
 					v.getDsv().getOd().updatetable(hql, 0);
 					v.getJta_SN().setText("");
 					 ob=appMain.lt.sqlclob(hql,0,1000);
@@ -480,10 +496,10 @@ public class OignDoc implements IDoc<OignView>{
 			 }
 		}
 		else if(dod.equals("收货草稿")){
-			hql="select a.docNum,a.usersign,c.U_Name,a.docdate from odrf a " +
+			hql="select a.docNum,a.usersign,c.U_Name,a.docdate,a.docEntry,case when a.docstatus='O' then '未清' else '已清' end from odrf a " +
 				"inner join drf1 b on a.docentry=b.docentry " +
 				"inner join ousr c on a.usersign=c.userid " +
-				"where b.basetype='202' and a.docNum='"+id+"'";
+				"where b.basetype='202' and a.docEntry='"+id+"'";
 				 ob = appMain.lt.sqlclob(hql,0,1); 
 				 if(ob==null||ob.length==0)
 				 {
@@ -501,11 +517,14 @@ public class OignDoc implements IDoc<OignView>{
 			     ComboBoxItem  Cbi=new ComboBoxItem(ob[0][1].toString(),ob[0][2].toString());		     
 				 v.getCom_users().setSelectedItem(Cbi); 
 				 v.getCom_type().setSelectedItem(new ComboBoxItem(0,"生产收货"));		
-				 v.getTxt_docn().setText(id.toString());
+				 v.getTxt_docn().setText(ob[0][0].toString());
+				 v.getTxt_docnid().setText(ob[0][4].toString());
 				 v.getTxt_date().setText(ob[0][3].toString());
 				 v.getTxt_status().setText("收货草稿");
 				 v.getTxt_status().setEditable(false); 
-				 hql="select 0, b.u_snid,d.docNum,c.itemcode,c.itemname,b.u_Ymd,b.u_mtmd,c.salunitmsr," +
+				 v.getTxt_status1().setText(ob[0][5].toString());
+				 v.getTxt_status1().setEditable(false); 
+				 hql="select 0, b.u_snid,d.docEntry,c.itemcode,c.itemname,b.u_Ymd,b.u_mtmd,c.salunitmsr," +
 				 	 "unitQty=convert(decimal(18,3),isnull(d.U_length,0)*isnull(c.u_mtzl,0)/isnull(c.u_mtmd,0))," +
 				 	 "d.u_qty,gs=isnull(b.u_gs,0),b.unitmsr,b.u_zz,b.quantity,b.u_scwc," +
 				 	 "'',b.whscode,b.u_ckck,d.plannedqty,d.cmpltqty,convert(nvarchar(10),d.duedate,23),e.U_name " +
@@ -514,7 +533,7 @@ public class OignDoc implements IDoc<OignView>{
 				 	 "inner join oitm c on b.itemcode=c.itemcode " +
 				 	 "inner join owor d on d.docentry=b.baseEntry " +
 				 	 "left join ousr e on e.userid=d.usersign " +
-					 "where b.basetype='202' and a.docNum='"+id+"'";
+					 "where b.basetype='202' and a.docEntry='"+id+"'";
 				 v.getOd().updatetable(hql,0);		
 				 v.getCom_plist().setVisible(false);
 				 v.getCom_whs().setVisible(false);
@@ -532,7 +551,7 @@ public class OignDoc implements IDoc<OignView>{
 				   		"from [@desn] a " +
 				   		"inner join drf1 b on a.docentry=b.docentry and a.linenum=b.u_snid " +
 				   		"inner join odrf c on b.docentry=c.docentry " +
-				   		"where c.docNum='"+v.getTxt_docn().getText().trim()+"' and a.Ifdraft='1' and a.objtype='59' and b.basetype='202'";
+				   		"where c.docEntry='"+v.getTxt_docnid().getText().trim()+"' and a.Ifdraft='1' and a.objtype='59' and b.basetype='202'";
 						v.getDsv().getOd().updatetable(hql, 0);
 						v.getJta_SN().setText("");
 						 ob=appMain.lt.sqlclob(hql,0,1000);
@@ -548,12 +567,12 @@ public class OignDoc implements IDoc<OignView>{
 		}
 		else{
 			hql="select a.docNum,a.userSign,c.U_Name,a.filler,b.whsname,a.groupnum,d.listname," +
-				"date=convert(nvarchar(10),a.docdate,23) " +
+				"date=convert(nvarchar(10),a.docdate,23),a.docEntry " +
 				" from owtr a " +
 				"inner join owhs b on b.whscode=a.filler " +
 				"inner join ousr c on c.userid=a.usersign " +
 				"left join opln d on d.listnum=a.groupnum " +
-				"where a.docNum='"+id+"'";
+				"where a.docEntry='"+id+"'";
 			 ob = appMain.lt.sqlclob(hql,0,1); 
 			 if(ob==null||ob.length==0)
 			 {
@@ -577,7 +596,8 @@ public class OignDoc implements IDoc<OignView>{
 			 v.getCom_type().setSelectedItem(new ComboBoxItem(1,"库存转储"));
 			 v.getCom_whs().setSelectedItem(new ComboBoxItem(ob[0][3].toString(),ob[0][4].toString()));
 			 v.getCom_plist().setSelectedItem(new ComboBoxItem(ob[0][5].toString(),ob[0][6].toString()));
-			 v.getTxt_docn().setText(id.toString());
+			 v.getTxt_docn().setText(ob[0][0].toString());
+			 v.getTxt_docnid().setText(ob[0][8].toString());
 			 v.getTxt_date().setText(ob[0][7].toString());
 			 v.getTxt_status().setText("库存转储");
 			 v.getTxt_status().setEditable(false); 
@@ -587,7 +607,7 @@ public class OignDoc implements IDoc<OignView>{
 			 	 "'',b.whscode,'','','','','' from owtr a " +
 			 	 "inner join wtr1 b on a.docentry=b.docentry " +
 			 	 "inner join oitm c on b.itemcode=c.itemcode " +
-				  "where  a.docNum='"+id+"'";
+				  "where  a.docEntry='"+id+"'";
 			 v.getOd().updatetable(hql,0);		
 			 hql = "select U_enable from [@SMS] where code='OIGNSN'";
 			 ob=appMain.lt.sqlclob(hql,0,1);
@@ -603,7 +623,7 @@ public class OignDoc implements IDoc<OignView>{
 			   		"from [@desn] a " +
 			   		"inner join wtr1 b on a.docentry=b.docentry and a.linenum=b.u_snid " +
 			   		"inner join owtr c on b.docentry=c.docentry " +
-			   		"where c.docNum='"+v.getTxt_docn().getText().trim()+"' and a.Ifdraft='0' and a.objtype='59'";
+			   		"where c.docEntry='"+v.getTxt_docnid().getText().trim()+"' and a.Ifdraft='0' and a.objtype='59'";
 					v.getDsv().getOd().updatetable(hql, 0);
 					v.getJta_SN().setText("");
 					 ob=appMain.lt.sqlclob(hql,0,1000);
@@ -631,6 +651,22 @@ public class OignDoc implements IDoc<OignView>{
 	@Override
 	public void close(OignView v)
 	{
+		if(v.getTxt_status().getText().equals("收货草稿"))
+		{		
+			try {
+				appMain.odoc=SBOCOMUtil.newDocuments(appMain.oCompany,SBOCOMConstants.BoObjectTypes_Document_oDrafts);
+				 if(appMain.odoc.getByKey(Integer.valueOf(v.getTxt_docnid().getText())))
+		         {
+					 hql = "update odrf set docStatus='C' WHERE docentry='"+v.getTxt_docnid().getText()+"'";
+					 dbu.exeSql(hql);
+		             v.getTxt_status1().setText("已清");
+		         }
+			} catch (SBOCOMException e1) {
+				// TODO Auto-generated catch block			
+				e1.printStackTrace();			
+			}	
+		}
+		
 		
 	}
 	public OignView getV() {

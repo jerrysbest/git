@@ -37,6 +37,7 @@ import erp.ws.sbo.client.swing.model.ColDocTitle;
 import erp.ws.sbo.client.swing.model.DocTitle;
 import erp.ws.sbo.client.swing.model.snstatus;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocLineModel.docLineStatus;
+import erp.ws.sbo.client.swing.tablemodel.AbstractDocLineModel.rowStatus;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocTitleModel.docTitleStatus;
 import erp.ws.sbo.client.swing.util.general.ComboBoxItem;
 import erp.ws.sbo.client.swing.view.DocMenu.DocMenuView;
@@ -116,14 +117,12 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			    ||v.getTxt_MNo().getText().equals("")||v.getTxt_Qinspector().getText().equals("")||
 	             new BigDecimal(v.getTxt_cweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
 	            || new BigDecimal(v.getTxt_weight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
-	            ||(new BigDecimal(v.getTxt_cweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(v.getTxt_weight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP))
-	            &&new BigDecimal(v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
+	            ||(new BigDecimal(v.getTxt_pweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))<0)
 	            ||new BigDecimal(v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
 	            ||new BigDecimal(v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))<0
-	            ||(!new BigDecimal(v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
-	              &&!new BigDecimal(v.getTxt_pweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))))           
+	            )           
 				{
-	                JOptionPane.showMessageDialog(v,"物料代码,机号,净重,毛重,公司名称,不能为空或0,米段和皮重不能同时不为0,当米段为0时,"+v.getTxt_pweight().getText()+"皮重不能为0,"+v.getTxt_sweight().getText()+"标准重必须大于0");
+	                JOptionPane.showMessageDialog(v,"物料代码,机号,净重,毛重,公司名称,不能为空或0,当米段为0时,"+v.getTxt_pweight().getText()+"皮重不能小于0,"+v.getTxt_sweight().getText()+"标准重必须大于0");
 	                return;
 	             }	
 	        	if(e.getSource()==v.getTxt_length())
@@ -217,12 +216,23 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			            snsp.print(v.getTxt_width().getText(), v.getTxt_height().getText(), "5", "8", "0", "0", "0", "128", v.getTxt_createcode().getText(),v);	        
 			            snsp.print(v.getTxt_width().getText(), v.getTxt_height().getText(), "5", "8", "0", "0", "0", "128", v.getTxt_createcode().getText(),v);	  			             
 			            //重置
-			            v.getTxt_pweight().setText("0");	
-			            v.getTxt_weight().setText("0");	
-			            v.getTxt_cweight().setText("0");	 					
-	 			    	v.getTxt_sweight().setText("0"); 			        
-						v.getTxt_deviation().setText("0");
-						v.getTxt_createcode().setText("");
+			            if(new BigDecimal(v.getTxt_length().getText()).equals(new BigDecimal(0)))
+			            {
+			            	v.getTxt_pweight().setText("-1");	
+			                v.getTxt_weight().setText("-1");	
+				            v.getTxt_cweight().setText("0");	 					
+		 			    	v.getTxt_sweight().setText("0"); 			        
+							v.getTxt_deviation().setText("0");
+							v.getTxt_createcode().setText("");
+			            }
+			            else{
+				            v.getTxt_pweight().setText("0");	
+				            v.getTxt_weight().setText("0");	
+				            v.getTxt_cweight().setText("0");	 					
+		 			    	v.getTxt_sweight().setText("0"); 			        
+							v.getTxt_deviation().setText("0");
+							v.getTxt_createcode().setText("");
+			            }
 			        }
 			        catch(NullPointerException e3)
 			        {
@@ -293,7 +303,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			    		"qty=convert(decimal(18,3),(isnull(a.u_qty,0)-isnull(a.u_cqty,0))),"+
 			    		"cqty=0,"+
 			    		"b.invntryuom," +   		
-			    		" pqty=convert(decimal(18,3),(a.plannedQty-a.cmpltQty))," +
+			    		" pqty=convert(decimal(18,3),a.plannedQty-a.cmpltQty-isnull(g.sqty,0))," +
 			    		"rqty=0.000," +
 			    		"0,0,a.warehouse,warec=d.warehouse,a.plannedQty,a.cmpltQty,date=convert(nvarchar(10),a.duedate,23)," +
 			    		"c.u_name from owor a " +
@@ -301,6 +311,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			    		"inner join wor1 e on a.docEntry=e.docEntry and e.linenum=0 " +
 			    		"inner join oitm b on a.itemcode=b.itemcode " +
 			    		"inner join owhs f on a.warehouse=f.whscode " +
+			    		"left join (select sqty=sum(a.quantity), a.basetype,a.baseentry from drf1 a inner join owor b on a.baseentry=b.docentry group by a.basetype,a.baseentry) g on a.docentry=g.baseentry and g.basetype='202' " +	    		
 			    		"left join ousr c on c.userid=a.usersign "+
 			    		" where a.itemcode like '%'+'"+v.getTxt_cppo().getText().trim()+"'+'%' " ;
 			    		if(Integer.valueOf(((ComboBoxItem)v.getCom_snware().getSelectedItem()).getValue().toString())==0)
@@ -321,7 +332,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 							 }
 			    		}
 			    		
-			    	hql+=" and a.PlannedQty-a.CmpltQty>0 and a.u_qty>a.u_cqty " +
+			    	hql+=" and a.plannedQty-a.cmpltQty-isnull(g.sqty,0)>0  and a.u_qty>a.u_cqty " +
 			    		"and a.Status='R' AND a.Type='S' ";
 			     hql1="select u_enable from [@sms] where code='CKCZY'";
 				 if(appMain.lt.sqlclob(hql1, 0, 1)[0][0].toString().equals("Y"))
@@ -404,12 +415,12 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		// TODO Auto-generated method stub
 		if(v.getJt().getSelectedColumn()== v.getOd().getcolumnindex("实际收货个数"))
 		{
-	       v.getJt().editCellAt(v.getJt().getSelectedRow(), v.getJt().getSelectedColumn());
+	       //v.getJt().editCellAt(v.getJt().getSelectedRow(), v.getJt().getSelectedColumn());
 	      
 		}
 		if(v.getJt().getSelectedColumn()== v.getOd().getcolumnindex("实际库存数量"))
 		{
-	       v.getJt().editCellAt(0, 0);
+			 //v.getJt().editCellAt(v.getJt().getSelectedRow(), v.getJt().getSelectedColumn());
 	      
 		}
 	}
@@ -565,14 +576,12 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		    ||v.getTxt_MNo().getText().equals("")||v.getTxt_Qinspector().getText().equals("")||
              new BigDecimal(v.getTxt_cweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
             || new BigDecimal(v.getTxt_weight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
-            ||(new BigDecimal(v.getTxt_cweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(v.getTxt_weight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP))
-            &&new BigDecimal(v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
+            ||(new BigDecimal(v.getTxt_pweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))<0)
             ||new BigDecimal(v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
             ||new BigDecimal(v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))<0          
-			 ||(!new BigDecimal(v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
-		         &&!new BigDecimal(v.getTxt_pweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))))           					
+			 )           					
 			{
-                JOptionPane.showMessageDialog(v,"物料代码,机号,净重,毛重,公司名称,不能为空或0,米段和皮重不能同时不为0,当米段为0时,皮重不能为0,标准重必须大于0");
+                JOptionPane.showMessageDialog(v,"物料代码,机号,净重,毛重,公司名称,不能为空或0,皮重不能小于0,标准重必须大于0");
                 return;
              }	
 			if(new BigDecimal(Math.abs(Double.valueOf(v.getTxt_deviation().getText()))/Double.valueOf(v.getTxt_sweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0.003))>0)
@@ -594,16 +603,16 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
              else
              {
             	JOptionPane.showMessageDialog(null,"数据库中已存在此序列号，不允许生成");
-            	 v.getTxt_createcode().setText("");
+            	v.getTxt_createcode().setText("");
                 return;
              }
 		}
 		else if(e.getActionCommand().equals("选择序列号")&&v.getOd().ds.getValue()==5)
 		{
 						
-			ISNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");	
-            snstatus sns=new snstatus();
-            sns=isn.queryByDocId(((JTextField)v.getCom_selcode().getEditor().getEditorComponent()).getText());
+			SNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");	
+            snstatus sns=new snstatus(); 
+            sns=isn.queryByDocId(((JTextField)v.getCom_selcode().getEditor().getEditorComponent()).getText());   
             v.getTxt_MNo().setText(sns.getMno());
             v.getTxt_length().setText(sns.getLength().toString());
             v.getTxt_pweight().setText(sns.getPweight().toString());
@@ -640,12 +649,24 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 					Snprint snsp=new Snprint(v);
 			        snsp.print(v.getTxt_width().getText(), v.getTxt_height().getText(), "5", "8", "0", "0", "0", "128", v.getTxt_createcode().getText(),v);	        
 			        snsp.print(v.getTxt_width().getText(), v.getTxt_height().getText(), "5", "8", "0", "0", "0", "128", v.getTxt_createcode().getText(),v);	        					          	        
-			        v.getTxt_pweight().setText("0");	
-		            v.getTxt_weight().setText("0");	
-		            v.getTxt_cweight().setText("0");	 					
- 			    	v.getTxt_sweight().setText("0"); 			        
-					v.getTxt_deviation().setText("0");
-					v.getTxt_createcode().setText("");
+			        //重置
+		            if(new BigDecimal(v.getTxt_length().getText()).equals(new BigDecimal(0)))
+		            {
+		            	v.getTxt_pweight().setText("-1");	
+		                v.getTxt_weight().setText("-1");	
+			            v.getTxt_cweight().setText("0");	 					
+	 			    	v.getTxt_sweight().setText("0"); 			        
+						v.getTxt_deviation().setText("0");
+						v.getTxt_createcode().setText("");
+		            }
+		            else{
+			            v.getTxt_pweight().setText("0");	
+			            v.getTxt_weight().setText("0");	
+			            v.getTxt_cweight().setText("0");	 					
+	 			    	v.getTxt_sweight().setText("0"); 			        
+						v.getTxt_deviation().setText("0");
+						v.getTxt_createcode().setText("");
+		            }
 		        }
 		        catch(NullPointerException e1)
 		        {
@@ -670,13 +691,11 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			}
 		}
 		else if(e.getSource()==v.getCom_type())
-		{
-			
+		{			
 			if(Integer.valueOf(((ComboBoxItem)v.getCom_type().getSelectedItem()).getValue().toString())==0)
 			{			    
 				v.getTxt_cppo().setVisible(true);				       	
-				v.getCom_plist().setVisible(false);	
-				
+				v.getCom_plist().setVisible(false);					
 				v.getCom_whs().setVisible(false);
 				v.getJta_SN().setVisible(true);
 				v.getBt_cppo().setVisible(true);
@@ -699,6 +718,9 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 				hql="select isnull(max(docNum),0) from Oign";
 				Integer Ndoce= (Integer) appMain.lt.sqlclob(hql, 0, 1)[0][0]+1;			
 				v.getTxt_docn().setText(Ndoce.toString());	
+				hql="select isnull(max(docEntry),0) from Oign";
+				Ndoce= (Integer) appMain.lt.sqlclob(hql, 0, 1)[0][0]+1;			
+				v.getTxt_docnid().setText(Ndoce.toString());	
 				
 			}
 			else{	
@@ -727,6 +749,9 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			    hql="select isnull(max(docNum),0) from Owtr";
 				Integer Ndoce= (Integer) appMain.lt.sqlclob(hql, 0, 1)[0][0]+1;			
 				v.getTxt_docn().setText(Ndoce.toString());	
+				hql="select isnull(max(docEntry),0) from Owtr";
+				Ndoce= (Integer) appMain.lt.sqlclob(hql, 0, 1)[0][0]+1;			
+				v.getTxt_docnid().setText(Ndoce.toString());	
 				
 				 hql="select u_enable from [@sms] where code='CKCZY'";
 				 yon=appMain.lt.sqlclob(hql, 0, 1)[0][0].toString();				
@@ -751,6 +776,22 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 				 v.getOd().setUpSportColumn(v.getJt(), v.getJt().getColumnModel().getColumn(v.getOd().getcolumnindex("仓库")), hql,hql1);
 			 
 		   }
+		}
+		else if(e.getSource()==v.getCom_snware())
+		{
+			//是序列号设置表体不可编辑
+			if(Integer.valueOf(((ComboBoxItem)v.getCom_snware().getSelectedItem()).getValue().toString())==1)
+			{
+				v.getOd().setGridStatus(docLineStatus.add);
+				v.getOd().setrowStatus(rowStatus.sn);
+				
+			}
+			else{
+				v.getOd().setGridStatus(docLineStatus.add);
+				v.getOd().setrowStatus(rowStatus.nsn);
+			
+			}
+			
 		}
 		else if(e.getSource()==v.getBt_cppo())
 		{
@@ -831,6 +872,8 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			//something about docline
 			v.getOd().setDocLineStatus(docLineStatus.oign);
 			v.getOd().setGridStatus(docLineStatus.add);
+			
+			
 			dmv.setadd();
 		}
 		else if(e.getSource()==dmv.getjButtoncpsource())
@@ -850,21 +893,12 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	    	   JOptionPane.showMessageDialog(null, "无此权限");
 	    	   return;
 	        }
-			if(v.getTxt_status().getText().equals("收货草稿"))
-			{
-			   hql="select docentry from odrf where docnum='"+v.getTxt_docn().getText()+"' and objtype='59'";
-			   ob = appMain.lt.sqlclob(hql,0,1);
-			   if(ob==null||ob.length==0)
-		       {
-				   JOptionPane.showMessageDialog(null, "无此单号"); 
-			       
-		       }
-			   else{
-				   docf.getIdoc().ctarget(v, Integer.valueOf(ob[0][0].toString()));
-			   }
+			if(v.getTxt_status().getText().equals("收货草稿")&&v.getTxt_status1().getText().equals("未清"))
+			{		   
+			   docf.getIdoc().ctarget(v, Integer.valueOf(v.getTxt_docnid().getText()));			   
 			}
 			else{
-				JOptionPane.showMessageDialog(null, "只有收货草稿才能生成生产收货单");
+			   JOptionPane.showMessageDialog(null, "只有未清的收货草稿才能生成生产收货单");
 			}
 		}
 		else if(e.getSource()==dmv.getjButtonremend())
@@ -986,7 +1020,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		}	
 		else if(e.getSource()==dmv.getjButtonfirst())
 		{			
-			docf.getIdoc().setValues(v, docf.getIdoc().getfirst(),"生产收货");	
+			docf.getIdoc().setValues(v, docf.getIdoc().getfirst(),"收货草稿");	
 			v.getOd().setDocLineStatus(docLineStatus.query);
 			v.getOd1().setDs(docTitleStatus.query);
 			v.getOd1().setDocTitleStatus(v);
@@ -994,10 +1028,10 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		}
 		else if(e.getSource()==dmv.getjButtonprev())
 		{  
-			if(v.getTxt_docn().getText()!=null&&!v.getTxt_docn().getText().equals(""))
+			if(v.getTxt_docnid().getText()!=null&&!v.getTxt_docnid().getText().equals(""))
 			{	
 				try{
-				    docf.getIdoc().setValues(v,docf.getIdoc().getprev(Integer.valueOf(v.getTxt_docn().getText())),"生产收货");
+				    docf.getIdoc().setValues(v,docf.getIdoc().getprev(Integer.valueOf(v.getTxt_docnid().getText())),"收货草稿");
 				}
 				catch(NumberFormatException e0){
 					
@@ -1010,10 +1044,10 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		}
 		else if(e.getSource()==dmv.getjButtonnext())
 		{  
-			if(v.getTxt_docn().getText()!=null&&!v.getTxt_docn().getText().equals(""))
+			if(v.getTxt_docnid().getText()!=null&&!v.getTxt_docnid().getText().equals(""))
 			{							
 				try{
-					docf.getIdoc().setValues(v,docf.getIdoc().getnext(Integer.valueOf(v.getTxt_docn().getText())),"生产收货");
+					docf.getIdoc().setValues(v,docf.getIdoc().getnext(Integer.valueOf(v.getTxt_docnid().getText())),"收货草稿");
 				}
 				catch(NumberFormatException e0){
 					
@@ -1026,7 +1060,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		}
 		else if(e.getSource()==dmv.getjButtonlast())
 		{   		   
-			docf.getIdoc().setValues(v, docf.getIdoc().getlast(),"生产收货");		
+			docf.getIdoc().setValues(v, docf.getIdoc().getlast(),"收货草稿");		
 	
 			v.getOd().setDocLineStatus(docLineStatus.query);
 			v.getOd1().setDs(docTitleStatus.query);		
@@ -1081,7 +1115,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 				   		"from [@desn] a " +
 				   		"inner join ign1 b on a.docentry=b.docentry and a.linenum=b.u_snid " +
 				   		"inner join oign c on b.docentry=c.docentry " +
-				   		"where b.basetype='202' and c.docNum='"+v.getTxt_docn().getText().trim()+"' and a.Ifdraft='0' " +
+				   		"where b.basetype='202' and c.docEntry='"+v.getTxt_docnid().getText().trim()+"' and a.Ifdraft='0' " +
 				   		"and b.u_snid='"+ v.getOd().getValuethrheader(v.getJt().getSelectedRow(), "SN行号").toString()+"'";
 				   v.getDsv().getOd().updatetable(hql, 0);
 				}	
@@ -1092,7 +1126,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 				   		"from [@desn] a " +
 				   		"inner join drf1 b on a.docentry=b.docentry and a.linenum=b.u_snid " +
 				   		"inner join odrf c on b.docentry=c.docentry " +
-				   		"where b.basetype='202' and c.docNum='"+v.getTxt_docn().getText().trim()+"' and a.Ifdraft='1' " +
+				   		"where b.basetype='202' and c.docEntry='"+v.getTxt_docnid().getText().trim()+"' and a.Ifdraft='1' " +
 				   		"and b.u_snid='"+ v.getOd().getValuethrheader(v.getJt().getSelectedRow(), "SN行号").toString()+"'";
 				   v.getDsv().getOd().updatetable(hql, 0);
 				}
@@ -1103,7 +1137,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 				   		"from [@desn] a " +
 				   		"inner join wtr1 b on a.docentry=b.docentry and a.linenum=b.u_snid " +
 				   		"inner join owtr c on b.docentry=c.docentry " +
-				   		"where c.objtype='67' and c.docEntry='"+v.getTxt_docn().getText().trim()+"' and a.Ifdraft='0' and a.objtype='67' "+
+				   		"where c.objtype='67' and c.docEntry='"+v.getTxt_docnid().getText().trim()+"' and a.Ifdraft='0' and a.objtype='67' "+
 					    "and b.u_snid='"+v.getOd().getValuethrheader(v.getJt().convertRowIndexToModel(v.getJt().getSelectedRow()), "SN行号")+"'";
 					   v.getDsv().getOd().updatetable(hql, 0);
 				}
@@ -1364,6 +1398,12 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	public void focusLost(FocusEvent e) {
 		// TODO Auto-generated method stub
 		
+	}
+	public DaoFactory<OignView> getDocf() {
+		return docf;
+	}
+	public void setDocf(DaoFactory<OignView> docf) {
+		this.docf = docf;
 	}
 
 }

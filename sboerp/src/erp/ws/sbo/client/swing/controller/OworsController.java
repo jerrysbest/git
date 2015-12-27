@@ -214,10 +214,10 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener {
 		}
 		else if(e.getSource()==dmv.getjButtonprev())
 		{  
-			if(v.getTxt_docn().getText()!=null&&!v.getTxt_docn().getText().equals(""))
+			if(v.getTxt_docnid().getText()!=null&&!v.getTxt_docnid().getText().equals(""))
 			{			
 				 try{
-						docf.getDoc().setValues(v,docf.getDoc().getprev(Integer.valueOf(v.getTxt_docn().getText())),"²Ý¸å");			
+						docf.getDoc().setValues(v,docf.getDoc().getprev(Integer.valueOf(v.getTxt_docnid().getText())),"²Ý¸å");			
 					}
 				catch(NumberFormatException e0){
 					
@@ -231,10 +231,10 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener {
 		}
 		else if(e.getSource()==dmv.getjButtonnext())
 		{  
-			if(v.getTxt_docn().getText()!=null&&!v.getTxt_docn().getText().equals(""))
+			if(v.getTxt_docnid().getText()!=null&&!v.getTxt_docnid().getText().equals(""))
 			{			
 				 try{
-					 docf.getDoc().setValues(v,docf.getDoc().getnext(Integer.valueOf(v.getTxt_docn().getText())),"²Ý¸å");			
+					 docf.getDoc().setValues(v,docf.getDoc().getnext(Integer.valueOf(v.getTxt_docnid().getText())),"²Ý¸å");			
 					}
 				catch(NumberFormatException e0){
 					
