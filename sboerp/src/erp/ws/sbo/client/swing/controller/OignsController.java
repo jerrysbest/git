@@ -303,7 +303,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			    		"qty=convert(decimal(18,3),(isnull(a.u_qty,0)-isnull(a.u_cqty,0))),"+
 			    		"cqty=0,"+
 			    		"b.invntryuom," +   		
-			    		" pqty=convert(decimal(18,3),(a.plannedQty-a.cmpltQty))," +
+			    		" pqty=convert(decimal(18,3),a.plannedQty-a.cmpltQty-isnull(g.sqty,0))," +
 			    		"rqty=0.000," +
 			    		"0,0,a.warehouse,warec=d.warehouse,a.plannedQty,a.cmpltQty,date=convert(nvarchar(10),a.duedate,23)," +
 			    		"c.u_name from owor a " +
@@ -311,6 +311,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			    		"inner join wor1 e on a.docEntry=e.docEntry and e.linenum=0 " +
 			    		"inner join oitm b on a.itemcode=b.itemcode " +
 			    		"inner join owhs f on a.warehouse=f.whscode " +
+			    		"left join (select sqty=sum(a.quantity), a.basetype,a.baseentry from drf1 a inner join owor b on a.baseentry=b.docentry group by a.basetype,a.baseentry) g on a.docentry=g.baseentry and g.basetype='202' " +	    		
 			    		"left join ousr c on c.userid=a.usersign "+
 			    		" where a.itemcode like '%'+'"+v.getTxt_cppo().getText().trim()+"'+'%' " ;
 			    		if(Integer.valueOf(((ComboBoxItem)v.getCom_snware().getSelectedItem()).getValue().toString())==0)
@@ -331,7 +332,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 							 }
 			    		}
 			    		
-			    	hql+=" and a.PlannedQty-a.CmpltQty>0 and a.u_qty>a.u_cqty " +
+			    	hql+=" and a.plannedQty-a.cmpltQty-isnull(g.sqty,0)>0  and a.u_qty>a.u_cqty " +
 			    		"and a.Status='R' AND a.Type='S' ";
 			     hql1="select u_enable from [@sms] where code='CKCZY'";
 				 if(appMain.lt.sqlclob(hql1, 0, 1)[0][0].toString().equals("Y"))
@@ -894,8 +895,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	        }
 			if(v.getTxt_status().getText().equals(" ’ªı≤›∏Â"))
 			{
-			   
-			   
+		   
 				docf.getIdoc().ctarget(v, Integer.valueOf(v.getTxt_docnid().getText()));
 			   
 			}

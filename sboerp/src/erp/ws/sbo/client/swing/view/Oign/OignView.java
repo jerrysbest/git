@@ -181,8 +181,8 @@ public class OignView extends JInternalFrame{
     JComboBox com_type=new JComboBox();
     JTextArea jta_memo=new JTextArea(6,20);
     DatePicker txt_date  = new DatePicker(pane1,new Date());
-    JTextField txt_docn = new JTextField(13);
-    JTextField txt_docnid = new JTextField(13);
+    JTextField txt_docn = new JTextField(8);
+    JTextField txt_docnid = new JTextField(8);
     JTextField txt_status = new JTextField(13);
     JTextArea jta_SN=new JTextArea(8,25);
     JTextField txt_cppo = new JTextField(13);
@@ -298,9 +298,9 @@ public class OignView extends JInternalFrame{
 		 lay.putConstraint(SpringLayout.NORTH, bt_cppo, 130, SpringLayout.NORTH, pane1);
 		 lay.putConstraint(SpringLayout.EAST, lab_docn, -250,SpringLayout.EAST, pane1);
 		 lay.putConstraint(SpringLayout.NORTH, lab_docn, 10, SpringLayout.NORTH, pane1);
-		 lay.putConstraint(SpringLayout.EAST, txt_docn, -100,SpringLayout.EAST, pane1);
+		 lay.putConstraint(SpringLayout.EAST, txt_docn, -150,SpringLayout.EAST, pane1);
 		 lay.putConstraint(SpringLayout.NORTH, txt_docn, 10, SpringLayout.NORTH, pane1);
-		 lay.putConstraint(SpringLayout.EAST, txt_docnid, -50,SpringLayout.EAST, pane1);
+		 lay.putConstraint(SpringLayout.EAST, txt_docnid, -40,SpringLayout.EAST, pane1);
 		 lay.putConstraint(SpringLayout.NORTH, txt_docnid, 10, SpringLayout.NORTH, pane1);
 		 lay.putConstraint(SpringLayout.EAST, lab_user, -250,SpringLayout.EAST, pane1);
 		 lay.putConstraint(SpringLayout.NORTH, lab_user, 40, SpringLayout.NORTH, pane1);

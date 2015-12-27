@@ -94,7 +94,8 @@ public class OworView extends JInternalFrame{
 	    JComboBox com_status=new JComboBox();
 	    JComboBox com_form=new JComboBox();
 	    JTextArea jta_memo=new JTextArea(6,20);
-	    JTextField txt_docn = new JTextField(13);
+	    JTextField txt_docn = new JTextField(8);
+	    JTextField txt_docnid = new JTextField(8);
 	    IntTextField txt_length = new IntTextField(0, 8);
 	    IntTextField txt_planQty = new IntTextField(0, 6);
 	    IntTextField txt_Qty = new IntTextField(0, 6);
@@ -180,6 +181,7 @@ public class OworView extends JInternalFrame{
 			 com_type.setPrototypeDisplayValue("xxxxxxxxxxxxxx");
 			 com_status.setPrototypeDisplayValue("xxxxxxxxxxxxxx");
 			 this.txt_docn.setEditable(false);
+			 this.txt_docnid.setEditable(false);
 			 this.txt_unit.setEditable(false);
 			 this.txt_ounit.setEditable(false);
 			 
@@ -230,8 +232,10 @@ public class OworView extends JInternalFrame{
 			 lay.putConstraint(SpringLayout.NORTH, txt_ounit, 100, SpringLayout.NORTH, pane1);
 			 lay.putConstraint(SpringLayout.EAST, lab_docn, -220,SpringLayout.EAST, pane1);
 			 lay.putConstraint(SpringLayout.NORTH, lab_docn, 10, SpringLayout.NORTH, pane1);
-			 lay.putConstraint(SpringLayout.EAST, txt_docn, -70,SpringLayout.EAST, pane1);
+			 lay.putConstraint(SpringLayout.EAST, txt_docn, -100,SpringLayout.EAST, pane1);
 			 lay.putConstraint(SpringLayout.NORTH, txt_docn, 10, SpringLayout.NORTH, pane1);
+			 lay.putConstraint(SpringLayout.EAST, txt_docnid, -10,SpringLayout.EAST, pane1);
+			 lay.putConstraint(SpringLayout.NORTH, txt_docnid, 10, SpringLayout.NORTH, pane1);
 			 lay.putConstraint(SpringLayout.EAST, lab_date, -220,SpringLayout.EAST, pane1);
 			 lay.putConstraint(SpringLayout.NORTH, lab_date, 40, SpringLayout.NORTH, pane1);
 			 lay.putConstraint(SpringLayout.EAST, txt_date, -70,SpringLayout.EAST, pane1);
@@ -267,6 +271,7 @@ public class OworView extends JInternalFrame{
 			pane1.add(txt_duedate);
 			pane1.add(lab_docn);
 			pane1.add(txt_docn);
+			pane1.add(txt_docnid);
 			pane1.add(lab_length);
 			pane1.add(txt_length);
 			pane1.add(lab_Qty);
@@ -665,5 +670,13 @@ public class OworView extends JInternalFrame{
 
 		public void setCom_MNo(JUComboBox com_MNo) {
 			this.com_MNo = com_MNo;
+		}
+
+		public JTextField getTxt_docnid() {
+			return txt_docnid;
+		}
+
+		public void setTxt_docnid(JTextField txt_docnid) {
+			this.txt_docnid = txt_docnid;
 		}
 }
