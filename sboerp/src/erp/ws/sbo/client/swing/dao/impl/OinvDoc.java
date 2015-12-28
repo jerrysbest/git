@@ -606,45 +606,45 @@ public class OinvDoc extends AbsDoc{
 				 hql = "select docStatus,case when wddStatus='W' then '审批中' when wddStatus='Y' then '已审批' " +
 				 		"when wddStatus='N' then '已拒绝' else '无' end " +
 				 		" from Odrf where docEntry='"+idoc.getDocEntry()+"'";
-			         ob = appMain.lt.sqlclob(hql,0,1); 
-					 v.getTxt_status().setText(ob[0][0].toString().equals("C")?"已清":"未清"+"-"+ob[0][1].toString());	
+			     ob = appMain.lt.sqlclob(hql,0,1); 
+			     v.getTxt_status().setText(ob[0][0].toString().equals("C")?"已清":"未清"+"-"+ob[0][1].toString());	
 				 hql = "SELECT a.U_slpcode1,b.slpname from odrf a inner join oslp b on a.U_slpcode1=b.slpcode where docEntry='"+idoc.getDocEntry()+"'";
-			        ob = appMain.lt.sqlclob(hql,0,1); 
-			        if(!(ob==null||ob.length==0))
-			        {
+			     ob = appMain.lt.sqlclob(hql,0,1); 
+		         if(!(ob==null||ob.length==0))
+		         {
 			          ComboBoxItem  Cbi=new ComboBoxItem(Integer.valueOf(ob[0][0].toString()),ob[0][1].toString());
 			          v.getCom_sales1().setEditable(true);
 			 		  v.getCom_sales1().setSelectedItem(Cbi);
-			        }
-			        else{
-			        	ComboBoxItem  Cbi=new ComboBoxItem(-1,"-无销售员工-");
-			        	v.getCom_sales1().setEditable(true);
-			    		v.getCom_sales1().setSelectedItem(Cbi);
-			        }
-			        v.getCom_sales1().setEditable(false);
-			        hql = "SELECT u_snstatus from drf1 where u_djno='"+id+"'";
-			        ob = appMain.lt.sqlclob(hql,0,1); 
-			        if(!(ob==null||ob.length==0))
-			        {
-			        	if(ob[0][0].toString().equals("Y"))
-			        	{
-			        		v.getBtn_upstatus().setEnabled(false);
-			        	}
-			        	else{
-			        		v.getBtn_upstatus().setEnabled(true);
-			        	}
-			        		
-			        }
-			        else{
-			        	JOptionPane.showMessageDialog(null,"没有待扫描状态信息 ");
-			        	return;
-			        }
-			        hql = "select U_enable from [@SMS] where code='DELSN'";
-					 ob=appMain.lt.sqlclob(hql,0,1);
-					 if(ob==null||ob.length==0)
-					 {										
-						 return;
-					 }
+		         }
+		         else{
+		        	ComboBoxItem  Cbi=new ComboBoxItem(-1,"-无销售员工-");
+		        	v.getCom_sales1().setEditable(true);
+		    		v.getCom_sales1().setSelectedItem(Cbi);
+		         }
+		         v.getCom_sales1().setEditable(false);
+		         hql = "SELECT u_snstatus from drf1 where u_djno='"+id+"'";
+		         ob = appMain.lt.sqlclob(hql,0,1); 
+		         if(!(ob==null||ob.length==0))
+		         {
+		        	if(ob[0][0].toString().equals("Y"))
+		        	{
+		        		v.getBtn_upstatus().setEnabled(false);
+		        	}
+		        	else{
+		        		v.getBtn_upstatus().setEnabled(true);
+		        	}
+		        		
+		         }
+		         else{
+		        	JOptionPane.showMessageDialog(null,"没有待扫描状态信息 ");
+		        	return;
+		         }
+		         hql = "select U_enable from [@SMS] where code='DELSN'";
+				 ob=appMain.lt.sqlclob(hql,0,1);
+				 if(ob==null||ob.length==0)
+				 {										
+					 return;
+				 }
 					 if(ob[0][0].toString().equals("Y"))
 					 {
 						 hql="select 0,a.Ifdraft,a.objtype,a.docentry,a.linenum,a.sn,a.itemcode,a.length,a.weight,a.direction,a.ifpasn,a.pasn," +

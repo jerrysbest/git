@@ -867,9 +867,7 @@ public class OignView extends JInternalFrame{
 	 
 	     jt1.addMouseListener(oc);
 	     jt1.getSelectionModel().addListSelectionListener(oc);
-	  
-        
-		 
+	  		 
 	     jt.addMouseListener(oc);	
 	     jt.addKeyListener(oc);
 	     od.addTableModelListener(oc);
@@ -893,15 +891,11 @@ public class OignView extends JInternalFrame{
 		     this.txt_pweight.addKeyListener(oc);
 		     jta_SN.addKeyListener(oc);
 	      }
-	    
-	    
-	    
+    
 	     this.addInternalFrameListener(oc);
-	     
-	     	    	     
+    	    	     
 		 this.setVisible(true);
 		 this.setResizable(true);	
-
 		 
 	}
 	public OignsController getOc() {

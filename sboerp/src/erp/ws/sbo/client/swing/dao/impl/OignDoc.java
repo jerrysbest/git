@@ -49,6 +49,7 @@ import erp.ws.sbo.utils.DbUtils;
 import erp.ws.sbo.utils.Dra2Doc;
 import erp.ws.sbo.utils.MdbHibernateUtils;
 import erp.ws.sbo.utils.SNL;
+import erp.ws.sbo.utils.Snprint;
 
 
 public class OignDoc implements IDoc<OignView>{
@@ -165,8 +166,7 @@ public class OignDoc implements IDoc<OignView>{
 					e0.printStackTrace();
 					System.out.println("生产收货或者库存转储sbo接口出错1");
 				}
-			}	
-		
+			}			
 			appMain.lRetCode=oidoc.add();	
 			if(appMain.lRetCode!=0)
 			{ 
@@ -235,7 +235,9 @@ public class OignDoc implements IDoc<OignView>{
    			       	  MdbHibernateUtils.closeSession(session1);
    			         } 
    			       }
-			    }								
+			    }	
+				Snprint snsp=new Snprint(v);
+				snsp.print(v);
 				v.getOd1().setDs(docTitleStatus.add);
 				v.getOd1().setDocTitleStatus(v);
 				v.getOd().setDocLineStatus(docLineStatus.oign);
