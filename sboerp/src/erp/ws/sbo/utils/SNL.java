@@ -29,6 +29,7 @@ import erp.ws.sbo.client.swing.view.DeSN.DeSNView;
 import erp.ws.sbo.client.swing.view.Oign.OignView;
 import erp.ws.sbo.client.swing.view.PaSN.PaSNView;
 import erp.ws.sbo.client.swing.view.Snin.SninView;
+import erp.ws.sbo.dao.ISNStatus;
 import erp.ws.sbo.dao.impl.DeSN;
 import erp.ws.sbo.dao.impl.SNStatus;
 
@@ -41,7 +42,6 @@ public class SNL {
 	private Set<String> setsn=new HashSet<String>(),setsn1=new HashSet<String>();	
 	private snstatus sns1=new snstatus();
 	private SNStatus snst;
-
 	public SNL()
     {
     	
@@ -134,8 +134,8 @@ public class SNL {
     	
 	    passUtilDate = f.parse(f.format(new Date()));
 	 
-    	snstatus sns=new snstatus();
-     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+    	sns=new snstatus();
+     	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
      	sns.setSn(v.getTxt_createcode().getText().toString());
      	sns.setIfWh(false);
      	sns.setIfPsn(false);
@@ -173,8 +173,8 @@ public class SNL {
     	
 	    passUtilDate = f.parse(f.format(new Date()));
 	 
-    	snstatus sns=new snstatus();
-     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+    	sns=new snstatus();
+     	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
      	snst=new SNStatus();
      	sns.setSn(v.getTxt_createcode().getText().toString());
      	sns.setIfWh(false);
@@ -421,8 +421,8 @@ public class SNL {
     	
 	    passUtilDate = f.parse(f.format(new Date()));
 	 
-    	snstatus sns=new snstatus();
-     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+    	sns=new snstatus();
+     	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
      	sns.setSn(v.getTxt_tsn().getText().toString());
      	sns.setIfWh(false);
      	sns.setIfPsn(true);
@@ -467,8 +467,8 @@ public class SNL {
     	
 	    passUtilDate = f.parse(f.format(new Date()));
 	 
-    	snstatus sns=new snstatus();
-     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+    	sns=new snstatus();
+     	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
      	String Psn="";
      	sns.setSn(Psn);
      	sns.setIfWh(false);
@@ -686,8 +686,8 @@ public class SNL {
     }
     
     public boolean verificationPSN(JTextArea SN) throws BadLocationException{
-    	snstatus sns1=new snstatus();
-     	SNStatus snst=(SNStatus)appMain.ctx.getBean("SNStatus");
+    	sns1=new snstatus();
+     	snst=(SNStatus)appMain.ctx.getBean("SNStatus");
     	Highlighter highlighter=null;
     	highlighter=SN.getHighlighter();
     	highlighter.removeAllHighlights();

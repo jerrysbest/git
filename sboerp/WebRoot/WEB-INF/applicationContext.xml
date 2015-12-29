@@ -114,11 +114,7 @@
 	<bean id="dataSource-common" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
 		</property>
-<<<<<<< HEAD
-		<property name="url" value="jdbc:sqlserver://192.168.52.2:1433;databasename=SBO-COMMON">
-=======
 		<property name="url" value="jdbc:sqlserver://192.168.0.102:1433;databasename=sbo-common">
->>>>>>> refs/remotes/origin/master
 		</property>
 		<property name="username" value="sa"/>
 		<property name="password" value="Shqsdxc20120324"/> 
@@ -177,10 +173,7 @@
 			<ref bean="sessionFactory"/>
 		</property>
 	</bean>
-<<<<<<< HEAD
-	
-=======
->>>>>>> refs/remotes/origin/master
+
 	<bean id="DeSN" class="erp.ws.sbo.dao.impl.DeSN">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory"/>
