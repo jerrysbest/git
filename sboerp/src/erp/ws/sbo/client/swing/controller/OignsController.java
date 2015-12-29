@@ -917,6 +917,16 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 						//e0.printStackTrace();
 						//return;
 					}
+				int[] col={v.getOd().getcolumnindex("实际收货个数"),v.getOd().getcolumnindex("标准库存数量"),v.getOd().getcolumnindex("实际库存数量"),v.getOd().getcolumnindex("计划库存数量"),v.getOd().getcolumnindex("完成库存数量")};	
+				double[] s=v.getOd().sum(col);
+				if(s!=null)
+				{			
+					v.getTxt_msum().setText(String.valueOf(s[0]));
+					v.getTxt_wsum().setText(String.valueOf(s[1]));			
+					v.getTxt_rsum().setText(String.valueOf(s[2]));
+					v.getTxt_psum().setText(String.valueOf(s[3]));	
+					v.getTxt_csum().setText(String.valueOf(s[4]));	
+				}
 				 for(int j=0;j<v.getOd().getRowCount();j++)
 				  {
 					  if(v.getOd().getValuethrheader(j, "仓库")!=null&&v.getOd().getValuethrheader(j, "仓库").toString().contains(","))
