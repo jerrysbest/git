@@ -237,7 +237,8 @@ public class OignDoc implements IDoc<OignView>{
    			       }
 			    }	
 				Snprint snsp=new Snprint(v);
-				snsp.print(v);
+				snsp.print(v.getTxt_width().getText(), v.getTxt_height().getText(), "5", "8", "0", "0", "0",v);	  			             
+		           
 				v.getOd1().setDs(docTitleStatus.add);
 				v.getOd1().setDocTitleStatus(v);
 				v.getOd().setDocLineStatus(docLineStatus.oign);
@@ -688,7 +689,7 @@ public class OignDoc implements IDoc<OignView>{
 			 try{   
 				 String tb;
 				 if(Integer.valueOf(((ComboBoxItem)v.getCom_type().getSelectedItem()).getValue().toString())==0){
-				     tb=appMain.oCompany.getServer()+"+"+appMain.oCompany.getCompanyDB()+"+"+appMain.oCompany.getDbUserName()+"+"+appMain.config.getDbuserpas()+"+"+"d:\\ncr\\生产收货.rpt"+"+"+"DH"+"+"+v.getTxt_docn().getText()+"+"+"Printscsh";
+				     tb=appMain.oCompany.getServer()+"+"+appMain.oCompany.getCompanyDB()+"+"+appMain.oCompany.getDbUserName()+"+"+appMain.config.getDbuserpas()+"+"+"d:\\ncr\\生产收货.rpt"+"+"+"DH"+"+"+v.getTxt_docnid().getText()+"+"+"Printscsh";
 				 }
 				 else{
 					 tb=appMain.oCompany.getServer()+"+"+appMain.oCompany.getCompanyDB()+"+"+appMain.oCompany.getDbUserName()+"+"+appMain.config.getDbuserpas()+"+"+"d:\\ncr\\库存转储.rpt"+"+"+"DH"+"+"+v.getTxt_docn().getText()+"+"+"Printkczc";

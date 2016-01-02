@@ -232,17 +232,20 @@ public class Snprint {
 	        TscLibDll.INSTANCE.closeport();
 		 
     }
-    public void print(OignView v) {
+    public void print(String width,String height,String speed,String density,String sensor,String vertical,String offset,
+    		OignView v) {
     	  TscLibDll.INSTANCE.openport("TSC TTP-342M Pro");
+    	  TscLibDll.INSTANCE.setup(width,height,speed,density,sensor,vertical,offset);
+          TscLibDll.INSTANCE.clearbuffer();
     	  hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='公司名称'";
 	      ob1=appMain.lt.sqlclob(hql,0,1);	    
-          TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + v.getTxt_docnid().getText());        //Drawing printer font            
+          TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), "单号" + v.getTxt_docnid().getText());        //Drawing printer font            
           hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='规格'";
 	      ob1=appMain.lt.sqlclob(hql,0,1);  
-          TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + v.getTxt_msum().getText());        //Drawing printer font	  
+          TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), "个数" + v.getTxt_msum().getText());        //Drawing printer font	  
           hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='米段'";
 	      ob1=appMain.lt.sqlclob(hql,0,1);	    
-          TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + v.getTxt_rsum());        //Drawing printer font          
+          TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), "总公斤数" + v.getTxt_rsum().getText());        //Drawing printer font          
           TscLibDll.INSTANCE.barcode(v.getTxt_left().getText(), v.getTxt_up().getText(), v.getTxt_codetype().getText(),  v.getTxt_codeheight().getText(), "1", "0", v.getTxt_codegap().getText(), v.getTxt_codewidth().getText(), v.getTxt_docnid().getText());
 	      TscLibDll.INSTANCE.printlabel("1", "1");
 	      TscLibDll.INSTANCE.closeport();
