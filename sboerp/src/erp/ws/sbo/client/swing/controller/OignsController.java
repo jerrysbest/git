@@ -608,8 +608,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
              }
 		}
 		else if(e.getActionCommand().equals("选择序列号")&&v.getOd().ds.getValue()==5)
-		{
-						
+		{						
 			SNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");	
             snstatus sns=new snstatus(); 
             sns=isn.queryByDocId(((JTextField)v.getCom_selcode().getEditor().getEditorComponent()).getText());   
@@ -783,23 +782,33 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			if(Integer.valueOf(((ComboBoxItem)v.getCom_snware().getSelectedItem()).getValue().toString())==1)
 			{
 				v.getOd().setGridStatus(docLineStatus.add);
-				v.getOd().setrowStatus(rowStatus.sn);
-				
+				v.getOd().setrowStatus(rowStatus.sn);				
 			}
 			else{
 				v.getOd().setGridStatus(docLineStatus.add);
-				v.getOd().setrowStatus(rowStatus.nsn);
-			
+				v.getOd().setrowStatus(rowStatus.nsn);			
 			}
 			
 		}
 		else if(e.getSource()==v.getBt_cppo())
-		{
+		{  		
 			int[] i=v.getJt2().getSelectedRows();
-			if(Integer.valueOf(((ComboBoxItem)v.getCom_snware().getSelectedItem()).getValue().toString())==1&&i.length>1)
-			{
-				JOptionPane.showMessageDialog(null, "选择序列号仓库，只能选择一个生产订单，请重新选择");
-				return;
+			if(Integer.valueOf(((ComboBoxItem)v.getCom_snware().getSelectedItem()).getValue().toString())==1)
+			{   
+				if(i.length>1)
+				{
+					JOptionPane.showMessageDialog(null, "选择序列号仓库，只能选择一个生产订单，请重新选择");
+					return;
+				}
+				for(int ik=0;ik<v.getOd().getRowCount();ik++)
+				{
+					if(v.getOd().getValuethrheader(ik, "物料代码")!=null&&!v.getOd().getValuethrheader(ik, "物料代码").toString().equals(""))
+					{
+						JOptionPane.showMessageDialog(null, "选择序列号仓库，只能选择一个生产订单,不允许追加");
+						return;
+					}					
+				}
+				
 			}
 			for(int k=0;k<i.length;k++)
 			{				
@@ -812,9 +821,9 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 				 System.out.println("oignscontroller-actionPerformed-getbt_cppo");
 			 }			
 			}
-			if(Integer.valueOf(((ComboBoxItem)v.getCom_snware().getSelectedItem()).getValue().toString())==1&&i.length>1)
-			{
-			  v.getOd().setGridStatus(docLineStatus.add);
+			if(Integer.valueOf(((ComboBoxItem)v.getCom_snware().getSelectedItem()).getValue().toString())==1)
+			{	  
+				v.getOd().setGridStatus(docLineStatus.add);
 			}
 		    ob=v.getOd().getDataSet();
 		    ob2=v.getOd2().getDataSet();
@@ -1117,6 +1126,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		    	  }
 				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 				v.getDsv().setBounds(screenSize.width/2-310, 100, 620, 450);
+				v.getDsv().getBt_package().setVisible(false);
 				if(v.getOd1().ds.getCnValue().equals("查询")&&v.getTxt_status().getText().equals("生产收货"))
 				{
 					hql="select 0,a.Ifdraft,a.objtype,a.docentry,a.linenum,a.sn,a.itemcode,a.length,a.weight,a.direction,a.ifpasn,a.pasn," +
@@ -1269,6 +1279,14 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	public void internalFrameClosed(InternalFrameEvent arg0) {
 		// TODO Auto-generated method stub
 		v.getDsv().dispose();
+		JOptionPane.showMessageDialog(v, "串口关闭");
+		connection.closeConnection();
+		v.getCom_port().removeAllItems();
+		v.getBt_open().setEnabled(true);
+		v.getBt_close().setEnabled(false);
+		v.getBt_cweight().setEnabled(false);
+		v.getBt_weight().setEnabled(false);
+		
 	}
 	@Override
 	public void internalFrameClosing(InternalFrameEvent arg0) {

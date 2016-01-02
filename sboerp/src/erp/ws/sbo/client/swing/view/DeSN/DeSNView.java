@@ -71,7 +71,7 @@ public class DeSNView extends JDialog{
 	private void initComponents() {
 		// TODO Auto-generated method stub
 		this.setName("DESN");
-		this.setDefaultCloseOperation(JInternalFrame.HIDE_ON_CLOSE);
+		this.setDefaultCloseOperation(JInternalFrame.HIDE_ON_CLOSE);		
 		
 		hql="select '','','','','','','','' from Inv1 p where 1=2";	
 	    od=new DesnDocLineModel(cl,dl,dbu,hql);		   	   

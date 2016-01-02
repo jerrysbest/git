@@ -104,9 +104,9 @@ public class DesnsController implements TreeSelectionListener,ActionListener
 				    	 if(v.getOd().getValuethrheader(i[l], "行号").toString().equals(((SninView)v.getV()).getOd().getValuethrheader(xh, "序号").toString()))
 		    			 {	
 				    		 Double sl=Double.valueOf(((SninView)v.getV()).getOd().getValuethrheader(xh, "实际库存数量").toString());
-				    		((SninView)v.getV()).getOd().setValuethrheader(Integer.valueOf(new BigDecimal(((SninView)v.getV()).getOd().getValuethrheader(xh, "生产数量").toString()).setScale(0, BigDecimal.ROUND_HALF_UP).toString())-1,xh,"生产数量");	
+				    		((SninView)v.getV()).getOd().setValuethrheader(Integer.valueOf(new BigDecimal(((SninView)v.getV()).getOd().getValuethrheader(xh, "实际收货个数").toString()).setScale(0, BigDecimal.ROUND_HALF_UP).toString())-1,xh,"实际收货个数");	
 		    				
-		    				((SninView)v.getV()).getOd().valueChanged(xh, ((SninView)v.getV()).getOd().getcolumnindex("生产数量"), ((SninView)v.getV()).getOd().getValuethrheader(xh, "物料代码").toString(), "");
+		    				((SninView)v.getV()).getOd().valueChanged(xh, ((SninView)v.getV()).getOd().getcolumnindex("实际收货个数"), ((SninView)v.getV()).getOd().getValuethrheader(xh, "物料代码").toString(), "");
 		    				((SninView)v.getV()).getOd().setValuethrheader(sl-Double.valueOf(v.getOd().getValuethrheader(i[l], "重量").toString()), xh, "实际库存数量");			    				
 		    			 }	    			
 			    	 }
@@ -140,14 +140,25 @@ public class DesnsController implements TreeSelectionListener,ActionListener
 			    		 }
 			    		 ((OignView)v.getV()).getJta_SN().setText(s);
 			    	 }
-			    	
-			    	 if(v.getOd().getValuethrheader(i[l], "行号").toString().equals(((OignView)v.getV()).getOd().getValuethrheader(((OignView)v.getV()).getJt().getSelectedRow(), "序号").toString()))
-	    			 {	
-			    		Double sl=Double.valueOf(((OignView)v.getV()).getOd().getValuethrheader(((OignView)v.getV()).getJt().getSelectedRow(), "实际库存数量").toString());
-			    		((OignView)v.getV()).getOd().setValuethrheader(Integer.valueOf(new BigDecimal(((OignView)v.getV()).getOd().getValuethrheader(((OignView)v.getV()).getJt().getSelectedRow(), "实际收货数量").toString()).setScale(0, BigDecimal.ROUND_HALF_UP).toString())-1,((OignView)v.getV()).getJt().getSelectedRow(),"实际收货数量");			    				
-	    				//((OignView)v.getV()).getOd().valueChanged(((OignView)v.getV()).getJt().getSelectedRow(), ((OignView)v.getV()).getOd().getcolumnindex("生产数量"), ((OignView)v.getV()).getOd().getValuethrheader(((OignView)v.getV()).getJt().getSelectedRow(), "物料代码").toString(), "");
-	    				((OignView)v.getV()).getOd().setValuethrheader(sl-Double.valueOf(v.getOd().getValuethrheader(i[l], "重量").toString()), ((OignView)v.getV()).getJt().getSelectedRow(), "实际库存数量");			    				
-	    			 }	    			
+			     		
+			    	 for(int xh=0;xh<((OignView)v.getV()).getOd().getRowCount();xh++)
+			    	 {
+				    	if(!(((OignView)v.getV()).getOd().getValuethrheader(xh, "物料代码")!=null&&!((OignView)v.getV()).getOd().getValuethrheader(xh, "物料代码").toString().equals("")))
+				    	{
+				    		continue;
+				    	}
+				    	//JOptionPane.showMessageDialog(null,v.getOd().getValuethrheader(i[l], "行号").toString()+","+((OignView)v.getV()).getOd().getValuethrheader(xh, "序号").toString());	 
+			    		 if(v.getOd().getValuethrheader(i[l], "行号").toString().equals(((OignView)v.getV()).getOd().getValuethrheader(xh, "序号").toString()))
+		    			 {	
+			    			 //JOptionPane.showMessageDialog(null,"第"+i[l]+"行");
+				    		 Double sl=Double.valueOf(((OignView)v.getV()).getOd().getValuethrheader(xh, "实际库存数量").toString());
+				    		((OignView)v.getV()).getOd().setValuethrheader(Integer.valueOf(new BigDecimal(((OignView)v.getV()).getOd().getValuethrheader(xh, "实际收货个数").toString()).setScale(0, BigDecimal.ROUND_HALF_UP).toString())-1,xh,"实际收货个数");	
+				    		//JOptionPane.showMessageDialog(null,"个数减1");
+		    				//((OignView)v.getV()).getOd().valueChanged(xh, ((OignView)v.getV()).getOd().getcolumnindex("实际收货个数"), ((OignView)v.getV()).getOd().getValuethrheader(xh, "物料代码").toString(), "");
+		    				((OignView)v.getV()).getOd().setValuethrheader(sl-Double.valueOf(v.getOd().getValuethrheader(i[l], "重量").toString()), xh, "实际库存数量");			    				
+		    				// JOptionPane.showMessageDialog(null,"公斤数减");
+		    			 }	    			
+			    	 }
 			    	 
 			     }
 			    if(v.getV().getClass().toString().contains("OOignView"))
@@ -184,9 +195,9 @@ public class DesnsController implements TreeSelectionListener,ActionListener
 				    	 if(v.getOd().getValuethrheader(i[l], "行号").toString().equals(((OOignView)v.getV()).getOd().getValuethrheader(xh, "序号").toString()))
 		    			 {	
 				    		 Double sl=Double.valueOf(((OOignView)v.getV()).getOd().getValuethrheader(xh, "实际库存数量").toString());
-				    		((OOignView)v.getV()).getOd().setValuethrheader(Integer.valueOf(new BigDecimal(((SninView)v.getV()).getOd().getValuethrheader(xh, "生产数量").toString()).setScale(0, BigDecimal.ROUND_HALF_UP).toString())-1,xh,"生产数量");	
+				    		((OOignView)v.getV()).getOd().setValuethrheader(Integer.valueOf(new BigDecimal(((SninView)v.getV()).getOd().getValuethrheader(xh, "实际收货个数").toString()).setScale(0, BigDecimal.ROUND_HALF_UP).toString())-1,xh,"实际收货个数");	
 		    				
-		    				((OOignView)v.getV()).getOd().valueChanged(xh, ((OOignView)v.getV()).getOd().getcolumnindex("生产数量"), ((OOignView)v.getV()).getOd().getValuethrheader(xh, "物料代码").toString(), "");
+		    				((OOignView)v.getV()).getOd().valueChanged(xh, ((OOignView)v.getV()).getOd().getcolumnindex("实际收货个数"), ((OOignView)v.getV()).getOd().getValuethrheader(xh, "物料代码").toString(), "");
 		    				((OOignView)v.getV()).getOd().setValuethrheader(sl-Double.valueOf(v.getOd().getValuethrheader(i[l], "重量").toString()), xh, "实际库存数量");			    				
 		    			 }	    			
 			    	 }
@@ -221,9 +232,9 @@ public class DesnsController implements TreeSelectionListener,ActionListener
 				    	 if(v.getOd().getValuethrheader(i[l], "行号").toString().equals(((OOigeView)v.getV()).getOd().getValuethrheader(xh, "序号").toString()))
 		    			 {		
 				    		 Double sl=Double.valueOf(((OOigeView)v.getV()).getOd().getValuethrheader(xh, "实际库存数量").toString());
-				    		((OOigeView)v.getV()).getOd().setValuethrheader(Integer.valueOf(new BigDecimal(((SninView)v.getV()).getOd().getValuethrheader(xh, "生产数量").toString()).setScale(0, BigDecimal.ROUND_HALF_UP).toString())-1,xh,"生产数量");	
+				    		((OOigeView)v.getV()).getOd().setValuethrheader(Integer.valueOf(new BigDecimal(((SninView)v.getV()).getOd().getValuethrheader(xh, "实际收货个数").toString()).setScale(0, BigDecimal.ROUND_HALF_UP).toString())-1,xh,"实际收货个数");	
 		    				
-		    				((OOigeView)v.getV()).getOd().valueChanged(xh, ((OOigeView)v.getV()).getOd().getcolumnindex("生产数量"), ((OOigeView)v.getV()).getOd().getValuethrheader(xh, "物料代码").toString(), "");
+		    				((OOigeView)v.getV()).getOd().valueChanged(xh, ((OOigeView)v.getV()).getOd().getcolumnindex("实际收货个数"), ((OOigeView)v.getV()).getOd().getValuethrheader(xh, "物料代码").toString(), "");
 		    				((OOigeView)v.getV()).getOd().setValuethrheader(sl-Double.valueOf(v.getOd().getValuethrheader(i[l], "重量").toString()), xh, "实际库存数量");			    				
 		    			 }	    			
 			    	 }

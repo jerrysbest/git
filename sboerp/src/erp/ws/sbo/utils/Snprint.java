@@ -139,6 +139,7 @@ public class Snprint {
 	        //TscLibDll.INSTANCE.sendcommand("QRCODE 100,100,H,4,A,0,M2,S7,\"沙河潜水电线厂\"") ;
 	        //TscLibDll.INSTANCE.sendcommand("AZTEC 410,310,0,4,1,0,0,1,1,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\"");
     }
+    //打印大/小序列号   
     public void print(String width,String height,String speed,String density,String sensor,String vertical,String offset,
     		String codetype,String barcode,OignView v) {
         //TscLibDll.INSTANCE.about();
@@ -233,7 +234,7 @@ public class Snprint {
 		 
     }
     public void print(String width,String height,String speed,String density,String sensor,String vertical,String offset,
-    		OignView v) {
+    		String docid,OignView v) {
     	  TscLibDll.INSTANCE.openport("TSC TTP-342M Pro");
     	  TscLibDll.INSTANCE.setup(width,height,speed,density,sensor,vertical,offset);
           TscLibDll.INSTANCE.clearbuffer();
@@ -246,7 +247,7 @@ public class Snprint {
           hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='米段'";
 	      ob1=appMain.lt.sqlclob(hql,0,1);	    
           TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), "总公斤数" + v.getTxt_rsum().getText());        //Drawing printer font          
-          TscLibDll.INSTANCE.barcode(v.getTxt_left().getText(), v.getTxt_up().getText(), v.getTxt_codetype().getText(),  v.getTxt_codeheight().getText(), "1", "0", v.getTxt_codegap().getText(), v.getTxt_codewidth().getText(), v.getTxt_docnid().getText());
+          TscLibDll.INSTANCE.barcode(v.getTxt_left().getText(), v.getTxt_up().getText(), v.getTxt_codetype().getText(),  v.getTxt_codeheight().getText(), "1", "0", v.getTxt_codegap().getText(), v.getTxt_codewidth().getText(), docid);
 	      TscLibDll.INSTANCE.printlabel("1", "1");
 	      TscLibDll.INSTANCE.closeport();
     	  

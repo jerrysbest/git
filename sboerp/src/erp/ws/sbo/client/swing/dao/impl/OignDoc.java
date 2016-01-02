@@ -185,6 +185,7 @@ public class OignDoc implements IDoc<OignView>{
 			else
 			{		
 				oidoc.release();
+				String ndocid=appMain.oCompany.getNewObjectKey().toString();
 				for(int i=0;i<v.getOd().dataSet.length;i++)
 			    {		
 					if(v.getOd().getValuethrheader(i,"生产订单号")==null||v.getOd().getValuethrheader(i,"生产订单号").toString().equals(""))
@@ -222,7 +223,7 @@ public class OignDoc implements IDoc<OignView>{
 							 if(ob[0][0].toString().equals("Y"))
 							 {
 								snl=new SNL(v.getDsv());		
-							    snl.createsdra(v.getDsv(),true,false,"","I","",appMain.oCompany.getNewObjectKey().toString());
+							    snl.createsdra(v.getDsv(),true,false,"","I","",ndocid);
 						     }
    			       }catch (HibernateException e1) {
    			    	   
@@ -235,10 +236,19 @@ public class OignDoc implements IDoc<OignView>{
    			       	  MdbHibernateUtils.closeSession(session1);
    			         } 
    			       }
-			    }	
-				Snprint snsp=new Snprint(v);
-				snsp.print(v.getTxt_width().getText(), v.getTxt_height().getText(), "5", "8", "0", "0", "0",v);	  			             
-		           
+			    }
+				 hql="select U_enable from dbo.[@SMS] where code='OIGNSN' ";
+				 ob=appMain.lt.sqlclob(hql,0,1);
+				 if(ob==null||(ob!=null&&ob.length==0))
+				 {										
+					 return;
+				 }
+				 if(ob[0][0].toString().equals("Y"))
+				 {
+					Snprint snsp=new Snprint(v);
+					 JOptionPane.showMessageDialog(null,"打印草稿单"+ndocid);
+					snsp.print(v.getTxt_width().getText(), v.getTxt_height().getText(), "5", "8", "0", "0", "0",ndocid,v);	  			             
+				 }
 				v.getOd1().setDs(docTitleStatus.add);
 				v.getOd1().setDocTitleStatus(v);
 				v.getOd().setDocLineStatus(docLineStatus.oign);
@@ -685,10 +695,25 @@ public class OignDoc implements IDoc<OignView>{
 		// TODO Auto-generated method stub
 		 if(v.getOd1().ds.getCnValue().equals("查询"))
 		 {
+			 if(Integer.valueOf(((ComboBoxItem)v.getCom_type().getSelectedItem()).getValue().toString())==0&&v.getTxt_status().getText().equals("收货草稿")){
+				 hql="select U_enable from dbo.[@SMS] where code='OIGNSN' ";
+				 ob=appMain.lt.sqlclob(hql,0,1);
+				 if(ob==null||(ob!=null&&ob.length==0))
+				 {										
+					 return;
+				 }
+				 if(ob[0][0].toString().equals("Y"))
+				 {
+					Snprint snsp=new Snprint(v);
+					snsp.print(v.getTxt_width().getText(), v.getTxt_height().getText(), "5", "8", "0", "0", "0",v.getTxt_docnid().getText(),v);	  			             
+				 }
+				 return;
+			 }
 			 
 			 try{   
-				 String tb;
-				 if(Integer.valueOf(((ComboBoxItem)v.getCom_type().getSelectedItem()).getValue().toString())==0){
+				 String tb="";
+				
+				if(Integer.valueOf(((ComboBoxItem)v.getCom_type().getSelectedItem()).getValue().toString())==0){
 				     tb=appMain.oCompany.getServer()+"+"+appMain.oCompany.getCompanyDB()+"+"+appMain.oCompany.getDbUserName()+"+"+appMain.config.getDbuserpas()+"+"+"d:\\ncr\\生产收货.rpt"+"+"+"DH"+"+"+v.getTxt_docnid().getText()+"+"+"Printscsh";
 				 }
 				 else{

@@ -889,10 +889,11 @@ public class OignView extends JInternalFrame{
 		     this.com_specification.addActionListener(oc);
 		     this.com_snware.addActionListener(oc);
 		     this.txt_pweight.addKeyListener(oc);
+		     this.addInternalFrameListener(oc);
 		     jta_SN.addKeyListener(oc);
 	      }
     
-	     this.addInternalFrameListener(oc);
+	     
     	    	     
 		 this.setVisible(true);
 		 this.setResizable(true);	
