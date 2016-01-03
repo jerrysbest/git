@@ -1286,15 +1286,20 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		// TODO Auto-generated method stub
 		v.getDsv().dispose();
 		//JOptionPane.showMessageDialog(v, "´®¿Ú¹Ø±Õ");
-		if(connection!=null&&connection.isOpen())
+		hql="select u_enable from [@sms] where code='OIGNSN'";
+		ifsn=appMain.lt.sqlclob(hql, 0, 1)[0][0].toString();
+		if(ifsn.equals("Y"))
 		{
-		  connection.closeConnection();
+			if(connection!=null&&connection.isOpen())
+			{
+			  connection.closeConnection();
+			}
+			v.getCom_port().removeAllItems();
+			v.getBt_open().setEnabled(true);
+			v.getBt_close().setEnabled(false);
+			v.getBt_cweight().setEnabled(false);
+			v.getBt_weight().setEnabled(false);
 		}
-		v.getCom_port().removeAllItems();
-		v.getBt_open().setEnabled(true);
-		v.getBt_close().setEnabled(false);
-		v.getBt_cweight().setEnabled(false);
-		v.getBt_weight().setEnabled(false);
 		
 	}
 	@Override
