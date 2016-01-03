@@ -878,12 +878,15 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		}
 		else if(e.getSource()==dmv.getjButtonadd())
 		{
+			//JOptionPane.showMessageDialog(null, "1");
 		   // something about doctitle
 			v.getOd1().setDs(docTitleStatus.add);
 			v.getOd1().setDocTitleStatus(v);
+			//JOptionPane.showMessageDialog(null, "2");
 			//something about docline
 			v.getOd().setDocLineStatus(docLineStatus.oign);
 			v.getOd().setGridStatus(docLineStatus.add);
+			//JOptionPane.showMessageDialog(null, "3");
 			
 			
 			dmv.setadd();
