@@ -469,7 +469,10 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		else if(e.getActionCommand().equals("关闭串口")&&v.getOd().ds.getValue()==5)
 		{
 			JOptionPane.showMessageDialog(v, "串口关闭");
-			connection.closeConnection();
+			if(connection!=null&&connection.isOpen())
+			{
+			  connection.closeConnection();
+			}
 			v.getCom_port().removeAllItems();
 			v.getBt_open().setEnabled(true);
 			v.getBt_close().setEnabled(false);
@@ -1279,8 +1282,11 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	public void internalFrameClosed(InternalFrameEvent arg0) {
 		// TODO Auto-generated method stub
 		v.getDsv().dispose();
-		JOptionPane.showMessageDialog(v, "串口关闭");
-		connection.closeConnection();
+		//JOptionPane.showMessageDialog(v, "串口关闭");
+		if(connection!=null&&connection.isOpen())
+		{
+		  connection.closeConnection();
+		}
 		v.getCom_port().removeAllItems();
 		v.getBt_open().setEnabled(true);
 		v.getBt_close().setEnabled(false);

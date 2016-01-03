@@ -54,13 +54,13 @@ public class LoginsController implements ActionListener{
 			e1.printStackTrace();
 		}
     	InetAddress ia=null;
-		try {
-			ia=InetAddress.getLocalHost();
-			
+		try {			
+			ia=InetAddress.getLocalHost();		
 			String localname=ia.getHostName();
 			//String localip=ia.getHostAddress();
 			if(localname.equals("jerrys2008")&&v.getUser().getText().toString().trim().equals(""))
 			{
+				JOptionPane.showMessageDialog(null,"本机");
 				appMain.oCompany=SBOCOMUtil.newCompany();   
 		    	appMain.oCompany.setDbServerType(SBOCOMConstants.BoDataServerTypes_dst_MSSQL2005);
 		    	appMain.oCompany.setUseTrusted(false);
@@ -72,6 +72,7 @@ public class LoginsController implements ActionListener{
 		    	appMain.oCompany.setDbPassword(appMain.config.getDbuserpas());
 		    	appMain.oCompany.setUserName("manager");
 		    	appMain.oCompany.setPassword("qwer"); 
+		    	JOptionPane.showMessageDialog(null,"准备登陆");
 		    	int success = appMain.oCompany.connect();  
 		    	if(success != 0){  
 		            SBOErrorMessage errorMessage = appMain.oCompany.getLastError();  
@@ -80,7 +81,7 @@ public class LoginsController implements ActionListener{
 		        }else{   
 		        
 			        appMain.user1=v.getTf_user1().getText().toString().trim();
-			        //JOptionPane.showMessageDialog(null,v.getMNo_comp().getSelectedItem());
+			        JOptionPane.showMessageDialog(null,v.getMNo_comp().getSelectedItem());
 			        appMain.Mno=((ComboBoxItem)v.getMNo_comp().getSelectedItem()).getValue().toString();
 		            JOptionPane.showMessageDialog(null,"登陆成功");
 		            LeftMenuView lm=new LeftMenuView();
@@ -101,6 +102,7 @@ public class LoginsController implements ActionListener{
 		    	
 			}
 			else{
+				System.out.println("开始登陆");
 				appMain.oCompany=SBOCOMUtil.newCompany();   
 		    	appMain.oCompany.setDbServerType(SBOCOMConstants.BoDataServerTypes_dst_MSSQL2005);
 		    	appMain.oCompany.setUseTrusted(false);
@@ -112,13 +114,15 @@ public class LoginsController implements ActionListener{
 		    	appMain.oCompany.setDbPassword(appMain.config.getDbuserpas());
 		    	appMain.oCompany.setUserName(v.getUser().getText().toString().trim());
 		    	appMain.oCompany.setPassword(String.valueOf(v.getPas().getPassword()).trim());    	
-		    	
+		    	System.out.println("赋值完毕");
 		    	int success = appMain.oCompany.connect();  
+		    	System.out.println("登陆返回值"+success);
 		        if(success != 0){  
 		            SBOErrorMessage errorMessage = appMain.oCompany.getLastError();  
 		            System.out.println(errorMessage.getErrorMessage());  
 		            JOptionPane.showMessageDialog(null,errorMessage.getErrorMessage());           
 		        }else{   
+		        	System.out.println("登陆成功1");
 			    	hql="select * from [@USERS]  "+
 						"where u_uid='"+appMain.oCompany.getUserSignature()+"' and u_subuid='"+v.getTf_user1().getText().toString().trim()+"' " +
 						"and u_pwd='"+String.valueOf(v.getTf_pas1().getPassword())+"' and u_ifuse='Y'";
@@ -136,6 +140,7 @@ public class LoginsController implements ActionListener{
 			         		JOptionPane.showMessageDialog(null,"启用用户超过100，请停用部分用户!");
 			         		return;
 			         	}	
+			        System.out.println("登陆成功2");
 			        appMain.user1=v.getTf_user1().getText().toString().trim();
 			        appMain.Mno=((ComboBoxItem)v.getMNo_comp().getSelectedItem()).getValue().toString();
 		            JOptionPane.showMessageDialog(null,"登陆成功");

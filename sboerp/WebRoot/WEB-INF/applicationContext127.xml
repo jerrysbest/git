@@ -4,10 +4,10 @@
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
 		</property>
-		<property name="url" value="jdbc:sqlserver://192.168.0.102:1433;databasename=NQS">
+		<property name="url" value="jdbc:sqlserver://127.0.0.1:1433;databasename=NQS">
 		</property>
 		<property name="username" value="sa"/>
-		<property name="password" value="Shqsdxc20120324"/> 
+		<property name="password" value="123"/> 
 	</bean>
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource">
@@ -114,10 +114,10 @@
 	<bean id="dataSource-common" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
 		</property>
-		<property name="url" value="jdbc:sqlserver://192.168.0.102:1433;databasename=sbo-common">
+		<property name="url" value="jdbc:sqlserver://127.0.0.1:1433;databasename=sbo-common">
 		</property>
 		<property name="username" value="sa"/>
-		<property name="password" value="Shqsdxc20120324"/> 
+		<property name="password" value="123"/> 
 	</bean>
 	<bean id="sessionFactory-common" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource">
@@ -145,15 +145,15 @@
 	
 		</bean>
 	<bean id="appconfig" class="erp.ws.sbo.client.swing.app.appConfigBean">
-		<property name="dserver" value="192.168.0.102">
+		<property name="dserver" value="127.0.0.1">
 		</property>
-		<property name="lserver" value="192.168.0.101">
+		<property name="lserver" value="127.0.0.1">
 		</property>
 		<property name="comdb" value="NQS">
 		</property>
 		<property name="dbusername" value="sa">
 		</property>
-		<property name="dbuserpas" value="Shqsdxc20120324">
+		<property name="dbuserpas" value="123">
 		</property>
 	</bean>
 	
@@ -336,10 +336,10 @@
 	<bean id="PaSNQDoc" class="erp.ws.sbo.client.swing.dao.impl.PaSNQDoc"/>
 		
 	<!-- interceptor AOP
-	<bean id="beforeAdvice" class="com.dragon.Advice.BeforeAdvice"></bean>
-	<bean id="afterAdvice" class="com.dragon.Advice.AfterAdvice"></bean>
-	<bean id="compareInterceptor" class="com.dragon.Advice.CompareInterceptor"></bean>
-	<bean id="studenttarget" class="com.dragon.study.Impl.StudentImpl"></bean>
+	<bean id="beforeAdvice" class="erp.ws.aop.Advice.BeforeAdvice"></bean>
+	<bean id="afterAdvice" class="erp.ws.aop.Advice.AfterAdvice"></bean>
+	<bean id="compareInterceptor" class="erp.ws.aop.Advice.CompareInterceptor"></bean>
+	<bean id="studenttarget" class="erp.ws.aop.study.Impl.StudentImpl"></bean>
 	
 	<bean id="student" class="org.springframework.aop.framework.ProxyFactoryBean">
 	  <property name="proxyInterfaces">
