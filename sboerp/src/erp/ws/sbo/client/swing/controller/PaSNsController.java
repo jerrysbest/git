@@ -20,6 +20,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.text.BadLocationException;
 
 import erp.ws.sbo.client.swing.app.appMain;
 import erp.ws.sbo.client.swing.dao.DaoFactory;
@@ -28,6 +29,7 @@ import erp.ws.sbo.client.swing.tablemodel.AbstractDocTitleModel.docTitleStatus;
 import erp.ws.sbo.client.swing.view.DocMenu.DocMenuView;
 import erp.ws.sbo.client.swing.view.PaSN.PaSNView;
 import erp.ws.sbo.client.swing.view.QueryWindow.QueryWindowView;
+import erp.ws.sbo.utils.SNL;
 
 public class PaSNsController implements KeyListener, MouseListener, InternalFrameListener, TableModelListener, ListSelectionListener, ActionListener, FocusListener {
 
@@ -201,13 +203,28 @@ public class PaSNsController implements KeyListener, MouseListener, InternalFram
 		{
 			if(e.getSource()==v.getJta_SN())
 			{	
-				String[] sns=v.getJta_SN().getText().trim().split(",");
-				v.getOd().setGridStatus(docLineStatus.add);
-				for(int i=0;i<sns.length;i++)
-				{				  
-					v.getOd().setValuethrheader(sns[i], i, "ÐòÁÐºÅ");
-					v.getOd().setValuethrheader("", i, "±¸×¢");
+				SNL snl=new SNL();
+				try {
+					if(snl.verificationPSN(v.getJta_SN()))
+					{
+						String[] sns=v.getJta_SN().getText().trim().split(",");
+						v.getOd().setGridStatus(docLineStatus.add);
+						for(int i=0;i<sns.length;i++)
+						{				  
+							v.getOd().setValuethrheader(sns[i], i, "ÐòÁÐºÅ");
+							v.getOd().setValuethrheader("", i, "±¸×¢");
+						}
+					}
+				} catch (BadLocationException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
 				}
+			}
+			if(e.getSource()==v.getTxt_tsn())
+			{	
+				 JOptionPane.showMessageDialog(null,"´òÓ¡¸¸ÐòÁÐºÅ");
+				 
+				 
 			}
 		}
 		else

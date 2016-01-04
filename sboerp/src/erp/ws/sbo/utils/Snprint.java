@@ -11,6 +11,7 @@ import com.sun.jna.Native;
 import erp.ws.sbo.client.swing.app.appMain;
 import erp.ws.sbo.client.swing.model.snstatus;
 import erp.ws.sbo.client.swing.view.Oign.OignView;
+import erp.ws.sbo.client.swing.view.PaSN.PaSNView;
 import erp.ws.sbo.client.swing.view.Snin.SninView;
 import erp.ws.sbo.dao.ISNStatus;
 import erp.ws.sbo.dao.impl.SNStatus;
@@ -232,6 +233,85 @@ public class Snprint {
 	        TscLibDll.INSTANCE.printlabel("1", "1");
 	        TscLibDll.INSTANCE.closeport();
 		 
+    }
+    //打印二维码序列号
+    public void print(String width,String height,String speed,String density,String sensor,String vertical,String offset,
+    		String codetype,String barcode,PaSNView v) {
+    	 TscLibDll.INSTANCE.openport("TSC TTP-342M Pro");
+         
+         TscLibDll.INSTANCE.setup(width,height,speed,density,sensor,vertical,offset);
+         TscLibDll.INSTANCE.clearbuffer();
+
+         
+         hql = "select count(*) from [@SNPRINT] ";
+ 		 ob=appMain.lt.sqlclob(hql,0,1);
+ 		 if(ob==null||ob.length==0)
+ 		 {					
+ 			 JOptionPane.showMessageDialog(null,"没有在自定义表【@snprint】中设置打印内容");
+ 			 return;
+ 		 }
+ 		 ISNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");							
+ 		 snstatus sns=new snstatus();
+ 		 try{
+ 		      sns=isn.queryByDocId(barcode);
+ 		   }
+ 	       catch(NullPointerException e)
+ 	       {
+ 	        	e.printStackTrace();
+ 	       }
+	
+ 			 hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='公司名称'";
+ 		     ob1=appMain.lt.sqlclob(hql,0,1);	    
+ 	         TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getCompany());        //Drawing printer font            
+ 	         hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='规格'";
+ 		     ob1=appMain.lt.sqlclob(hql,0,1);
+ 		   
+ 	         TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getItemcode());        //Drawing printer font
+ 		  
+ 	         hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='米段'";
+ 		     ob1=appMain.lt.sqlclob(hql,0,1);
+ 		    
+ 	         TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getLength().toString());        //Drawing printer font
+ 		  
+ 	        hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='毛重'";
+ 		    ob1=appMain.lt.sqlclob(hql,0,1);
+ 	        if(!sns.isIfPsn())
+ 	        {  
+ 	        	if(new BigDecimal(sns.getLength().toString()).setScale(3, RoundingMode.HALF_UP).compareTo(new BigDecimal(0.000).setScale(3, RoundingMode.HALF_UP))==0||sns.getItemcode().substring(0, 2).equals("TD"))
+ 	        	{
+ 	              TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getWeight().toString());        //Drawing printer font	        
+ 	        	}
+ 	        }
+ 	        else 
+ 	        {
+ 	          TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(),"数量:" + sns.getQsn().toString());        //Drawing printer font
+ 	        }
+ 	        hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='净重'";
+ 		     ob1=appMain.lt.sqlclob(hql,0,1);
+ 		     if(new BigDecimal(sns.getLength().toString()).setScale(3, RoundingMode.HALF_UP).compareTo(new BigDecimal(0.000).setScale(3, RoundingMode.HALF_UP))==0||sns.getItemcode().substring(0, 2).equals("TD"))
+ 	        {
+ 	          TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getCweight().toString());        //Drawing printer font
+ 	        }
+ 	        hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='机号'";
+ 		     ob1=appMain.lt.sqlclob(hql,0,1);
+ 	        TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getMno());        //Drawing printer font
+ 	        hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='检验员'";
+ 		     ob1=appMain.lt.sqlclob(hql,0,1);
+ 	        TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getQc());        //Drawing printer font
+ 	        hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='日期'";
+ 		     ob1=appMain.lt.sqlclob(hql,0,1);
+ 		     SimpleDateFormat f=new SimpleDateFormat("yyyy-MM-dd");		
+ 	        TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + f.format(sns.getDatetime()));
+ 	        hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='防伪电话'";
+ 		     ob1=appMain.lt.sqlclob(hql,0,1);
+ 	        TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString());   
+ 	        hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where code='1'";
+		     ob1=appMain.lt.sqlclob(hql,0,1);
+ 	        //TscLibDll.INSTANCE.barcode(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), v.getTxt_codetype().getText(),  v.getTxt_codeheight().getText(), "1", "0", v.getTxt_codegap().getText(), v.getTxt_codewidth().getText(), barcode);
+ 	        TscLibDll.INSTANCE.sendcommand("QRCODE "+ob1[0][0].toString()+","+ob1[0][1].toString()+",H,4,A,0,M2,S7,\"+barcode+\"") ;	       
+ 	        TscLibDll.INSTANCE.printlabel("1", "1");
+ 	        TscLibDll.INSTANCE.closeport();
+ 	        //TscLibDll.INSTANCE.sendcommand("AZTEC 410,310,0,4,1,0,0,1,1,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\"");
     }
     public void print(String width,String height,String speed,String density,String sensor,String vertical,String offset,
     		String docid,OignView v) {

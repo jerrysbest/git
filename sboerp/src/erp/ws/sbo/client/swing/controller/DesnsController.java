@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 
+import erp.ws.sbo.client.swing.app.appMain;
 import erp.ws.sbo.client.swing.view.DeSN.DeSNView;
 import erp.ws.sbo.client.swing.view.OOige.OOigeView;
 import erp.ws.sbo.client.swing.view.OOign.OOignView;
@@ -20,10 +21,13 @@ import erp.ws.sbo.client.swing.view.Oinv.OinvView;
 import erp.ws.sbo.client.swing.view.Orin.OrinView;
 import erp.ws.sbo.client.swing.view.Snin.SninView;
 import erp.ws.sbo.utils.SNL;
+import erp.ws.sbo.utils.Snprint;
 public class DesnsController implements TreeSelectionListener,ActionListener 
           ,KeyListener{
    private DeSNView v;
-   private SNL snl=new SNL();	
+   private SNL snl=new SNL();
+   private Object[][] ob;
+   private String hql;
    public DesnsController(DeSNView v)
    {
 	   this.v=v;
@@ -356,8 +360,14 @@ public class DesnsController implements TreeSelectionListener,ActionListener
 		   if(v.getV().getClass().toString().contains("SninView"))
 		   {
 			    try {
-					snl.createPSN(v);
-				} catch (ParseException e1) {
+			    	hql = "select convert(nvarchar(10),getdate(),112)+ replace(convert(nvarchar(10),getdate(),8),':','')";
+	                ob=appMain.lt.sqlclob(hql,0,1);	   
+	                String psn=((SninView)v.getV()).getTxt_MNo().getText()+ob[0][0].toString();
+					snl.createPSN_afs((SninView)v.getV(),psn);
+					Snprint snsp=new Snprint((SninView)v.getV());
+			        snsp.print(((SninView)v.getV()).getTxt_width().getText(), ((SninView)v.getV()).getTxt_height().getText(), "5", "8", "0", "0", "0", "128", psn,((SninView)v.getV()));	        
+			          
+			    } catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} 

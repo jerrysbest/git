@@ -654,9 +654,7 @@ public class OignView extends JInternalFrame{
 		 lay8.putConstraint(SpringLayout.NORTH, lab_Qinspector,130, SpringLayout.NORTH, pane8);
 		 lay8.putConstraint(SpringLayout.WEST, txt_Qinspector, 5,SpringLayout.EAST,lab_Qinspector);
 		 lay8.putConstraint(SpringLayout.NORTH, txt_Qinspector, 130, SpringLayout.NORTH, pane8);
-		 
-		 
-		 
+		 		 
 		 pane8.add(lab_specification);
 		 pane8.add(com_specification);
 		 pane8.add(lab_length);

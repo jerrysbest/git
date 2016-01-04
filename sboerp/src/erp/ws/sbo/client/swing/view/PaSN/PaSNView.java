@@ -68,6 +68,7 @@ public class PaSNView extends JInternalFrame{
     JLabel lab_sn = new JLabel("输入序列号");
     JLabel lab_memo = new JLabel("备注");
     JLabel lab_MNo = new JLabel("机号");
+    JLabel label = new JLabel("公司名称");
     JTextField txt_MNo = new JTextField(8);
     
     
@@ -80,8 +81,7 @@ public class PaSNView extends JInternalFrame{
     
     JMyTable jt;
     JTable jt1;
-    JComboBox com_company = new JComboBox();
-    JLabel label = new JLabel("公司名称");
+    JComboBox com_company = new JComboBox();    
     JTabbedPane jtp1=new JTabbedPane();	
     JTabbedPane jtp2=new JTabbedPane();	
    
@@ -235,6 +235,7 @@ public class PaSNView extends JInternalFrame{
 	     jt1.getSelectionModel().addListSelectionListener(pc);
 	     od.addTableModelListener(pc);
 	     this.txt_tsn.addFocusListener(pc);
+	     this.txt_tsn.addKeyListener(pc);
 	     this.addInternalFrameListener(pc);
 	     	    	     
 		 this.setVisible(true);

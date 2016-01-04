@@ -537,20 +537,44 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		}
 		else if(arg0.getActionCommand().equals("选择序列号")&&v.getOd().ds.getValue()==3)
 		{
-						
-			ISNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");	
-            snstatus sns=new snstatus();
-            sns=isn.queryByDocId(((JTextField)v.getCom_selcode().getEditor().getEditorComponent()).getText());
-            v.getTxt_MNo().setText(sns.getMno());
+			SNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");	
+            snstatus sns=new snstatus(); 
+            sns=isn.queryByDocId(((JTextField)v.getCom_selcode().getEditor().getEditorComponent()).getText());   
+            if(!sns.getSn().substring(0, 4).equals(v.getTxt_MNo().getText()))
+			{
+            	JOptionPane.showMessageDialog(null,"只能选择本机号序列号");
+				return;
+			}
+            //v.getTxt_MNo().setText(sns.getMno());
+            v.getTxt_length().setEditable(true);
+            v.getTxt_pweight().setEditable(true);
+            v.getTxt_weight().setEditable(true);
+            v.getTxt_cweight().setEditable(true);
+            v.getTxt_sweight().setEditable(true);
+            v.getTxt_Qinspector().setEditable(true);
+            v.getTxt_deviation().setEditable(true);
+            v.getCom_specification().setEnabled(true);
+            v.getCom_specification().setEditable(true); 
+           
+            v.getCom_specification().setSelectedItem(sns.getItemcode());  
+            v.getTxt_createcode().setText(((JTextField)v.getCom_selcode().getEditor().getEditorComponent()).getText());
             v.getTxt_length().setText(sns.getLength().toString());
             v.getTxt_pweight().setText(sns.getPweight().toString());
             v.getTxt_weight().setText(sns.getWeight().toString());
-            v.getTxt_cweight().setText(sns.getCweight().toString());
+            v.getTxt_cweight().setText(sns.getCweight().toString());           
             v.getTxt_sweight().setText(sns.getSweight().toString());
             v.getTxt_Qinspector().setText(sns.getQc());
             v.getTxt_deviation().setText(String.valueOf(new BigDecimal(sns.getWeight()-sns.getSweight()).setScale(3, BigDecimal.ROUND_HALF_UP)));
-            v.getCom_specification().setSelectedItem(sns.getItemcode());  
-            v.getTxt_createcode().setText(((JTextField)v.getCom_selcode().getEditor().getEditorComponent()).getText());
+           
+            v.getTxt_length().setEditable(false);
+            v.getTxt_pweight().setEditable(false);
+            v.getTxt_weight().setEditable(false);
+            v.getTxt_cweight().setEditable(false);
+            v.getTxt_sweight().setEditable(false);
+            v.getTxt_Qinspector().setEditable(false);
+            v.getTxt_deviation().setEditable(false);
+            v.getCom_specification().setEnabled(false);
+            v.getCom_specification().setEditable(false); 			
 		}
 		else if(arg0.getSource()==v.getCom_ifincomed()&&v.getOd().ds.getValue()==3)
 		{			

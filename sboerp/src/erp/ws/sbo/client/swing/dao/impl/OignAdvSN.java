@@ -65,6 +65,7 @@ public class OignAdvSN implements IAdvSN<OignView> {
 				   return;
 			 }
 		 }
+          
 		//for(int i=0;i<v.getOd().getRowCount();i++)
 		//{
 			if(!new BigDecimal(sns1.getLength()).setScale(2, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(2, BigDecimal.ROUND_HALF_UP))
@@ -102,7 +103,10 @@ public class OignAdvSN implements IAdvSN<OignView> {
 				  cardcode=v.getOd().getValuethrheader(rowid, "伙伴代码").toString();
 				}
 			}
-			else{}
+			else{
+				JOptionPane.showMessageDialog(null,"序列号"+sns1.getSn()+"包含信息"+sns1.getItemcode()+","+sns1.getWareHouse()+","+sns1.getLength().toString()+"与所选行信息不一致"+v.getOd().getValuethrheader(rowid, "物料代码").toString()+","+v.getOd().getValuethrheader(rowid, "仓库").toString()+","+v.getOd().getValuethrheader(rowid, "米段").toString());
+			    return;
+			}
 			
 		 //}
 		 obj=new Object[v.getDsv().getOd().getColumnCount()];	

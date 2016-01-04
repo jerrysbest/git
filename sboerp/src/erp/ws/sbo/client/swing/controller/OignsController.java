@@ -615,16 +615,41 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			SNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");	
             snstatus sns=new snstatus(); 
             sns=isn.queryByDocId(((JTextField)v.getCom_selcode().getEditor().getEditorComponent()).getText());   
-            v.getTxt_MNo().setText(sns.getMno());
+            if(!sns.getSn().substring(0, 4).equals(v.getTxt_MNo().getText()))
+			{
+            	JOptionPane.showMessageDialog(null,"只能选择本机号序列号");
+				return;
+			}
+            //v.getTxt_MNo().setText(sns.getMno());
+            v.getTxt_length().setEditable(true);
+            v.getTxt_pweight().setEditable(true);
+            v.getTxt_weight().setEditable(true);
+            v.getTxt_cweight().setEditable(true);
+            v.getTxt_sweight().setEditable(true);
+            v.getTxt_Qinspector().setEditable(true);
+            v.getTxt_deviation().setEditable(true);
+            v.getCom_specification().setEnabled(true);
+            v.getCom_specification().setEditable(true); 
+           
+            v.getCom_specification().setSelectedItem(sns.getItemcode());  
+            v.getTxt_createcode().setText(((JTextField)v.getCom_selcode().getEditor().getEditorComponent()).getText());
             v.getTxt_length().setText(sns.getLength().toString());
             v.getTxt_pweight().setText(sns.getPweight().toString());
             v.getTxt_weight().setText(sns.getWeight().toString());
-            v.getTxt_cweight().setText(sns.getCweight().toString());
+            v.getTxt_cweight().setText(sns.getCweight().toString());           
             v.getTxt_sweight().setText(sns.getSweight().toString());
             v.getTxt_Qinspector().setText(sns.getQc());
             v.getTxt_deviation().setText(String.valueOf(new BigDecimal(sns.getWeight()-sns.getSweight()).setScale(3, BigDecimal.ROUND_HALF_UP)));
-            v.getCom_specification().setSelectedItem(sns.getItemcode());  
-            v.getTxt_createcode().setText(((JTextField)v.getCom_selcode().getEditor().getEditorComponent()).getText());
+           
+            v.getTxt_length().setEditable(false);
+            v.getTxt_pweight().setEditable(false);
+            v.getTxt_weight().setEditable(false);
+            v.getTxt_cweight().setEditable(false);
+            v.getTxt_sweight().setEditable(false);
+            v.getTxt_Qinspector().setEditable(false);
+            v.getTxt_deviation().setEditable(false);
+            v.getCom_specification().setEnabled(false);
+            v.getCom_specification().setEditable(false); 
 		}
 		
 		else if(e.getSource()==v.getBt_print()&&v.getOd().ds.getValue()==5)
@@ -1187,60 +1212,11 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			v.getTxt_sweight().setText("0");
 			v.getTxt_createcode().setText("");
 			v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));				       
-			 /*try{
-				 if(((JTextField)v.getCom_specification().getEditor().getEditorComponent())!=null&&((JTextField)v.getCom_specification().getEditor().getEditorComponent()).getText().length()>=2&&((JTextField)v.getCom_specification().getEditor().getEditorComponent()).getText().substring(0, 2).equals("TD")){
-		    		  v.getCom_whsin().setEditable(true);
-			    	  v.getCom_whsin().setSelectedItem(new ComboBoxItem("2109","2109"));
-			    	  v.getCom_whsin().setEditable(false);
-			    	  return;
-		    	  }
-		          else if(new BigDecimal(v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
-			      {
-			    	  v.getCom_whsin().setEditable(true);
-			          v.getCom_whsin().setSelectedItem(new ComboBoxItem("2107","2107"));
-			          v.getCom_whsin().setEditable(false);
-			    	  return;
-			      }
-			      else{
-			    	  v.getCom_whsin().setEditable(true);
-			    	  v.getCom_whsin().setSelectedItem(new ComboBoxItem("2108","2108"));
-			    	  v.getCom_whsin().setEditable(false);
-			      }
-		      }
-		      catch (NumberFormatException e1) {  
-		            e1.printStackTrace();  
-		        }*/  	   
+			 	   
 		}
 		else if(e.getSource()==v.getBt_addsn())
 		{
-	        if(v.getJta_SN().getText().contains(v.getTxt_createcode().getText()))
-	        {
-	    	   return;
-	        }
-	        if(v.getTxt_cweight().getText().equals("0"))
-	        {
-	        	JOptionPane.showMessageDialog(null, "净重为0，不允许添加");		            
-	        	return;
-	        }
-	        ISNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");	
-			
-	        snstatus sns=new snstatus();
-	        try{
-	            sns=isn.queryByDocId(v.getTxt_createcode().getText());
-	            if(sns==null)
-	            {
-	            	JOptionPane.showMessageDialog(null, "数据库中无此序列号,不允许添加,必须先打印才可以生成此序列号");
-	            	return;
-	            }
-	                v.getJta_SN().setEditable(true);
-	                docf.getIAdvSN().add(v, v.getTxt_createcode().getText(),true,"59","I",false,v.getJt().getSelectedRow());
-	                v.getJta_SN().setEditable(false);
-		        }
-	        catch(NullPointerException e1)
-	        {
-	        	
-	        }
-			
+			docf.getIAdvSN().add(v, v.getTxt_createcode().getText(),true,"59","I",false,v.getJt().getSelectedRow());			      			
 		}
 		else{
 			

@@ -153,7 +153,7 @@ public class OworView extends JInternalFrame{
 					"(p.itemCode like :str1 or p.itemName like :str2) and p.validfor='Y' AND p.frozenfor='N'";
 		   	 hql1="select distinct a.code from Oitt a inner join oitm p on a.code=p.itemcode " +
 					" where  " +
-					"p.itemCode=:str1 and p.validfor='Y' AND p.frozenfor='N'";
+					"p.itemCode collate Chinese_prc_cs_as_ws=:str1 and p.validfor='Y' AND p.frozenfor='N'";
 			 com_itemcode = new JAutoCompleteComboBox(hql,hql1);
 			 hql="select u_enable from [@sms] where code='CKCZY'";
 			 yon=appMain.lt.sqlclob(hql, 0, 1)[0][0].toString();
