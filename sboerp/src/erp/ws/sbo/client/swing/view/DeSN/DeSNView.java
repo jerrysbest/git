@@ -2,7 +2,6 @@ package erp.ws.sbo.client.swing.view.DeSN;
 
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;

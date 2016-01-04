@@ -353,7 +353,7 @@ public class DesnsController implements TreeSelectionListener,ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		   if(v.getV().getClass().toString().contains("OignView"))
+		   if(v.getV().getClass().toString().contains("SninView"))
 		   {
 			    try {
 					snl.createPSN(v);

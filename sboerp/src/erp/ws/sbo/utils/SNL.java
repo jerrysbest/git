@@ -201,8 +201,7 @@ public class SNL {
     		appMain.fv.setText("物料代码或者公司名称为空,不允许生成序列号");
     		return false;
     	}   
-    	//验证
-    	setsn=new HashSet<String>();	
+    	//验证    	
     	ISNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");
     	try {
 			if(!verificationPSN(v.getJta_SN()))
@@ -216,42 +215,53 @@ public class SNL {
 		Integer j=0;
 		String warehouse=new String(""),itcode=new String("");
 		BigDecimal length=new BigDecimal(0.00);
-		for(int i=0;i<v.getDsv().getOd().getRowCount();i++)
+		int[] i=v.getDsv().getJt().getSelectedRows();
+		for(int k=0;k<i.length;k++)
+		{				
+		 try{		
+		     i[k]=Integer.valueOf(v.getJt().convertRowIndexToModel(v.getJt().getSelectedRows()[k]));
+		 }
+		 catch(ArrayIndexOutOfBoundsException e0)
+		 {
+			 e0.printStackTrace();
+		 }			
+		}
+		for(int ik=0;ik<i.length;ik++)
 		{
-			if(v.getDsv().getOd().getValuethrheader(i, "序列号")==null||(v.getDsv().getOd().getValuethrheader(i, "序列号")!=null&&v.getDsv().getOd().getValuethrheader(i, "序列号").toString().equals("")))
+			if(v.getDsv().getOd().getValuethrheader(i[ik], "序列号")==null||(v.getDsv().getOd().getValuethrheader(i[ik], "序列号")!=null&&v.getDsv().getOd().getValuethrheader(i[ik], "序列号").toString().equals("")))
 			{
 				continue;
 			}
-			j=j+1;
+			
 		
-            sns=isn.queryByDocId(v.getDsv().getOd().getValuethrheader(i, "序列号").toString());
+            sns=isn.queryByDocId(v.getDsv().getOd().getValuethrheader(i[ik], "序列号").toString());
             if(sns==null)
             {
-            	JOptionPane.showMessageDialog(null, "序列号"+v.getDsv().getOd().getValuethrheader(i, "序列号").toString()+"不存在");
+            	JOptionPane.showMessageDialog(null, "序列号"+v.getDsv().getOd().getValuethrheader(i[ik], "序列号").toString()+"不存在");
             	return false;
             }
             if(!sns.getCardcode().toString().equals(""))
             {
-            	JOptionPane.showMessageDialog(null, "序列号"+v.getDsv().getOd().getValuethrheader(i, "序列号").toString()+"已在客户"+sns.getCardcode().toString()+"手中");
+            	JOptionPane.showMessageDialog(null, "序列号"+v.getDsv().getOd().getValuethrheader(i[ik], "序列号").toString()+"已在客户"+sns.getCardcode().toString()+"手中");
             	return false;
             }
             if(sns.isIfPsn())
             {
-            	JOptionPane.showMessageDialog(null, "序列号"+v.getDsv().getOd().getValuethrheader(i, "序列号").toString()+"是大序列号，不允许打包");
+            	JOptionPane.showMessageDialog(null, "序列号"+v.getDsv().getOd().getValuethrheader(i[ik], "序列号").toString()+"是大序列号，不允许打包");
             	return false;
             }
-            if(i>0)
+            if(i[ik]>0)
             {
             	if((!warehouse.equals(sns.getWareHouse().toString()))||(!itcode.equals(sns.getItemcode().toString()))||(!length.equals(new BigDecimal(sns.getLength()).setScale(2, BigDecimal.ROUND_HALF_UP))))
             	{
-            		JOptionPane.showMessageDialog(null, "序列号"+v.getDsv().getOd().getValuethrheader(i, "序列号").toString()+"与上一序列号的物料编码、米段或者仓库不同，不允许打包");
+            		JOptionPane.showMessageDialog(null, "序列号"+v.getDsv().getOd().getValuethrheader(i[ik], "序列号").toString()+"与上一序列号的物料编码、米段或者仓库不同，不允许打包");
                 	return false;
             	}
             }
             if((sns.getPaSn()!=null&&!sns.getPaSn().equals(""))||sns.isIfInPsn())
             {
             	setsn.add(sns.getSn());
-            	if(JOptionPane.showConfirmDialog(v,"序列号"+v.getDsv().getOd().getValuethrheader(i, "序列号").toString()+"属于父序列号"+sns.getPaSn()+"父序列号将失效,是否继续")==1)
+            	if(JOptionPane.showConfirmDialog(v,"序列号"+v.getDsv().getOd().getValuethrheader(i[ik], "序列号").toString()+"属于父序列号"+sns.getPaSn()+"父序列号将失效,是否继续")==1)
             	{
             		return false;
             	}     
@@ -259,6 +269,7 @@ public class SNL {
 	            warehouse=sns.getWareHouse();
 	            itcode=sns.getItemcode();
 	            length=new BigDecimal(sns.getLength()).setScale(2, BigDecimal.ROUND_HALF_UP);
+	            j=j+1;
 		}		
 		if(j==0)
 		{
@@ -290,12 +301,12 @@ public class SNL {
      	sns.setQc(v.getTxt_MNo().getText());
      
      	snst.add(sns);
-     	for(int i=0;i<v.getDsv().getOd().getRowCount();i++)
+     	for(int ik=0;ik<i.length;ik++)
 		{
-			if(v.getDsv().getOd().getValuethrheader(i, "序列号")!=null&&!v.getDsv().getOd().getValuethrheader(i, "序列号").toString().equals(""))
+			if(v.getDsv().getOd().getValuethrheader(i[ik], "序列号")!=null&&!v.getDsv().getOd().getValuethrheader(i[ik], "序列号").toString().equals(""))
 			{
 			    hql="update dbo.[@snstatus]  set ifinpsn='1',PaSn='"+Psn+"',updatetime=getdate() "+		
-				    "where sn='"+v.getDsv().getOd().getValuethrheader(i, "序列号").toString()+"' "; 
+				    "where sn='"+v.getDsv().getOd().getValuethrheader(i[ik], "序列号").toString()+"' "; 
 				     dbu.exeSql(hql);	
 			}
 		}	
@@ -329,7 +340,7 @@ public class SNL {
 			{
 				continue;
 			}
-			j=j+1;
+			
 		
             sns=isn.queryByDocId(v.getDsv().getOd().getValuethrheader(i, "序列号").toString());
             if(sns==null)
@@ -366,6 +377,7 @@ public class SNL {
 	            warehouse=sns.getWareHouse();
 	            itcode=sns.getItemcode();
 	            length=new BigDecimal(sns.getLength()).setScale(2, BigDecimal.ROUND_HALF_UP);
+	            j=j+1;
 		}		
 		if(j==0)
 		{

@@ -123,19 +123,19 @@ public class OignQDoc implements IQDoc{
 			 		}
 			 		if(plist.getBegincardCode().length()!=0)
 			 		{
-			 			hql+="and p.usersign>='"+plist.getBeginsaleperson()+"' ";
+			 			hql+="and q.whscode>='"+plist.getBegincardCode()+"' ";
 			 		}
 			 		if(plist.getEndcardCode().length()!=0)
 			 		{
-			 			hql+="and p.usersign<='"+plist.getBeginsaleperson()+"' ";
+			 			hql+="and q.whscode<='"+plist.getEndcardCode()+"' ";
 			 		}
 			 		if(!plist.getBeginsaleperson().equals(""))
 			 		{
-			 			hql+="and q.whscode>='"+plist.getBegincardCode()+"' ";
+			 			hql+="and p.usersign>='"+plist.getBeginsaleperson()+"' ";
 			 		}
 			 		if(!plist.getEndsaleperson().equals(""))
 			 		{
-			 			hql+="and q.whscode<='"+plist.getEndcardCode()+"' ";
+			 			hql+="and p.usersign<='"+plist.getBeginsaleperson()+"' ";
 			 		}
 			 		if(plist.getBegindate()!=null)
 			 		{   		 			
