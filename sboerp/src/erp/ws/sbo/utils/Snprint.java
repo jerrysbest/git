@@ -44,7 +44,10 @@ public class Snprint {
 		
 		this.v1=v;
 	}
-   //only configure setup barcodetype barcode
+   public Snprint() {
+		// TODO Auto-generated constructor stub
+	}
+	//only configure setup barcodetype barcode
     public void print(String width,String height,String speed,String density,String sensor,String vertical,String offset,
     		String codetype,String barcode,SninView v) {
         //TscLibDll.INSTANCE.about();

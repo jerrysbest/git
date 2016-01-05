@@ -30,12 +30,15 @@ import erp.ws.sbo.client.swing.view.DocMenu.DocMenuView;
 import erp.ws.sbo.client.swing.view.PaSN.PaSNView;
 import erp.ws.sbo.client.swing.view.QueryWindow.QueryWindowView;
 import erp.ws.sbo.utils.SNL;
+import erp.ws.sbo.utils.Snprint;
 
 public class PaSNsController implements KeyListener, MouseListener, InternalFrameListener, TableModelListener, ListSelectionListener, ActionListener, FocusListener {
 
 	private PaSNView v;
 	private DocMenuView dmv=DocMenuView.getdmv();
 	private Object[] obj;
+	private String hql;//query string 
+	private Object[][] ob1;
 	@SuppressWarnings("unchecked")
 	private DaoFactory<PaSNView> docf=(DaoFactory<PaSNView>)appMain.ctx.getBean("PaSNFactory");	
 	public PaSNsController(PaSNView v) {
@@ -220,11 +223,14 @@ public class PaSNsController implements KeyListener, MouseListener, InternalFram
 					e1.printStackTrace();
 				}
 			}
-			if(e.getSource()==v.getTxt_tsn())
+			if(e.getSource()==v.getJta_memo())
 			{	
-				 JOptionPane.showMessageDialog(null,"¥Ú”°∏∏–Ú¡–∫≈");
-				 
-				 
+				 JOptionPane.showMessageDialog(null,"¥Ú”°∂˛Œ¨¬Î–Ú¡–∫≈");
+				 Snprint snsp=new Snprint();
+				 hql="select u_width,u_height from [@SNPRINTER] where code='1'";
+			     ob1=appMain.lt.sqlclob(hql,0,1);
+		         snsp.print(ob1[0][0].toString(), ob1[0][1].toString(), "5", "8", "0", "0", "0", "128", v.getJta_memo().getText(),v);	        
+		            				 
 			}
 		}
 		else

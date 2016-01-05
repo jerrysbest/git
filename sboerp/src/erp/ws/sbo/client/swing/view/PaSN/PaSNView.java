@@ -235,7 +235,7 @@ public class PaSNView extends JInternalFrame{
 	     jt1.getSelectionModel().addListSelectionListener(pc);
 	     od.addTableModelListener(pc);
 	     this.txt_tsn.addFocusListener(pc);
-	     this.txt_tsn.addKeyListener(pc);
+	     this.jta_memo.addKeyListener(pc);
 	     this.addInternalFrameListener(pc);
 	     	    	     
 		 this.setVisible(true);
