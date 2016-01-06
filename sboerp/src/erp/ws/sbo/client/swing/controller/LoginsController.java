@@ -88,7 +88,16 @@ public class LoginsController implements ActionListener{
 		    		FootView foot=new FootView();
 				    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();    	
 				    v.getParent().add(lm);
-		    		appMain.v.setTitle("QS-ERP"+v.getDserver().getText().toString().trim()+appMain.oCompany.getCompanyName()+appMain.oCompany.getUserName()+"用户(1)"+appMain.user1+"机号"+appMain.Mno);
+					hql="select u_name from [@USERS]  "+
+					"where u_uid='"+appMain.oCompany.getUserSignature()+"' and u_subuid='"+v.getTf_user1().getText().toString().trim()+"' " +
+					"and u_pwd='"+String.valueOf(v.getTf_pas1().getPassword())+"' and u_ifuse='Y'";
+		         	ob=appMain.lt.sqlclob(hql, 0, 1);
+		         	if(ob==null||(ob!=null&&ob.length==0))
+		         	{
+		         		 JOptionPane.showMessageDialog(null,"密码1错误或者用户未启用");
+		         		 return;
+		         	}
+		    		appMain.v.setTitle("QS-ERP"+v.getDserver().getText().toString().trim()+appMain.oCompany.getCompanyName()+appMain.oCompany.getUserName()+"用户(1)"+appMain.user1+ob[0][0].toString()+"机号"+appMain.Mno);
 		    		v.dispose();
 		    	    
 		    	    lm.setBounds(0, 0, 200, screenSize.height-220);
@@ -123,7 +132,7 @@ public class LoginsController implements ActionListener{
 		            JOptionPane.showMessageDialog(null,errorMessage.getErrorMessage());           
 		        }else{   
 		        	System.out.println("登陆成功1");
-			    	hql="select * from [@USERS]  "+
+			    	hql="select u_name from [@USERS]  "+
 						"where u_uid='"+appMain.oCompany.getUserSignature()+"' and u_subuid='"+v.getTf_user1().getText().toString().trim()+"' " +
 						"and u_pwd='"+String.valueOf(v.getTf_pas1().getPassword())+"' and u_ifuse='Y'";
 			         	ob=appMain.lt.sqlclob(hql, 0, 1);
@@ -148,7 +157,7 @@ public class LoginsController implements ActionListener{
 		    		FootView foot=new FootView();
 				    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();    	
 				    v.getParent().add(lm);
-				    appMain.v.setTitle("QS-ERP"+v.getDserver().getText().toString().trim()+appMain.oCompany.getCompanyName()+appMain.oCompany.getUserName()+"用户(1)"+appMain.user1+"机号"+appMain.Mno);
+				    appMain.v.setTitle("QS-ERP"+v.getDserver().getText().toString().trim()+appMain.oCompany.getCompanyName()+appMain.oCompany.getUserName()+"用户(1)"+appMain.user1+ob[0][0].toString()+"机号"+appMain.Mno);
 			    	v.dispose();
 		    	    
 		    	    lm.setBounds(0, 0, 200, screenSize.height-220);
