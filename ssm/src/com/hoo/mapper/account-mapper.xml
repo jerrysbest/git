@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace和定义的Mapper接口对应，并实现其中的方法 -->
+<mapper namespace="com.hoo.mapper.AccountMapper">
+   <resultMap type="com.hoo.entity.Account" id="accountResultMap">
+        <id property="accountId" column="account_id" />
+        <result property="username" column="username" />
+        <result property="password" column="password" />
+        <result property="status" column="status" />
+   </resultMap>
+   <!-- id和mapper接口中的方法名对应，resultType使用mybatis.xml中的别名 -->
+   <select id="getAccount" resultType="account">
+         <![CDATA[         
+              select top 1 * from account 
+         ]]> 
+   </select>     
+   <select id="getAllAccount" resultType="list" resultMap="accountResultMap">  
+         <![CDATA[     
+              select * from account   
+         ]]>    
+   </select>    
+         <!-- accountResultMap是account-resultmap.xml中定义的resultmap -->  
+             <select id="getAccountById" parameterType="string" resultType="com.hoo.entity.Account" resultMap="accountResultMap">    
+         <![CDATA[        
+             select * from account where account_id = #{id}    
+         ]]>    
+   </select>   
+   <!-- accountMap.accountResultMap是account-resultmap.xml中定义的resultmap，通过namespace.id找到 -->  
+   <select id="getAccountByNames" parameterType="string" resultMap="accountResultMap">  
+         <![CDATA[        
+             select * from account where username = #{name}        
+         ]]>    </select>   
+   <sql id="user_name_pwd">  
+         username, password  
+   </sql>       
+   <!-- 自动生成id策略 -->  
+   <insert id="addAccount" useGeneratedKeys="true" keyProperty="account_id" parameterType="account">   
+         insert into account(account_id, status, username, password)   
+         values(#{accountId}, #{status}, #{username}, #{password})   
+   </insert>       
+   <!-- 根据selectKey语句生成主键 -->  
+   <insert id="addAccount4Key" parameterType="account">   
+        <selectKey keyProperty="account_id" order="BEFORE" resultType="int">    
+          select cast(DBMS_RANDOM.VALUE(1, 9999) as Integer) a from #Tab    
+        </selectKey>        
+        insert into account(account_id, status, username, password) 
+        values(#{accountId}, #{status}, #{username}, #{password})    
+   </insert>        
+   <update id="editAccount" parameterType="account"> 
+        update account set        
+        status = #{status},
+        username = #{username},       
+        password = #{password}        
+        where account_id = #{accountId}    
+   </update>        
+   <delete id="removeAccount" parameterType="int">
+        delete from account where account_id = #{id}  
+   </delete>
+</mapper>
