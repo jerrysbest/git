@@ -1,6 +1,9 @@
 package com.wg.dao;
 
 import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.wg.bean.User;
 
 public interface UserDao {
@@ -15,7 +18,7 @@ public interface UserDao {
 	  *  @author WG
 	  *  @return
 	  */
-	 public User getUser(String username,String password);
+	 public User getUser(@Param("username")String userName,@Param("password")String password);
 	 
 	 /**
 	  *  ÃÌº””√ªß

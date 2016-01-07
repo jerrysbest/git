@@ -2,8 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wg.dao.UserDao">
+  <resultMap id="userResult" type="User">
+        <id property="id" column="id" />
+        <result property="username" column="username" />
+        <result property="password" column="password" />
+    </resultMap>
 	<!-- 取得用户列表 -->
-	<select id="getUser" resultType="User" parameterType="User">
+	<select id="getUser" resultMap="userResult">
 		select
 		id,
 		username,
@@ -11,11 +16,12 @@
 		From user
 		<where>
 			<if test="username != null and password != null">
-				username =#{username} and password =#{password}
+				username =#{username,jdbcType=VARCHAR} and password =#{password,jdbcType=VARCHAR}
 			</if>
-			<if test="id!=null">
-				and id=#{id}
+			<!--  <if test="id!=null">
+				and id=#{id}				
 			</if>
+			-->
 		</where>
 	</select>
 	<select id="getAllUsers" resultMap="userResult">
