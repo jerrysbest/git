@@ -18,13 +18,13 @@ public class UserServiceImpl implements UserService {
 		this.userDao = userDao;
 	}
 
-	public List<User> getUsers() {
+	public List<User> getAllUsers() {
 
-		return userDao.getUser();
+		return userDao.getAllUsers();
 	}
 
-	public User getUserInfo(User user) throws Exception {
-		return userDao.getUser(user);
+	public User getUserInfo(String username,String password) throws Exception {
+		return userDao.getUser(username,password);
 	}
 
 	public void saveUser(User user) throws Exception {

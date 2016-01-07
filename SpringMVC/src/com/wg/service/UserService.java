@@ -11,7 +11,7 @@ public interface UserService {
 	 * @author JLC
 	 * @return 用户列表
 	 */
-	public List<User> getUsers() throws Exception;
+	public List<User> getAllUsers() throws Exception;
 
 	/**
 	 * 取得用户信息
@@ -20,7 +20,7 @@ public interface UserService {
 	 * @return User对象
 	 * @throws Exception
 	 */
-	public User getUserInfo(User user) throws Exception;
+	public User getUserInfo(String username,String password) throws Exception;
 
 	/**
 	 * 保存用户

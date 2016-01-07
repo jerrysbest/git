@@ -18,6 +18,10 @@
 			</if>
 		</where>
 	</select>
+	<select id="getAllUsers" resultMap="userResult">
+		select *
+		from user
+	</select>
 	<!-- 新增用户 -->
 	<insert id="insertUser" parameterType="User">
 		insert into user(id,username,password) values(#{id},#{username},#{password})

@@ -9,13 +9,13 @@ public interface UserDao {
 	  *  @author WG
 	  *  @return 用户列表
 	  */
-	 public List<User> getUser(); 
+	 public List<User> getAllUsers(); 
 	 /**
 	  *  根据用户账号信息取得用户
 	  *  @author WG
 	  *  @return
 	  */
-	 public User getUser(User user);
+	 public User getUser(String username,String password);
 	 
 	 /**
 	  *  添加用户

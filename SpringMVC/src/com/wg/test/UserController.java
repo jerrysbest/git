@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import com.wg.bean.User;
+import com.wg.common.Config;
 import com.wg.service.UserService;
 
 @Controller
@@ -36,19 +37,39 @@ public class UserController {
 	 * @param username
 	 * @param password
 	 * @return
+	 * @throws Exception 
 	 */
 	@RequestMapping(value = "login", method = RequestMethod.POST)
-	public ModelAndView login(String username, String password) {
+	public ModelAndView login(HttpServletRequest request,String username, String password) throws Exception {
 		// 验证传递过来的参数是否正确，否则返回到登陆页面。
 		if (this.checkParams(new String[] { username, password })) {
-			// 指定要返回的页面为succ.jsp
-			ModelAndView mav = new ModelAndView("succ");
-			// 将参数返回给页面
-			mav.addObject("username", username);
-			mav.addObject("password", password);
-			System.out
-					.println("username=" + username + " password=" + password);
-			return mav;
+			User loginExit = userService.getUserInfo(username, password);
+			request.getSession().setAttribute("username", username);
+			request.getSession().setAttribute("password", password);
+			if (loginExit == null) {
+			    System.out.println("用户不存在");
+
+				request.getSession().setAttribute("login", null);
+			} else {
+				System.out.println(loginExit);			
+				System.out.println("登录成功！");
+				Config.user=loginExit;
+				Config.Status=true;
+
+				request.getSession().setAttribute("login", "Y");
+				
+
+			
+				// 指定要返回的页面为succ.jsp
+				ModelAndView mav = new ModelAndView("succ");
+				// 将参数返回给页面
+				mav.addObject("username", username);
+				mav.addObject("password", password);
+				System.out
+						.println("username=" + username + " password=" + password);
+				return mav;
+			}
+			
 		}
 		return new ModelAndView("home");
 	}
