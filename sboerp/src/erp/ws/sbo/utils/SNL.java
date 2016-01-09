@@ -216,14 +216,17 @@ public class SNL {
 		String warehouse=new String(""),itcode=new String("");
 		BigDecimal length=new BigDecimal(0.00);
 		int[] i=v.getDsv().getJt().getSelectedRows();
+		
 		for(int k=0;k<i.length;k++)
 		{				
 		 try{		
-		     i[k]=Integer.valueOf(v.getJt().convertRowIndexToModel(v.getJt().getSelectedRows()[k]));
+		     i[k]=Integer.valueOf(v.getDsv().getJt().convertRowIndexToModel(v.getDsv().getJt().getSelectedRows()[k]));
 		 }
 		 catch(ArrayIndexOutOfBoundsException e0)
 		 {
+			 JOptionPane.showMessageDialog(null, "ÐòÁÐºÅÑ¡Ôñ·¶Î§³ö´í");        	
 			 e0.printStackTrace();
+			 return false;
 		 }			
 		}
 		for(int ik=0;ik<i.length;ik++)
@@ -262,11 +265,11 @@ public class SNL {
                 	return false;
             	}
             }
-  
-	            warehouse=sns.getWareHouse();
-	            itcode=sns.getItemcode();
-	            length=new BigDecimal(sns.getLength()).setScale(2, BigDecimal.ROUND_HALF_UP);
-	            j=j+1;
+           
+            warehouse=sns.getWareHouse();
+            itcode=sns.getItemcode();
+            length=new BigDecimal(sns.getLength()).setScale(2, BigDecimal.ROUND_HALF_UP);
+            j=j+1;
 		}		
 		if(j==0)
 		{
@@ -299,12 +302,13 @@ public class SNL {
      
      	snst.add(sns);
      	for(int ik=0;ik<i.length;ik++)
-		{
+		{    		
 			if(v.getDsv().getOd().getValuethrheader(i[ik], "ÐòÁÐºÅ")!=null&&!v.getDsv().getOd().getValuethrheader(i[ik], "ÐòÁÐºÅ").toString().equals(""))
 			{
 			    hql="update dbo.[@snstatus]  set ifinpsn='1',PaSn='"+Psn+"',updatetime=getdate() "+		
 				    "where sn='"+v.getDsv().getOd().getValuethrheader(i[ik], "ÐòÁÐºÅ").toString()+"' "; 
-				     dbu.exeSql(hql);	
+				dbu.exeSql(hql);	
+				v.getDsv().getOd().setValuethrheader(Psn, i[ik], "ËùÊô´óÐòÁÐºÅ");
 			}
 		}	
      	return true;

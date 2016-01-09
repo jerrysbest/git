@@ -69,7 +69,7 @@ public final class appMain {
 	public static DocMenuView  dmv;
 	public static LoginView lg;
 	public static FootView fv;
-	public static String rpurl,Mno;
+	public static String rpurl,Mno,username1;
    
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

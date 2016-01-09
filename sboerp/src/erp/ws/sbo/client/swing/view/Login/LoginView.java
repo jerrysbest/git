@@ -24,7 +24,7 @@ public class LoginView extends JInternalFrame{
 	}
 	private LoginsController c = new LoginsController(this);
 	private SpringLayout lay = new SpringLayout();
-	String hql="select isnull(u_mno,'00'),whsname from owhs where whscode like '225%'";
+	String hql="select isnull(u_mno,'00'),whsname from owhs where u_mno is not null and u_mno<>''";
 	JLabel lable_lserver = new JLabel("许可服务器");	
 	JLabel lable_dserver = new JLabel("数据服务器");
 	JLabel lable_user = new JLabel("用户名");

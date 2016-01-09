@@ -229,8 +229,8 @@ public class PaSNsController implements KeyListener, MouseListener, InternalFram
 				 Snprint snsp=new Snprint();
 				 hql="select u_width,u_height from [@SNPRINTER] where code='1'";
 			     ob1=appMain.lt.sqlclob(hql,0,1);
-		         snsp.print(ob1[0][0].toString(), ob1[0][1].toString(), "5", "8", "0", "0", "0", "128", v.getJta_memo().getText(),v);	        
-		            				 
+		         snsp.print(ob1[0][0].toString(), ob1[0][1].toString(), "5", "8", "0", "0", "0", "128", v.getJta_memo().getText().replace("\n", ""),v);	        
+		         
 			}
 		}
 		else

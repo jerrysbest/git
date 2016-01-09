@@ -16,13 +16,14 @@ public class OignQDoc implements IQDoc{
 		SimpleDateFormat f=new SimpleDateFormat("yyyy-MM-dd");
 		 if(plist.getDraft().equals("1"))
 		 {
-	 		hql="select distinct 0,type='生产收货',p.docEntry,p.docDate,'','',q.user_code,q.u_name ,"+
+	 		hql="select distinct 0,type='生产收货',p.docEntry,p.docDate,c.warehouse,'',q.user_code,q.u_name ,"+
 	           " '', ''," +
 	           "''," +
 	           "'' " + 		         
 	           " from Oign p " +
 	           "inner join ousr q on q.userid=p.usersign " +
-	           " inner join ign1 b on p.docentry=b.docentry and b.basetype='202'" +
+	           "inner join ign1 b on p.docentry=b.docentry and b.basetype='202' " +
+	           "inner join wor1 c on b.baseentry=c.docentry "+
 	           " where 1=1 ";
 	 		           
 	 		if(!plist.getBegindocid().equals(""))
@@ -35,19 +36,19 @@ public class OignQDoc implements IQDoc{
 	 		}
 	 		if(plist.getBegincardCode().length()!=0)
 	 		{
-	 			
+	 			hql+="and c.warehouse>='"+plist.getBegincardCode()+"' ";
 	 		}
 	 		if(plist.getEndcardCode().length()!=0)
 	 		{
-	 		
+	 			hql+="and c.warehouse<='"+plist.getEndcardCode()+"' ";
 	 		}
 	 		if(!plist.getBeginsaleperson().equals(""))
 	 		{
-	 			hql+="and q.user_code>='"+plist.getBeginsaleperson()+"' ";
+	 			hql+="and p.usersign>='"+plist.getBeginsaleperson()+"' ";
 	 		}
 	 		if(!plist.getEndsaleperson().equals(""))
 	 		{
-	 			hql+="and q.user_code<='"+plist.getEndsaleperson()+"' ";
+	 			hql+="and p.usersign<='"+plist.getEndsaleperson()+"' ";
 	 		}
 	 		if(plist.getBegindate()!=null)
 	 		{   
@@ -62,13 +63,14 @@ public class OignQDoc implements IQDoc{
 		 else if(plist.getDraft().equals("0"))
 		 {
 			 hql="select distinct 0,type='收货草稿',p.docEntry,p.docDate," + 				
- 				"'','',"+
+ 				"c.warehouse,'',"+
 	            " q.user_code,q.u_name,'',''," +
 	            "''," +
 	            "'' " + 		         
 	            " from Odrf p " +
 	            "inner join ousr q on q.userid=p.usersign " +
-	            " inner join drf1 b on p.docentry=b.docentry and b.basetype='202'" +
+	            " inner join drf1 b on p.docentry=b.docentry and b.basetype='202' " +
+	            "inner join wor1 c on b.baseentry=c.docentry "+
 	            " where 1=1 and b.lineStatus='O'and p.docStatus='O' and p.objtype='59'";
 			 if(!plist.getBegindocid().equals(""))
 	 		{
@@ -80,19 +82,19 @@ public class OignQDoc implements IQDoc{
 	 		}
 	 		if(plist.getBegincardCode().length()!=0)
 	 		{
-	 			
+	 			hql+="and c.warehouse>='"+plist.getBegincardCode()+"' ";
 	 		}
 	 		if(plist.getEndcardCode().length()!=0)
 	 		{
-	 			
+	 			hql+="and c.warehouse<='"+plist.getEndcardCode()+"' ";
 	 		}
 	 		if(!plist.getBeginsaleperson().equals(""))
 	 		{
-	 			hql+="and q.user_code>='"+plist.getBeginsaleperson()+"' ";
+	 			hql+="and p.usersign>='"+plist.getBeginsaleperson()+"' ";
 	 		}
 	 		if(!plist.getEndsaleperson().equals(""))
 	 		{
-	 			hql+="and q.user_code<='"+plist.getEndsaleperson()+"' ";
+	 			hql+="and p.usersign<='"+plist.getEndsaleperson()+"' ";
 	 		}
 	 		if(plist.getBegindate()!=null)
 	 		{   		 			

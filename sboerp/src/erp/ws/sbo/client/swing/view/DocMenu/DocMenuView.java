@@ -92,7 +92,9 @@ public  enum  docType{
 	    setjButtondel(new JButton());
 	    jButtonapplied=new JButton(); 
 	    jButtonSN=new JButton(); 
-	  
+	    jButtonSN.setText("SN");
+	    
+		this.add(jButtonSN);
 		jButtonadd.setText("新增");
 		this.add(jButtonadd);
 		
@@ -156,8 +158,7 @@ public  enum  docType{
 		jButtonapplied.setText("收款");
 		this.add(jButtonapplied);
 		
-		jButtonSN.setText("SN");
-		this.add(jButtonSN);
+		
 		
 		setVisible(true);	
 	

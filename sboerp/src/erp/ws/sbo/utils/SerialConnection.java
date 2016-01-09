@@ -32,7 +32,6 @@ package erp.ws.sbo.utils;
 
 import javax.comm.*;
 import javax.swing.JInternalFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -275,15 +274,13 @@ public class SerialConnection implements SerialPortEventListener,
     }
 
     public void opencloseConnection() {
-    	 JOptionPane.showMessageDialog(null,"1");
     	
 
     		// Remove the key listener.
     		messageAreaOut.removeKeyListener(keyHandler);
 
     		// Check to make sure sPort has reference to avoid a NPE.
-    		
-    			 JOptionPane.showMessageDialog(null,"3");
+
     		    try {
     			// close the i/o streams.
     		    	os.close();
@@ -294,7 +291,6 @@ public class SerialConnection implements SerialPortEventListener,
 
     		    // Close the port.
     		    sPort.close();
-    			 JOptionPane.showMessageDialog(null,"4");
     		    // Remove the ownership listener.
     		    portId.removePortOwnershipListener(this);
     		
@@ -357,21 +353,21 @@ public class SerialConnection implements SerialPortEventListener,
 		   w.setText(w.getText()+new String(inputBuffer));
 		   if(view.equals("SninView"))
 		   {
-			   v1.getTxt_cweight().setText(String.valueOf(new BigDecimal(v1.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v1.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));    	
-			   if(new BigDecimal(v1.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
+			   v1.getTxt_cweight().setText(String.valueOf(new BigDecimal(v1.getTxt_weight().getText()==null?"0":v1.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v1.getTxt_pweight().getText()==null?"0":v1.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));    	
+			   if(new BigDecimal(v1.getTxt_length().getText()==null?"0":v1.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
 			   {
 				  v1.getTxt_sweight().setText(v1.getTxt_cweight().getText());			  
 			   }			   
-			   dv.setText(String.valueOf(new BigDecimal(Double.valueOf(v1.getTxt_sweight().getText())-Double.valueOf(v1.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));			 		  
+			   dv.setText(String.valueOf(new BigDecimal(Double.valueOf(v1.getTxt_sweight().getText()==null?"0":v1.getTxt_sweight().getText())-Double.valueOf(v1.getTxt_cweight().getText()==null?"0":v1.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));			 		  
 		   }
 		   else if(view.equals("OignView"))
 		   {
-			   v2.getTxt_cweight().setText(String.valueOf(new BigDecimal(v2.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v2.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));    	
-			   if(new BigDecimal(v2.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
+			   v2.getTxt_cweight().setText(String.valueOf(new BigDecimal(v2.getTxt_weight().getText()==null?"0":v2.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v2.getTxt_pweight().getText()==null?"0":v2.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));    	
+			   if(new BigDecimal(v2.getTxt_length().getText()==null?"0":v2.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
 			   {
 				  v2.getTxt_sweight().setText(v2.getTxt_cweight().getText());			  
 			   }			   
-			   dv.setText(String.valueOf(new BigDecimal(Double.valueOf(v2.getTxt_sweight().getText())-Double.valueOf(v2.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));			 		  
+			   dv.setText(String.valueOf(new BigDecimal(Double.valueOf(v2.getTxt_sweight().getText()==null?"0":v2.getTxt_sweight().getText())-Double.valueOf(v2.getTxt_cweight().getText()==null?"0":v2.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));			 		  
 		  
 		   }
 		 }
@@ -379,20 +375,20 @@ public class SerialConnection implements SerialPortEventListener,
 		  pw.setText(pw.getText()+new String(inputBuffer));	
 		  if(view.equals("SninView"))
 		  {
-			  v1.getTxt_weight().setText(String.valueOf(new BigDecimal(v1.getTxt_cweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(v1.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));    	
-			  if(new BigDecimal(v1.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
+			  v1.getTxt_weight().setText(String.valueOf(new BigDecimal(v1.getTxt_cweight().getText()==null?"0":v1.getTxt_cweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(v1.getTxt_pweight().getText()==null?"0":v1.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));    	
+			  if(new BigDecimal(v1.getTxt_length().getText()==null?"0":v1.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
 			  {
 				 v1.getTxt_sweight().setText(v1.getTxt_cweight().getText());			  
 			  }	
 			  dv.setText(String.valueOf(new BigDecimal(Double.valueOf(v1.getTxt_sweight().getText())-Double.valueOf(v1.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));			 
 		   }
 		  else if(view.equals("OignView")){
-			  v2.getTxt_weight().setText(String.valueOf(new BigDecimal(v2.getTxt_cweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(v1.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));    	
-			  if(new BigDecimal(v2.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
+			  v2.getTxt_weight().setText(String.valueOf(new BigDecimal(v2.getTxt_cweight().getText()==null?"0":v2.getTxt_cweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(v2.getTxt_pweight().getText()==null?"0":v2.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));    	
+			  if(new BigDecimal(v2.getTxt_length().getText()==null?"0":v2.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
 			  {
-				 v2.getTxt_sweight().setText(v2.getTxt_cweight().getText());			  
+				 v2.getTxt_sweight().setText(v2.getTxt_cweight().getText()==null?"0":v2.getTxt_cweight().getText());			  
 			  }	
-			  dv.setText(String.valueOf(new BigDecimal(Double.valueOf(v2.getTxt_sweight().getText())-Double.valueOf(v2.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));			 		
+			  dv.setText(String.valueOf(new BigDecimal(Double.valueOf(v2.getTxt_sweight().getText()==null?"0":v2.getTxt_sweight().getText())-Double.valueOf(v2.getTxt_cweight().getText()==null?"0":v2.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));			 		
 		  }
 		}
 	      
@@ -437,21 +433,21 @@ public class SerialConnection implements SerialPortEventListener,
     	    if(messageAreaOut.getText().equals("R"))
     	    {			  
     		   w.setText(w.getText()+new String(inputBuffer));
-    		   v1.getTxt_cweight().setText(String.valueOf(new BigDecimal(v1.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v1.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));    	
-    		   if(new BigDecimal(v1.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
+    		   v1.getTxt_cweight().setText(String.valueOf(new BigDecimal(v1.getTxt_weight().getText()==null?"0":v1.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v1.getTxt_pweight().getText()==null?"0":v1.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));    	
+    		   if(new BigDecimal(v1.getTxt_length().getText()==null?"0":v1.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
     		   {
     			  v1.getTxt_sweight().setText(v1.getTxt_cweight().getText());			  
     		   }		  
-    		   dv.setText(String.valueOf(new BigDecimal(Double.valueOf(v1.getTxt_sweight().getText())-Double.valueOf(v1.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));			 		  
+    		   dv.setText(String.valueOf(new BigDecimal(Double.valueOf(v1.getTxt_sweight().getText()==null?"0":v1.getTxt_sweight().getText())-Double.valueOf(v1.getTxt_cweight().getText()==null?"0":v1.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));			 		  
     		}
     	    else{
     		  pw.setText(pw.getText()+new String(inputBuffer));			
-    		  v1.getTxt_weight().setText(String.valueOf(new BigDecimal(v1.getTxt_cweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(v1.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));    	
-    		  if(new BigDecimal(v1.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
+    		  v1.getTxt_weight().setText(String.valueOf(new BigDecimal(v1.getTxt_cweight().getText()==null?"0":v1.getTxt_cweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).add(new BigDecimal(v1.getTxt_pweight().getText()==null?"0":v1.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));    	
+    		  if(new BigDecimal(v1.getTxt_length().getText()==null?"0":v1.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
     		  {
     			 v1.getTxt_sweight().setText(v1.getTxt_cweight().getText());			  
     		  }	
-    		  dv.setText(String.valueOf(new BigDecimal(Double.valueOf(v1.getTxt_sweight().getText())-Double.valueOf(v1.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));			 
+    		  dv.setText(String.valueOf(new BigDecimal(Double.valueOf(v1.getTxt_sweight().getText()==null?"0":v1.getTxt_sweight().getText())-Double.valueOf(v1.getTxt_cweight().getText()==null?"0":v1.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));			 
     	    }
     	      
     	    messageAreaIn.append(new String(inputBuffer));

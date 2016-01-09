@@ -727,12 +727,11 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 				v.getJta_SN().setVisible(true);
 				v.getBt_cppo().setVisible(true);
 				hql="select u_enable from [@sms] where code='OIGNSN'";
-				 ifsn=appMain.lt.sqlclob(hql, 0, 1)[0][0].toString();
-				 if(ifsn.equals("Y"))
-				 {
+				ifsn=appMain.lt.sqlclob(hql, 0, 1)[0][0].toString();
+				if(ifsn.equals("Y"))
+				{
 						v.getCom_snware().setVisible(true);
-				 }
-
+				}
 				v.getJt().HiddenCell(v.getOd().getcolumnindex("生产订单号"),80);
 				v.getJt().HiddenCell(v.getOd().getcolumnindex("计划库存数量"),80);
 				v.getJt().HiddenCell(v.getOd().getcolumnindex("完成库存数量"),80);
@@ -757,13 +756,13 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 				v.getCom_whs().setVisible(true);
 				v.getJta_SN().setVisible(false);
 				v.getBt_cppo().setVisible(false);
-				 hql="select u_enable from [@sms] where code='OIGNSN'";
-				 ifsn=appMain.lt.sqlclob(hql, 0, 1)[0][0].toString();
-				 if(ifsn.equals("Y"))
-				 {
+				hql="select u_enable from [@sms] where code='OIGNSN'";
+				ifsn=appMain.lt.sqlclob(hql, 0, 1)[0][0].toString();
+				if(ifsn.equals("Y"))
+				{
 					 v.getPane7().removeAll();
 					 v.getPane8().removeAll();
-				 }
+				}
 				v.getJt().HiddenCell(v.getOd().getcolumnindex("生产订单号"),0);
 				v.getJt().HiddenCell(v.getOd().getcolumnindex("计划库存数量"),0);
 				v.getJt().HiddenCell(v.getOd().getcolumnindex("完成库存数量"),0);
@@ -780,27 +779,27 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 				Ndoce= (Integer) appMain.lt.sqlclob(hql, 0, 1)[0][0]+1;			
 				v.getTxt_docnid().setText(Ndoce.toString());	
 				
-				 hql="select u_enable from [@sms] where code='CKCZY'";
-				 yon=appMain.lt.sqlclob(hql, 0, 1)[0][0].toString();				
+				hql="select u_enable from [@sms] where code='CKCZY'";
+				yon=appMain.lt.sqlclob(hql, 0, 1)[0][0].toString();				
 										 
 				 //绑定仓库
-				 hql= "select p.whsCode+','+p.whsName from Owhs as p " +
+				hql= "select p.whsCode+','+p.whsName from Owhs as p " +
 							" where (p.whsCode like :str1 or p.whsName like :str2) ";
-				 if(yon.equals("Y"))
-				 {
+				if(yon.equals("Y"))
+				{
 				    hql+=" and p.WhsCode in " +
 					 	  "(select U_Dsck from dbo.[@CZYCK] where " +
 					 	  "U_Usid=(select distinct branch from ousr where userid='"+appMain.oCompany.getUserSignature() + "') and U_Djlx='Z')";
-				 }
-				  hql1="select p.whsCode from Owhs as p " +
+				}
+				hql1="select p.whsCode from Owhs as p " +
 							" where p.whsCode=:str1 ";
-				 if(yon.equals("Y"))
-				 {
+				if(yon.equals("Y"))
+				{
 					hql1+=" and p.WhsCode in " +
 					 	"(select U_Dsck from dbo.[@CZYCK] where " +
 					 	"U_Usid=(select distinct branch from ousr where userid='"+appMain.oCompany.getUserSignature() + "') and U_Djlx='Z')";
-				 }
-				 v.getOd().setUpSportColumn(v.getJt(), v.getJt().getColumnModel().getColumn(v.getOd().getcolumnindex("仓库")), hql,hql1);
+				}
+				v.getOd().setUpSportColumn(v.getJt(), v.getJt().getColumnModel().getColumn(v.getOd().getcolumnindex("仓库")), hql,hql1);
 			 
 		   }
 		}

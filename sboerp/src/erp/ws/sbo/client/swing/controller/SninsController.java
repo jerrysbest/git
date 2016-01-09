@@ -953,12 +953,13 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 				}
 				if(v.getDsv()!=null)
 			   {
-					 if(v.getDsv().isActive()==false||v.getDsv().isVisible()==false)
-			    	  {   		    		 
+				    if(v.getDsv().isActive()==false||v.getDsv().isVisible()==false)
+		    	    {   		    		 
 						 v.getDsv().setVisible(true);
 						 v.getDsv().setAlwaysOnTop(true);	
 					 	//av.setBounds(200, 60, screenSize.width-200, screenSize.height-150);			    		
-			    	  }
+		    	    }
+				   
 					Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 					v.getDsv().setBounds(screenSize.width/2-310, 100, 620, 450);
 					if(v.getOd1().ds.getCnValue().equals("查询"))
@@ -973,6 +974,17 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 						    "and b.u_snid='"+v.getOd().getValuethrheader(v.getJt().convertRowIndexToModel(v.getJt().getSelectedRow()), "SN行号")+"'";
 					   v.getDsv().getOd().updatetable(hql, 0);
 					}
+					for(int i=0;i<v.getDsv().getOd().getRowCount();i++)
+				    {
+				    	if(v.getDsv().getOd().getValuethrheader(i, "序列号")==null||(v.getDsv().getOd().getValuethrheader(i, "序列号")!=null&&v.getDsv().getOd().getValuethrheader(i, "序列号").toString().equals("")))
+						{
+							continue;
+						}	
+				    	if(v.getDsv().getOd().getValuethrheader(i, "所属大序列号")==null||(v.getDsv().getOd().getValuethrheader(i, "所属大序列号")!=null&&v.getDsv().getOd().getValuethrheader(i, "所属大序列号").toString().equals("")))
+				    	{
+				    		v.getDsv().getJt().setRowSelectionInterval(i, i);
+				    	}
+				    }
 			   }	
 			}
 			else if(arg0.getSource()==v.getTxt_pweight())
