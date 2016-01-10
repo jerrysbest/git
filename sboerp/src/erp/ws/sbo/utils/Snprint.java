@@ -92,55 +92,71 @@ public class Snprint {
         TscLibDll.INSTANCE.windowsfont(10, 280, 44, 0, 0, 0, "ARIAL", "日期:" + v.getTxt_createcode().getText().substring(2, 6)+"-"+v.getTxt_createcode().getText().substring(6, 8)+"-"+v.getTxt_createcode().getText().substring(8, 10));          
         TscLibDll.INSTANCE.windowsfont(420, 280, 44, 0, 0, 0, "ARIAL", "防伪电话:15233911556");   
         */		
-			 hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='公司名称'";
-		     ob1=appMain.lt.sqlclob(hql,0,1);	    
-	         TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getCompany());        //Drawing printer font            
-	         hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='规格'";
-		     ob1=appMain.lt.sqlclob(hql,0,1);
+		   hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='公司名称'";
+		   ob1=appMain.lt.sqlclob(hql,0,1);	    
+	       TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getCompany());        //Drawing printer font            
+	       hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='规格'";
+		   ob1=appMain.lt.sqlclob(hql,0,1);
 		   
-	         TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getItemcode());        //Drawing printer font
+	       TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getItemcode());        //Drawing printer font
 		  
-	         hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='米段'";
-		     ob1=appMain.lt.sqlclob(hql,0,1);
+	       hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='米段'";
+		   ob1=appMain.lt.sqlclob(hql,0,1);
 		    
-	         TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getLength().toString());        //Drawing printer font
+	       TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getLength().toString());        //Drawing printer font
 		  
-	        hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='毛重'";
-		    ob1=appMain.lt.sqlclob(hql,0,1);
-	        if(!sns.isIfPsn())
-	        {  
+	       hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='毛重'";
+		   ob1=appMain.lt.sqlclob(hql,0,1);
+	       if(!sns.isIfPsn())
+	       {  
 	        	if(new BigDecimal(sns.getLength().toString()).setScale(3, RoundingMode.HALF_UP).compareTo(new BigDecimal(0.000).setScale(3, RoundingMode.HALF_UP))==0||sns.getItemcode().substring(0, 2).equals("TD"))
 	        	{
 	              TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getWeight().toString());        //Drawing printer font	        
 	        	}
-	        }
-	        else 
-	        {
+	       }
+	       else 
+	       {
 	          TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(),"数量:" + sns.getQsn().toString());        //Drawing printer font
 	        }
 	        hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='净重'";
-		     ob1=appMain.lt.sqlclob(hql,0,1);
-		     if(new BigDecimal(sns.getLength().toString()).setScale(3, RoundingMode.HALF_UP).compareTo(new BigDecimal(0.000).setScale(3, RoundingMode.HALF_UP))==0||sns.getItemcode().substring(0, 2).equals("TD"))
+		    ob1=appMain.lt.sqlclob(hql,0,1);
+		    if(new BigDecimal(sns.getLength().toString()).setScale(3, RoundingMode.HALF_UP).compareTo(new BigDecimal(0.000).setScale(3, RoundingMode.HALF_UP))==0||sns.getItemcode().substring(0, 2).equals("TD"))
 	        {
 	          TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getCweight().toString());        //Drawing printer font
 	        }
 	        hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='机号'";
-		     ob1=appMain.lt.sqlclob(hql,0,1);
+		    ob1=appMain.lt.sqlclob(hql,0,1);
 	        TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getMno());        //Drawing printer font
 	        hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='检验员'";
-		     ob1=appMain.lt.sqlclob(hql,0,1);
+		    ob1=appMain.lt.sqlclob(hql,0,1);
 	        TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getQc());        //Drawing printer font
 	        hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='日期'";
-		     ob1=appMain.lt.sqlclob(hql,0,1);
-		     SimpleDateFormat f=new SimpleDateFormat("yyyy-MM-dd");		
+		    ob1=appMain.lt.sqlclob(hql,0,1);
+		    SimpleDateFormat f=new SimpleDateFormat("yyyy-MM-dd");		
 	        TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + f.format(sns.getDatetime()));
 	        hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='防伪电话'";
-		     ob1=appMain.lt.sqlclob(hql,0,1);
+		    ob1=appMain.lt.sqlclob(hql,0,1);
 	        TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString());   
 	        
+	        hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='防伪电话'";
+			ob1=appMain.lt.sqlclob(hql,0,1);
+		    TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString())-230, Integer.valueOf(ob1[0][1].toString())+90, Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), barcode);   
+		    	
+            hql="select u_left,u_up,u_right from [@SNPRINTer] where code='2'";
+		    ob1=appMain.lt.sqlclob(hql,0,1);
+		  
+		    
+ 	        //TscLibDll.INSTANCE.barcode(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), v.getTxt_codetype().getText(),  v.getTxt_codeheight().getText(), "1", "0", v.getTxt_codegap().getText(), v.getTxt_codewidth().getText(), barcode);
+ 	        TscLibDll.INSTANCE.sendcommand("QRCODE "+ob1[0][0].toString()+","+ob1[0][1].toString()+",H,5,A,0,M2,S7,"+"\""+barcode+"\"") ;	       
+ 	        //TscLibDll.INSTANCE.printlabel("1", "1");
+ 	        TscLibDll.INSTANCE.sendcommand("QRCODE "+ob1[0][2].toString()+","+ob1[0][1].toString()+",H,5,A,0,M2,S7,"+"\""+barcode+"\"") ;	       
+ 	        TscLibDll.INSTANCE.printlabel("1", "1");
+ 	        TscLibDll.INSTANCE.closeport();
+	        /*
 	        TscLibDll.INSTANCE.barcode(v.getTxt_left().getText(), v.getTxt_up().getText(), v.getTxt_codetype().getText(),  v.getTxt_codeheight().getText(), "1", "0", v.getTxt_codegap().getText(), v.getTxt_codewidth().getText(), barcode);
 	        TscLibDll.INSTANCE.printlabel("1", "1");
 	        TscLibDll.INSTANCE.closeport();
+	        */
 	        //TscLibDll.INSTANCE.sendcommand("QRCODE 100,100,H,4,A,0,M2,S7,\"沙河潜水电线厂\"") ;
 	        //TscLibDll.INSTANCE.sendcommand("AZTEC 410,310,0,4,1,0,0,1,1,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\"");
     }
@@ -254,9 +270,7 @@ public class Snprint {
  			 JOptionPane.showMessageDialog(null,"没有在自定义表【@snprint】中设置打印内容");
  			 return;
  		 }
- 		 JOptionPane.showMessageDialog(null,"1");
  		 ISNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");	
- 		 JOptionPane.showMessageDialog(null,barcode);
  		 snstatus sns=new snstatus();
  		 try{
  		      sns=isn.queryByDocId(barcode);
@@ -266,9 +280,6 @@ public class Snprint {
  	    	 
  	        	e.printStackTrace();
  	      }
- 		  JOptionPane.showMessageDialog(null,sns);
- 		  JOptionPane.showMessageDialog(null,"2");
- 		  JOptionPane.showMessageDialog(null,sns.getCompany());
  		  hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='公司名称'";
  		  ob1=appMain.lt.sqlclob(hql,0,1);	    
  	      TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getCompany());        //Drawing printer font            
@@ -279,7 +290,6 @@ public class Snprint {
  		  
  	      hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='米段'";
  		  ob1=appMain.lt.sqlclob(hql,0,1);
- 		  JOptionPane.showMessageDialog(null,"3");
  	      TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getLength().toString());        //Drawing printer font
  		  
  	      hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='毛重'";
@@ -314,14 +324,22 @@ public class Snprint {
  	      hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='防伪电话'";
  		  ob1=appMain.lt.sqlclob(hql,0,1);
  	      TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString());   
- 	      hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where code='1'";
+ 	    
+ 	      hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='防伪电话'";
 		  ob1=appMain.lt.sqlclob(hql,0,1);
-		  JOptionPane.showMessageDialog(null,"4");
+	      TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString())-230, Integer.valueOf(ob1[0][1].toString())+90, Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), barcode);   
+	    	      
+ 	      hql="select u_left,u_up,u_right from [@SNPRINTer] where code='2'";
+		  ob1=appMain.lt.sqlclob(hql,0,1);
+		  
+		    
  	      //TscLibDll.INSTANCE.barcode(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), v.getTxt_codetype().getText(),  v.getTxt_codeheight().getText(), "1", "0", v.getTxt_codegap().getText(), v.getTxt_codewidth().getText(), barcode);
- 	      TscLibDll.INSTANCE.sendcommand("QRCODE "+ob1[0][0].toString()+","+ob1[0][1].toString()+",H,4,A,0,M2,S7,\"+barcode+\"") ;	       
+ 	      TscLibDll.INSTANCE.sendcommand("QRCODE "+ob1[0][0].toString()+","+ob1[0][1].toString()+",H,5,A,0,M2,S7,"+"\""+barcode+"\"") ;	       
+ 	      //TscLibDll.INSTANCE.printlabel("1", "1");
+ 	      TscLibDll.INSTANCE.sendcommand("QRCODE "+ob1[0][2].toString()+","+ob1[0][1].toString()+",H,5,A,0,M2,S7,"+"\""+barcode+"\"") ;	       
  	      TscLibDll.INSTANCE.printlabel("1", "1");
  	      TscLibDll.INSTANCE.closeport();
- 	      JOptionPane.showMessageDialog(null,"5");
+ 	 
  	        //TscLibDll.INSTANCE.sendcommand("AZTEC 410,310,0,4,1,0,0,1,1,\"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\"");
     }
     public void print(String width,String height,String speed,String density,String sensor,String vertical,String offset,
