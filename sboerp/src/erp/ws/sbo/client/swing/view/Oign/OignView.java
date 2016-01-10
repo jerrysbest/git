@@ -720,7 +720,7 @@ public class OignView extends JInternalFrame{
 					"(p.itemCode like :str1 or p.itemName like :str2) and p.validfor='Y' AND p.frozenfor='N'";
 		 if(ob[0][0].toString().equals("Y"))
 		 {
-			hql+=" and p.U_Usn='N'";
+			//hql+=" and p.U_Usn='N'";
 		 }
 		 hql1="select p.itemCode from Oitm as p " +
 					//" where charindex('#',itemcode)<>0 and charindex('/',itemcode)=0 AND " +
