@@ -367,6 +367,7 @@ public class DesnsController implements TreeSelectionListener,ActionListener
 					{
 						Snprint snsp=new Snprint((SninView)v.getV());			       
 						snsp.print(((SninView)v.getV()).getTxt_width().getText(), ((SninView)v.getV()).getTxt_height().getText(), "5", "8", "0", "0", "0", "128", psn,((SninView)v.getV()));	        
+						snsp.print(((SninView)v.getV()).getTxt_width().getText(), ((SninView)v.getV()).getTxt_height().getText(), "5", "8", "0", "0", "0", "128", psn,((SninView)v.getV()));	        						
 						JOptionPane.showMessageDialog(v,"´ò°üÍê±Ï");
 					}  
 					
