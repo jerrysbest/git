@@ -4,7 +4,6 @@ import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 import com.sun.jna.Library;
 import com.sun.jna.Native;

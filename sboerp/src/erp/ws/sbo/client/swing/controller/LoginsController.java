@@ -92,13 +92,17 @@ public class LoginsController implements ActionListener{
 				    " inner join ousr b on a.u_uid=b.userid "+
 					"where b.userid='"+appMain.oCompany.getUserSignature()+"' and u_subuid='"+v.getTf_user1().getText().toString().trim()+"' " +
 					"and u_pwd='"+String.valueOf(v.getTf_pas1().getPassword())+"' and u_ifuse='Y'";
-		         	ob=appMain.lt.sqlclob(hql, 0, 1);
-		         	appMain.username1=ob[0][0].toString();
+		         	
 		         	if(ob==null||(ob!=null&&ob.length==0))
 		         	{
 		         		 JOptionPane.showMessageDialog(null,"密码1错误或者用户未启用");
 		         		 return;
 		         	}
+		         	ob=appMain.lt.sqlclob(hql, 0, 1);
+		         	appMain.username1=ob[0][0].toString();
+		         	hql="select branch from ousr where userid='"+appMain.oCompany.getUserSignature()+"'";
+				    ob=appMain.lt.sqlclob(hql, 0, 1);
+		         	appMain.branch=ob[0][0].toString();
 		    		appMain.v.setTitle("QS-ERP"+v.getDserver().getText().toString().trim()+appMain.oCompany.getCompanyName()+appMain.oCompany.getUserName()+"用户(1)"+appMain.user1+appMain.username1+"机号"+appMain.Mno);
 		    		v.dispose();
 		    	    
@@ -138,13 +142,17 @@ public class LoginsController implements ActionListener{
 					    " inner join ousr b on a.u_uid=b.userid "+
 						"where a.u_uid='"+appMain.oCompany.getUserSignature()+"' and a.u_subuid='"+v.getTf_user1().getText().toString().trim()+"' " +
 						"and u_pwd='"+String.valueOf(v.getTf_pas1().getPassword())+"' and u_ifuse='Y'";
-			         	ob=appMain.lt.sqlclob(hql, 0, 1);
-			         	appMain.username1=ob[0][0].toString();
-			         	if(ob==null||(ob!=null&&ob.length==0))
-			         	{
-			         		 JOptionPane.showMessageDialog(null,"密码1错误或者用户未启用");
-			         		 return;
-			         	}
+		         	ob=appMain.lt.sqlclob(hql, 0, 1);
+		         	
+		         	if(ob==null||(ob!=null&&ob.length==0))
+		         	{
+		         		 JOptionPane.showMessageDialog(null,"密码1错误或者用户未启用");
+		         		 return;
+		         	}
+		         	appMain.username1=ob[0][0].toString();	
+		         	hql="select branch from ousr where userid='"+appMain.oCompany.getUserSignature()+"'";
+				    ob=appMain.lt.sqlclob(hql, 0, 1);
+		         	appMain.branch=ob[0][0].toString();
 		         	hql="select count(*) from [@USERS]  "+
 						"where u_ifuse='Y'";
 			         	ob=appMain.lt.sqlclob(hql, 0, 1);

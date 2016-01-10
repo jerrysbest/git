@@ -257,9 +257,9 @@ public class SNL {
             	JOptionPane.showMessageDialog(null, "序列号"+v.getDsv().getOd().getValuethrheader(i[ik], "序列号").toString()+"在大序列号"+sns.getPaSn()+"中，不允许打包");
             	return false;
             }
-            if(i[ik]>0)
+            if(j>0)
             {
-            	if((!warehouse.equals(sns.getWareHouse().toString()))||(!itcode.equals(sns.getItemcode().toString()))||(!length.equals(new BigDecimal(sns.getLength()).setScale(2, BigDecimal.ROUND_HALF_UP))))
+            	if((!warehouse.equals(sns.getWareHouse().toString()))||(!itcode.equals(sns.getItemcode().toString()))||(length.compareTo(new BigDecimal(sns.getLength()).setScale(2, BigDecimal.ROUND_HALF_UP))!=0))
             	{
             		JOptionPane.showMessageDialog(null, "序列号"+v.getDsv().getOd().getValuethrheader(i[ik], "序列号").toString()+"与上一序列号的物料编码、米段或者仓库不同，不允许打包");
                 	return false;
@@ -299,6 +299,7 @@ public class SNL {
      	sns.setMno(v.getTxt_MNo().getText());
      	sns.setCompany(v.getCom_company().getSelectedItem().toString());
      	sns.setQc(v.getTxt_MNo().getText());
+     	sns.setQsn(i.length);
      
      	snst.add(sns);
      	for(int ik=0;ik<i.length;ik++)
@@ -311,6 +312,14 @@ public class SNL {
 				v.getDsv().getOd().setValuethrheader(Psn, i[ik], "所属大序列号");
 			}
 		}	
+     	hql=" update a  set a.warehouse=b.warehouse,a.itemcode=b.itemcode,a.length=b.length,"+
+			"a.sweight=b.sw,a.weight=b.w,a.pweight=b.pw,a.cweight=b.cw from "+
+			"[NQS].[dbo].[@SNStatus] a inner join "+
+			"(select pasn,warehouse=min(warehouse),itemcode=min(itemcode),length=min(length),"+
+			"sw=sum(sweight),w=sum(weight),pw=sum(pweight),cw=sum(cweight) "+
+			"from [NQS].[dbo].[@SNStatus] where pasn is not null group by pasn) "+ 
+			"b on a.sn=b.pasn where a.sn='"+Psn+"'";
+			dbu.exeSql(hql);
      	return true;
     }
     
@@ -617,13 +626,13 @@ public class SNL {
 			   JOptionPane.showMessageDialog(null,sns[i]+"是大序列号,不允许输入");
 			    return false;
 			}
-	    	if(sns1.isIfInPsn())
+	    	/*if(sns1.isIfInPsn())
 	    	{
 	    		if(JOptionPane.showConfirmDialog(null, "序列号"+sns1.getSn()+"已经打包在大序列号"+sns1.getPaSn()+"中,是否继续")!=0)
 	    		{
 	    			return false;
 	    		}
-	    	}
+	    	}*/
     	}
     	for(int i=0;i<sns.length;i++)
     	{

@@ -31,6 +31,11 @@ public class SninDocTitleModel extends AbstractDocTitleModel<ColDocTitle, DocTit
 		// TODO Auto-generated method stub
 		if(this.ds.getValue()==0)
 		{	
+			if(appMain.branch.equals("-2"))
+			{
+				((SninView)view).getTxt_weight().setEditable(true);
+			}
+						
 			((SninView)view).getJta_SN().setText("");
 			((SninView)view).getJta_SN().setEditable(false);		
 			((SninView)view).getCom_whs().setEnabled(true);
@@ -51,6 +56,7 @@ public class SninDocTitleModel extends AbstractDocTitleModel<ColDocTitle, DocTit
 		
 			((SninView)view).getTxt_docn().setText(Ndoce.toString());	
 			((SninView)view).getDsv().getOd().setGridStatus(docLineStatus.add);
+			((SninView)view).getIfseal().setVisible(false);
 		}
 		else if(this.ds.getValue()==1)
 		{
@@ -60,7 +66,8 @@ public class SninDocTitleModel extends AbstractDocTitleModel<ColDocTitle, DocTit
 			((SninView)view).getCom_plist().setEnabled(true);
 			((SninView)view).getCom_whs().setEditable(false);
 			((SninView)view).getCom_users().setEditable(false);
-			((SninView)view).getCom_plist().setEditable(false);					
+			((SninView)view).getCom_plist().setEditable(false);	
+			((SninView)view).getIfseal().setVisible(false);
 		}
 		else if(this.ds.getValue()==2)
 		{
@@ -70,7 +77,8 @@ public class SninDocTitleModel extends AbstractDocTitleModel<ColDocTitle, DocTit
 			((SninView)view).getCom_plist().setEnabled(true);
 			((SninView)view).getCom_whs().setEditable(false);
 			((SninView)view).getCom_users().setEditable(false);
-			((SninView)view).getCom_plist().setEditable(false);		
+			((SninView)view).getCom_plist().setEditable(false);	
+			((SninView)view).getIfseal().setVisible(false);
 		}
 		else if(this.ds.getValue()==3)
 		{
@@ -82,6 +90,7 @@ public class SninDocTitleModel extends AbstractDocTitleModel<ColDocTitle, DocTit
 			((SninView)view).getCom_whs().setEditable(false);
 			((SninView)view).getCom_users().setEditable(false);
 			((SninView)view).getCom_plist().setEditable(false);
+			((SninView)view).getIfseal().setVisible(false);
 		}
 		else if(this.ds.getValue()==4)
 		{			
@@ -108,6 +117,7 @@ public class SninDocTitleModel extends AbstractDocTitleModel<ColDocTitle, DocTit
 			//((SninView)view).getTxt_MNo().setText(name);
 			((SninView)view).getTxt_Qinspector().setText(appMain.oCompany.getUserSignature().toString().length()==2?appMain.oCompany.getUserSignature().toString():"0"+appMain.oCompany.getUserSignature().toString());			
 			((SninView)view).getTxt_MNo().setEditable(false);
+			((SninView)view).getIfseal().setVisible(false);
 						 
 		}
 		else

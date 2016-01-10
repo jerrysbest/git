@@ -820,6 +820,8 @@ public class SninView extends JInternalFrame{
 	     this.com_specification.addActionListener(oc);
 	     this.com_ifincomed.addActionListener(oc);
 	     this.txt_pweight.addKeyListener(oc);
+	     this.txt_weight.addFocusListener(oc);
+	     this.txt_weight.addKeyListener(oc);
 	     this.txt_length.addKeyListener(oc);
 	     this.ifseal.addActionListener(oc);
 	     getTxt_pweight().addActionListener(oc);

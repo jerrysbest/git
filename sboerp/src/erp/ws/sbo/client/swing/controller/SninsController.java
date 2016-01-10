@@ -84,12 +84,13 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		if((v.getOd().ds.getCnValue().equals("查询")||v.getOd().ds.getCnValue().equals("加载"))&&(e.getSource()==v.getJt()||e.getSource()==v.getJta_SN()))
 		{
 			return;
-		}	
-		if(e.getKeyCode()==10&&(e.getSource()==v.getTxt_pweight()||e.getSource()==v.getTxt_length()))
+		}
+		//打序列号
+		if(!appMain.branch.equals("-2")&&e.getKeyCode()==10&&(e.getSource()==v.getTxt_pweight()||e.getSource()==v.getTxt_length()))
 		{
 			if(v.getCom_port().getSelectedItem()==null)
 			{
-				 JOptionPane.showMessageDialog(v,"请先打开串口");	              
+				JOptionPane.showMessageDialog(v,"请先打开串口");	              
 				return;
 			}
 			//自动称重
@@ -126,14 +127,14 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	        	}	        			
 	        	if(((JTextField)v.getCom_specification().getEditor().getEditorComponent()).getText().equals("")
 			    ||v.getTxt_MNo().getText().equals("")||v.getTxt_Qinspector().getText().equals("")||
-	             new BigDecimal(v.getTxt_cweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
-	            || new BigDecimal(v.getTxt_weight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
-	            ||(new BigDecimal(v.getTxt_cweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(v.getTxt_weight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP))
-	            &&new BigDecimal(v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
-	            ||new BigDecimal(v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
-	            ||new BigDecimal(v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))<0
-	            ||(!new BigDecimal(v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
-	              &&!new BigDecimal(v.getTxt_pweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))))           
+	             new BigDecimal(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
+	            || new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
+	            ||(new BigDecimal(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP))
+	            &&new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
+	            ||new BigDecimal(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
+	            ||new BigDecimal(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))<0
+	            ||(!new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
+	              &&!new BigDecimal(v.getTxt_pweight().getText()==null?"0":v.getTxt_pweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))))           
 				{
 	                JOptionPane.showMessageDialog(v,"物料代码,机号,净重,毛重,公司名称,不能为空或0,米段和皮重不能同时不为0,当米段为0时,"+v.getTxt_pweight().getText()+"皮重不能为0,"+v.getTxt_sweight().getText()+"标准重必须大于0");
 	                return;
@@ -147,15 +148,15 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	 		         return;
 	 			    if(new BigDecimal(v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
 					{
-	 			    	 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));	 					
-	 			    	 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(v.getTxt_cweight().getText().toString()).setScale(3, BigDecimal.ROUND_HALF_UP)));	 			        
-						 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));		 			 
+	 			    	 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_pweight().getText()==null?"0":v.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));	 					
+	 			    	 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP)));	 			        
+						 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));		 			 
 					}  
 					else{
 		 	             Double wgtpm=Double.valueOf(ob[0][6].toString())/(Double.valueOf(ob[0][5].toString())); 	 	           
-						 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));
-						 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(wgtpm*Double.valueOf(v.getTxt_length().getText().toString())).setScale(3, BigDecimal.ROUND_HALF_UP)));		 	          
-						 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
+						 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_pweight().getText()==null?"0":v.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));
+						 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(wgtpm*Double.valueOf(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));		 	          
+						 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
 	 			     }
 					v.getTxt_createcode().setText("");
 	 			}
@@ -166,23 +167,223 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	 			     ob=appMain.lt.clob(hql,0,1);
 	 			     if (ob==null)
 	 		         return;
-	 			     if(new BigDecimal(v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
+	 			     if(new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
 					{
-	 			    	 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));	 					
-	 			    	 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(v.getTxt_cweight().getText().toString()).setScale(3, BigDecimal.ROUND_HALF_UP)));	 			        
-						 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
+	 			    	 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_pweight().getText()==null?"0":v.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));	 					
+	 			    	 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP)));	 			        
+						 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
 		 			 
 					}  
 					else{
 	 	             Double wgtpm=Double.valueOf(ob[0][6].toString())/(Double.valueOf(ob[0][5].toString())); 
 	 	           
-					 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));
-					 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(wgtpm*Double.valueOf(v.getTxt_length().getText().toString())).setScale(3, BigDecimal.ROUND_HALF_UP)));		 	          
-					 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
+					 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));
+					 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(wgtpm*Double.valueOf(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));		 	          
+					 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
 	 			     }
 					v.getTxt_createcode().setText("");
 				}
-				if(new BigDecimal(Math.abs(Double.valueOf(v.getTxt_deviation().getText()))/Double.valueOf(v.getTxt_sweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0.003))>0)
+				if(new BigDecimal(Math.abs(Double.valueOf(v.getTxt_deviation().getText()==null?"0":v.getTxt_deviation().getText()))/Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0.003))>0)
+				{
+					int j=JOptionPane.showConfirmDialog(null, "误差大于千分之三,是否继续?");
+					if(j!=0)
+					return;	            
+				}
+				
+				hql = "select convert(nvarchar(10),getdate(),112)+ replace(convert(nvarchar(10),getdate(),8),':','')";
+                ob=appMain.lt.sqlclob(hql,0,1);
+                v.getTxt_createcode().setText(v.getTxt_MNo().getText() +ob[0][0].toString());
+                
+				hql = "SELECT sn FROM [@snstatus] where sn ='" + v.getTxt_createcode().getText() + "'";
+				ob=appMain.lt.sqlclob(hql,0,1);
+	            if (ob==null)
+	            {	            	
+	            
+	            }
+	            else
+	            {
+	            	JOptionPane.showMessageDialog(null,"数据库中已存在此序列号，不允许生成");
+	            	v.getTxt_createcode().setText("");
+	                return;
+	            }
+	           //打印
+				if(v.getTxt_createcode().getText()!=null&&!v.getTxt_createcode().getText().equals("")&&v.getTxt_createcode().getText().length()==18)
+				{			
+					if(v.getCom_ifincomed().getSelectedItem().toString().equals("是")&&(v.getTxt_cus().getSelectedItem()==null||((JTextField)v.getTxt_cus().getEditor().getEditorComponent()).getText().equals("")))
+					{
+						JOptionPane.showMessageDialog(null,"退回产品生成序列号必须选择业务伙伴");
+		                return;
+					}
+					ISNStatus isn=(SNStatus)appMain.ctx.getBean("SNStatus");							
+					snstatus sns=new snstatus();
+			        try{
+			            sns=isn.queryByDocId(v.getTxt_createcode().getText());
+			            if(sns==null)
+			            {
+			                SNL snl=new SNL(v.getDsv());								  
+							if(snl.createSN(v))
+							{
+							  sns=isn.queryByDocId(v.getTxt_createcode().getText());
+							}								      					       						
+						    
+			            }
+			            v.getJta_SN().setEditable(true);
+				        docf.getAdnSN().add(v, v.getTxt_createcode().getText(),true,"67","I",false,0);	
+				        v.getJta_SN().setEditable(false);
+				        Snprint snsp=new Snprint(v);
+			            snsp.print(v.getTxt_width().getText(), v.getTxt_height().getText(), "5", "8", "0", "0", "0", "128", v.getTxt_createcode().getText(),v);	        
+			            snsp.print(v.getTxt_width().getText(), v.getTxt_height().getText(), "5", "8", "0", "0", "0", "128", v.getTxt_createcode().getText(),v);	  
+			            v.getTxt_pweight().setText("0");	
+			            v.getTxt_weight().setText("0");	
+			            v.getTxt_cweight().setText("0");	 					
+	 			    	v.getTxt_sweight().setText("0"); 			        
+						v.getTxt_deviation().setText("0");
+						v.getTxt_createcode().setText("");
+			        }
+			        catch(NullPointerException e3)
+			        {
+			        	e3.printStackTrace();
+			        }	
+			        catch (ParseException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+			        catch(NoClassDefFoundError e3){
+		        	  e3.printStackTrace();
+		            }
+		            catch(UnsatisfiedLinkError e3){
+		        	   e3.printStackTrace();
+		            }
+				    finally{
+				    	 v.getTxt_cweight().setText("0");	 					
+	 			    	 v.getTxt_sweight().setText("0");	 			        
+						 v.getTxt_deviation().setText("0");
+		 			 
+				    }
+		        } 
+				else{
+					JOptionPane.showMessageDialog(null, "序列号位数不正确或者没有序列号，不允许打印");
+				}
+			}
+		}
+		//if the user belongs to branch -2,he can  type weight manually
+		if(appMain.branch.equals("-2")&&e.getKeyCode()==10&&(e.getSource()==v.getTxt_pweight()||e.getSource()==v.getTxt_length()||e.getSource()==v.getTxt_weight()))
+		{			 	       
+	        if(e.getSource()==v.getTxt_weight())
+	        {
+	        	 hql = "select salUnitMsr,dfltWh,invntryUom,numInSale,itemName, " +
+	              		" UMtmd,UMtzl from Oitm where itemCode='" + ((JTextField)v.getCom_specification().getEditor().getEditorComponent()).getText() + "'";     
+     		      ob=appMain.lt.clob(hql,0,1);
+     		      if (ob==null)
+     	          return;
+     		      try{
+     		    	  if(((JTextField)v.getCom_specification().getEditor().getEditorComponent())!=null&&((JTextField)v.getCom_specification().getEditor().getEditorComponent()).getText().length()>=2&&((JTextField)v.getCom_specification().getEditor().getEditorComponent()).getText().substring(0, 2).equals("TD")){
+     		    		  v.getCom_whsin().setEditable(true);
+     			    	  v.getCom_whsin().setSelectedItem(new ComboBoxItem("2109","2109"));
+     			    	  v.getCom_whsin().setEditable(false);
+     			    	  return;
+     		    	  }
+     		          else if(new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
+     			      {
+     			    	  v.getCom_whsin().setEditable(true);
+     			    	  v.getCom_whsin().setSelectedItem(new ComboBoxItem("2107","2107"));
+     			    	  v.getCom_whsin().setEditable(false);
+     			    	  return;
+     			      }
+     			      else{
+     			    	  v.getCom_whsin().setEditable(true);
+     			    	  v.getCom_whsin().setSelectedItem(new ComboBoxItem("2108","2108"));
+     			    	  v.getCom_whsin().setEditable(false);
+     			      }
+     		      }
+     		      catch (NumberFormatException e1) {  
+     		            e1.printStackTrace();  
+     		        }  	
+                  Double wgtpm=Double.valueOf(ob[0][6].toString())/(Double.valueOf(ob[0][5].toString())); 
+                  v.getTxt_sweight().setText(String.valueOf(new BigDecimal(wgtpm*Double.valueOf(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
+                  v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
+                  //v.getTxt_createcode().setText("");
+                  //重量重算
+                  v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_pweight().getText()==null?"0":v.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));    	
+	   			   if(new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
+	   			   {
+	   				  v.getTxt_sweight().setText(v.getTxt_cweight().getText());			  
+	   			   }			   
+	   			   v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));			 		  
+   		
+	        }
+			//自动生成序列号
+	        int i=JOptionPane.showConfirmDialog(null, "是否生成序列号并打印？");
+	        if(i==0)
+	        {			        	
+	        	if(v.getCom_ifincomed().getSelectedItem().toString().equals("")
+	        	||(v.getCom_ifincomed().getSelectedItem().toString().equals("否")
+	        	&&dmv.getjButtonadd().isEnabled())
+	        	||(v.getCom_ifincomed().getSelectedItem().toString().equals("是")
+	        	&&!dmv.getjButtonadd().isEnabled()))
+	        	{
+	        		 JOptionPane.showMessageDialog(v,"是退货并且不是新增状态或者是新增状态不是退货才可以打印,是否退货不能为空");
+		             return;
+	        	}	        			
+	        	if(((JTextField)v.getCom_specification().getEditor().getEditorComponent()).getText().equals("")
+			    ||v.getTxt_MNo().getText().equals("")||v.getTxt_Qinspector().getText().equals("")||
+	             new BigDecimal(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
+	            || new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
+	            ||(new BigDecimal(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP))
+	            &&new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
+	            ||new BigDecimal(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
+	            ||new BigDecimal(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))<0
+	            ||(!new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
+	              &&!new BigDecimal(v.getTxt_pweight().getText()==null?"0":v.getTxt_pweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))))           
+				{
+	                JOptionPane.showMessageDialog(v,"物料代码,机号,净重,毛重,公司名称,不能为空或0,米段和皮重不能同时不为0,当米段为0时,"+v.getTxt_pweight().getText()+"皮重不能为0,"+v.getTxt_sweight().getText()+"标准重必须大于0");
+	                return;
+	             }	
+	        	if(e.getSource()==v.getTxt_length())
+	 			{
+	 				 hql = "select salUnitMsr,dfltWh,invntryUom,numInSale,itemName, " +
+	 	         		" UMtmd,UMtzl from Oitm where itemCode='" + ((JTextField)v.getCom_specification().getEditor().getEditorComponent()).getText() + "'";     
+	 			     ob=appMain.lt.clob(hql,0,1);
+	 			     if (ob==null)
+	 		         return;
+	 			    if(new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
+					{
+	 			    	 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_pweight().getText()==null?"0":v.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));	 					
+	 			    	 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP)));	 			        
+						 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));		 			 
+					}  
+					else{
+		 	             Double wgtpm=Double.valueOf(ob[0][6].toString())/(Double.valueOf(ob[0][5].toString())); 	 	           
+						 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_pweight().getText()==null?"0":v.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));
+						 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(wgtpm*Double.valueOf(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));		 	          
+						 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
+	 			     }
+					v.getTxt_createcode().setText("");
+	 			}
+	        	if(e.getSource()==v.getTxt_pweight())
+				{	
+	        		hql = "select salUnitMsr,dfltWh,invntryUom,numInSale,itemName, " +
+	 	         		" UMtmd,UMtzl from Oitm where itemCode='" + ((JTextField)v.getCom_specification().getEditor().getEditorComponent()).getText() + "'";     
+	 			     ob=appMain.lt.clob(hql,0,1);
+	 			     if (ob==null)
+	 		         return;
+	 			     if(new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
+					{
+	 			    	 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_pweight().getText()==null?"0":v.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));	 					
+	 			    	 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP)));	 			        
+						 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
+		 			 
+					}  
+					else{
+	 	             Double wgtpm=Double.valueOf(ob[0][6].toString())/(Double.valueOf(ob[0][5].toString())); 
+	 	           
+					 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));
+					 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(wgtpm*Double.valueOf(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));		 	          
+					 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
+	 			     }
+					v.getTxt_createcode().setText("");
+				}
+				if(new BigDecimal(Math.abs(Double.valueOf(v.getTxt_deviation().getText()==null?"0":v.getTxt_deviation().getText()))/Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0.003))>0)
 				{
 					int j=JOptionPane.showConfirmDialog(null, "误差大于千分之三,是否继续?");
 					if(j!=0)
@@ -974,15 +1175,17 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 						    "and b.u_snid='"+v.getOd().getValuethrheader(v.getJt().convertRowIndexToModel(v.getJt().getSelectedRow()), "SN行号")+"'";
 					   v.getDsv().getOd().updatetable(hql, 0);
 					}
+					v.getDsv().getJt().setRowSelectionInterval(0, v.getDsv().getOd().getRowCount()-1);
 					for(int i=0;i<v.getDsv().getOd().getRowCount();i++)
 				    {
 				    	if(v.getDsv().getOd().getValuethrheader(i, "序列号")==null||(v.getDsv().getOd().getValuethrheader(i, "序列号")!=null&&v.getDsv().getOd().getValuethrheader(i, "序列号").toString().equals("")))
 						{
+				    		v.getDsv().getJt().removeRowSelectionInterval(i, i);
 							continue;
 						}	
-				    	if(v.getDsv().getOd().getValuethrheader(i, "所属大序列号")==null||(v.getDsv().getOd().getValuethrheader(i, "所属大序列号")!=null&&v.getDsv().getOd().getValuethrheader(i, "所属大序列号").toString().equals("")))
+				    	if(!(v.getDsv().getOd().getValuethrheader(i, "所属大序列号")==null||(v.getDsv().getOd().getValuethrheader(i, "所属大序列号")!=null&&v.getDsv().getOd().getValuethrheader(i, "所属大序列号").toString().equals(""))))
 				    	{
-				    		v.getDsv().getJt().setRowSelectionInterval(i, i);
+				    		v.getDsv().getJt().removeRowSelectionInterval(i, i);
 				    	}
 				    }
 			   }	
@@ -1256,7 +1459,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			    	  v.getCom_whsin().setEditable(false);
 			    	  return;
 		    	  }
-		          else if(new BigDecimal(v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
+		          else if(new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
 			      {
 			    	  v.getCom_whsin().setEditable(true);
 			    	  v.getCom_whsin().setSelectedItem(new ComboBoxItem("2107","2107"));
@@ -1273,8 +1476,8 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		            e1.printStackTrace();  
 		        }  	
              Double wgtpm=Double.valueOf(ob[0][6].toString())/(Double.valueOf(ob[0][5].toString())); 
-             v.getTxt_sweight().setText(String.valueOf(new BigDecimal(wgtpm*Double.valueOf(v.getTxt_length().getText().toString())).setScale(3, BigDecimal.ROUND_HALF_UP)));
-             v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
+             v.getTxt_sweight().setText(String.valueOf(new BigDecimal(wgtpm*Double.valueOf(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
+             v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
              //v.getTxt_createcode().setText("");
 		}
 		else if(e.getSource()==v.getCom_specification())
@@ -1308,6 +1511,16 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		      catch (NumberFormatException e1) {  
 		            e1.printStackTrace();  
 		        }  	   
+		}
+		else if(appMain.branch.equals("-2")&&e.getSource()==v.getTxt_weight())
+		{
+			  v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_pweight().getText()==null?"0":v.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));    	
+			   if(new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
+			   {
+				  v.getTxt_sweight().setText(v.getTxt_cweight().getText());			  
+			   }			   
+			   v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));			 		  
+		
 		}
 		else{}
 	}

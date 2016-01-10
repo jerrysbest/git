@@ -363,10 +363,13 @@ public class DesnsController implements TreeSelectionListener,ActionListener
 			    	hql = "select convert(nvarchar(10),getdate(),112)+ replace(convert(nvarchar(10),getdate(),8),':','')";
 	                ob=appMain.lt.sqlclob(hql,0,1);	   
 	                String psn=((SninView)v.getV()).getTxt_MNo().getText()+ob[0][0].toString();
-					snl.createPSN_afs((SninView)v.getV(),psn);
-					Snprint snsp=new Snprint((SninView)v.getV());
-			        snsp.print(((SninView)v.getV()).getTxt_width().getText(), ((SninView)v.getV()).getTxt_height().getText(), "5", "8", "0", "0", "0", "128", psn,((SninView)v.getV()));	        
-			          
+					if(snl.createPSN_afs((SninView)v.getV(),psn))
+					{
+						Snprint snsp=new Snprint((SninView)v.getV());			       
+						snsp.print(((SninView)v.getV()).getTxt_width().getText(), ((SninView)v.getV()).getTxt_height().getText(), "5", "8", "0", "0", "0", "128", psn,((SninView)v.getV()));	        
+						JOptionPane.showMessageDialog(v,"´ò°üÍê±Ï");
+					}  
+					
 			    } catch (ParseException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
