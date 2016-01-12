@@ -808,6 +808,8 @@ public class SninView extends JInternalFrame{
 		 this.bt_savep.addActionListener(oc);
 	     jt.addMouseListener(oc);	
 	     jt.addKeyListener(oc);
+	     jt1.addMouseListener(oc);
+	     jt1.getSelectionModel().addListSelectionListener(oc);
 	     od.addTableModelListener(oc);
 	     this.addInternalFrameListener(oc);
 	     this.bt_selcode.addActionListener(oc);

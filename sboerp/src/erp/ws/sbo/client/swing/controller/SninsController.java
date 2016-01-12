@@ -1343,7 +1343,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		// TODO Auto-generated method stub
 		Integer vi;
 		try{
-		  //JOptionPane.showMessageDialog(null,v.getJt1().getSelectedRow());
+		  JOptionPane.showMessageDialog(null,v.getJt1().getSelectedRow());
 		  vi=v.getJt1().getSelectedRow();		  
 		}
 		catch(ClassCastException e0){

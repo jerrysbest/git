@@ -93,14 +93,14 @@ public class SninDoc extends SninAbsDoc{
 						continue;
 					}
 					if((v.getOd().getValuethrheader(i,"物料代码")!=null&&!v.getOd().getValuethrheader(i,"物料代码").toString().equals(""))
-					&&Integer.valueOf(new BigDecimal(v.getOd().getValuethrheader(i, "生产数量").toString()).setScale(0, BigDecimal.ROUND_HALF_UP).toString())==0)
+					&&Integer.valueOf(new BigDecimal(v.getOd().getValuethrheader(i, "实际收货个数").toString()).setScale(0, BigDecimal.ROUND_HALF_UP).toString())==0)
 					{
 						continue;
 					}
 												
 					oskt.getLines().setItemCode(v.getOd().getValuethrheader(i, "物料代码").toString());
 					oskt.getLines().setWarehouseCode(v.getOd().getValuethrheader(i, "仓库").toString());					
-					oskt.getLines().getUserFields().getFields().item("U_Gs").setValue(v.getOd().getValuethrheader(i, "生产数量").toString());		
+					oskt.getLines().getUserFields().getFields().item("U_Gs").setValue(v.getOd().getValuethrheader(i, "实际收货个数").toString());		
 					oskt.getLines().getUserFields().getFields().item("U_Mtmd").setValue(Double.valueOf( v.getOd().getValuethrheader(i, "米段").toString()));				
 					oskt.getLines().setQuantity(Double.valueOf( v.getOd().getValuethrheader(i, "实际库存数量").toString()));
 					oskt.getLines().getUserFields().getFields().item("U_Zz").setValue(Double.valueOf( v.getOd().getValuethrheader(i, "标准库存数量").toString()));
@@ -425,43 +425,45 @@ public class SninDoc extends SninAbsDoc{
 		{
 			return;
 		}				 
-			hql="select a.docEntry,a.userSign,c.U_Name,a.filler,b.whsname,a.groupnum,d.listname," +
-				"date=convert(nvarchar(10),a.docdate,23),a.docstatus  " +
-				" from odrf a " +
-				"inner join owhs b on b.whscode=a.filler " +
-				"inner join ousr c on c.userid=a.usersign " +
-				"left join opln d on d.listnum=a.groupnum " +
-				"where a.objtype='67' and a.docentry='"+id+"'";
-			 ob = appMain.lt.sqlclob(hql,0,1); 
-			 if(ob==null||ob.length==0)
-			 {
-				 return;
-			 }
-		     v.getOd1().setDs(docTitleStatus.addp);
-		     v.getOd1().setDocTitleStatus(v);
-		     v.getCom_users().setEnabled(true); 
-			 v.getCom_users().setEditable(true); 
-			 v.getTxt_status().setEditable(true); 
-		     ComboBoxItem  Cbi=new ComboBoxItem(ob[0][1].toString(),ob[0][2].toString());
-		     v.getCom_whs().setEnabled(true);
-		     v.getCom_whs().setEditable(true);
-		     v.getCom_plist().setEnabled(true);
-		     v.getCom_plist().setEditable(true);
-			 v.getCom_users().setSelectedItem(Cbi); 
-			 v.getCom_whs().setSelectedItem(new ComboBoxItem(ob[0][3].toString(),ob[0][4].toString()));
-			 v.getCom_plist().setSelectedItem(new ComboBoxItem(ob[0][5].toString(),ob[0][6].toString()));
-			 v.getTxt_docn().setText(id.toString());
-			 v.getTxt_date().setText(ob[0][7].toString());
-			 v.getTxt_status().setText(ob[0][8].toString().equals("C")?"已清":"未清");
-			 hql="select id=0, b.u_snid,0,b.itemcode,c.itemname,b.u_ymd,b.u_mtmd,c.salunitmsr," +
-			 	 "unitQty=isnull(b.U_mtmd,0)*isnull(c.u_mtzl,0)/isnull(c.u_mtmd,0),0," +
-			 	 "gs=isnull(b.u_gs,0),b.unitmsr,b.u_zz,b.quantity,b.u_scwc," +
-			 	 "'',b.whscode,'','','','','' from odrf a " +
-			 	 "inner join drf1 b on a.docentry=b.docentry " +
-			 	 "inner join oitm c on b.itemcode=c.itemcode " +
-				  "where  a.objtype='67' and a.docentry='"+id+"'";
-			 v.getOd().updatetable(hql,0);		
-		
+		hql="select a.docEntry,a.userSign,c.U_Name,a.filler,b.whsname,a.groupnum,d.listname," +
+			"date=convert(nvarchar(10),a.docdate,23),a.docstatus  " +
+			" from odrf a " +
+			"inner join owhs b on b.whscode=a.filler " +
+			"inner join ousr c on c.userid=a.usersign " +
+			"left join opln d on d.listnum=a.groupnum " +
+			"where a.objtype='67' and a.docentry='"+id+"'";
+		 ob = appMain.lt.sqlclob(hql,0,1); 
+		 if(ob==null||ob.length==0)
+		 {
+			 return;
+		 }
+	     v.getOd1().setDs(docTitleStatus.addp);
+	     v.getOd1().setDocTitleStatus(v);
+	     v.getCom_users().setEnabled(true); 
+		 v.getCom_users().setEditable(true); 
+		 v.getTxt_status().setEditable(true); 
+	     ComboBoxItem  Cbi=new ComboBoxItem(ob[0][1].toString(),ob[0][2].toString());
+	     v.getCom_whs().setEnabled(true);
+	     v.getCom_whs().setEditable(true);
+	     v.getCom_plist().setEnabled(true);
+	     v.getCom_plist().setEditable(true);
+		 v.getCom_users().setSelectedItem(Cbi); 
+		 v.getCom_whs().setSelectedItem(new ComboBoxItem(ob[0][3].toString(),ob[0][4].toString()));
+		 v.getCom_plist().setSelectedItem(new ComboBoxItem(ob[0][5].toString(),ob[0][6].toString()));
+		 v.getTxt_docn().setText(id.toString());
+		 v.getTxt_date().setText(ob[0][7].toString());
+		 v.getTxt_status().setText(ob[0][8].toString().equals("C")?"已清":"未清");
+		 JOptionPane.showMessageDialog(null,v.getJt1().getSelectedRow());
+		 hql="select id=0, b.u_snid,0,b.itemcode,c.itemname,b.u_ymd,b.u_mtmd,c.salunitmsr," +
+		 	 "unitQty=isnull(b.U_mtmd,0)*isnull(c.u_mtzl,0)/isnull(c.u_mtmd,0),0," +
+		 	 "gs=isnull(b.u_gs,0),b.unitmsr,b.u_zz,b.quantity,b.u_scwc," +
+		 	 "'',b.whscode,'','','','','' from odrf a " +
+		 	 "inner join drf1 b on a.docentry=b.docentry " +
+		 	 "inner join oitm c on b.itemcode=c.itemcode " +
+			  "where  a.objtype='67' and a.docentry='"+id+"'";
+		 System.out.println(hql);
+		 v.getOd().updatetable(hql,0);		
+		 JOptionPane.showMessageDialog(null,v.getJt1().getSelectedRow());
 		 v.getCom_users().setEditable(false); 
 		 v.getCom_users().setEnabled(false); 
 		 v.getCom_whs().setEditable(false);
@@ -498,25 +500,25 @@ public class SninDoc extends SninAbsDoc{
 				 }				
 		 }
 
-			hql="select u_width,u_height,u_codewidth,u_codeheight,u_codetype,u_codegap,u_left," +
-				"u_up,u_right,u_down " +
-				" from dbo.[@SNPRINTER]  " +
-				"where code='1' ";
-			 ob = appMain.lt.sqlclob(hql,0,1); 
-			 if(ob==null||ob.length==0)
-			 {
-				 return;
-			 }
-			 v.getTxt_width().setText(ob[0][0].toString());
-			 v.getTxt_height().setText(ob[0][1].toString());
-			 v.getTxt_codewidth().setText(ob[0][2].toString());
-			 v.getTxt_codeheight().setText(ob[0][3].toString());
-			 v.getTxt_codetype().setText(ob[0][4].toString());
-			 v.getTxt_codegap().setText(ob[0][5].toString());
-			 v.getTxt_left().setText(ob[0][6].toString());
-			 v.getTxt_up().setText(ob[0][7].toString());
-			 v.getTxt_right().setText(ob[0][8].toString());
-			 v.getTxt_down().setText(ob[0][9].toString());		
+		hql="select u_width,u_height,u_codewidth,u_codeheight,u_codetype,u_codegap,u_left," +
+			"u_up,u_right,u_down " +
+			" from dbo.[@SNPRINTER]  " +
+			"where code='1' ";
+		 ob = appMain.lt.sqlclob(hql,0,1); 
+		 if(ob==null||ob.length==0)
+		 {
+			 return;
+		 }
+		 v.getTxt_width().setText(ob[0][0].toString());
+		 v.getTxt_height().setText(ob[0][1].toString());
+		 v.getTxt_codewidth().setText(ob[0][2].toString());
+		 v.getTxt_codeheight().setText(ob[0][3].toString());
+		 v.getTxt_codetype().setText(ob[0][4].toString());
+		 v.getTxt_codegap().setText(ob[0][5].toString());
+		 v.getTxt_left().setText(ob[0][6].toString());
+		 v.getTxt_up().setText(ob[0][7].toString());
+		 v.getTxt_right().setText(ob[0][8].toString());
+		 v.getTxt_down().setText(ob[0][9].toString());		
 	}
 	@Override
 	public void close(SninView v)

@@ -1133,11 +1133,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			dmv.setadd();			
 		}			
 		else if(e.getSource()==dmv.getjButtonSN())
-		{ 		
-			if(Integer.valueOf(((ComboBoxItem)v.getCom_type().getSelectedItem()).getValue().toString())==1)
-			{			
-				return;
-			}
+		{ 				
 			hql = "select U_enable from [@SMS] where code='OIGNSN'";
 			ob=appMain.lt.sqlclob(hql,0,1);
 			if(!ob[0][0].toString().equals("Y"))
