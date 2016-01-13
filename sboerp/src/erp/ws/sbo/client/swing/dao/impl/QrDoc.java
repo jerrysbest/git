@@ -446,6 +446,12 @@ public class QrDoc implements IDoc<QrView>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void add(QrView v) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 
 

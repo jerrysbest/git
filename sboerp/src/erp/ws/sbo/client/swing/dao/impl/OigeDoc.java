@@ -328,5 +328,11 @@ public class OigeDoc implements IDoc<OigeView>{
 		
 	}
 
+	@Override
+	public void add(OigeView v) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

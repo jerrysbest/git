@@ -751,6 +751,12 @@ public class OignDoc implements IDoc<OignView>{
 		this.dbu = dbu;
 	}
 
+	@Override
+	public void add(OignView v) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 

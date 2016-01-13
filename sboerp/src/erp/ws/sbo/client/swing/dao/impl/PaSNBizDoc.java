@@ -295,5 +295,11 @@ public class PaSNBizDoc implements IDoc<PaSNView>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void add(PaSNView v) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

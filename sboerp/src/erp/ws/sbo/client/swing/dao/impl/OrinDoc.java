@@ -667,6 +667,12 @@ public class OrinDoc implements IDoc<OrinView>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void add(OrinView v) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	
 }

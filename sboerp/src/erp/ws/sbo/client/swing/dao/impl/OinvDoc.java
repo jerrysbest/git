@@ -1323,5 +1323,11 @@ public class OinvDoc extends AbsDoc{
 		this.v = v;
 	}
 
+	@Override
+	public void add(OinvView v) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

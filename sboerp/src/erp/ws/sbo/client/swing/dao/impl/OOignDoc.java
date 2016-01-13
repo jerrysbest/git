@@ -348,4 +348,9 @@ public class OOignDoc implements IDoc<OOignView>{
 		// TODO Auto-generated method stub
 		
 	}
+	@Override
+	public void add(OOignView v) {
+		// TODO Auto-generated method stub
+		
+	}
 }

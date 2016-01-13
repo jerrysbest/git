@@ -342,4 +342,10 @@ public class OOigeDoc implements IDoc<OOigeView>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void add(OOigeView v) {
+		// TODO Auto-generated method stub
+		
+	}
 }

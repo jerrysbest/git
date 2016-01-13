@@ -1035,4 +1035,10 @@ public class OrctDoc implements IDoc<OrctView>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void add(OrctView v) {
+		// TODO Auto-generated method stub
+		
+	}
 }

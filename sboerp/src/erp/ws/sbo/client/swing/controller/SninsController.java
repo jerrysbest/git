@@ -879,20 +879,21 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 				
 		   }	
 		}
+		
 		else if(arg0.getSource()==dmv.getjButtonadd())
 		{		
 			//JOptionPane.showConfirmDialog(null, v.getCom_pweight().getSelectedItem().toString());
-			 hql="select user_code from ousr where userid='"+appMain.oCompany.getUserSignature().toString()+"'";
-		 	 ob = appMain.lt.sqlclob(hql,0,1);
-			 hql="select * from dbo.[@userauther] a inner join dbo.[@auther] b on a.autherid=b.code" +
+			hql="select user_code from ousr where userid='"+appMain.oCompany.getUserSignature().toString()+"'";
+		 	ob = appMain.lt.sqlclob(hql,0,1);
+			hql="select * from dbo.[@userauther] a inner join dbo.[@auther] b on a.autherid=b.code" +
 		 	  	 " where a.usercode='"+ob[0][0].toString()+"' " +
 		 	  	 "and b.code='SNINADD' and a.enable='1'";
-		 	 ob = appMain.lt.sqlclob(hql,0,1);
-             if(ob==null||ob.length==0)
-             {
+		 	ob = appMain.lt.sqlclob(hql,0,1);
+            if(ob==null||ob.length==0)
+            {
         	   JOptionPane.showMessageDialog(null, "无此权限");
         	   return;
-             }	
+            }	
 			v.getDsv().getOd().setGridStatus(docLineStatus.add);
 			v.getJta_SN().setText("");
 		    // something about doctitle

@@ -162,6 +162,14 @@ public class LoginsController implements ActionListener{
 			         		return;
 			         	}	
 			        System.out.println("登陆成功2");
+			        hql="select b.code from dbo.[@userauther] a inner join dbo.[@auther] b on a.autherid=b.code" +
+				 	  	 " where a.usercode=(select user_code from ousr where userid='"+appMain.oCompany.getUserSignature().toString()+"') " +
+				 	  	 "and  a.enable='1'";
+				 	ob = appMain.lt.sqlclob(hql,0,1000);
+				 	for(int i=0;i<ob.length;i++)
+				 	{
+			          appMain.privilages.add(ob[i][0].toString());
+				 	}
 			        appMain.user1=v.getTf_user1().getText().toString().trim();
 			        appMain.Mno=((ComboBoxItem)v.getMNo_comp().getSelectedItem()).getValue().toString();
 		            JOptionPane.showMessageDialog(null,"登陆成功");

@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -70,6 +72,7 @@ public final class appMain {
 	public static LoginView lg;
 	public static FootView fv;
 	public static String rpurl,Mno,username1,branch;
+	public static List<String> privilages = new ArrayList();  
    
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

@@ -49,7 +49,7 @@ public class SninDoc extends SninAbsDoc{
 	private DocMenuView dmv=DocMenuView.getdmv();
 	private SninView v;
 	private DbUtils<?,?> dbu=new DbUtils<ColDocTitle,DocTitle>();	
-	private String hql;
+	private String hql,hql1,yon;
 	private Object[][] ob;
 	//private Object[] ob1;
 	private IDocuments oskt;
@@ -581,5 +581,42 @@ public class SninDoc extends SninAbsDoc{
 	public void snverification(SninView v) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public void add(SninView v) {
+		// TODO Auto-generated method stub
+		v.getDsv().getOd().setGridStatus(docLineStatus.add);
+		v.getJta_SN().setText("");
+	    // something about doctitle
+		v.getOd1().setDs(docTitleStatus.add);
+		v.getOd1().setDocTitleStatus(v);
+		//something about docline
+		v.getOd().setDocLineStatus(docLineStatus.query);
+		v.getOd().setGridStatus(docLineStatus.add);
+		
+		 hql="select u_enable from [@sms] where code='CKCZY'";
+		 yon=appMain.lt.sqlclob(hql, 0, 1)[0][0].toString();				
+								 
+		 //°ó¶¨²Ö¿â
+		 hql= "select p.whsCode+','+p.whsName from Owhs as p " +
+					" where (p.whsCode like :str1 or p.whsName like :str2) ";
+		 if(yon.equals("Y"))
+		 {
+		    hql+=" and p.WhsCode in " +
+			 	  "(select U_Dsck from dbo.[@CZYCK] where " +
+			 	  "U_Usid=(select distinct branch from ousr where userid='"+appMain.oCompany.getUserSignature() + "') and U_Djlx='Z')";
+		 }
+		  hql1="select p.whsCode from Owhs as p " +
+					" where p.whsCode=:str1 ";
+		 if(yon.equals("Y"))
+		 {
+			hql1+=" and p.WhsCode in " +
+			 	"(select U_Dsck from dbo.[@CZYCK] where " +
+			 	"U_Usid=(select distinct branch from ousr where userid='"+appMain.oCompany.getUserSignature() + "') and U_Djlx='Z')";
+		 }
+		 v.getOd().setUpSportColumn(v.getJt(), v.getJt().getColumnModel().getColumn(v.getOd().getcolumnindex("²Ö¿â")), hql,hql1);		    
+		 
+		dmv.setadd();
 	}
 }

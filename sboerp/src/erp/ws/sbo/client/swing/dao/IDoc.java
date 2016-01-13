@@ -12,6 +12,8 @@ import erp.ws.sbo.client.swing.model.ParaList;
 
 
 public interface IDoc<T> {
+  //add doc
+  public void add(T v);
   //create doc
   public void create(T v);
   //read doc by id

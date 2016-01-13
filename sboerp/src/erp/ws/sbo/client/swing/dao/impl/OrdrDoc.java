@@ -755,4 +755,10 @@ public class OrdrDoc extends OrderAbsDoc{
 		}
 		else{}
 	}
+
+	@Override
+	public void add(OrdrView v) {
+		// TODO Auto-generated method stub
+		
+	}
 }

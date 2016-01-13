@@ -390,4 +390,10 @@ public class OworDoc implements IDoc<OworView>{
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void add(OworView v) {
+		// TODO Auto-generated method stub
+		
+	}
 }
