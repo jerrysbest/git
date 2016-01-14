@@ -32,6 +32,7 @@ import erp.ws.sbo.client.swing.dao.abs.SninAbsDoc;
 import erp.ws.sbo.client.swing.model.ColDocTitle;
 import erp.ws.sbo.client.swing.model.DocTitle;
 import erp.ws.sbo.client.swing.model.ParaList;
+import erp.ws.sbo.client.swing.model.User;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocLineModel.docLineStatus;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocTitleModel.docTitleStatus;
 import erp.ws.sbo.client.swing.util.general.ComboBoxItem;
@@ -584,7 +585,7 @@ public class SninDoc extends SninAbsDoc{
 	}
 
 	@Override
-	public void add(SninView v) {
+	public void add(User user,SninView v) {
 		// TODO Auto-generated method stub
 		v.getDsv().getOd().setGridStatus(docLineStatus.add);
 		v.getJta_SN().setText("");
@@ -600,7 +601,7 @@ public class SninDoc extends SninAbsDoc{
 								 
 		 //°ó¶¨²Ö¿â
 		 hql= "select p.whsCode+','+p.whsName from Owhs as p " +
-					" where (p.whsCode like :str1 or p.whsName like :str2) ";
+			  " where (p.whsCode like :str1 or p.whsName like :str2) ";
 		 if(yon.equals("Y"))
 		 {
 		    hql+=" and p.WhsCode in " +

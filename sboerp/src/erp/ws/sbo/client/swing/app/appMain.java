@@ -27,6 +27,7 @@ import com.sap.smb.sbo.api.IUserTablesMD;
 import erp.ws.sbo.client.swing.dao.abs.AbsWFlowDao;
 import erp.ws.sbo.client.swing.dao.impl.PaSNDao;
 import erp.ws.sbo.client.swing.dao.impl.QrDao;
+import erp.ws.sbo.client.swing.model.User;
 import erp.ws.sbo.client.swing.view.DocMenu.DocMenuView;
 import erp.ws.sbo.client.swing.view.Foot.FootView;
 import erp.ws.sbo.client.swing.view.Login.LoginView;
@@ -72,7 +73,7 @@ public final class appMain {
 	public static LoginView lg;
 	public static FootView fv;
 	public static String rpurl,Mno,username1,branch;
-	public static List<String> privilages = new ArrayList();  
+	public static User user=new User();
    
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

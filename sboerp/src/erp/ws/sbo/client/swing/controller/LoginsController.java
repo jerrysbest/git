@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -166,10 +167,12 @@ public class LoginsController implements ActionListener{
 				 	  	 " where a.usercode=(select user_code from ousr where userid='"+appMain.oCompany.getUserSignature().toString()+"') " +
 				 	  	 "and  a.enable='1'";
 				 	ob = appMain.lt.sqlclob(hql,0,1000);
+				 	List<String> privilages=new ArrayList<String>();
 				 	for(int i=0;i<ob.length;i++)
 				 	{
-			          appMain.privilages.add(ob[i][0].toString());
+			          privilages.add("erp.ws.sbo.client.swing.dao.impl."+ob[i][0].toString());
 				 	}
+				 	appMain.user.setPrivilages(privilages);
 			        appMain.user1=v.getTf_user1().getText().toString().trim();
 			        appMain.Mno=((ComboBoxItem)v.getMNo_comp().getSelectedItem()).getValue().toString();
 		            JOptionPane.showMessageDialog(null,"µÇÂ½³É¹¦");

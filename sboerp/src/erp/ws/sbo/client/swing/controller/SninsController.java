@@ -552,8 +552,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		if(v.getJt().getSelectedColumn()== v.getOd().getcolumnindex("实际收货个数")&&e.getSource()==v.getJt())
 		{
 	       v.getJt().editCellAt(v.getJt().getSelectedRow(), v.getJt().getSelectedColumn());
-		}
-		
+		}		
 	}
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
@@ -647,7 +646,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	        }  */
 			if(v.getCom_port().getSelectedItem()==null)
 			{
-				 JOptionPane.showMessageDialog(v,"请先打开串口");	              
+				JOptionPane.showMessageDialog(v,"请先打开串口");	              
 				return;
 			}
 			v.getJta_sendw().setText("R");

@@ -40,6 +40,7 @@ import erp.ws.sbo.client.swing.dao.IDoc;
 import erp.ws.sbo.client.swing.model.ColDocTitle;
 import erp.ws.sbo.client.swing.model.DocTitle;
 import erp.ws.sbo.client.swing.model.ParaList;
+import erp.ws.sbo.client.swing.model.User;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocLineModel.docLineStatus;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocTitleModel.docTitleStatus;
 import erp.ws.sbo.client.swing.util.general.ComboBoxItem;
@@ -752,7 +753,7 @@ public class OignDoc implements IDoc<OignView>{
 	}
 
 	@Override
-	public void add(OignView v) {
+	public void add(User user,OignView v) {
 		// TODO Auto-generated method stub
 		
 	}

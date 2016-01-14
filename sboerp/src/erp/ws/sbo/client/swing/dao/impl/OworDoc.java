@@ -31,6 +31,7 @@ import com.sap.smb.sbo.api.SBOCOMUtil;
 import erp.ws.sbo.client.swing.app.appMain;
 import erp.ws.sbo.client.swing.dao.IDoc;
 import erp.ws.sbo.client.swing.model.ParaList;
+import erp.ws.sbo.client.swing.model.User;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocLineModel.docLineStatus;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocTitleModel.docTitleStatus;
 import erp.ws.sbo.client.swing.util.general.ComboBoxItem;
@@ -392,7 +393,7 @@ public class OworDoc implements IDoc<OworView>{
 	}
 
 	@Override
-	public void add(OworView v) {
+	public void add(User user,OworView v) {
 		// TODO Auto-generated method stub
 		
 	}

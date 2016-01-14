@@ -9,11 +9,12 @@ package erp.ws.sbo.client.swing.dao;
 
 
 import erp.ws.sbo.client.swing.model.ParaList;
+import erp.ws.sbo.client.swing.model.User;
 
 
-public interface IDoc<T> {
+public interface IDoc<T> {  
   //add doc
-  public void add(T v);
+  public void add(User user,T v);
   //create doc
   public void create(T v);
   //read doc by id

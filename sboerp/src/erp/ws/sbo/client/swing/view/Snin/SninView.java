@@ -416,33 +416,33 @@ public class SninView extends JInternalFrame{
 		lay6.putConstraint(SpringLayout.WEST, lab_height, 0, SpringLayout.WEST, lab_width);
 		lay6.putConstraint(SpringLayout.WEST, txt_height, 0, SpringLayout.WEST, txt_width);
 		lay6.putConstraint(SpringLayout.EAST, lab_width, -21, SpringLayout.WEST, txt_width);
-		 com_company.addItem( new  ComboBoxItem("0","沙河市潜水电线厂"));
-		 com_company.addItem( new  ComboBoxItem("1","国潜"));
+		com_company.addItem( new  ComboBoxItem("0","沙河市潜水电线厂"));
+		com_company.addItem( new  ComboBoxItem("1","国潜"));
 		 
-		 hql= "select itemCode+','+itemName from  oitm  " +
-				" where " +
-				"(itemCode like :str1 or itemName like :str2) and validfor='Y' AND frozenfor='N' and u_usn='Y'";
-	   	 hql1="select itemcode from  oitm " +
-				" where  " +
-				"itemCode collate Chinese_prc_cs_as_ws=:str1 and validfor='Y' AND frozenfor='N' and u_usn='Y'";
-		 com_specification = new JAutoCompleteComboBox(hql,hql1,2);
-		 lay7.putConstraint(SpringLayout.WEST, lab_pweight, 6, SpringLayout.EAST, com_specification);
-		 hql= "select  sn from [@snstatus] " +
-					" where " +
-					"(sn like :str1 or sn like :str2) and (ifdes<>'1' or ifdes is null) " +
-					"order by datetime desc";
-	   	 hql1="select  sn from [@snstatus] " +
-				" where  " +
-				"sn=:str1 and (ifdes<>'1' or ifdes is null)";
-		 com_selcode= new JAutoCompleteComboBox(hql,hql1,2);
-		 lay7.putConstraint(SpringLayout.WEST, lab_Qinspector, 2, SpringLayout.EAST, com_selcode);
-		 lay7.putConstraint(SpringLayout.WEST, com_selcode, 6, SpringLayout.EAST, bt_selcode);
-		 lay7.putConstraint(SpringLayout.NORTH, com_selcode, -3, SpringLayout.NORTH, lab_Qinspector);
-		 pane7.setLayout(lay7);
-		 lay7.putConstraint(SpringLayout.WEST, lab_specification, 10,SpringLayout.WEST, pane7);
-		 lay7.putConstraint(SpringLayout.NORTH, lab_specification, 10, SpringLayout.NORTH, pane7);
-		 lay7.putConstraint(SpringLayout.WEST, com_specification, 70,SpringLayout.WEST, pane7);
-		 lay7.putConstraint(SpringLayout.NORTH, com_specification, 10, SpringLayout.NORTH, pane7);		 
+		hql= "select itemCode+','+itemName from  oitm  " +
+			" where " +
+			"(itemCode like :str1 or itemName like :str2) and validfor='Y' AND frozenfor='N' and u_usn='Y'";
+	   	hql1="select itemcode from  oitm " +
+			" where  " +
+			"itemCode collate Chinese_prc_cs_as_ws=:str1 and validfor='Y' AND frozenfor='N' and u_usn='Y'";
+		com_specification = new JAutoCompleteComboBox(hql,hql1,2);
+		lay7.putConstraint(SpringLayout.WEST, lab_pweight, 6, SpringLayout.EAST, com_specification);
+		hql= "select  sn from [@snstatus] " +
+			" where " +
+			"(sn like :str1 or sn like :str2) and (ifdes<>'1' or ifdes is null) " +
+			"order by datetime desc";
+	   	hql1="select  sn from [@snstatus] " +
+			" where  " +
+			"sn=:str1 and (ifdes<>'1' or ifdes is null)";
+		com_selcode= new JAutoCompleteComboBox(hql,hql1,2);
+		lay7.putConstraint(SpringLayout.WEST, lab_Qinspector, 2, SpringLayout.EAST, com_selcode);
+		lay7.putConstraint(SpringLayout.WEST, com_selcode, 6, SpringLayout.EAST, bt_selcode);
+		lay7.putConstraint(SpringLayout.NORTH, com_selcode, -3, SpringLayout.NORTH, lab_Qinspector);
+		pane7.setLayout(lay7);
+		lay7.putConstraint(SpringLayout.WEST, lab_specification, 10,SpringLayout.WEST, pane7);
+		lay7.putConstraint(SpringLayout.NORTH, lab_specification, 10, SpringLayout.NORTH, pane7);
+		lay7.putConstraint(SpringLayout.WEST, com_specification, 70,SpringLayout.WEST, pane7);
+		lay7.putConstraint(SpringLayout.NORTH, com_specification, 10, SpringLayout.NORTH, pane7);		 
 		 lay7.putConstraint(SpringLayout.WEST, lab_length, 10,SpringLayout.WEST, pane7);
 		 lay7.putConstraint(SpringLayout.NORTH, lab_length, 40, SpringLayout.NORTH, pane7);
 		 lay7.putConstraint(SpringLayout.WEST, txt_length, 70,SpringLayout.WEST, pane7);
@@ -819,12 +819,12 @@ public class SninView extends JInternalFrame{
 	     this.bt_cweight.addActionListener(oc);
 	     this.bt_print.addActionListener(oc);
 	     this.txt_length.addFocusListener(oc);
+	     this.txt_length.addKeyListener(oc);
 	     this.com_specification.addActionListener(oc);
 	     this.com_ifincomed.addActionListener(oc);
 	     this.txt_pweight.addKeyListener(oc);
 	     this.txt_weight.addFocusListener(oc);
-	     this.txt_weight.addKeyListener(oc);
-	     this.txt_length.addKeyListener(oc);
+	     this.txt_weight.addKeyListener(oc);	     
 	     this.ifseal.addActionListener(oc);
 	     getTxt_pweight().addActionListener(oc);
 	     	    	     

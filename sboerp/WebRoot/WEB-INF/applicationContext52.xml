@@ -360,5 +360,57 @@
 	</bean>   
 	-->    
 	<!-- AOP 5 methods of declarative transaction http://www.sjsjw.com/kf_other/article/55_26704_11000.asp -->
-	
+	<!-- AOP implement permission management -->
+	 <bean id="bean" class="org.springframework.aop.framework.ProxyFactoryBean">  
+        <property name="proxyInterfaces">  
+            <value>erp.ws.sbo.client.swing.dao.IDoc</value>  
+        </property>  
+        <property name="target">  
+            <ref local="beanTarget"/>  
+        </property>  
+        <property name="interceptorNames">  
+            <list>  
+                <value>permissionCheckBeforeAdvisor</value>  
+                <value>permissionThrowAdvisor</value>  
+            </list>  
+        </property>  
+    </bean>  
+    <bean id="service" class="org.springframework.aop.framework.ProxyFactoryBean">  
+        <property name="proxyInterfaces">  
+            <value>erp.ws.sbo.client.swing.dao.IDoc</value>  
+        </property>  
+        <property name="target">  
+            <ref local="serviceBean"/>  
+        </property>  
+    </bean>  
+      
+    <bean id="beanTarget" class="com.jhalo.jsecurity.aop.ResourceBeanImpl"></bean>  
+      
+    <bean id="serviceBean" class="com.jhalo.jsecurity.aop.ServiceBean">  
+        <property name="bean">  
+            <ref local="bean"/>  
+        </property>  
+    </bean>  
+      
+    <bean id="permissionCheckBeforeAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">  
+        <property name="advice">  
+            <ref local="thePermissionCheckBeforeAdvice"/>  
+        </property>  
+        <property name="pattern">  
+            <value>.*</value>  
+        </property>  
+    </bean>  
+      
+    <bean id="permissionThrowAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">  
+        <property name="advice">  
+            <ref local="thePermissionThrowsAdvice"/>  
+        </property>  
+        <property name="pattern">  
+            <value>.*</value>  
+        </property>  
+    </bean>  
+      
+    <bean id="thePermissionCheckBeforeAdvice" class="erp.ws.aop.permission.PermissionCheckAdvice"></bean>  
+    <bean id="thePermissionThrowsAdvice" class="erp.ws.aop.permission.PermissionThrowsAdvice"></bean>  
+    -->
 </beans>

@@ -25,6 +25,7 @@ import erp.ws.sbo.client.swing.dao.abs.OrderAbsDoc;
 import erp.ws.sbo.client.swing.model.ColDocTitle;
 import erp.ws.sbo.client.swing.model.DocTitle;
 import erp.ws.sbo.client.swing.model.ParaList;
+import erp.ws.sbo.client.swing.model.User;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocLineModel.docLineStatus;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocTitleModel.docTitleStatus;
 import erp.ws.sbo.client.swing.util.general.ComboBoxItem;
@@ -757,7 +758,7 @@ public class OrdrDoc extends OrderAbsDoc{
 	}
 
 	@Override
-	public void add(OrdrView v) {
+	public void add(User user,OrdrView v) {
 		// TODO Auto-generated method stub
 		
 	}
