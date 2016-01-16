@@ -248,7 +248,7 @@
 	<bean id="OworQDoc" class="erp.ws.sbo.client.swing.dao.impl.OworQDoc"/>
 	<bean id="OignFactory" class="erp.ws.sbo.client.swing.dao.impl.OignFactory">
 		<property name="idoc">
-			<ref local="OignDoc"/>
+			<ref local="OignAop"/>
 		</property>
 		<property name="iqdocm">
 			<ref local="OignQDoc"/>
@@ -378,12 +378,12 @@
     <bean id="beforeInterceptor" class="cn.xxxx.xxx.MyChecker"/>  
     -->
     <!-- AOP implement permission management -->
-	 <bean id="bean" class="org.springframework.aop.framework.ProxyFactoryBean">  
+     <bean id="OignAop" class="org.springframework.aop.framework.ProxyFactoryBean">  
         <property name="proxyInterfaces">  
             <value>erp.ws.sbo.client.swing.dao.IDoc</value>  
         </property>  
         <property name="target">  
-            <ref local="beanTarget"/>  
+            <ref local="OignDoc"/>  
         </property>  
         <property name="interceptorNames">  
             <list>  
@@ -392,8 +392,22 @@
             </list>  
         </property>  
     </bean>  
-    <bean id="beanTarget" class="erp.ws.sbo.client.swing.dao.impl.SninDoc">                
+    <bean id="beanTarget" class="erp.ws.sbo.client.swing.dao.impl.OignDoc">                
     </bean>  
+	 <bean id="bean" class="org.springframework.aop.framework.ProxyFactoryBean">  
+        <property name="proxyInterfaces">  
+            <value>erp.ws.sbo.client.swing.dao.IDoc</value>  
+        </property>  
+        <property name="target">  
+            <ref local="SninDoc"/>  
+        </property>  
+        <property name="interceptorNames">  
+            <list>  
+                <value>permissionCheckBeforeAdvisor</value>  
+                <value>permissionThrowAdvisor</value>  
+            </list>  
+        </property>  
+    </bean>                
    <!-- 
    <bean id="service" class="org.springframework.aop.framework.ProxyFactoryBean">  
         <property name="proxyInterfaces">  

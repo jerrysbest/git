@@ -31,6 +31,7 @@ import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.text.BadLocationException;
 
+import erp.ws.aop.permission.PermissionDeniedException;
 import erp.ws.sbo.client.swing.app.appMain;
 import erp.ws.sbo.client.swing.dao.DaoFactory;
 import erp.ws.sbo.client.swing.model.ColDocTitle;
@@ -902,18 +903,13 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		}
 		else if(e.getSource()==dmv.getjButtonadd())
 		{
-			//JOptionPane.showMessageDialog(null, "1");
-		   // something about doctitle
-			v.getOd1().setDs(docTitleStatus.add);
-			v.getOd1().setDocTitleStatus(v);
-			//JOptionPane.showMessageDialog(null, "2");
-			//something about docline
-			v.getOd().setDocLineStatus(docLineStatus.oign);
-			v.getOd().setGridStatus(docLineStatus.add);
-			//JOptionPane.showMessageDialog(null, "3");
-			
-			
-			dmv.setadd();
+			 try {
+					docf.getIdoc().add(v);
+				} catch (PermissionDeniedException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "无此权限");
+				}
 		}
 		else if(e.getSource()==dmv.getjButtoncpsource())
 		{

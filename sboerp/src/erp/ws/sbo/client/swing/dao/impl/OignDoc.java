@@ -35,6 +35,7 @@ import com.sap.smb.sbo.api.SBOCOMException;
 import com.sap.smb.sbo.api.SBOCOMUtil;
 import com.sap.smb.sbo.wrapper.com.ComFailException;
 
+import erp.ws.aop.permission.PermissionDeniedException;
 import erp.ws.sbo.client.swing.app.appMain;
 import erp.ws.sbo.client.swing.dao.IDoc;
 import erp.ws.sbo.client.swing.model.ColDocTitle;
@@ -752,8 +753,18 @@ public class OignDoc implements IDoc<OignView>{
 	}
 
 	@Override
-	public void add(OignView v) {
+	public void add(OignView v) throws PermissionDeniedException{
 		// TODO Auto-generated method stub
+		v.getOd1().setDs(docTitleStatus.add);
+		v.getOd1().setDocTitleStatus(v);
+		//JOptionPane.showMessageDialog(null, "2");
+		//something about docline
+		v.getOd().setDocLineStatus(docLineStatus.oign);
+		v.getOd().setGridStatus(docLineStatus.add);
+		//JOptionPane.showMessageDialog(null, "3");
+		
+		
+		dmv.setadd();
 		
 	}
 
