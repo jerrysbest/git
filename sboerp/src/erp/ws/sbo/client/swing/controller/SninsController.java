@@ -36,8 +36,10 @@ import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
+import erp.ws.aop.permission.PermissionDeniedException;
 import erp.ws.sbo.client.swing.app.appMain;
 import erp.ws.sbo.client.swing.dao.DaoFactory;
+import erp.ws.sbo.client.swing.dao.IDoc;
 import erp.ws.sbo.client.swing.model.ColDocTitle;
 import erp.ws.sbo.client.swing.model.DocTitle;
 import erp.ws.sbo.client.swing.model.snstatus;
@@ -63,7 +65,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	private CommPortIdentifier portId=null;
 	private Object[] obj;
 	private Object[][] ob;
-	private String hql,hql1,hql2,hql3,yon;
+	private String hql,hql1,hql2,hql3;
 	private DbUtils<?,?> dbu=new DbUtils<ColDocTitle,DocTitle>();	
 
 	@SuppressWarnings("unchecked")
@@ -864,8 +866,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			    if(v.getDsv().isActive()==false||v.getDsv().isVisible()==false)
 	    	    {   		    		 
 					 v.getDsv().setVisible(true);
-					 v.getDsv().setAlwaysOnTop(true);	
-			 	//av.setBounds(200, 60, screenSize.width-200, screenSize.height-150);			    		
+					 v.getDsv().setAlwaysOnTop(true);				    		
 	    	    }	
 			    JOptionPane.showMessageDialog(null, "0");
 			    v.getDsv().getOd().setDocLineStatus(docLineStatus.remend);
@@ -881,50 +882,16 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		
 		else if(arg0.getSource()==dmv.getjButtonadd())
 		{		
-			//JOptionPane.showConfirmDialog(null, v.getCom_pweight().getSelectedItem().toString());
-			hql="select user_code from ousr where userid='"+appMain.oCompany.getUserSignature().toString()+"'";
-		 	ob = appMain.lt.sqlclob(hql,0,1);
-			hql="select * from dbo.[@userauther] a inner join dbo.[@auther] b on a.autherid=b.code" +
-		 	  	 " where a.usercode='"+ob[0][0].toString()+"' " +
-		 	  	 "and b.code='SNINADD' and a.enable='1'";
-		 	ob = appMain.lt.sqlclob(hql,0,1);
-            if(ob==null||ob.length==0)
-            {
-        	   JOptionPane.showMessageDialog(null, "无此权限");
-        	   return;
-            }	
-			v.getDsv().getOd().setGridStatus(docLineStatus.add);
-			v.getJta_SN().setText("");
-		    // something about doctitle
-			v.getOd1().setDs(docTitleStatus.add);
-			v.getOd1().setDocTitleStatus(v);
-			//something about docline
-			v.getOd().setDocLineStatus(docLineStatus.query);
-			v.getOd().setGridStatus(docLineStatus.add);
-			
-			 hql="select u_enable from [@sms] where code='CKCZY'";
-			 yon=appMain.lt.sqlclob(hql, 0, 1)[0][0].toString();				
-									 
-			 //绑定仓库
-			 hql= "select p.whsCode+','+p.whsName from Owhs as p " +
-						" where (p.whsCode like :str1 or p.whsName like :str2) ";
-			 if(yon.equals("Y"))
-			 {
-			    hql+=" and p.WhsCode in " +
-				 	  "(select U_Dsck from dbo.[@CZYCK] where " +
-				 	  "U_Usid=(select distinct branch from ousr where userid='"+appMain.oCompany.getUserSignature() + "') and U_Djlx='Z')";
-			 }
-			  hql1="select p.whsCode from Owhs as p " +
-						" where p.whsCode=:str1 ";
-			 if(yon.equals("Y"))
-			 {
-				hql1+=" and p.WhsCode in " +
-				 	"(select U_Dsck from dbo.[@CZYCK] where " +
-				 	"U_Usid=(select distinct branch from ousr where userid='"+appMain.oCompany.getUserSignature() + "') and U_Djlx='Z')";
-			 }
-			 v.getOd().setUpSportColumn(v.getJt(), v.getJt().getColumnModel().getColumn(v.getOd().getcolumnindex("仓库")), hql,hql1);		    
-			 
-			dmv.setadd();
+			//test AOP permission management
+			 //IDoc doc = (IDoc)appMain.ctx.getBean("bean");	
+			 try {
+				docf.getIdoc().add(v);
+			} catch (PermissionDeniedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, "无此权限");
+			}
+			//JOptionPane.showConfirmDialog(null, v.getCom_pweight().getSelectedItem().toString());			
 			}
 			else if(arg0.getSource()==dmv.getjButtoncpsource())
 			{

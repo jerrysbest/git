@@ -3,7 +3,6 @@ package erp.ws.sbo.client.swing.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
 
 import erp.ws.sbo.client.swing.dao.IQDoc;
 import erp.ws.sbo.client.swing.view.QueryWindow.QueryWindowView;

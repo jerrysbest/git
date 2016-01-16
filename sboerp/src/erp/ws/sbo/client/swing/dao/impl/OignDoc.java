@@ -40,7 +40,6 @@ import erp.ws.sbo.client.swing.dao.IDoc;
 import erp.ws.sbo.client.swing.model.ColDocTitle;
 import erp.ws.sbo.client.swing.model.DocTitle;
 import erp.ws.sbo.client.swing.model.ParaList;
-import erp.ws.sbo.client.swing.model.User;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocLineModel.docLineStatus;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocTitleModel.docTitleStatus;
 import erp.ws.sbo.client.swing.util.general.ComboBoxItem;
@@ -247,7 +246,7 @@ public class OignDoc implements IDoc<OignView>{
 				 if(ob[0][0].toString().equals("Y"))
 				 {
 					Snprint snsp=new Snprint(v);
-					 JOptionPane.showMessageDialog(null,"´òÓ¡²Ý¸åµ¥"+ndocid);
+					JOptionPane.showMessageDialog(null,"´òÓ¡²Ý¸åµ¥"+ndocid);
 					snsp.print(v.getTxt_width().getText(), v.getTxt_height().getText(), "5", "8", "0", "0", "0",ndocid,v);	  			             
 				 }
 				v.getOd1().setDs(docTitleStatus.add);
@@ -753,7 +752,7 @@ public class OignDoc implements IDoc<OignView>{
 	}
 
 	@Override
-	public void add(User user,OignView v) {
+	public void add(OignView v) {
 		// TODO Auto-generated method stub
 		
 	}

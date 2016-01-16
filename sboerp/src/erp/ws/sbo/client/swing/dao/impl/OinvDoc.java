@@ -30,7 +30,6 @@ import erp.ws.sbo.client.swing.dao.abs.AbsDoc;
 import erp.ws.sbo.client.swing.model.ColDocTitle;
 import erp.ws.sbo.client.swing.model.DocTitle;
 import erp.ws.sbo.client.swing.model.ParaList;
-import erp.ws.sbo.client.swing.model.User;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocLineModel.docLineStatus;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocTitleModel.docTitleStatus;
 import erp.ws.sbo.client.swing.util.general.ComboBoxItem;
@@ -1325,7 +1324,7 @@ public class OinvDoc extends AbsDoc{
 	}
 
 	@Override
-	public void add(User user,OinvView v) {
+	public void add(OinvView v) {
 		// TODO Auto-generated method stub
 		
 	}

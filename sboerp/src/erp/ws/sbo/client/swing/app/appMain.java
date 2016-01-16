@@ -4,8 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
@@ -24,6 +22,7 @@ import com.sap.smb.sbo.api.IProductionOrders;
 import com.sap.smb.sbo.api.IUserFieldsMD;
 import com.sap.smb.sbo.api.IUserTablesMD;
 
+import erp.ws.aop.permission.PermissionDeniedException;
 import erp.ws.sbo.client.swing.dao.abs.AbsWFlowDao;
 import erp.ws.sbo.client.swing.dao.impl.PaSNDao;
 import erp.ws.sbo.client.swing.dao.impl.QrDao;
@@ -75,12 +74,15 @@ public final class appMain {
 	public static String rpurl,Mno,username1,branch;
 	public static User user=new User();
    
-	public static void main(String[] args) {
+	public static void main(String[] args) throws PermissionDeniedException {
 		// TODO Auto-generated method stub
 		/*NativeInterface.open();
 	    UIUtils.setPreferredLookAndFeel();
 	    SwingUtilities.invokeLater(new Runnable() {
 		public void run() {*/
+		
+            
+        
 		
 			jd=new JDesktopPane();
 			v=new MainFormView();
@@ -104,6 +106,7 @@ public final class appMain {
 		    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		    lg.setBounds(screenSize.width/2-200, screenSize.height/5, 400,330);
 		    v.setVisible(true);
+
 		   /* }
 	    });
 	    NativeInterface.runEventPump();*/

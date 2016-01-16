@@ -34,6 +34,7 @@ public class LoginsController implements ActionListener{
 	private LoginView v;
 	private String hql;
 	private Object[][] ob;	
+	private List<String> privilages;
 	
     public LoginsController(LoginView v)
     {
@@ -80,7 +81,16 @@ public class LoginsController implements ActionListener{
 		            System.out.println(errorMessage.getErrorMessage());  
 		            JOptionPane.showMessageDialog(null,errorMessage.getErrorMessage());           
 		        }else{   
-		        
+		        	hql="select b.code from dbo.[@userauther] a inner join dbo.[@auther] b on a.autherid=b.code" +
+				 	  	 " where a.usercode=(select user_code from ousr where userid='"+appMain.oCompany.getUserSignature().toString()+"') " +
+				 	  	 "and  a.enable='1'";
+				 	ob = appMain.lt.sqlclob(hql,0,1000);
+		        	privilages=new ArrayList<String>();
+				 	for(int i=0;i<ob.length;i++)
+				 	{
+			          privilages.add("erp.ws.sbo.client.swing.dao.impl."+ob[i][0].toString());
+				 	}
+				 	appMain.user.setPrivilages(privilages);
 			        appMain.user1=v.getTf_user1().getText().toString().trim();
 			        JOptionPane.showMessageDialog(null,v.getMNo_comp().getSelectedItem());
 			        appMain.Mno=((ComboBoxItem)v.getMNo_comp().getSelectedItem()).getValue().toString();
@@ -156,23 +166,24 @@ public class LoginsController implements ActionListener{
 		         	appMain.branch=ob[0][0].toString();
 		         	hql="select count(*) from [@USERS]  "+
 						"where u_ifuse='Y'";
-			         	ob=appMain.lt.sqlclob(hql, 0, 1);
-			         	if(ob!=null&&Integer.valueOf(ob[0][0].toString())>100)
-			         	{
-			         		JOptionPane.showMessageDialog(null,"启用用户超过100，请停用部分用户!");
-			         		return;
-			         	}	
+		         	ob=appMain.lt.sqlclob(hql, 0, 1);
+		         	if(ob!=null&&Integer.valueOf(ob[0][0].toString())>100)
+		         	{
+		         		JOptionPane.showMessageDialog(null,"启用用户超过100，请停用部分用户!");
+		         		return;
+		         	}	
 			        System.out.println("登陆成功2");
 			        hql="select b.code from dbo.[@userauther] a inner join dbo.[@auther] b on a.autherid=b.code" +
 				 	  	 " where a.usercode=(select user_code from ousr where userid='"+appMain.oCompany.getUserSignature().toString()+"') " +
 				 	  	 "and  a.enable='1'";
 				 	ob = appMain.lt.sqlclob(hql,0,1000);
-				 	List<String> privilages=new ArrayList<String>();
+				 	privilages=new ArrayList<String>();
 				 	for(int i=0;i<ob.length;i++)
 				 	{
-			          privilages.add("erp.ws.sbo.client.swing.dao.impl."+ob[i][0].toString());
+			          privilages.add(("erp.ws.sbo.client.swing.dao.impl."+ob[i][0].toString()+"doc.add").toUpperCase());
 				 	}
 				 	appMain.user.setPrivilages(privilages);
+				 	System.out.println(appMain.user.getPrivilages());
 			        appMain.user1=v.getTf_user1().getText().toString().trim();
 			        appMain.Mno=((ComboBoxItem)v.getMNo_comp().getSelectedItem()).getValue().toString();
 		            JOptionPane.showMessageDialog(null,"登陆成功");

@@ -22,7 +22,6 @@ import erp.ws.sbo.client.swing.model.ParaList;
 import erp.ws.sbo.client.swing.model.UQrm;
 import erp.ws.sbo.client.swing.model.URm1;
 import erp.ws.sbo.client.swing.model.URm1Id;
-import erp.ws.sbo.client.swing.model.User;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocLineModel.docLineStatus;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocTitleModel.docTitleStatus;
 import erp.ws.sbo.client.swing.util.general.ComboBoxItem;
@@ -449,7 +448,7 @@ public class QrDoc implements IDoc<QrView>{
 	}
 
 	@Override
-	public void add(User user,QrView v) {
+	public void add(QrView v) {
 		// TODO Auto-generated method stub
 		
 	}

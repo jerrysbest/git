@@ -22,7 +22,6 @@ import erp.ws.sbo.client.swing.dao.IDoc;
 import erp.ws.sbo.client.swing.model.ColDocTitle;
 import erp.ws.sbo.client.swing.model.DocTitle;
 import erp.ws.sbo.client.swing.model.ParaList;
-import erp.ws.sbo.client.swing.model.User;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocLineModel.docLineStatus;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocTitleModel.docTitleStatus;
 import erp.ws.sbo.client.swing.util.general.ComboBoxItem;
@@ -1038,7 +1037,7 @@ public class OrctDoc implements IDoc<OrctView>{
 	}
 
 	@Override
-	public void add(User user,OrctView v) {
+	public void add(OrctView v) {
 		// TODO Auto-generated method stub
 		
 	}

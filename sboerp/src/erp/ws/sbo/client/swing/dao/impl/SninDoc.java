@@ -27,12 +27,12 @@ import com.sap.smb.sbo.api.SBOCOMException;
 import com.sap.smb.sbo.api.SBOCOMUtil;
 import com.sap.smb.sbo.wrapper.com.ComFailException;
 
+import erp.ws.aop.permission.PermissionDeniedException;
 import erp.ws.sbo.client.swing.app.appMain;
 import erp.ws.sbo.client.swing.dao.abs.SninAbsDoc;
 import erp.ws.sbo.client.swing.model.ColDocTitle;
 import erp.ws.sbo.client.swing.model.DocTitle;
 import erp.ws.sbo.client.swing.model.ParaList;
-import erp.ws.sbo.client.swing.model.User;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocLineModel.docLineStatus;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocTitleModel.docTitleStatus;
 import erp.ws.sbo.client.swing.util.general.ComboBoxItem;
@@ -43,6 +43,7 @@ import erp.ws.sbo.client.swing.dao.impl.SninAdvSN;
 import erp.ws.sbo.utils.DbUtils;
 import erp.ws.sbo.utils.Dra2Doc;
 import erp.ws.sbo.utils.SNL;
+import erp.ws.sbo.utils.Snprint;
 
 
 public class SninDoc extends SninAbsDoc{
@@ -146,6 +147,7 @@ public class SninDoc extends SninAbsDoc{
 			else
 			{	
 				 oskt.release();
+				 String ndocid=appMain.oCompany.getNewObjectKey().toString();
 				 hql = "update  odrf set groupnum='"+((ComboBoxItem)v.getCom_plist().getSelectedItem()).getValue().toString()+"' " +
 				 		"where docentry='"+appMain.oCompany.getNewObjectKey()+"'";
 				 dbu.exeSql(hql);
@@ -162,7 +164,11 @@ public class SninDoc extends SninAbsDoc{
 				 {
 					snl=new SNL(v.getDsv());		
 				    snl.createsdra(v.getDsv(),true,false,"","I","",appMain.oCompany.getNewObjectKey().toString());
+				    Snprint snsp=new Snprint(v);
+					JOptionPane.showMessageDialog(null,"打印草稿单"+ndocid);
+					snsp.print(v.getTxt_width().getText(), v.getTxt_height().getText(), "5", "8", "0", "0", "0",ndocid,v);	 
 			     }
+				
 				//生成序列号组合单据	 
 				/*if(v.getCom_ifseal().getSelectedItem().toString().equals("是"))
 				{						    					
@@ -585,7 +591,7 @@ public class SninDoc extends SninAbsDoc{
 	}
 
 	@Override
-	public void add(User user,SninView v) {
+	public void add(SninView v) throws PermissionDeniedException{
 		// TODO Auto-generated method stub
 		v.getDsv().getOd().setGridStatus(docLineStatus.add);
 		v.getJta_SN().setText("");

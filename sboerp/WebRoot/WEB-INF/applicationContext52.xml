@@ -360,7 +360,7 @@
 	</bean>   
 	-->    
 	<!-- AOP 5 methods of declarative transaction http://www.sjsjw.com/kf_other/article/55_26704_11000.asp -->
-	<!-- AOP implement permission management -->
+	<!-- AOP implement permission management 
 	 <bean id="bean" class="org.springframework.aop.framework.ProxyFactoryBean">  
         <property name="proxyInterfaces">  
             <value>erp.ws.sbo.client.swing.dao.IDoc</value>  

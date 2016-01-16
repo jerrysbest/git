@@ -29,7 +29,6 @@ import com.sap.smb.sbo.wrapper.com.ComFailException;
 import erp.ws.sbo.client.swing.app.appMain;
 import erp.ws.sbo.client.swing.dao.IDoc;
 import erp.ws.sbo.client.swing.model.ParaList;
-import erp.ws.sbo.client.swing.model.User;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocLineModel.docLineStatus;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocTitleModel.docTitleStatus;
 import erp.ws.sbo.client.swing.util.general.ComboBoxItem;
@@ -349,7 +348,7 @@ public class OOignDoc implements IDoc<OOignView>{
 		
 	}
 	@Override
-	public void add(User user,OOignView v) {
+	public void add(OOignView v) {
 		// TODO Auto-generated method stub
 		
 	}

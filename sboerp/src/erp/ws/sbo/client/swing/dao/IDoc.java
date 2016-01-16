@@ -8,13 +8,13 @@
 package erp.ws.sbo.client.swing.dao;
 
 
+import erp.ws.aop.permission.PermissionDeniedException;
 import erp.ws.sbo.client.swing.model.ParaList;
-import erp.ws.sbo.client.swing.model.User;
 
 
 public interface IDoc<T> {  
   //add doc
-  public void add(User user,T v);
+  public void add(T v) throws PermissionDeniedException;
   //create doc
   public void create(T v);
   //read doc by id

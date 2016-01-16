@@ -27,7 +27,6 @@ import erp.ws.sbo.client.swing.dao.IDoc;
 import erp.ws.sbo.client.swing.model.ColDocTitle;
 import erp.ws.sbo.client.swing.model.DocTitle;
 import erp.ws.sbo.client.swing.model.ParaList;
-import erp.ws.sbo.client.swing.model.User;
 import erp.ws.sbo.client.swing.model.snstatus;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocLineModel.docLineStatus;
 import erp.ws.sbo.client.swing.tablemodel.AbstractDocTitleModel.docTitleStatus;
@@ -298,7 +297,7 @@ public class PaSNBizDoc implements IDoc<PaSNView>{
 	}
 
 	@Override
-	public void add(User user,PaSNView v) {
+	public void add(PaSNView v) {
 		// TODO Auto-generated method stub
 		
 	}
