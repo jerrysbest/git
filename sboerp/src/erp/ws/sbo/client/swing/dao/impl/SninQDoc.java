@@ -22,7 +22,7 @@ public class SninQDoc implements IQDoc{
            "'' " + 		         
            " from Odrf p " +
            "inner join Owhs q on p.filler=q.whscode " +
-           " where p.objtype='67' ";		
+           " where p.objtype='67' and p.docStatus<>'C'";		
 		 if(!plist.getBegindocid().equals(""))
  		{
  			hql+="and p.docentry>='"+plist.getBegindocid()+"' ";			

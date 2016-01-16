@@ -763,7 +763,6 @@ public class OignDoc implements IDoc<OignView>{
 		v.getOd().setGridStatus(docLineStatus.add);
 		//JOptionPane.showMessageDialog(null, "3");
 		
-		
 		dmv.setadd();
 		
 	}
