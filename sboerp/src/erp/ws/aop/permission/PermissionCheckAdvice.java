@@ -15,10 +15,17 @@ public class PermissionCheckAdvice implements MethodBeforeAdvice {
          System.out.println(appMain.user);  
          System.out.println("打印参数结束=======================");  
          System.out.println("by " + this.getClass().getName()+"::"  
-                 + "Target:"+target.getClass().getName()+"." +"Method:"+m.getName() +")");  
-         if (!appMain.user.isPermission(privilege)) {  
+                 + "Target:"+target.getClass().getName()+"." +"Method:"+m.getName() +")"); 
+         if(!(privilege.equals("ERP.WS.SBO.CLIENT.SWING.DAO.IMPL.SNINDOC.ADD")||privilege.equals("ERP.WS.SBO.CLIENT.SWING.DAO.IMPL.OIGNDOC.ADD")))
+         {
+        	 System.out.println("无需AOP权限拦截");  
+         }
+         else if (!appMain.user.isPermission(privilege)&&(privilege.equals("ERP.WS.SBO.CLIENT.SWING.DAO.IMPL.SNINDOC.ADD")||privilege.equals("ERP.WS.SBO.CLIENT.SWING.DAO.IMPL.OIGNDOC.ADD"))) {  
              throw new PermissionDeniedException(appMain.user, privilege);  
          }  
+         else{
+        	 System.out.println("有权限");  
+         }
        
      }  
 }

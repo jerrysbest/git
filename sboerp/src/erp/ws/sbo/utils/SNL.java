@@ -77,7 +77,7 @@ public class SNL {
     		ds.setCardCode(v.getOd().getValuethrheader(i, "业务伙伴").toString());
     		ds.setDirection(in);
     		ds.setIfPaSn(ifpasn);
-    		ds.setPaSn("");
+    		ds.setPaSn(v.getOd().getValuethrheader(i, "所属大序列号")==null?"":v.getOd().getValuethrheader(i, "所属大序列号").toString());
     		//ds.setMemo();
     		ds.setWareHouse(v.getOd().getValuethrheader(i, "仓库").toString());
     		ds.setCardCode(cardCode);

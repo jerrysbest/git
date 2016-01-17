@@ -460,7 +460,7 @@ public class SninDoc extends SninAbsDoc{
 		 v.getTxt_docn().setText(id.toString());
 		 v.getTxt_date().setText(ob[0][7].toString());
 		 v.getTxt_status().setText(ob[0][8].toString().equals("C")?"ÒÑÇå":"Î´Çå");
-		 JOptionPane.showMessageDialog(null,v.getJt1().getSelectedRow());
+		 //JOptionPane.showMessageDialog(null,v.getJt1().getSelectedRow());
 		 hql="select id=0, b.u_snid,0,b.itemcode,c.itemname,b.u_ymd,b.u_mtmd,c.salunitmsr," +
 		 	 "unitQty=isnull(b.U_mtmd,0)*isnull(c.u_mtzl,0)/isnull(c.u_mtmd,0),0," +
 		 	 "gs=isnull(b.u_gs,0),b.unitmsr,b.u_zz,b.quantity,b.u_scwc," +
@@ -470,7 +470,7 @@ public class SninDoc extends SninAbsDoc{
 			  "where  a.objtype='67' and a.docentry='"+id+"'";
 		 System.out.println(hql);
 		 v.getOd().updatetable(hql,0);		
-		 JOptionPane.showMessageDialog(null,v.getJt1().getSelectedRow());
+		 //JOptionPane.showMessageDialog(null,v.getJt1().getSelectedRow());
 		 v.getCom_users().setEditable(false); 
 		 v.getCom_users().setEnabled(false); 
 		 v.getCom_whs().setEditable(false);
