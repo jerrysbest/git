@@ -1,4 +1,4 @@
-package com.wg.test;
+package com.wg.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,7 +48,6 @@ public class UserController {
 			request.getSession().setAttribute("password", password);
 			if (loginExit == null) {
 			    System.out.println("用户不存在");
-
 				request.getSession().setAttribute("login", null);
 			} else {
 				System.out.println(loginExit);			
@@ -57,16 +56,13 @@ public class UserController {
 				Config.Status=true;
 
 				request.getSession().setAttribute("login", "Y");
-				
-
-			
+							
 				// 指定要返回的页面为succ.jsp
 				ModelAndView mav = new ModelAndView("succ");
 				// 将参数返回给页面
 				mav.addObject("username", username);
 				mav.addObject("password", password);
-				System.out
-						.println("username=" + username + " password=" + password);
+				System.out.println("username=" + username + " password=" + password);
 				return mav;
 			}
 			

@@ -1,4 +1,4 @@
-package com.wg.test;
+package com.wg.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

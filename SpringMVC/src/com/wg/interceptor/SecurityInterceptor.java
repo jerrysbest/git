@@ -7,13 +7,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.wg.common.Config;
-
 public class SecurityInterceptor implements HandlerInterceptor {  
 	  
     private static final String LOGIN_URL = "index.jsp";  
   
-
 	public void afterCompletion(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2, Exception arg3)
 			throws Exception {
 		// TODO Auto-generated method stub
