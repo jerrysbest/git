@@ -228,202 +228,131 @@
 	    <artifactId>AbsoluteLayout</artifactId>  
         <version>2.0.3</version>  
       </dependency>
-    <!--  
-      <dependency>  
-	    <groupId>com.self.comm</groupId>  
-	    <artifactId>comm</artifactId>  
-        <version>2.0.3</version>  
-        <scope>system</scope>    
-        <systemPath>${project.basedir}/lib/comm.jar</systemPath>  
-      </dependency>
-      -->
+    
+      <dependency>
+		<groupId>javax.comm</groupId>
+		<artifactId>comm</artifactId>
+		<version>2.0.3</version>
+	  </dependency>
+     
       <dependency>  
 	    <groupId>com.datepicker</groupId>  
 	    <artifactId>datepicker</artifactId>  
         <version>1.0.0</version>  
       </dependency>
-      <!--  
-      <dependency>  
-	    <groupId>com.self.commons.dbcp</groupId>  
-	    <artifactId>commons-dbcp</artifactId>  
-        <version>8.8.2</version>  
-        <scope>system</scope>         
-        <systemPath>${project.basedir}/lib/commons-dbcp.jar</systemPath>  
-      </dependency>
+       
+      <dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+			<version>1.4</version>
+	  </dependency>
       
-      <dependency>  
-	    <groupId>com.self.commons.collections</groupId>  
-	    <artifactId>commons-collections</artifactId>  
-        <version>3.1.0</version>  
-        <scope>system</scope>  
-      
-        <systemPath>${project.basedir}/lib/commons-collections-3.1.jar</systemPath>  
-      </dependency>
-      -->
-      <dependency>  
-	    <groupId>com.self.jgoodiescommon</groupId>  
-	    <artifactId>jgoodies-common</artifactId>  
-        <version>8.8.2</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/jgoodies-common.jar</systemPath>  
-      </dependency>
-      <dependency>  
-	    <groupId>com.self.jgoodiesforms</groupId>  
-	    <artifactId>jgoodies-forms</artifactId>  
-        <version>8.8.2</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/jgoodies-forms.jar</systemPath>  
-      </dependency>
+      <dependency>
+			<groupId>commons-collections</groupId>
+			<artifactId>commons-collections</artifactId>
+			<version>3.2.1</version>
+	  </dependency>
+	  <dependency>
+		<groupId>commons-logging</groupId>
+		<artifactId>commons-logging</artifactId>
+		<version>1.2</version>
+	  </dependency>     
+      <dependency>
+		<groupId>commons-pool</groupId>
+		<artifactId>commons-pool</artifactId>
+		<version>1.6</version>
+	  </dependency>
+	  <!-- 
       <dependency>  
 	    <groupId>com.self.jintegra</groupId>  
 	    <artifactId>jintegra</artifactId>  
         <version>8.8.2</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
+        <scope>system</scope>        
         <systemPath>${project.basedir}/lib/jintegra.jar</systemPath>  
       </dependency>
-      <dependency>  
-	    <groupId>com.self.jmxtools</groupId>  
-	    <artifactId>jmxtools</artifactId>  
-        <version>1.2.1</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/jmxtools-1.2.1.jar</systemPath>  
-      </dependency>
-      <dependency>  
-	    <groupId>com.self.jna</groupId>  
-	    <artifactId>jna</artifactId>  
-        <version>1.2.1</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/jna.jar</systemPath>  
-      </dependency>
-      <dependency>  
-	    <groupId>com.self.jta</groupId>  
-	    <artifactId>jta</artifactId>  
-        <version>1.2.1</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/jta-1.1.jar</systemPath>  
-      </dependency>
-      <dependency>  
-	    <groupId>com.self.jxl</groupId>  
-	    <artifactId>jxl</artifactId>  
-        <version>1.2.1</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/jxl.jar</systemPath>  
-      </dependency>
-      <!-- 
-      <dependency>  
-	    <groupId>com.self.sqljdbc4</groupId>  
-	    <artifactId>sqljdbc4</artifactId>  
-        <version>1.2.14</version>  
-        <scope>system</scope>   
-        <systemPath>${project.basedir}/lib/sqljdbc4.jar</systemPath>  
-      </dependency>
       -->
-       <dependency>  
-	    <groupId>com.self.swt</groupId>  
-	    <artifactId>swt</artifactId>  
-        <version>1.2.14</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/swt.jar</systemPath>  
-      </dependency>
-      <dependency>  
-	    <groupId>com.self.swinglayout</groupId>  
-	    <artifactId>swing-layout</artifactId>  
-        <version>1.0.3</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/swing-layout-1.0.3.jar</systemPath>  
-      </dependency>
-      <dependency>  
-	    <groupId>com.self.DJNativeSwing</groupId>  
-	    <artifactId>DJNativeSwing</artifactId>  
-        <version>1.0.3</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/DJNativeSwing.jar</systemPath>  
-      </dependency>
-      <dependency>  
-	    <groupId>com.self.antlr</groupId>  
-	    <artifactId>antlr</artifactId>  
-        <version>2.7.6</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/antlr-2.7.6.jar</systemPath>  
-      </dependency>
-      <dependency>  
-	    <groupId>com.self.DJNativeSwingSWT</groupId>  
-	    <artifactId>DJNativeSwing-SWT</artifactId>  
-        <version>1.0.3</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/DJNativeSwing-SWT.jar</systemPath>  
-      </dependency>
-      <dependency>  
-	    <groupId>com.springsource.net.sf.cglib</groupId>  
-	    <artifactId>net.sf.cglib</artifactId>  
-        <version>2.2.0</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/com.springsource.net.sf.cglib-2.2.0.jar</systemPath>  
-      </dependency>
-      <!--  
-      <dependency>  
-	    <groupId>com.springsource.org.aopalliance</groupId>  
-	    <artifactId>aopalliance</artifactId>  
-        <version>1.0.0</version>  
-        <scope>system</scope>         
-        <systemPath>${project.basedir}/lib/com.springsource.org.aopalliance-1.0.0.jar</systemPath>  
-      </dependency>
-      
-      <dependency>  
-	    <groupId>com.springsource.org.apache.commons.logging</groupId>  
-	    <artifactId>org.apache.commons.logging</artifactId>  
-        <version>1.1.1</version>  
-        <scope>system</scope>  
+      <dependency>
+		<groupId>com.jgoodies</groupId>
+		<artifactId>jgoodies-common</artifactId>
+		<version>1.8.1</version>
+	  </dependency>
+      <dependency>
+		<groupId>com.jgoodies</groupId>
+		<artifactId>jgoodiesforms</artifactId>
+		<version>1.5.1</version>
+	  </dependency>    
+      <dependency>
+		 <groupId>com.sun.jdmk</groupId>
+		 <artifactId>jmxtools</artifactId>
+		 <version>1.2.1</version>
+	  </dependency>
+      <dependency>
+		<groupId>net.java.dev.jna</groupId>
+		<artifactId>jna</artifactId>
+		<version>4.1.0</version>
+	  </dependency>
+      <dependency>
+		<groupId>javax.transaction</groupId>
+		<artifactId>jta</artifactId>
+		<version>1.1</version>
+	  </dependency>
+      <dependency>
+		<groupId>net.sourceforge.jexcelapi</groupId>
+		<artifactId>jxl</artifactId>
+		<version>2.6.12</version>
+	 </dependency>
+     <dependency>
+		<groupId>swt</groupId>
+		<artifactId>swt-win32</artifactId>
+		<version>3.0m8</version>
+	 </dependency>
+     <dependency>
+		<groupId>net.java.dev.swing-layout</groupId>
+		<artifactId>swing-layout</artifactId>
+		<version>1.0.2</version>
+	 </dependency>
+     <dependency>
+		<groupId>com.hynnet</groupId>
+		<artifactId>DJNativeSwing</artifactId>
+		<version>1.0.0</version>
+	  </dependency>
+      <dependency>
+		<groupId>antlr</groupId>
+		<artifactId>antlr</artifactId>
+		<version>2.7.7</version>
+	  </dependency>
+      <dependency>
+		<groupId>com.hynnet</groupId>
+		<artifactId>DJNativeSwing-SWT</artifactId>
+		<version>1.0.0</version>
+	  </dependency>
+      <dependency>
+		<groupId>cglib</groupId>
+		<artifactId>cglib</artifactId>
+		<version>3.1</version>
+	 </dependency>
         
-        <systemPath>${project.basedir}/lib/com.springsource.org.apache.commons.logging-1.1.1.jar</systemPath>  
-      </dependency>
-      
-      <dependency>  
-	    <groupId>com.springsource.org.apache.commons.pool</groupId>  
-	    <artifactId>org.apache.commons.pool</artifactId>  
-        <version>1.5.3</version>  
-        <scope>system</scope>  
-        
-        <systemPath>${project.basedir}/lib/com.springsource.org.apache.commons.pool-1.5.3.jar</systemPath>  
-      </dependency>
-      -->
-      <dependency>  
-	    <groupId>com.springsource.org.apache.log4j</groupId>  
-	    <artifactId>org.apache.log4j</artifactId>  
-        <version>1.2.15</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/com.springsource.org.apache.log4j-1.2.15.jar</systemPath>  
-      </dependency>
-       <dependency>  
-	    <groupId>com.springsource.org.aspectj.weaver</groupId>  
-	    <artifactId>org.aspectj.weaver</artifactId>  
-        <version>1.6.8</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/com.springsource.org.aspectj.weaver-1.6.8.RELEASE.jar</systemPath>  
-      </dependency>
-       <dependency>  
-	    <groupId>org.springframework.transaction</groupId>  
-	    <artifactId>springframework.transaction</artifactId>  
-        <version>3.0.5</version>  
-        <scope>system</scope>  
-        <!--本地jar的路径,相对或者绝对都可以-->  
-        <systemPath>${project.basedir}/lib/org.springframework.transaction-3.0.5.RELEASE.jar</systemPath>  
-      </dependency>
+     <dependency>
+		<groupId>aopalliance</groupId>
+		<artifactId>aopalliance</artifactId>
+		<version>1.0</version>
+	</dependency>
+    
+    <dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.17</version>
+	</dependency>
+    <dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjweaver</artifactId>
+		<version>1.8.6</version>
+	</dependency>
+    <dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-tx</artifactId>
+		<version>3.0.5.RELEASE</version>
+	 </dependency>
       <!-- pentaho -->
       <dependency>  
 	     <groupId>pentaho.bsf</groupId>  
@@ -520,8 +449,7 @@
 	     <groupId>pentaho.reporting.engine.legacy.charts</groupId>  
 	     <artifactId>prenginelc</artifactId>  
          <version>3.8.2-GA</version>  
-       </dependency>
-        
+       </dependency>        
         <dependency>
         	<groupId>javax.comm</groupId>
         	<artifactId>comm</artifactId>
