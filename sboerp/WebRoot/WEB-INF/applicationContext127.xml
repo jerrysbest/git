@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:p="http://www.springframework.org/schema/p" 
+xmlns:aop="http://www.springframework.org/schema/aop" 
+xsi:schemaLocation=" http://www.springframework.org/schema/beans 
+classpath:/org/springframework/beans/factory/xml/spring-beans-3.0.xsd  
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+http://www.springframework.org/schema/aop    
+http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
@@ -248,7 +256,7 @@
 	<bean id="OworQDoc" class="erp.ws.sbo.client.swing.dao.impl.OworQDoc"/>
 	<bean id="OignFactory" class="erp.ws.sbo.client.swing.dao.impl.OignFactory">
 		<property name="idoc">
-			<ref local="OignDoc"/>
+			<ref local="OignAop"/>
 		</property>
 		<property name="iqdocm">
 			<ref local="OignQDoc"/>
@@ -291,6 +299,9 @@
 	<bean id="SninFactory" class="erp.ws.sbo.client.swing.dao.impl.SninFactory">
 		<property name="isabsdocm">
 			<ref local="SninDoc"/>
+		</property>
+		<property name="idoc">
+			<ref local="bean"/>
 		</property>
 		<property name="iqdocm">
 			<ref local="SninQDoc"/>
@@ -336,10 +347,10 @@
 	<bean id="PaSNQDoc" class="erp.ws.sbo.client.swing.dao.impl.PaSNQDoc"/>
 		
 	<!-- interceptor AOP
-	<bean id="beforeAdvice" class="erp.ws.aop.Advice.BeforeAdvice"></bean>
-	<bean id="afterAdvice" class="erp.ws.aop.Advice.AfterAdvice"></bean>
-	<bean id="compareInterceptor" class="erp.ws.aop.Advice.CompareInterceptor"></bean>
-	<bean id="studenttarget" class="erp.ws.aop.study.Impl.StudentImpl"></bean>
+	<bean id="beforeAdvice" class="com.dragon.Advice.BeforeAdvice"></bean>
+	<bean id="afterAdvice" class="com.dragon.Advice.AfterAdvice"></bean>
+	<bean id="compareInterceptor" class="com.dragon.Advice.CompareInterceptor"></bean>
+	<bean id="studenttarget" class="com.dragon.study.Impl.StudentImpl"></bean>
 	
 	<bean id="student" class="org.springframework.aop.framework.ProxyFactoryBean">
 	  <property name="proxyInterfaces">
@@ -359,5 +370,85 @@
 	</bean>   
 	-->    
 	<!-- AOP 5 methods of declarative transaction http://www.sjsjw.com/kf_other/article/55_26704_11000.asp -->
-	
+   <!--  
+    <bean id="myService" class="org.springframework.aop.framework.ProxyFactoryBean">  
+       <property name="interceptorNames">  
+           <list>  
+               <value>beforeInterceptor</value>  
+           </list>  
+       </property>  
+       <property name="target">  
+           <ref bean="realServiceTarget" />  
+       </property>  
+    </bean>  
+      
+    <bean id="realServiceTarget" class="cn.xxxx.xxx.Xxxx"/>  
+    <bean id="beforeInterceptor" class="cn.xxxx.xxx.MyChecker"/>  
+    -->
+    <!-- AOP implement permission management -->
+     <bean id="OignAop" class="org.springframework.aop.framework.ProxyFactoryBean">  
+        <property name="proxyInterfaces">  
+            <value>erp.ws.sbo.client.swing.dao.IDoc</value>  
+        </property>  
+        <property name="target">  
+            <ref local="OignDoc"/>  
+        </property>  
+        <property name="interceptorNames">  
+            <list>  
+                <value>permissionCheckBeforeAdvisor</value>  
+                <value>permissionThrowAdvisor</value>  
+            </list>  
+        </property>  
+    </bean>                 
+	 <bean id="bean" class="org.springframework.aop.framework.ProxyFactoryBean">  
+        <property name="proxyInterfaces">  
+            <value>erp.ws.sbo.client.swing.dao.IDoc</value>  
+        </property>  
+        <property name="target">  
+            <ref local="SninDoc"/>  
+        </property>  
+        <property name="interceptorNames">  
+            <list>  
+                <value>permissionCheckBeforeAdvisor</value>  
+                <value>permissionThrowAdvisor</value>  
+            </list>  
+        </property>  
+    </bean>                
+   <!-- 
+   <bean id="service" class="org.springframework.aop.framework.ProxyFactoryBean">  
+        <property name="proxyInterfaces">  
+            <value>erp.ws.sbo.client.swing.dao.IDoc</value>  
+        </property>  
+        <property name="target">  
+            <ref local="serviceBean"/>  
+        </property>  
+    </bean>  
+     <bean id="serviceBean" class="com.jhalo.jsecurity.aop.ServiceBean">  
+        <property name="bean">  
+            <ref local="bean"/>  
+        </property>  
+    </bean> 
+    -->
+      
+    <bean id="permissionCheckBeforeAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">  
+        <property name="advice">  
+            <ref local="thePermissionCheckBeforeAdvice"/>  
+        </property>  
+        <property name="pattern">  
+            <value>.*</value>  
+        </property>  
+    </bean>  
+      
+    <bean id="permissionThrowAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">  
+        <property name="advice">  
+            <ref local="thePermissionThrowsAdvice"/>  
+        </property>  
+        <property name="pattern">  
+            <value>.*</value>  
+        </property>  
+    </bean>  
+      
+    <bean id="thePermissionCheckBeforeAdvice" class="erp.ws.aop.permission.PermissionCheckAdvice"/>  
+    <bean id="thePermissionThrowsAdvice" class="erp.ws.aop.permission.PermissionThrowsAdvice"/>  
+    
 </beans>
