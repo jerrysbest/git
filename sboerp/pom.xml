@@ -1,12 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" 
 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>sboerp</groupId>
   <artifactId>sboerp</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-
-   
+  <version>0.0.1-SNAPSHOT</version>   
     <properties>  
         <spring.version>3.0.5.RELEASE</spring.version>  
         <spring.security.version>3.0.5.RELEASE</spring.security.version>  
@@ -45,6 +44,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
             </archive>  
         </configuration>  
       </plugin> 
+      <!--   
       <plugin>  
         <artifactId>maven-assembly-plugin</artifactId>  
         <configuration>  
@@ -67,16 +67,15 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
                 </goals>  
             </execution>  
         </executions>  
-    </plugin> 
-   
-    <!--   
+    </plugin>  
+      -->
     <plugin>  
         <groupId>org.apache.maven.plugins</groupId>  
         <artifactId>maven-shade-plugin</artifactId>  
-        <version>1.4</version>  
+        <version>2.3</version>  
         <configuration>  
           <transformers>  
-            <transformer implementation = "org.apache.maven.plugins.shade.resource.MainifestResourceTransformer">  
+            <transformer implementation = "org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">  
             <mainClass>erp.ws.sbo.client.swing.app.appMain</mainClass>  
             </transformer>  
           </transformers>  
@@ -90,7 +89,49 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
           </execution>  
         </executions>  
       </plugin> 
-      -->  
+      
+      <plugin>
+		<groupId>com.akathist.maven.plugins.launch4j</groupId>
+		<artifactId>launch4j-maven-plugin</artifactId>
+		<version>1.7.4</version>
+		<executions>
+			<execution>
+				<id>l4j-clui</id>
+				<phase>package</phase>
+				<goals>
+					<goal>launch4j</goal>
+				</goals>
+				<configuration>
+					<headerType>gui</headerType>
+					<jar>${project.build.directory}/${artifactId}-${version}.jar</jar>
+					<outfile>${project.build.directory}/qserp.exe</outfile>
+					<downloadUrl>http://java.com/download</downloadUrl>
+					<classPath>
+						<mainClass>erp.ws.sbo.client.swing.app.appMain</mainClass>
+						<preCp>anything</preCp>
+					</classPath>
+					<icon></icon>
+					<jre>
+						<minVersion>1.6.0</minVersion>
+						<jdkPreference>preferJre</jdkPreference>
+					</jre>
+					<versionInfo>
+						<fileVersion>1.0.0.0</fileVersion>
+						<txtFileVersion>${project.version}</txtFileVersion>
+						<fileDescription>${project.name}</fileDescription>
+						<copyright>2012 qserp.com</copyright>
+						<productVersion>1.0.0.0</productVersion>
+						<txtProductVersion>1.0.0.0</txtProductVersion>
+						<productName>${project.name}</productName>
+						<companyName>qserp.com</companyName>
+						<internalName>qserp</internalName>
+						<originalFilename>qserp.exe</originalFilename>
+					</versionInfo>
+				</configuration>
+			</execution>
+		</executions>
+	  </plugin>
+	  
     </plugins>
   </build>
   <dependencies>
@@ -292,11 +333,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		<groupId>swt</groupId>
 		<artifactId>swt-win32</artifactId>
 		<version>3.0m8</version>
-	 </dependency>
-     <dependency>
-		<groupId>net.java.dev.swing-layout</groupId>
-		<artifactId>swing-layout</artifactId>
-		<version>1.0.2</version>
 	 </dependency>
      <dependency>
 		<groupId>com.hynnet</groupId>
