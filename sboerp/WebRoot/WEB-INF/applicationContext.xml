@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation=" http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/aop    http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:p="http://www.springframework.org/schema/p" 
+xmlns:aop="http://www.springframework.org/schema/aop" 
+xsi:schemaLocation=" http://www.springframework.org/schema/beans  
+classpath:/org/springframework/beans/factory/xml/spring-beans-3.0.xsd 
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+http://www.springframework.org/schema/aop    
+http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
 		</property>
-		<property name="url" value="jdbc:sqlserver://192.168.0.102:1433;databasename=NQS">
+		<property name="url" value="jdbc:sqlserver://192.168.52.2:1433;databasename=NQS">
 		</property>
 		<property name="username" value="sa"/>
-		<property name="password" value="Shqsdxc20120324"/> 
+		<property name="password" value="123"/> 
 	</bean>
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource">
@@ -114,10 +122,10 @@
 	<bean id="dataSource-common" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
 		</property>
-		<property name="url" value="jdbc:sqlserver://192.168.0.102:1433;databasename=sbo-common">
+		<property name="url" value="jdbc:sqlserver://192.168.52.2:1433;databasename=sbo-common">
 		</property>
 		<property name="username" value="sa"/>
-		<property name="password" value="Shqsdxc20120324"/> 
+		<property name="password" value="123"/> 
 	</bean>
 	<bean id="sessionFactory-common" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource">
@@ -145,15 +153,15 @@
 	
 		</bean>
 	<bean id="appconfig" class="erp.ws.sbo.client.swing.app.appConfigBean">
-		<property name="dserver" value="192.168.0.102">
+		<property name="dserver" value="192.168.52.2">
 		</property>
-		<property name="lserver" value="192.168.0.101">
+		<property name="lserver" value="192.168.52.2">
 		</property>
 		<property name="comdb" value="NQS">
 		</property>
 		<property name="dbusername" value="sa">
 		</property>
-		<property name="dbuserpas" value="Shqsdxc20120324">
+		<property name="dbuserpas" value="123">
 		</property>
 	</bean>
 	

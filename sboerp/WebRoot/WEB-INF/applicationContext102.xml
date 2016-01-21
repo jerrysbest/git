@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p" xmlns:aop="http://www.springframework.org/schema/aop" xsi:schemaLocation=" http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/aop    http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
 		</property>
-		<property name="url" value="jdbc:sqlserver://192.168.52.2:1433;databasename=NQS">
+		<property name="url" value="jdbc:sqlserver://192.168.0.102:1433;databasename=NQS">
 		</property>
 		<property name="username" value="sa"/>
-		<property name="password" value="123"/> 
+		<property name="password" value="Shqsdxc20120324"/> 
 	</bean>
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource">
@@ -114,10 +114,10 @@
 	<bean id="dataSource-common" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
 		</property>
-		<property name="url" value="jdbc:sqlserver://192.168.52.2:1433;databasename=sbo-common">
+		<property name="url" value="jdbc:sqlserver://192.168.0.102:1433;databasename=sbo-common">
 		</property>
 		<property name="username" value="sa"/>
-		<property name="password" value="123"/> 
+		<property name="password" value="Shqsdxc20120324"/> 
 	</bean>
 	<bean id="sessionFactory-common" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
 		<property name="dataSource">
@@ -145,15 +145,15 @@
 	
 		</bean>
 	<bean id="appconfig" class="erp.ws.sbo.client.swing.app.appConfigBean">
-		<property name="dserver" value="192.168.52.2">
+		<property name="dserver" value="192.168.0.102">
 		</property>
-		<property name="lserver" value="192.168.52.2">
+		<property name="lserver" value="192.168.0.101">
 		</property>
 		<property name="comdb" value="NQS">
 		</property>
 		<property name="dbusername" value="sa">
 		</property>
-		<property name="dbuserpas" value="123">
+		<property name="dbuserpas" value="Shqsdxc20120324">
 		</property>
 	</bean>
 	
@@ -173,7 +173,6 @@
 			<ref bean="sessionFactory"/>
 		</property>
 	</bean>
-
 	<bean id="DeSN" class="erp.ws.sbo.dao.impl.DeSN">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory"/>
@@ -249,7 +248,7 @@
 	<bean id="OworQDoc" class="erp.ws.sbo.client.swing.dao.impl.OworQDoc"/>
 	<bean id="OignFactory" class="erp.ws.sbo.client.swing.dao.impl.OignFactory">
 		<property name="idoc">
-			<ref local="OignDoc"/>
+			<ref local="OignAop"/>
 		</property>
 		<property name="iqdocm">
 			<ref local="OignQDoc"/>
@@ -292,6 +291,9 @@
 	<bean id="SninFactory" class="erp.ws.sbo.client.swing.dao.impl.SninFactory">
 		<property name="isabsdocm">
 			<ref local="SninDoc"/>
+		</property>
+		<property name="idoc">
+			<ref local="bean"/>
 		</property>
 		<property name="iqdocm">
 			<ref local="SninQDoc"/>
@@ -360,13 +362,28 @@
 	</bean>   
 	-->    
 	<!-- AOP 5 methods of declarative transaction http://www.sjsjw.com/kf_other/article/55_26704_11000.asp -->
-	<!-- AOP implement permission management 
-	 <bean id="bean" class="org.springframework.aop.framework.ProxyFactoryBean">  
+   <!--  
+    <bean id="myService" class="org.springframework.aop.framework.ProxyFactoryBean">  
+       <property name="interceptorNames">  
+           <list>  
+               <value>beforeInterceptor</value>  
+           </list>  
+       </property>  
+       <property name="target">  
+           <ref bean="realServiceTarget" />  
+       </property>  
+    </bean>  
+      
+    <bean id="realServiceTarget" class="cn.xxxx.xxx.Xxxx"/>  
+    <bean id="beforeInterceptor" class="cn.xxxx.xxx.MyChecker"/>  
+    -->
+    <!-- AOP implement permission management -->
+     <bean id="OignAop" class="org.springframework.aop.framework.ProxyFactoryBean">  
         <property name="proxyInterfaces">  
             <value>erp.ws.sbo.client.swing.dao.IDoc</value>  
         </property>  
         <property name="target">  
-            <ref local="beanTarget"/>  
+            <ref local="OignDoc"/>  
         </property>  
         <property name="interceptorNames">  
             <list>  
@@ -374,8 +391,23 @@
                 <value>permissionThrowAdvisor</value>  
             </list>  
         </property>  
-    </bean>  
-    <bean id="service" class="org.springframework.aop.framework.ProxyFactoryBean">  
+    </bean>                 
+	 <bean id="bean" class="org.springframework.aop.framework.ProxyFactoryBean">  
+        <property name="proxyInterfaces">  
+            <value>erp.ws.sbo.client.swing.dao.IDoc</value>  
+        </property>  
+        <property name="target">  
+            <ref local="SninDoc"/>  
+        </property>  
+        <property name="interceptorNames">  
+            <list>  
+                <value>permissionCheckBeforeAdvisor</value>  
+                <value>permissionThrowAdvisor</value>  
+            </list>  
+        </property>  
+    </bean>                
+   <!-- 
+   <bean id="service" class="org.springframework.aop.framework.ProxyFactoryBean">  
         <property name="proxyInterfaces">  
             <value>erp.ws.sbo.client.swing.dao.IDoc</value>  
         </property>  
@@ -383,14 +415,12 @@
             <ref local="serviceBean"/>  
         </property>  
     </bean>  
-      
-    <bean id="beanTarget" class="com.jhalo.jsecurity.aop.ResourceBeanImpl"></bean>  
-      
-    <bean id="serviceBean" class="com.jhalo.jsecurity.aop.ServiceBean">  
+     <bean id="serviceBean" class="com.jhalo.jsecurity.aop.ServiceBean">  
         <property name="bean">  
             <ref local="bean"/>  
         </property>  
-    </bean>  
+    </bean> 
+    -->
       
     <bean id="permissionCheckBeforeAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">  
         <property name="advice">  
@@ -410,7 +440,7 @@
         </property>  
     </bean>  
       
-    <bean id="thePermissionCheckBeforeAdvice" class="erp.ws.aop.permission.PermissionCheckAdvice"></bean>  
-    <bean id="thePermissionThrowsAdvice" class="erp.ws.aop.permission.PermissionThrowsAdvice"></bean>  
-    -->
+    <bean id="thePermissionCheckBeforeAdvice" class="erp.ws.aop.permission.PermissionCheckAdvice"/>  
+    <bean id="thePermissionThrowsAdvice" class="erp.ws.aop.permission.PermissionThrowsAdvice"/>  
+    
 </beans>
