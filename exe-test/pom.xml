@@ -19,13 +19,14 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.6</source>
+					<target>1.6</target>
 				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-shade-plugin</artifactId>
+				<version>2.3</version>
 				<executions>
 					<execution>
 						<phase>package</phase>
@@ -48,6 +49,7 @@
 			<plugin>
 				<groupId>com.akathist.maven.plugins.launch4j</groupId>
 				<artifactId>launch4j-maven-plugin</artifactId>
+				<version>1.7.4</version>
 				<executions>
 					<execution>
 						<id>l4j-clui</id>
@@ -66,7 +68,7 @@
 							</classPath>
 							<icon>src/resources/0.ico</icon>
 							<jre>
-								<minVersion>1.7.0</minVersion>
+								<minVersion>1.6.0</minVersion>
 								<jdkPreference>preferJre</jdkPreference>
 							</jre>
 							<versionInfo>
