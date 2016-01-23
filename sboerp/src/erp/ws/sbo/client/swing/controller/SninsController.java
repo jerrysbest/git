@@ -868,7 +868,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 					 v.getDsv().setVisible(true);
 					 v.getDsv().setAlwaysOnTop(true);				    		
 	    	    }	
-			    JOptionPane.showMessageDialog(null, "0");
+			    //JOptionPane.showMessageDialog(null, "0");
 			    v.getDsv().getOd().setDocLineStatus(docLineStatus.remend);
 				//v.getDsv().getOd().setGridStatus(docLineStatus.add);
 			    
@@ -1310,7 +1310,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		// TODO Auto-generated method stub
 		Integer vi;
 		try{
-		  JOptionPane.showMessageDialog(null,v.getJt1().getSelectedRow());
+		  //JOptionPane.showMessageDialog(null,v.getJt1().getSelectedRow());
 		  vi=v.getJt1().getSelectedRow();		  
 		}
 		catch(ClassCastException e0){
