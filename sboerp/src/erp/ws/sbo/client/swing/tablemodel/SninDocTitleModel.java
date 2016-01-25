@@ -53,7 +53,7 @@ public class SninDocTitleModel extends AbstractDocTitleModel<ColDocTitle, DocTit
 			((SninView)view).getTxt_length().setText("0");
 			hql="select isnull(max(docEntry),0) from Odrf where objtype='67'";
 			Integer Ndoce= (Integer) appMain.lt.sqlclob(hql, 0, 1)[0][0]+1;
-		
+			((SninView)view).getTxt_status().setText("²Ý¸å");	
 			((SninView)view).getTxt_docn().setText(Ndoce.toString());	
 			((SninView)view).getDsv().getOd().setGridStatus(docLineStatus.add);
 			((SninView)view).getIfseal().setVisible(false);

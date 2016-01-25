@@ -530,7 +530,21 @@ public class SninDoc extends SninAbsDoc{
 	@Override
 	public void close(SninView v)
 	{
-		
+		if(v.getTxt_status().getText().equals("未清"))
+		{		
+			try {
+				appMain.odoc=SBOCOMUtil.newDocuments(appMain.oCompany,SBOCOMConstants.BoObjectTypes_Document_oDrafts);
+				 if(appMain.odoc.getByKey(Integer.valueOf(v.getTxt_docn().getText())))
+		         {
+					 hql = "update odrf set docStatus='C' WHERE docentry='"+v.getTxt_docn().getText()+"'";
+					 dbu.exeSql(hql);
+		             v.getTxt_status().setText("已清");
+		         }
+			} catch (SBOCOMException e1) {
+				// TODO Auto-generated catch block			
+				e1.printStackTrace();			
+			}	
+		}
 	}
 	public SninView getV() {
 		return v;
@@ -544,12 +558,10 @@ public class SninDoc extends SninAbsDoc{
 	public void print(SninView v) {
 		// TODO Auto-generated method stub
 		 if(v.getOd1().ds.getCnValue().equals("查询"))
-		 {
-			 
+		 {			 
 			 try{   
 				 String tb;				
-			     tb=appMain.oCompany.getServer()+"+"+appMain.oCompany.getCompanyDB()+"+"+appMain.oCompany.getDbUserName()+"+"+appMain.config.getDbuserpas()+"+"+"d:\\ncr\\库存转储草稿.rpt"+"+"+"DH"+"+"+v.getTxt_docn().getText()+"+"+"Printkczc";
-				 
+			     tb=appMain.oCompany.getServer()+"+"+appMain.oCompany.getCompanyDB()+"+"+appMain.oCompany.getDbUserName()+"+"+appMain.config.getDbuserpas()+"+"+"d:\\ncr\\库存转储草稿.rpt"+"+"+"DH"+"+"+v.getTxt_docn().getText()+"+"+"Printkczc";				 
 				 ActiveXComponent dotnetCom = null;    
 	             dotnetCom = new ActiveXComponent("ReportCenter.PushServerProvider");     //需要调用的C#代码中的命名空间名和类名。  
 	             Variant var=Dispatch.call(dotnetCom,"ResponseRenderAsyc",new Variant(tb),null);
