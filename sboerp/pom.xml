@@ -30,6 +30,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
           <target>1.6</target>
         </configuration>
       </plugin>
+      <!-- 
       <plugin>  
         <groupId>org.apache.maven.plugins</groupId>  
         <artifactId>maven-jar-plugin</artifactId>  
@@ -44,14 +45,20 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             </archive>  
         </configuration>  
       </plugin> 
-      <!--   
+       --> 
       <plugin>  
         <artifactId>maven-assembly-plugin</artifactId>  
         <configuration>  
             <appendAssemblyId>false</appendAssemblyId>  
+            
             <descriptorRefs>  
-                <descriptorRef>jar-with-dependencies</descriptorRef>  
+                 <descriptorRef>jar-with-dependencies</descriptorRef>                               
             </descriptorRefs>  
+            
+            <descriptors>
+                 <descriptor>assemble/package.xml</descriptor>
+            </descriptors>
+
             <archive>  
                 <manifest>  
                     <mainClass>erp.ws.sbo.client.swing.app.appMain</mainClass>  
@@ -68,7 +75,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
             </execution>  
         </executions>  
     </plugin>  
-      -->
+      <!-- 
     <plugin>  
         <groupId>org.apache.maven.plugins</groupId>  
         <artifactId>maven-shade-plugin</artifactId>  
@@ -103,7 +110,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 				</goals>
 				<configuration>
 					<headerType>gui</headerType>
-					<jar>${project.build.directory}/${artifactId}-${version}.jar</jar>
+					<jar>${project.build.directory}/${project.artifactId}-${project.version}.jar</jar>
 					<outfile>${project.build.directory}/qserp.exe</outfile>
 					<downloadUrl>http://java.com/download</downloadUrl>
 					<classPath>
@@ -131,7 +138,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 			</execution>
 		</executions>
 	  </plugin>
-	  
+	  -->
     </plugins>
   </build>
   <dependencies>
@@ -271,14 +278,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	    <groupId>com.AbsoluteLayout</groupId>  
 	    <artifactId>AbsoluteLayout</artifactId>  
         <version>2.0.3</version>  
-      </dependency>
-    
-      <dependency>
-		<groupId>javax.comm</groupId>
-		<artifactId>comm</artifactId>
-		<version>2.0.3</version>
-	  </dependency>
-     
+      </dependency>     
       <dependency>  
 	    <groupId>com.datepicker</groupId>  
 	    <artifactId>datepicker</artifactId>  
@@ -359,12 +359,6 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
 		<groupId>aopalliance</groupId>
 		<artifactId>aopalliance</artifactId>
 		<version>1.0</version>
-	</dependency>
-    
-    <dependency>
-		<groupId>log4j</groupId>
-		<artifactId>log4j</artifactId>
-		<version>1.2.17</version>
 	</dependency>
     <dependency>
 		<groupId>org.aspectj</groupId>

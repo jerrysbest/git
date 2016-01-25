@@ -6,19 +6,22 @@
     </formats>
     <includeBaseDirectory>true</includeBaseDirectory>
     <fileSets>
+        <!-- 
         <fileSet>
             <directory>src/main/bin</directory>
             <outputDirectory>/</outputDirectory>
         </fileSet>
-        <fileSet>
-            <directory>src/main/config</directory>
-            <outputDirectory>config</outputDirectory>
-        </fileSet>
-    </fileSets>
-    <dependencySets>
+        <dependencySets>
         <dependencySet>
             <outputDirectory>lib</outputDirectory>
             <scope>runtime</scope>
         </dependencySet>
-    </dependencySets>
+        </dependencySets>
+         -->
+        <fileSet>
+            <directory>WebRoot</directory>
+            <outputDirectory>WebRoot</outputDirectory>
+        </fileSet>
+    </fileSets>
+    
 </assembly>
