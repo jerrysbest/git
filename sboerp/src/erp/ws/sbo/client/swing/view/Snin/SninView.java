@@ -276,7 +276,7 @@ public class SninView extends JInternalFrame{
 		 	"U_Usid=(select branch from ousr where userid='"+appMain.oCompany.getUserSignature() + "') and U_Djlx='Z')";
 		 }
 		 com_whs=new JUComboBox(hql);
-		 hql="select whscode,whscode from owhs where whscode like '210%'";	
+		 hql="select whscode,whscode from owhs where whscode in ('2107','2108','2109')";	
 		 com_whsin=new JUComboBox(hql);
 		 lay7.putConstraint(SpringLayout.WEST, com_whsin, 1, SpringLayout.EAST, lab_wareh);
 		 lay7.putConstraint(SpringLayout.SOUTH, com_whsin, 0, SpringLayout.SOUTH, ifseal);
@@ -367,9 +367,9 @@ public class SninView extends JInternalFrame{
 		 pane1.add(lab_status);
 		 pane1.add(txt_status);
 		 //SN
-		 com_company=new JComboBox();
-		 lay7.putConstraint(SpringLayout.NORTH, com_company, -3, SpringLayout.NORTH, lab_cweight);
-		 lay7.putConstraint(SpringLayout.EAST, com_company, 0, SpringLayout.EAST, txt_pweight);
+		com_company=new JComboBox();
+		lay7.putConstraint(SpringLayout.NORTH, com_company, -3, SpringLayout.NORTH, lab_cweight);
+		lay7.putConstraint(SpringLayout.EAST, com_company, 0, SpringLayout.EAST, txt_pweight);
 		lay6.putConstraint(SpringLayout.EAST, txt_down, 0, SpringLayout.EAST, txt_codetype);
 		lay6.putConstraint(SpringLayout.EAST, txt_up, 0, SpringLayout.EAST, txt_codetype);
 		lay6.putConstraint(SpringLayout.EAST, txt_codegap, 0, SpringLayout.EAST, txt_codetype);
@@ -443,103 +443,103 @@ public class SninView extends JInternalFrame{
 		lay7.putConstraint(SpringLayout.NORTH, lab_specification, 10, SpringLayout.NORTH, pane7);
 		lay7.putConstraint(SpringLayout.WEST, com_specification, 70,SpringLayout.WEST, pane7);
 		lay7.putConstraint(SpringLayout.NORTH, com_specification, 10, SpringLayout.NORTH, pane7);		 
-		 lay7.putConstraint(SpringLayout.WEST, lab_length, 10,SpringLayout.WEST, pane7);
-		 lay7.putConstraint(SpringLayout.NORTH, lab_length, 40, SpringLayout.NORTH, pane7);
-		 lay7.putConstraint(SpringLayout.WEST, txt_length, 70,SpringLayout.WEST, pane7);
-		 lay7.putConstraint(SpringLayout.NORTH, txt_length, 40, SpringLayout.NORTH, pane7);		 
-		 lay7.putConstraint(SpringLayout.WEST, lab_weight, 10,SpringLayout.WEST, pane7);
-		 lay7.putConstraint(SpringLayout.NORTH, lab_weight, 70, SpringLayout.NORTH, pane7);
-		 lay7.putConstraint(SpringLayout.WEST, txt_weight, 70,SpringLayout.WEST, pane7);
-		 lay7.putConstraint(SpringLayout.NORTH, txt_weight, 70, SpringLayout.NORTH, pane7);		 
-		 lay7.putConstraint(SpringLayout.WEST, lab_cweight, 10,SpringLayout.WEST, pane7);
-		 lay7.putConstraint(SpringLayout.NORTH, lab_cweight, 100, SpringLayout.NORTH, pane7);
-		 lay7.putConstraint(SpringLayout.WEST, txt_cweight, 70,SpringLayout.WEST, pane7);
-		 lay7.putConstraint(SpringLayout.NORTH, txt_cweight, 100, SpringLayout.NORTH, pane7);
+		lay7.putConstraint(SpringLayout.WEST, lab_length, 10,SpringLayout.WEST, pane7);
+		lay7.putConstraint(SpringLayout.NORTH, lab_length, 40, SpringLayout.NORTH, pane7);
+		lay7.putConstraint(SpringLayout.WEST, txt_length, 70,SpringLayout.WEST, pane7);
+		lay7.putConstraint(SpringLayout.NORTH, txt_length, 40, SpringLayout.NORTH, pane7);		 
+		lay7.putConstraint(SpringLayout.WEST, lab_weight, 10,SpringLayout.WEST, pane7);
+		lay7.putConstraint(SpringLayout.NORTH, lab_weight, 70, SpringLayout.NORTH, pane7);
+		lay7.putConstraint(SpringLayout.WEST, txt_weight, 70,SpringLayout.WEST, pane7);
+		lay7.putConstraint(SpringLayout.NORTH, txt_weight, 70, SpringLayout.NORTH, pane7);		 
+		lay7.putConstraint(SpringLayout.WEST, lab_cweight, 10,SpringLayout.WEST, pane7);
+		lay7.putConstraint(SpringLayout.NORTH, lab_cweight, 100, SpringLayout.NORTH, pane7);
+		lay7.putConstraint(SpringLayout.WEST, txt_cweight, 70,SpringLayout.WEST, pane7);
+		lay7.putConstraint(SpringLayout.NORTH, txt_cweight, 100, SpringLayout.NORTH, pane7);
 		 
-		 pane7.add(lab_specification);
-		 pane7.add(com_specification);
-		 pane7.add(lab_length);
-		 pane7.add(txt_length);
-		 pane7.add(lab_weight);
-		 pane7.add(txt_weight);
-		 pane7.add(lab_cweight);
-		 pane7.add(txt_cweight);
-		 pane7.add(lab_sweight);
-		 pane7.add(txt_sweight);
-		 pane7.add(bt_weight);
-		 pane7.add(bt_cweight);
-		 pane7.add(lab_pweight);
-		 pane7.add(txt_pweight);
-		 pane7.add(lab_deviation);
-		 pane7.add(txt_deviation);
-		 pane7.add(jta_receivew);
-		 pane7.add(jta_sendw);
-		 pane7.add(lab_MNo);
-		 pane7.add(txt_MNo);
-		 pane7.add(lab_Qinspector);
-		 pane7.add(txt_Qinspector);
-		 pane7.add(bt_createcode);
-		 pane7.add(txt_createcode);
-		 pane7.add(bt_selcode);
-		 pane7.add(com_selcode);
-		 pane7.add(lab_company);
-		 pane7.add(com_company);
-		 pane7.add(lab_ifincomed);
-		 pane7.add(lab_cust);
-		 pane7.add(com_ifincomed);
-		 pane7.add(txt_cus);
-		 pane7.add(com_whsin);
-		 hql="select u_width,u_height,u_codewidth,u_codeheight,u_codetype,u_codegap,u_left," +
+		pane7.add(lab_specification);
+		pane7.add(com_specification);
+		pane7.add(lab_length);
+		pane7.add(txt_length);
+		pane7.add(lab_weight);
+		pane7.add(txt_weight);
+		pane7.add(lab_cweight);
+		pane7.add(txt_cweight);
+		pane7.add(lab_sweight);
+		pane7.add(txt_sweight);
+		pane7.add(bt_weight);
+		pane7.add(bt_cweight);
+		pane7.add(lab_pweight);
+		pane7.add(txt_pweight);
+		pane7.add(lab_deviation);
+		pane7.add(txt_deviation);
+		pane7.add(jta_receivew);
+		pane7.add(jta_sendw);
+		pane7.add(lab_MNo);
+		pane7.add(txt_MNo);
+		pane7.add(lab_Qinspector);
+		pane7.add(txt_Qinspector);
+		pane7.add(bt_createcode);
+		pane7.add(txt_createcode);
+		pane7.add(bt_selcode);
+		pane7.add(com_selcode);
+		pane7.add(lab_company);
+		pane7.add(com_company);
+		pane7.add(lab_ifincomed);
+		pane7.add(lab_cust);
+		pane7.add(com_ifincomed);
+		pane7.add(txt_cus);
+		pane7.add(com_whsin);
+		hql="select u_width,u_height,u_codewidth,u_codeheight,u_codetype,u_codegap,u_left," +
 			"u_up,u_right,u_down " +
 			" from dbo.[@SNPRINTER]  " +
 			"where code='1' ";
-		 ob = appMain.lt.sqlclob(hql,0,1); 
-		 if(ob==null||ob.length==0)
-		 {
+		ob = appMain.lt.sqlclob(hql,0,1); 
+		if(ob==null||ob.length==0)
+		{
 			 return;
-		 }
-		 //单身主数据			   
-		 hql="select '','','','','','','','','','','','','','','','','','','' "+
+		}
+		//单身主数据			   
+		hql="select '','','','','','','','','','','','','','','','','','','' "+
 	           "from Inv1 p where 1=2";	
-	     od=new OignDocLineModel(cl,dl,dbu,hql);		   	   
-		 od.setDocLineStatus(docLineStatus.load);
-		 od.setGridStatus(docLineStatus.load);
+	    od=new OignDocLineModel(cl,dl,dbu,hql);		   	   
+		od.setDocLineStatus(docLineStatus.load);
+		od.setGridStatus(docLineStatus.load);
 		 //序列号单身主数据			   
-		 hql="select '','','','','','','','','','','','','','','','','','','' "+
+		hql="select '','','','','','','','','','','','','','','','','','','' "+
 	           "from Inv1 p where 1=2";	
-	     od2=new OignDocLineModel(cl,dl,dbu,hql);		   	   
-		 od2.setDocLineStatus(docLineStatus.load);
-		 od2.setGridStatus(docLineStatus.load);
+	    od2=new OignDocLineModel(cl,dl,dbu,hql);		   	   
+		od2.setDocLineStatus(docLineStatus.load);
+		od2.setGridStatus(docLineStatus.load);
 		 
-		 jt=new JMyTable(od);
-		 jt2=new JMyTable(od2);
-		 hql= "select p.itemCode+','+p.itemName from Oitm as p " +
+		jt=new JMyTable(od);
+		jt2=new JMyTable(od2);
+		hql= "select p.itemCode+','+p.itemName from Oitm as p " +
 					//" where charindex('#',itemcode)<>0 and charindex('/',itemcode)=0 AND " +
 					" where  " +
 					"(p.itemCode like :str1 or p.itemName like :str2) and p.validfor='Y' AND p.frozenfor='N'";
-		 hql1="select p.itemCode from Oitm as p " +
+		hql1="select p.itemCode from Oitm as p " +
 					//" where charindex('#',itemcode)<>0 and charindex('/',itemcode)=0 AND " +
 					" where " +
 					"p.itemCode=:str1  and validfor='Y' AND frozenfor='N'";
 		
-		 od.setUpSportColumn(jt, jt.getColumnModel().getColumn(od.getcolumnindex("物料代码")), hql,hql1);
+		od.setUpSportColumn(jt, jt.getColumnModel().getColumn(od.getcolumnindex("物料代码")), hql,hql1);
 		 //绑定仓库
-		 hql= "select p.whsCode+','+p.whsName from Owhs as p " +
+		hql= "select p.whsCode+','+p.whsName from Owhs as p " +
 					" where (p.whsCode like :str1 or p.whsName like :str2)";
 		
-		 hql1="select p.whsCode from Owhs as p " +
+		hql1="select p.whsCode from Owhs as p " +
 					" where p.whsCode=:str1";
 		
-		 od.setUpSportColumn(jt, jt.getColumnModel().getColumn(od.getcolumnindex("仓库")), hql,hql1);
+		od.setUpSportColumn(jt, jt.getColumnModel().getColumn(od.getcolumnindex("仓库")), hql,hql1);
 		 
-		 obj=new Object[2];
-	     obj[0]="Y";obj[1]="是";
-	     list.add(obj);
-	     obj=new Object[2];
-	     obj[0]="N";obj[1]="否";
-	     list.add(obj);
+		obj=new Object[2];
+	    obj[0]="Y";obj[1]="是";
+	    list.add(obj);
+	    obj=new Object[2];
+	    obj[0]="N";obj[1]="否";
+	    list.add(obj);
 	     
-		 od.setUpStaSportColumn(jt, jt.getColumnModel().getColumn(od.getcolumnindex("是否米段线")), list);
+		od.setUpStaSportColumn(jt, jt.getColumnModel().getColumn(od.getcolumnindex("是否米段线")), list);
 		 
 		jt.HiddenCell(od.getcolumnindex("生产订单号"),0);
 		jt.HiddenCell(od.getcolumnindex("计划生产个数"),0);
@@ -579,142 +579,142 @@ public class SninView extends JInternalFrame{
 		
 		 //set up barcode and printer
 		
-		 com_port=new JComboBox();
-		 lay6.putConstraint(SpringLayout.EAST, bt_open, 13, SpringLayout.EAST, com_port);
-		 lay6.putConstraint(SpringLayout.NORTH, lab_width, 3, SpringLayout.NORTH, com_port);
-		 lay6.putConstraint(SpringLayout.NORTH, txt_width, 0, SpringLayout.NORTH, com_port);
-		 com_baudr=new JComboBox();
-		 lay6.putConstraint(SpringLayout.NORTH, lab_height, 3, SpringLayout.NORTH, com_baudr);
-		 lay6.putConstraint(SpringLayout.NORTH, txt_height, 0, SpringLayout.NORTH, com_baudr);
+		com_port=new JComboBox();
+		lay6.putConstraint(SpringLayout.EAST, bt_open, 13, SpringLayout.EAST, com_port);
+		lay6.putConstraint(SpringLayout.NORTH, lab_width, 3, SpringLayout.NORTH, com_port);
+		lay6.putConstraint(SpringLayout.NORTH, txt_width, 0, SpringLayout.NORTH, com_port);
+		com_baudr=new JComboBox();
+		lay6.putConstraint(SpringLayout.NORTH, lab_height, 3, SpringLayout.NORTH, com_baudr);
+		lay6.putConstraint(SpringLayout.NORTH, txt_height, 0, SpringLayout.NORTH, com_baudr);
 		 
-		  com_baudr.addItem("1200");
-		  com_baudr.addItem("2400");	 
-		  com_baudr.addItem("9600");
-		  com_baudr.addItem("14400");
-		  com_baudr.addItem("28800");
-		  com_baudr.addItem("38400");
-		  com_baudr.addItem("57600");
-		  com_baudr.addItem("152000");
-		  com_databits=new JComboBox();
+		com_baudr.addItem("1200");
+		com_baudr.addItem("2400");	 
+		com_baudr.addItem("9600");
+		com_baudr.addItem("14400");
+		com_baudr.addItem("28800");
+		com_baudr.addItem("38400");
+		com_baudr.addItem("57600");
+		com_baudr.addItem("152000");
+		com_databits=new JComboBox();
 		  
-		   com_databits.addItem("8");
-		   com_databits.addItem("7");
-		   com_databits.addItem("6");
-		   com_databits.addItem("5");
-		   com_checkbits=new JComboBox();
-		   lay6.putConstraint(SpringLayout.NORTH, bt_open, 6, SpringLayout.SOUTH, com_checkbits);
-		   lay6.putConstraint(SpringLayout.NORTH, lab_codeheight, 3, SpringLayout.NORTH, com_checkbits);
-		   com_checkbits.addItem("None");
-		   com_checkbits.addItem("Even");
-		   com_checkbits.addItem("Odd");
+		com_databits.addItem("8");
+		com_databits.addItem("7");
+		com_databits.addItem("6");
+		com_databits.addItem("5");
+		com_checkbits=new JComboBox();
+		lay6.putConstraint(SpringLayout.NORTH, bt_open, 6, SpringLayout.SOUTH, com_checkbits);
+		lay6.putConstraint(SpringLayout.NORTH, lab_codeheight, 3, SpringLayout.NORTH, com_checkbits);
+		com_checkbits.addItem("None");
+		com_checkbits.addItem("Even");
+		com_checkbits.addItem("Odd");
 				   
-	   	  com_stopbits=new JComboBox();
-	   	  com_stopbits.addItem("1");
-	   	  com_stopbits.addItem("1.5");
-	   	  com_stopbits.addItem("2");
-	   	  com_flowcin=new JComboBox();
+	   	com_stopbits=new JComboBox();
+	   	com_stopbits.addItem("1");
+	   	com_stopbits.addItem("1.5");
+	   	com_stopbits.addItem("2");
+	   	com_flowcin=new JComboBox();
 	   	 
-	   	  com_flowcin.addItem("None");
-	   	  com_flowcin.addItem("Xon/Xoff In");
-	   	  com_flowcin.addItem("RTS/CTS In");
-	   	  com_flowcout=new JComboBox();
-	   	  com_flowcout.addItem("None");
-	   	  com_flowcout.addItem("Xon/Xoff In");
-	   	  com_flowcout.addItem("RTS/CTS In");
+	   	com_flowcin.addItem("None");
+	   	com_flowcin.addItem("Xon/Xoff In");
+	   	com_flowcin.addItem("RTS/CTS In");
+	   	com_flowcout=new JComboBox();
+	   	com_flowcout.addItem("None");
+	   	com_flowcout.addItem("Xon/Xoff In");
+	   	com_flowcout.addItem("RTS/CTS In");
 				   	  
-	   	   pane6.setLayout(lay6);
-	   	   lay6.putConstraint(SpringLayout.NORTH, lab_flowcin, 3, SpringLayout.NORTH, com_baudr);
-	   	   lay6.putConstraint(SpringLayout.NORTH, com_flowcout, -3, SpringLayout.NORTH, lab_databits);
-	   	   lay6.putConstraint(SpringLayout.WEST, com_flowcout, 0, SpringLayout.WEST, com_stopbits);
-	   	   lay6.putConstraint(SpringLayout.NORTH, com_flowcin, 0, SpringLayout.NORTH, lab_baudr);
-	   	   lay6.putConstraint(SpringLayout.WEST, com_flowcin, 0, SpringLayout.WEST, com_stopbits);
-	   	   lay6.putConstraint(SpringLayout.WEST, lab_port, 40,SpringLayout.WEST, pane6);
-	   	   lay6.putConstraint(SpringLayout.NORTH, lab_port, 10, SpringLayout.NORTH, pane6);
-	   	   lay6.putConstraint(SpringLayout.WEST, com_port, 100,SpringLayout.WEST, pane6);
-	   	   lay6.putConstraint(SpringLayout.NORTH, com_port, 10, SpringLayout.NORTH, pane6);
-	   	   lay6.putConstraint(SpringLayout.WEST, lab_baudr, 40,SpringLayout.WEST, pane6);
-	   	   lay6.putConstraint(SpringLayout.NORTH, lab_baudr, 40, SpringLayout.NORTH, pane6);
-	   	   lay6.putConstraint(SpringLayout.WEST, com_baudr, 100,SpringLayout.WEST, pane6);
-	   	   lay6.putConstraint(SpringLayout.NORTH, com_baudr, 40, SpringLayout.NORTH, pane6);
-	   	   lay6.putConstraint(SpringLayout.WEST, lab_databits, 40,SpringLayout.WEST, pane6);
-	   	   lay6.putConstraint(SpringLayout.NORTH, lab_databits, 70, SpringLayout.NORTH, pane6);
-	   	   lay6.putConstraint(SpringLayout.WEST, com_databits, 100,SpringLayout.WEST, pane6);
-	   	   lay6.putConstraint(SpringLayout.NORTH, com_databits, 70, SpringLayout.NORTH, pane6);
-	   	   lay6.putConstraint(SpringLayout.WEST, lab_checkbits, 40,SpringLayout.WEST, pane6);
-	   	   lay6.putConstraint(SpringLayout.NORTH, lab_checkbits, 100, SpringLayout.NORTH, pane6);
-	   	   lay6.putConstraint(SpringLayout.WEST, com_checkbits, 100,SpringLayout.WEST, pane6);
-	   	   lay6.putConstraint(SpringLayout.NORTH, com_checkbits, 100, SpringLayout.NORTH, pane6);
-				   	   
-		 lay6.putConstraint(SpringLayout.WEST, lab_stopbits, 190,SpringLayout.WEST, pane6);
-		 lay6.putConstraint(SpringLayout.NORTH, lab_stopbits, 10, SpringLayout.NORTH, pane6);
-		 lay6.putConstraint(SpringLayout.WEST, com_stopbits, 250,SpringLayout.WEST, pane6);
-		 lay6.putConstraint(SpringLayout.NORTH, com_stopbits, 10, SpringLayout.NORTH, pane6);
-		 lay6.putConstraint(SpringLayout.NORTH, lab_flowcout, 0, SpringLayout.NORTH, lab_databits);
-		 lay6.putConstraint(SpringLayout.EAST, lab_flowcout, 0, SpringLayout.EAST, lab_flowcin);
-		 lay6.putConstraint(SpringLayout.WEST, lab_flowcin, 0, SpringLayout.WEST, lab_stopbits);
+	   	pane6.setLayout(lay6);
+   	    lay6.putConstraint(SpringLayout.NORTH, lab_flowcin, 3, SpringLayout.NORTH, com_baudr);
+   	    lay6.putConstraint(SpringLayout.NORTH, com_flowcout, -3, SpringLayout.NORTH, lab_databits);
+   	    lay6.putConstraint(SpringLayout.WEST, com_flowcout, 0, SpringLayout.WEST, com_stopbits);
+   	    lay6.putConstraint(SpringLayout.NORTH, com_flowcin, 0, SpringLayout.NORTH, lab_baudr);
+   	    lay6.putConstraint(SpringLayout.WEST, com_flowcin, 0, SpringLayout.WEST, com_stopbits);
+   	    lay6.putConstraint(SpringLayout.WEST, lab_port, 40,SpringLayout.WEST, pane6);
+   	    lay6.putConstraint(SpringLayout.NORTH, lab_port, 10, SpringLayout.NORTH, pane6);
+   	    lay6.putConstraint(SpringLayout.WEST, com_port, 100,SpringLayout.WEST, pane6);
+   	    lay6.putConstraint(SpringLayout.NORTH, com_port, 10, SpringLayout.NORTH, pane6);
+   	    lay6.putConstraint(SpringLayout.WEST, lab_baudr, 40,SpringLayout.WEST, pane6);
+   	    lay6.putConstraint(SpringLayout.NORTH, lab_baudr, 40, SpringLayout.NORTH, pane6);
+   	    lay6.putConstraint(SpringLayout.WEST, com_baudr, 100,SpringLayout.WEST, pane6);
+   	    lay6.putConstraint(SpringLayout.NORTH, com_baudr, 40, SpringLayout.NORTH, pane6);
+   	    lay6.putConstraint(SpringLayout.WEST, lab_databits, 40,SpringLayout.WEST, pane6);
+   	    lay6.putConstraint(SpringLayout.NORTH, lab_databits, 70, SpringLayout.NORTH, pane6);
+   	    lay6.putConstraint(SpringLayout.WEST, com_databits, 100,SpringLayout.WEST, pane6);
+   	    lay6.putConstraint(SpringLayout.NORTH, com_databits, 70, SpringLayout.NORTH, pane6);
+   	    lay6.putConstraint(SpringLayout.WEST, lab_checkbits, 40,SpringLayout.WEST, pane6);
+   	    lay6.putConstraint(SpringLayout.NORTH, lab_checkbits, 100, SpringLayout.NORTH, pane6);
+   	    lay6.putConstraint(SpringLayout.WEST, com_checkbits, 100,SpringLayout.WEST, pane6);
+   	    lay6.putConstraint(SpringLayout.NORTH, com_checkbits, 100, SpringLayout.NORTH, pane6);
+			   	   
+		lay6.putConstraint(SpringLayout.WEST, lab_stopbits, 190,SpringLayout.WEST, pane6);
+		lay6.putConstraint(SpringLayout.NORTH, lab_stopbits, 10, SpringLayout.NORTH, pane6);
+		lay6.putConstraint(SpringLayout.WEST, com_stopbits, 250,SpringLayout.WEST, pane6);
+		lay6.putConstraint(SpringLayout.NORTH, com_stopbits, 10, SpringLayout.NORTH, pane6);
+		lay6.putConstraint(SpringLayout.NORTH, lab_flowcout, 0, SpringLayout.NORTH, lab_databits);
+		lay6.putConstraint(SpringLayout.EAST, lab_flowcout, 0, SpringLayout.EAST, lab_flowcin);
+		lay6.putConstraint(SpringLayout.WEST, lab_flowcin, 0, SpringLayout.WEST, lab_stopbits);
 		 
-		 pane6.add(lab_port);
-		 pane6.add(com_port);
-		 pane6.add(lab_baudr);
-		 pane6.add(com_baudr);
-		 pane6.add(lab_databits);
-		 pane6.add(com_databits);
-		 pane6.add(lab_checkbits);
-		 pane6.add(com_checkbits);
-		 pane6.add(lab_stopbits);
-		 pane6.add(com_stopbits);
-		 pane6.add(lab_flowcin);
-		 pane6.add(com_flowcin);
-		 pane6.add(lab_flowcout);
-		 pane6.add(com_flowcout);
-		 bt_open.setHorizontalAlignment(SwingConstants.LEADING);
-		 pane6.add(bt_open);
-		 bt_close.setHorizontalAlignment(SwingConstants.LEADING);
-		 pane6.add(bt_close);
-		 pane6.add(lab_width);
-		 txt_width.setEditable(false);
-		 pane6.add(txt_width);
-		 pane6.add(lab_height);
-		 txt_height.setEditable(false);
-		 pane6.add(txt_height);
-		 pane6.add(lab_codewidth);
-		 txt_codewidth.setEditable(false);
-		 pane6.add(txt_codewidth);
-		 pane6.add(lab_codeheight);
-		 txt_codeheight.setEditable(false);
-		 pane6.add(txt_codeheight);
-		 pane6.add(lab_codegap);
-		 txt_codegap.setEditable(false);
-		 pane6.add(txt_codegap);
-		 pane6.add(lab_codetype);
-		 txt_codetype.setEditable(false);
-		 pane6.add(txt_codetype);
-		 pane6.add(lab_left);
-		 txt_left.setEditable(false);
-		 pane6.add(txt_left);
-		 pane6.add(lab_right);
-		 txt_right.setEditable(false);
-		 pane6.add(txt_right);
-		 pane6.add(lab_up);
-		 txt_up.setEditable(false);
-		 pane6.add(txt_up);
-		 pane6.add(lab_down);
-		 txt_down.setEditable(false);
-		 pane6.add(txt_down);
-		 bt_savep.setEnabled(false);
-		 bt_savep.setHorizontalAlignment(SwingConstants.LEADING);
-		 pane6.add(bt_savep);
-		 getTxt_width().setText(ob[0][0].toString());
-		 getTxt_height().setText(ob[0][1].toString());
-		 getTxt_codewidth().setText(ob[0][2].toString());
-		 getTxt_codeheight().setText(ob[0][3].toString());
-		 getTxt_codetype().setText(ob[0][4].toString());
-		 getTxt_codegap().setText(ob[0][5].toString());
-		 getTxt_left().setText(ob[0][6].toString());
-		 getTxt_up().setText(ob[0][7].toString());
-		 getTxt_right().setText(ob[0][8].toString());
-		 getTxt_down().setText(ob[0][9].toString());		
-		 jtp1.add("端口和打印机设置",pane6);	  
+		pane6.add(lab_port);
+		pane6.add(com_port);
+		pane6.add(lab_baudr);
+		pane6.add(com_baudr);
+		pane6.add(lab_databits);
+		pane6.add(com_databits);
+		pane6.add(lab_checkbits);
+		pane6.add(com_checkbits);
+		pane6.add(lab_stopbits);
+		pane6.add(com_stopbits);
+		pane6.add(lab_flowcin);
+		pane6.add(com_flowcin);
+		pane6.add(lab_flowcout);
+		pane6.add(com_flowcout);
+		bt_open.setHorizontalAlignment(SwingConstants.LEADING);
+		pane6.add(bt_open);
+		bt_close.setHorizontalAlignment(SwingConstants.LEADING);
+		pane6.add(bt_close);
+		pane6.add(lab_width);
+		txt_width.setEditable(false);
+		pane6.add(txt_width);
+		pane6.add(lab_height);
+		txt_height.setEditable(false);
+		pane6.add(txt_height);
+		pane6.add(lab_codewidth);
+		txt_codewidth.setEditable(false);
+		pane6.add(txt_codewidth);
+		pane6.add(lab_codeheight);
+		txt_codeheight.setEditable(false);
+		pane6.add(txt_codeheight);
+		pane6.add(lab_codegap);
+		txt_codegap.setEditable(false);
+		pane6.add(txt_codegap);
+		pane6.add(lab_codetype);
+		txt_codetype.setEditable(false);
+		pane6.add(txt_codetype);
+		pane6.add(lab_left);
+		txt_left.setEditable(false);
+		pane6.add(txt_left);
+		pane6.add(lab_right);
+		txt_right.setEditable(false);
+		pane6.add(txt_right);
+		pane6.add(lab_up);
+		txt_up.setEditable(false);
+		pane6.add(txt_up);
+		pane6.add(lab_down);
+		txt_down.setEditable(false);
+		pane6.add(txt_down);
+		bt_savep.setEnabled(false);
+		bt_savep.setHorizontalAlignment(SwingConstants.LEADING);
+		pane6.add(bt_savep);
+		getTxt_width().setText(ob[0][0].toString());
+		getTxt_height().setText(ob[0][1].toString());
+		getTxt_codewidth().setText(ob[0][2].toString());
+		getTxt_codeheight().setText(ob[0][3].toString());
+		getTxt_codetype().setText(ob[0][4].toString());
+		getTxt_codegap().setText(ob[0][5].toString());
+		getTxt_left().setText(ob[0][6].toString());
+		getTxt_up().setText(ob[0][7].toString());
+		getTxt_right().setText(ob[0][8].toString());
+		getTxt_down().setText(ob[0][9].toString());		
+		jtp1.add("端口和打印机设置",pane6);	  
 		
 		jtp1.add("数据浏览",pane2);
 		

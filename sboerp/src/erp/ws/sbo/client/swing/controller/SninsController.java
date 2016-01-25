@@ -173,12 +173,10 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 					{
 	 			    	 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_pweight().getText()==null?"0":v.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));	 					
 	 			    	 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP)));	 			        
-						 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
-		 			 
+						 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));		 			 
 					}  
 					else{
-	 	             Double wgtpm=Double.valueOf(ob[0][6].toString())/(Double.valueOf(ob[0][5].toString())); 
-	 	           
+	 	             Double wgtpm=Double.valueOf(ob[0][6].toString())/(Double.valueOf(ob[0][5].toString())); 	 	           
 					 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));
 					 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(wgtpm*Double.valueOf(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));		 	          
 					 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
@@ -285,7 +283,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
      			    	  v.getCom_whsin().setEditable(false);
      			    	  return;
      		    	  }
-     		          else if(new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
+     		          /*else if(new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
      			      {
      			    	  v.getCom_whsin().setEditable(true);
      			    	  v.getCom_whsin().setSelectedItem(new ComboBoxItem("2107","2107"));
@@ -296,7 +294,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
      			    	  v.getCom_whsin().setEditable(true);
      			    	  v.getCom_whsin().setSelectedItem(new ComboBoxItem("2108","2108"));
      			    	  v.getCom_whsin().setEditable(false);
-     			      }
+     			      }*/
      		      }
      		      catch (NumberFormatException e1) {  
      		            e1.printStackTrace();  
@@ -335,10 +333,10 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	            &&new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
 	            ||new BigDecimal(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
 	            ||new BigDecimal(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))<0
-	            ||(!new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
+	            ||(((ComboBoxItem)v.getCom_whsin().getSelectedItem()).getValue().toString().equals("2107")&&!new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
 	              &&!new BigDecimal(v.getTxt_pweight().getText()==null?"0":v.getTxt_pweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))))           
 				{
-	                JOptionPane.showMessageDialog(v,"物料代码,机号,净重,毛重,公司名称,不能为空或0,米段和皮重不能同时不为0,当米段为0时,"+v.getTxt_pweight().getText()+"皮重不能为0,"+v.getTxt_sweight().getText()+"标准重必须大于0");
+	                JOptionPane.showMessageDialog(v,"物料代码,机号,净重,毛重,公司名称,不能为空或0,入库仓库为2107时米段和皮重不能同时不为0,当米段为0时,"+v.getTxt_pweight().getText()+"皮重不能为0,"+v.getTxt_sweight().getText()+"标准重必须大于0");
 	                return;
 	             }	
 	        	if(e.getSource()==v.getTxt_length())
@@ -708,10 +706,10 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
             &&new BigDecimal(v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
             ||new BigDecimal(v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
             ||new BigDecimal(v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))<0          
-			 ||(!new BigDecimal(v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
+			 ||(((ComboBoxItem)v.getCom_whsin().getSelectedItem()).getValue().toString().equals("2107")&&!new BigDecimal(v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
 		         &&!new BigDecimal(v.getTxt_pweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))))           					
 			{
-                JOptionPane.showMessageDialog(v,"物料代码,机号,净重,毛重,公司名称,不能为空或0,米段和皮重不能同时不为0,当米段为0时,皮重不能为0,标准重必须大于0");
+                JOptionPane.showMessageDialog(v,"物料代码,机号,净重,毛重,公司名称,不能为空或0,仓库为2107时米段和皮重不能同时大于0,当米段为0时,皮重不能为0,标准重必须大于0");
                 return;
              }	
 			if(new BigDecimal(Math.abs(Double.valueOf(v.getTxt_deviation().getText()))/Double.valueOf(v.getTxt_sweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0.003))>0)
@@ -1180,7 +1178,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 				    	  v.getCom_whsin().setEditable(false);
 				    	  return;
 			    	  }
-			          else if(new BigDecimal(v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
+					 /*else if(new BigDecimal(v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
 				      {
 				    	  v.getCom_whsin().setEditable(true);
 				          v.getCom_whsin().setSelectedItem(new ComboBoxItem("2107","2107"));
@@ -1191,11 +1189,11 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 				    	  v.getCom_whsin().setEditable(true);
 				    	  v.getCom_whsin().setSelectedItem(new ComboBoxItem("2108","2108"));
 				    	  v.getCom_whsin().setEditable(false);
-				      }
+				      }*/
 			      }
 			      catch (NumberFormatException e1) {  
 			            e1.printStackTrace();  
-			        }  	   
+			        }    
 			}
 			else if(arg0.getSource()==v.getBt_addsn())
 			{
@@ -1426,7 +1424,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			    	  v.getCom_whsin().setEditable(false);
 			    	  return;
 		    	  }
-		          else if(new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
+		          /*else if(new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
 			      {
 			    	  v.getCom_whsin().setEditable(true);
 			    	  v.getCom_whsin().setSelectedItem(new ComboBoxItem("2107","2107"));
@@ -1437,7 +1435,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			    	  v.getCom_whsin().setEditable(true);
 			    	  v.getCom_whsin().setSelectedItem(new ComboBoxItem("2108","2108"));
 			    	  v.getCom_whsin().setEditable(false);
-			      }
+			      }*/
 		      }
 		      catch (NumberFormatException e1) {  
 		            e1.printStackTrace();  
@@ -1462,7 +1460,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			    	  v.getCom_whsin().setEditable(false);
 			    	  return;
 		    	  }
-		          else if(new BigDecimal(v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
+		          /*else if(new BigDecimal(v.getTxt_length().getText()).compareTo(new BigDecimal("0"))==0)
 			      {
 			    	  v.getCom_whsin().setEditable(true);
 			          v.getCom_whsin().setSelectedItem(new ComboBoxItem("2107","2107"));
@@ -1473,7 +1471,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			    	  v.getCom_whsin().setEditable(true);
 			    	  v.getCom_whsin().setSelectedItem(new ComboBoxItem("2108","2108"));
 			    	  v.getCom_whsin().setEditable(false);
-			      }
+			      }*/
 		      }
 		      catch (NumberFormatException e1) {  
 		            e1.printStackTrace();  

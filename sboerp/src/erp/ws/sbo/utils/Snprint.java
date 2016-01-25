@@ -108,13 +108,22 @@ public class Snprint {
 		   ob1=appMain.lt.sqlclob(hql,0,1);
 	       if(!sns.isIfPsn())
 	       {  
-	        	if(new BigDecimal(sns.getLength().toString()).setScale(3, RoundingMode.HALF_UP).compareTo(new BigDecimal(0.000).setScale(3, RoundingMode.HALF_UP))==0||sns.getItemcode().substring(0, 2).equals("TD"))
+	        	if(sns.getWareHouse().toString().equals("2107")||sns.getItemcode().substring(0, 2).equals("TD"))
 	        	{
 	              TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getWeight().toString());        //Drawing printer font	        
+	        	}
+	        	else if(sns.getWareHouse().toString().equals("2108")){
+	        	   hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='米段'";
+	      		   ob1=appMain.lt.sqlclob(hql,0,1);
+	      		    
+	      	       TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(), ob1[0][7].toString() + sns.getLength().toString());        //Drawing printer font
+	      		  
 	        	}
 	       }
 	       else 
 	       {
+	    	  hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='毛重'";
+			  ob1=appMain.lt.sqlclob(hql,0,1);
 	          TscLibDll.INSTANCE.windowsfont(Integer.valueOf(ob1[0][0].toString()), Integer.valueOf(ob1[0][1].toString()), Integer.valueOf(ob1[0][2].toString()), Integer.valueOf(ob1[0][3].toString()), Integer.valueOf(ob1[0][4].toString()), Integer.valueOf(ob1[0][5].toString()),ob1[0][6].toString(),"数量:" + sns.getQsn().toString());        //Drawing printer font
 	        }
 	        hql="select u_left,u_up,u_fontheight,u_rotation,u_fontstyle,u_underline,u_szfaceneme,u_contents from [@SNPRINT] where name='净重'";
