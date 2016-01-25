@@ -135,10 +135,10 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	            &&new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
 	            ||new BigDecimal(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
 	            ||new BigDecimal(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))<0
-	            ||(!new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
+	            ||(((ComboBoxItem)v.getCom_whsin().getSelectedItem()).getValue().toString().equals("2107")&&!new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
 	              &&!new BigDecimal(v.getTxt_pweight().getText()==null?"0":v.getTxt_pweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))))           
 				{
-	                JOptionPane.showMessageDialog(v,"物料代码,机号,净重,毛重,公司名称,不能为空或0,米段和皮重不能同时不为0,当米段为0时,"+v.getTxt_pweight().getText()+"皮重不能为0,"+v.getTxt_sweight().getText()+"标准重必须大于0");
+	                JOptionPane.showMessageDialog(v,"物料代码,机号,净重,毛重,公司名称,不能为空或0,入库仓库为2107时米段和皮重不能同时大于0,当米段为0时,"+v.getTxt_pweight().getText()+"皮重不能为0,"+v.getTxt_sweight().getText()+"标准重必须大于0");
 	                return;
 	             }	
 	        	if(e.getSource()==v.getTxt_length())
@@ -336,7 +336,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	            ||(((ComboBoxItem)v.getCom_whsin().getSelectedItem()).getValue().toString().equals("2107")&&!new BigDecimal(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
 	              &&!new BigDecimal(v.getTxt_pweight().getText()==null?"0":v.getTxt_pweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))))           
 				{
-	                JOptionPane.showMessageDialog(v,"物料代码,机号,净重,毛重,公司名称,不能为空或0,入库仓库为2107时米段和皮重不能同时不为0,当米段为0时,"+v.getTxt_pweight().getText()+"皮重不能为0,"+v.getTxt_sweight().getText()+"标准重必须大于0");
+	                JOptionPane.showMessageDialog(v,"物料代码,机号,净重,毛重,公司名称,不能为空或0,入库仓库为2107时米段和皮重不能同时大于0,当米段为0时,"+v.getTxt_pweight().getText()+"皮重不能为0,"+v.getTxt_sweight().getText()+"标准重必须大于0");
 	                return;
 	             }	
 	        	if(e.getSource()==v.getTxt_length())
