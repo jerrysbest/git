@@ -1,0 +1,111 @@
+2016-01-26 18:35:56,735 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - 数据库中已存在名为 '@BCSD' 的对象。
+2016-01-26 18:35:56,748 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - Unsuccessful: create table NQS.dbo.[@DESN] (ID int identity not null, Ifdraft tinyint not null, ObjType int not null, DocEntry int not null, LineNum int not null, Itemcode varchar(20) not null, length numeric(12,3) not null, SN varchar(50) not null, Weight numeric(18,3) not null, Direction varchar(1) not null, ifPaSN tinyint not null, PaSN varchar(50) null, WareHouse varchar(50) null, CardCode varchar(50) null, Memo varchar(255) null, WorkCenter varchar(50) null, cdatetime datetime not null, udatetime datetime not null, primary key (ID))
+2016-01-26 18:35:56,748 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - 数据库中已存在名为 '@DESN' 的对象。
+2016-01-26 18:35:56,751 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - Unsuccessful: create table NQS.dbo.[@LISTSN] (ID int not null, SN varchar(255) not null, Direction tinyint not null, ifPaSN tinyint not null, PaSN varchar(255) null, WareHouse varchar(255) null, CardCode varchar(255) null, primary key (ID))
+2016-01-26 18:35:56,751 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - 数据库中已存在名为 '@LISTSN' 的对象。
+2016-01-26 18:35:56,753 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - Unsuccessful: create table NQS.dbo.[@PASN] (DocEntry int not null, DocNum int not null, Period int null, Instance smallint null, Series int null, Handwrtten varchar(1) null, Canceled varchar(1) null, Object int null, LogInst int null, UserSign int null, Transfered varchar(1) null, Status varchar(1) null, CreateDate datetime not null, CreateTime smallint null, UpdateDate datetime not null, UpdateTime smallint null, DataSource varchar(1) null, U_SN varchar(50) not null unique, U_Memo varchar(255) null, primary key (DocEntry))
+2016-01-26 18:35:56,753 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - 数据库中已存在名为 '@PASN' 的对象。
+2016-01-26 18:35:56,756 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - Unsuccessful: create table NQS.dbo.[@SNStatus] (SN varchar(50) not null, ifWH tinyint not null, WareHouse varchar(50) null, Cardcode varchar(50) null, ifPSN tinyint not null, ifInPSN tinyint not null, PaSN varchar(50) null, ifdes tinyint null, itemcode varchar(20) not null, length double precision null, sweight double precision null, weight double precision null, pweight double precision null, cweight double precision null, datetime datetime not null, updatetime datetime null, mno varchar(50) null, qc varchar(20) null, fwh varchar(20) null, company varchar(50) not null, qsn int null, primary key (SN))
+2016-01-26 18:35:56,756 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - 数据库中已存在名为 '@SNStatus' 的对象。
+2016-01-26 18:35:56,759 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - Unsuccessful: create table NQS.dbo.[@WFDST] (Code varchar(255) not null, Name varchar(255) not null unique, U_wfvalue int null, U_aCode1 varchar(255) null, U_aCode2 varchar(255) null, primary key (Code))
+2016-01-26 18:35:56,759 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - 数据库中已存在名为 '@WFDST' 的对象。
+2016-01-26 18:35:56,761 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - Unsuccessful: create table NQS.dbo.[@WFLIST1] (DocEntry int not null, LineId int not null, VisOrder int null, Object varchar(255) null, LogInst int null, U_wfNode smallint null, U_wfPerson varchar(255) null, U_apStatus varchar(255) null, primary key (DocEntry, LineId))
+2016-01-26 18:35:56,761 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - 数据库中已存在名为 '@WFLIST1' 的对象。
+2016-01-26 18:35:56,763 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - Unsuccessful: create table NQS.dbo.[@WFLIST] (DocEntry int not null, DocNum int null, Period int null, Instance smallint null, Series int null, Handwrtten varchar(1) null, Canceled varchar(1) null, Object varchar(255) null, LogInst int null, UserSign int null, Transfered varchar(1) null, Status varchar(1) null, CreateDate datetime null, CreateTime smallint null, UpdateDate datetime null, UpdateTime smallint null, DataSource varchar(1) null, U_wfTable varchar(255) null, U_wfLine int null, U_apStage smallint null, U_draftid int null, U_docid int null, U_wfNode smallint null, U_wfStatus smallint null, primary key (DocEntry))
+2016-01-26 18:35:56,764 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - 数据库中已存在名为 '@WFLIST' 的对象。
+2016-01-26 18:35:56,766 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - Unsuccessful: create table NQS.dbo.[@userauther] (usercode varchar(255) not null, autherid varchar(255) not null, enable tinyint not null, primary key (usercode, autherid))
+2016-01-26 18:35:56,766 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - 数据库中已存在名为 '@userauther' 的对象。
+2016-01-26 18:35:56,769 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - Unsuccessful: alter table NQS.dbo.[@ASN1] add constraint FK3EC8158360B73C89 foreign key (DocEntry) references NQS.dbo.[@PASN]
+2016-01-26 18:35:56,770 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - 数据库中已存在名为 'FK3EC8158360B73C89' 的对象。
+2016-01-26 18:35:56,773 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - Unsuccessful: alter table NQS.dbo.[@WFLIST1] add constraint FK318D693ECAF813AA foreign key (DocEntry) references NQS.dbo.[@WFLIST]
+2016-01-26 18:35:56,774 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - 数据库中已存在名为 'FK318D693ECAF813AA' 的对象。
+2016-01-26 18:35:56,774 INFO [org.hibernate.tool.hbm2ddl.SchemaUpdate] - schema update complete
+2016-01-26 18:35:56,791 INFO [org.hibernate.cfg.HbmBinder] - Mapping class: erp.ws.sbo.client.swing.model.Srgc -> SRGC
+2016-01-26 18:35:56,792 INFO [org.springframework.orm.hibernate3.LocalSessionFactoryBean] - Building new Hibernate SessionFactory
+2016-01-26 18:35:56,793 INFO [org.hibernate.connection.ConnectionProviderFactory] - Initializing connection provider: org.springframework.orm.hibernate3.LocalDataSourceConnectionProvider
+2016-01-26 18:35:56,850 INFO [org.hibernate.cfg.SettingsFactory] - RDBMS: Microsoft SQL Server, version: 9.00.1399
+2016-01-26 18:35:56,850 INFO [org.hibernate.cfg.SettingsFactory] - JDBC driver: Microsoft JDBC Driver 4.0 for SQL Server, version: 4.0.2206.100
+2016-01-26 18:35:56,850 INFO [org.hibernate.dialect.Dialect] - Using dialect: erp.ws.sbo.client.swing.util.general.JerrysSQLServerDialect
+2016-01-26 18:35:56,851 INFO [org.hibernate.transaction.TransactionFactoryFactory] - Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+2016-01-26 18:35:56,851 INFO [org.hibernate.transaction.TransactionManagerLookupFactory] - No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+2016-01-26 18:35:56,851 INFO [org.hibernate.cfg.SettingsFactory] - Automatic flush during beforeCompletion(): disabled
+2016-01-26 18:35:56,851 INFO [org.hibernate.cfg.SettingsFactory] - Automatic session close at end of transaction: disabled
+2016-01-26 18:35:56,852 INFO [org.hibernate.cfg.SettingsFactory] - Scrollable result sets: enabled
+2016-01-26 18:35:56,852 INFO [org.hibernate.cfg.SettingsFactory] - JDBC3 getGeneratedKeys(): enabled
+2016-01-26 18:35:56,852 INFO [org.hibernate.cfg.SettingsFactory] - Connection release mode: auto
+2016-01-26 18:35:56,852 INFO [org.hibernate.cfg.SettingsFactory] - Default batch fetch size: 1
+2016-01-26 18:35:56,852 INFO [org.hibernate.cfg.SettingsFactory] - Generate SQL with comments: disabled
+2016-01-26 18:35:56,852 INFO [org.hibernate.cfg.SettingsFactory] - Order SQL updates by primary key: disabled
+2016-01-26 18:35:56,852 INFO [org.hibernate.cfg.SettingsFactory] - Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+2016-01-26 18:35:56,852 INFO [org.hibernate.hql.ast.ASTQueryTranslatorFactory] - Using ASTQueryTranslatorFactory
+2016-01-26 18:35:56,853 INFO [org.hibernate.cfg.SettingsFactory] - Query language substitutions: {}
+2016-01-26 18:35:56,853 INFO [org.hibernate.cfg.SettingsFactory] - JPA-QL strict compliance: disabled
+2016-01-26 18:35:56,853 INFO [org.hibernate.cfg.SettingsFactory] - Second-level cache: enabled
+2016-01-26 18:35:56,853 INFO [org.hibernate.cfg.SettingsFactory] - Query cache: disabled
+2016-01-26 18:35:56,853 INFO [org.hibernate.cfg.SettingsFactory] - Cache provider: org.hibernate.cache.NoCacheProvider
+2016-01-26 18:35:56,854 INFO [org.hibernate.cfg.SettingsFactory] - Optimize cache for minimal puts: disabled
+2016-01-26 18:35:56,854 INFO [org.hibernate.cfg.SettingsFactory] - Structured second-level cache entries: disabled
+2016-01-26 18:35:56,854 INFO [org.hibernate.cfg.SettingsFactory] - Echoing all SQL to stdout
+2016-01-26 18:35:56,854 INFO [org.hibernate.cfg.SettingsFactory] - Statistics: disabled
+2016-01-26 18:35:56,854 INFO [org.hibernate.cfg.SettingsFactory] - Deleted entity synthetic identifier rollback: disabled
+2016-01-26 18:35:56,854 INFO [org.hibernate.cfg.SettingsFactory] - Default entity-mode: pojo
+2016-01-26 18:35:56,859 INFO [org.hibernate.impl.SessionFactoryImpl] - building session factory
+2016-01-26 18:35:56,863 INFO [org.hibernate.impl.SessionFactoryObjectFactory] - Not binding factory to JNDI, no JNDI name configured
+2016-01-26 18:35:56,863 INFO [org.hibernate.tool.hbm2ddl.SchemaUpdate] - Running hbm2ddl schema update
+2016-01-26 18:35:56,863 INFO [org.hibernate.tool.hbm2ddl.SchemaUpdate] - fetching database metadata
+2016-01-26 18:35:56,863 INFO [org.hibernate.tool.hbm2ddl.SchemaUpdate] - updating schema
+2016-01-26 18:35:56,873 WARN [org.hibernate.util.JDBCExceptionReporter] - SQL Error: 911, SQLState: S0001
+2016-01-26 18:35:56,873 ERROR [org.hibernate.util.JDBCExceptionReporter] - 在 sysdatabases 中找不到数据库 '[sbo-common]' 所对应的条目。没有找到具有该名称的条目。请确保正确地输入了该名称。
+2016-01-26 18:35:56,873 ERROR [org.hibernate.tool.hbm2ddl.SchemaUpdate] - could not complete schema update
+org.hibernate.exception.SQLGrammarException: could not get table metadata: SRGC
+	at org.hibernate.exception.SQLStateConverter.convert(SQLStateConverter.java:67)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:43)
+	at org.hibernate.exception.JDBCExceptionHelper.convert(JDBCExceptionHelper.java:29)
+	at org.hibernate.tool.hbm2ddl.DatabaseMetadata.getTableMetadata(DatabaseMetadata.java:100)
+	at org.hibernate.cfg.Configuration.generateSchemaUpdateScript(Configuration.java:878)
+	at org.hibernate.tool.hbm2ddl.SchemaUpdate.execute(SchemaUpdate.java:140)
+	at org.hibernate.impl.SessionFactoryImpl.<init>(SessionFactoryImpl.java:314)
+	at org.hibernate.cfg.Configuration.buildSessionFactory(Configuration.java:1218)
+	at org.springframework.orm.hibernate3.LocalSessionFactoryBean.newSessionFactory(LocalSessionFactoryBean.java:860)
+	at org.springframework.orm.hibernate3.LocalSessionFactoryBean.buildSessionFactory(LocalSessionFactoryBean.java:779)
+	at org.springframework.orm.hibernate3.AbstractSessionFactoryBean.afterPropertiesSet(AbstractSessionFactoryBean.java:211)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1477)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1417)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:456)
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:291)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:288)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:190)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:563)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:895)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:425)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:140)
+	at org.springframework.context.support.FileSystemXmlApplicationContext.<init>(FileSystemXmlApplicationContext.java:84)
+	at erp.ws.sbo.utils.HibernateUtils.<clinit>(HibernateUtils.java:22)
+	at erp.ws.sbo.client.swing.controller.LoginsController.initview(LoginsController.java:219)
+	at erp.ws.sbo.client.swing.view.Login.LoginView.initComponents(LoginView.java:124)
+	at erp.ws.sbo.client.swing.view.Login.LoginView.<init>(LoginView.java:23)
+	at erp.ws.sbo.client.swing.app.appMain.main(appMain.java:91)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:39)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:25)
+	at java.lang.reflect.Method.invoke(Method.java:597)
+	at org.codehaus.mojo.exec.ExecJavaMojo$1.run(ExecJavaMojo.java:293)
+	at java.lang.Thread.run(Thread.java:662)
+Caused by: com.microsoft.sqlserver.jdbc.SQLServerException: 在 sysdatabases 中找不到数据库 '[sbo-common]' 所对应的条目。没有找到具有该名称的条目。请确保正确地输入了该名称。
+	at com.microsoft.sqlserver.jdbc.SQLServerException.makeFromDatabaseError(SQLServerException.java:216)
+	at com.microsoft.sqlserver.jdbc.TDSTokenHandler.onEOF(tdsparser.java:254)
+	at com.microsoft.sqlserver.jdbc.TDSParser.parse(tdsparser.java:84)
+	at com.microsoft.sqlserver.jdbc.TDSParser.parse(tdsparser.java:39)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection$1ConnectionCommand.doExecute(SQLServerConnection.java:1756)
+	at com.microsoft.sqlserver.jdbc.TDSCommand.execute(IOBuffer.java:5696)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.executeCommand(SQLServerConnection.java:1715)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.connectionCommand(SQLServerConnection.java:1761)
+	at com.microsoft.sqlserver.jdbc.SQLServerConnection.setCatalog(SQLServerConnection.java:2063)
+	at com.microsoft.sqlserver.jdbc.SQLServerDatabaseMetaData.switchCatalogs(SQLServerDatabaseMetaData.java:326)
+	at com.microsoft.sqlserver.jdbc.SQLServerDatabaseMetaData.getResultSetFromStoredProc(SQLServerDatabaseMetaData.java:277)
+	at com.microsoft.sqlserver.jdbc.SQLServerDatabaseMetaData.getResultSetWithProvidedColumnNames(SQLServerDatabaseMetaData.java:304)
+	at com.microsoft.sqlserver.jdbc.SQLServerDatabaseMetaData.getTables(SQLServerDatabaseMetaData.java:466)
+	at org.hibernate.tool.hbm2ddl.DatabaseMetadata.getTableMetadata(DatabaseMetadata.java:79)
+	... 31 more

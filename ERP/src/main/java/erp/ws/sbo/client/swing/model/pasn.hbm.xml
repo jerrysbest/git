@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 14, 2013 5:55:40 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="erp.ws.sbo.client.swing.model.pasn" table="[@PASN]" schema="dbo" catalog="NQS">
+        <id name="docEntry" type="int">
+            <column name="DocEntry" />
+            <generator class="assigned" />
+        </id>
+        <property name="docNum" type="int">
+            <column name="DocNum" not-null="true" />
+        </property>
+        <property name="period" type="java.lang.Integer">
+            <column name="Period" />
+        </property>
+        <property name="instance" type="java.lang.Short">
+            <column name="Instance" />
+        </property>
+        <property name="series" type="java.lang.Integer">
+            <column name="Series" />
+        </property>
+        <property name="handwrtten" type="string">
+            <column name="Handwrtten" length="1" />
+        </property>
+        <property name="canceled" type="string">
+            <column name="Canceled" length="1" />
+        </property>
+        <property name="object" type="java.lang.Integer">
+            <column name="Object" />
+        </property>
+        <property name="logInst" type="java.lang.Integer">
+            <column name="LogInst" />
+        </property>
+        <property name="userSign" type="java.lang.Integer">
+            <column name="UserSign" />
+        </property>
+        <property name="transfered" type="string">
+            <column name="Transfered" length="1" />
+        </property>
+        <property name="status" type="string">
+            <column name="Status" length="1" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" not-null="true" />
+        </property>
+        <property name="createTime" type="java.lang.Short">
+            <column name="CreateTime" />
+        </property>
+        <property name="updateDate" type="timestamp">
+            <column name="UpdateDate" length="23" not-null="true" />
+        </property>
+        <property name="updateTime" type="java.lang.Short">
+            <column name="UpdateTime" />
+        </property>
+        <property name="dataSource" type="string">
+            <column name="DataSource" length="1" />
+        </property>
+        <property name="USn" type="string">
+            <column name="U_SN" length="50" not-null="true" unique="true" />
+        </property>
+        <property name="UMemo" type="string">
+            <column name="U_Memo" />
+        </property>
+       <set cascade="save-update" inverse="true" lazy="true" name="asn1" sort="unsorted">
+	   <key>
+	    <column name="docEntry"/>
+	   </key>
+	   <one-to-many class="erp.ws.sbo.client.swing.model.asn1"/>
+	  </set>
+    </class>
+</hibernate-mapping>

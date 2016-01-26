@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  classpath:/org/springframework/beans/factory/xml/spring-beans-3.0.xsd -->
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns:p="http://www.springframework.org/schema/p" 
+xmlns:aop="http://www.springframework.org/schema/aop" 
+xsi:schemaLocation=" http://www.springframework.org/schema/beans  
+
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+http://www.springframework.org/schema/aop    
+http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
+		</property>
+		<property name="url" value="jdbc:sqlserver://192.168.52.2:1433;databasename=NQS">
+		</property>
+		<property name="username" value="sa"/>
+		<property name="password" value="123"/> 
+	</bean>
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource"/>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					<!-- org.hibernate.dialect.SQLServerDialect -->
+					erp.ws.sbo.client.swing.util.general.JerrysSQLServerDialect
+				</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>					
+				<value>
+					erp/ws/sbo/client/swing/model/Ocrd.hbm.xml
+				</value>	
+				<value>
+					erp/ws/sbo/client/swing/model/Ocpr.hbm.xml
+				</value>						
+				<value>
+					erp/ws/sbo/client/swing/model/Rdr1.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/Ordr.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/Oslp.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/Oitm.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/Itm1.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/Ospp.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/Owhs.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/Owdd.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/Ufd1.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/wflist.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/wflist1.hbm.xml
+				</value>			
+				<value>
+					erp/ws/sbo/client/swing/model/Inv1.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/Oinv.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/wfdst.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/Odrf.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/Drf1.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/bcsd.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/desn.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/pasn.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/asn1.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/listsn.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/snstatus.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/userauther.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/UQrm.hbm.xml
+				</value>
+				<value>
+					erp/ws/sbo/client/swing/model/URm1.hbm.xml
+				</value>
+               </list>
+		</property>
+	
+		</bean>
+	<bean id="dataSource-common" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver">
+		</property>
+		<property name="url" value="jdbc:sqlserver://192.168.52.2:1433;databasename=sbo-common">
+		</property>
+		<property name="username" value="sa"/>
+		<property name="password" value="123"/> 
+	</bean>
+	<bean id="sessionFactory-common" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource-common"/>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					<!--org.hibernate.dialect.SQLServerDialect-->
+					erp.ws.sbo.client.swing.util.general.JerrysSQLServerDialect
+				</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>							  
+			</props>
+		
+		</property>
+		<property name="mappingResources">
+			<list>		
+			<value>
+				erp/ws/sbo/client/swing/model/Srgc.hbm.xml
+			</value>					
+			</list>
+		</property>
+	
+		</bean>
+	<bean id="appconfig" class="erp.ws.sbo.client.swing.app.appConfigBean">
+		<property name="dserver" value="192.168.52.2">
+		</property>
+		<property name="lserver" value="192.168.52.2">
+		</property>
+		<property name="comdb" value="NQS">
+		</property>
+		<property name="dbusername" value="sa">
+		</property>
+		<property name="dbuserpas" value="123">
+		</property>
+	</bean>
+	
+	  
+	<bean id="WFlowDao" class="erp.ws.sbo.client.swing.dao.impl.WFlowDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	<bean id="Userauther" class="erp.ws.sbo.dao.impl.Userauther">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	<bean id="SNStatus" class="erp.ws.sbo.dao.impl.SNStatus">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	<bean id="DeSN" class="erp.ws.sbo.dao.impl.DeSN">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	<bean id="PaSNDao" class="erp.ws.sbo.client.swing.dao.impl.PaSNDao">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	<bean id="QrDao" class="erp.ws.sbo.client.swing.dao.impl.QrDao">
+	    <property name="sessionFactory">
+			<ref bean="sessionFactory"/>
+		</property>
+	</bean>
+	<bean id="OrdrFactory" class="erp.ws.sbo.client.swing.dao.impl.OrdrFactory">
+		<property name="ioabsdocm">
+			<ref local="OrdrDoc"/>
+		</property>
+		<property name="iqdocm">
+			<ref local="OrdrQDoc"/>
+		</property>
+	</bean>
+	<bean id="OrdrDoc" class="erp.ws.sbo.client.swing.dao.impl.OrdrDoc"/>
+	<bean id="OrdrQDoc" class="erp.ws.sbo.client.swing.dao.impl.OrdrQDoc"/>
+	<bean id="OinvFactory" class="erp.ws.sbo.client.swing.dao.impl.OinvFactory">
+		<property name="iabsdocm">
+			<ref local="OinvDoc"/>
+		</property>
+		<property name="iqdocm">
+			<ref local="OinvQDoc"/>
+		</property>
+		<property name="iasn">
+			<ref local="OinvAdvSN"/>
+		</property>
+	</bean>
+	<bean id="OinvDoc" class="erp.ws.sbo.client.swing.dao.impl.OinvDoc"/>
+	<bean id="OinvQDoc" class="erp.ws.sbo.client.swing.dao.impl.OinvQDoc"/>
+	<bean id="OinvAdvSN" class="erp.ws.sbo.client.swing.dao.impl.OinvAdvSN"/>
+	<bean id="OrinFactory" class="erp.ws.sbo.client.swing.dao.impl.OrinFactory">
+		<property name="idocm">
+			<ref local="OrinDoc"/>
+		</property>
+		<property name="iqdocm">
+			<ref local="OrinQDoc"/>
+		</property>
+			<property name="iasn">
+			<ref local="OrinAdvSN"/>
+		</property>
+	</bean>
+	<bean id="OrinDoc" class="erp.ws.sbo.client.swing.dao.impl.OrinDoc"/>
+	<bean id="OrinQDoc" class="erp.ws.sbo.client.swing.dao.impl.OrinQDoc"/>
+	<bean id="OrinAdvSN" class="erp.ws.sbo.client.swing.dao.impl.OrinAdvSN"/>
+	<bean id="OrctFactory" class="erp.ws.sbo.client.swing.dao.impl.OrctFactory">
+		<property name="idocm">
+			<ref local="OrctDoc"/>
+		</property>
+		<property name="iqdocm">
+			<ref local="OrctQDoc"/>
+		</property>	
+	</bean>
+	<bean id="OrctDoc" class="erp.ws.sbo.client.swing.dao.impl.OrctDoc"/>
+	<bean id="OrctQDoc" class="erp.ws.sbo.client.swing.dao.impl.OrctQDoc"/>
+	<bean id="OworFactory" class="erp.ws.sbo.client.swing.dao.impl.OworFactory">
+		<property name="idocm">
+			<ref local="OworDoc"/>
+		</property>
+		<property name="iqdocm">
+			<ref local="OworQDoc"/>
+		</property>
+	</bean>
+	<bean id="OworDoc" class="erp.ws.sbo.client.swing.dao.impl.OworDoc"/>
+	<bean id="OworQDoc" class="erp.ws.sbo.client.swing.dao.impl.OworQDoc"/>
+	<bean id="OignFactory" class="erp.ws.sbo.client.swing.dao.impl.OignFactory">
+		<property name="idoc">
+			<ref local="OignAop"/>
+		</property>
+		<property name="iqdocm">
+			<ref local="OignQDoc"/>
+		</property>
+		<property name="IAdvSN">
+			<ref local="OignAdvSN"/>
+		</property>
+	</bean>
+    <bean id="OignDoc" class="erp.ws.sbo.client.swing.dao.impl.OignDoc"/>
+	<bean id="OignAdvSN" class="erp.ws.sbo.client.swing.dao.impl.OignAdvSN"/>
+	<bean id="OignQDoc" class="erp.ws.sbo.client.swing.dao.impl.OignQDoc"/>
+	<bean id="QrDoc" class="erp.ws.sbo.client.swing.dao.impl.QrDoc"/>
+	<bean id="QrQDoc" class="erp.ws.sbo.client.swing.dao.impl.QrQDoc"/>
+	<bean id="QrFactory" class="erp.ws.sbo.client.swing.dao.impl.QrFactory">
+		<property name="idocm">
+			<ref local="QrDoc"/>
+		</property>
+		<property name="iqdocm">
+			<ref local="QrQDoc"/>
+		</property>
+	</bean>
+	
+	<bean id="OOignFactory" class="erp.ws.sbo.client.swing.dao.impl.OOignFactory">
+		<property name="idocm">
+			<ref local="OOignDoc"/>
+		</property>
+		<property name="iqdocm">
+			<ref local="OOignQDoc"/>
+		</property>
+		<property name="iasn">
+			<ref local="OOignAdvSN"/>
+		</property>
+	</bean>
+	<bean id="OOignDoc" class="erp.ws.sbo.client.swing.dao.impl.OOignDoc"/>
+	<bean id="OOignQDoc" class="erp.ws.sbo.client.swing.dao.impl.OOignQDoc"/>
+	<bean id="OOignAdvSN" class="erp.ws.sbo.client.swing.dao.impl.OOignAdvSN"/>
+	<bean id="SninDoc" class="erp.ws.sbo.client.swing.dao.impl.SninDoc"/>
+	<bean id="SninQDoc" class="erp.ws.sbo.client.swing.dao.impl.SninQDoc"/>
+	<bean id="SninAdvSN" class="erp.ws.sbo.client.swing.dao.impl.SninAdvSN"/>
+	<bean id="SninFactory" class="erp.ws.sbo.client.swing.dao.impl.SninFactory">
+		<property name="isabsdocm">
+			<ref local="SninDoc"/>
+		</property>
+		<property name="idoc">
+			<ref local="bean"/>
+		</property>
+		<property name="iqdocm">
+			<ref local="SninQDoc"/>
+		</property>
+		<property name="iasn">
+			<ref local="SninAdvSN"/>
+		</property>
+	</bean>	
+	<bean id="OigeFactory" class="erp.ws.sbo.client.swing.dao.impl.OigeFactory">
+		<property name="idocm">
+			<ref local="OigeDoc"/>
+		</property>
+		<property name="iqdocm">
+			<ref local="OigeQDoc"/>
+		</property>		
+	</bean>
+	
+	<bean id="OigeDoc" class="erp.ws.sbo.client.swing.dao.impl.OigeDoc"/>
+	<bean id="OigeQDoc" class="erp.ws.sbo.client.swing.dao.impl.OigeQDoc"/>	
+	<bean id="OOigeFactory" class="erp.ws.sbo.client.swing.dao.impl.OOigeFactory">
+		<property name="idocm">
+			<ref local="OOigeDoc"/>
+		</property>
+		<property name="iqdocm">
+			<ref local="OOigeQDoc"/>
+		</property>
+		<property name="iasn">
+			<ref local="OOigeAdvSN"/>
+		</property>
+	</bean>
+	<bean id="OOigeDoc" class="erp.ws.sbo.client.swing.dao.impl.OOigeDoc"/>
+	<bean id="OOigeQDoc" class="erp.ws.sbo.client.swing.dao.impl.OOigeQDoc"/>
+	<bean id="OOigeAdvSN" class="erp.ws.sbo.client.swing.dao.impl.OOigeAdvSN"/>
+	<bean id="PaSNFactory" class="erp.ws.sbo.client.swing.dao.impl.PaSNFactory">
+		<property name="idocm">
+			<ref local="PaSNBizDoc"/>
+		</property>
+		<property name="iqdocm">
+			<ref local="PaSNQDoc"/>
+		</property>
+	</bean>
+	<bean id="PaSNBizDoc" class="erp.ws.sbo.client.swing.dao.impl.PaSNBizDoc"/>
+	<bean id="PaSNQDoc" class="erp.ws.sbo.client.swing.dao.impl.PaSNQDoc"/>
+		
+	<!-- interceptor AOP
+	<bean id="beforeAdvice" class="com.dragon.Advice.BeforeAdvice"></bean>
+	<bean id="afterAdvice" class="com.dragon.Advice.AfterAdvice"></bean>
+	<bean id="compareInterceptor" class="com.dragon.Advice.CompareInterceptor"></bean>
+	<bean id="studenttarget" class="com.dragon.study.Impl.StudentImpl"></bean>
+	
+	<bean id="student" class="org.springframework.aop.framework.ProxyFactoryBean">
+	  <property name="proxyInterfaces">
+	    <value>com.dragon.study.IStudent</value>
+	  </property>
+	  <property name="interceptorNames">
+	    <list>
+	     <value>beforeAdvice</value>
+	     <value>afterAdvice</value>
+	    <value>compareInterceptor</value>  
+	    </list>
+	  </property>
+	  <property name="target">
+	    <ref bean="studenttarget"/>
+	  </property>
+	
+	</bean>   
+	-->    
+	<!-- AOP 5 methods of declarative transaction http://www.sjsjw.com/kf_other/article/55_26704_11000.asp -->
+   <!--  
+    <bean id="myService" class="org.springframework.aop.framework.ProxyFactoryBean">  
+       <property name="interceptorNames">  
+           <list>  
+               <value>beforeInterceptor</value>  
+           </list>  
+       </property>  
+       <property name="target">  
+           <ref bean="realServiceTarget" />  
+       </property>  
+    </bean>  
+      
+    <bean id="realServiceTarget" class="cn.xxxx.xxx.Xxxx"/>  
+    <bean id="beforeInterceptor" class="cn.xxxx.xxx.MyChecker"/>  
+    -->
+    <!-- AOP implement permission management -->
+     <bean id="OignAop" class="org.springframework.aop.framework.ProxyFactoryBean">  
+        <property name="proxyInterfaces">  
+            <value>erp.ws.sbo.client.swing.dao.IDoc</value>  
+        </property>  
+        <property name="target">  
+            <ref local="OignDoc"/>  
+        </property>  
+        <property name="interceptorNames">  
+            <list>  
+                <value>permissionCheckBeforeAdvisor</value>  
+                <value>permissionThrowAdvisor</value>  
+            </list>  
+        </property>  
+    </bean>                 
+	 <bean id="bean" class="org.springframework.aop.framework.ProxyFactoryBean">  
+        <property name="proxyInterfaces">  
+            <value>erp.ws.sbo.client.swing.dao.IDoc</value>  
+        </property>  
+        <property name="target">  
+            <ref local="SninDoc"/>  
+        </property>  
+        <property name="interceptorNames">  
+            <list>  
+                <value>permissionCheckBeforeAdvisor</value>  
+                <value>permissionThrowAdvisor</value>  
+            </list>  
+        </property>  
+    </bean>                
+   <!-- 
+   <bean id="service" class="org.springframework.aop.framework.ProxyFactoryBean">  
+        <property name="proxyInterfaces">  
+            <value>erp.ws.sbo.client.swing.dao.IDoc</value>  
+        </property>  
+        <property name="target">  
+            <ref local="serviceBean"/>  
+        </property>  
+    </bean>  
+     <bean id="serviceBean" class="com.jhalo.jsecurity.aop.ServiceBean">  
+        <property name="bean">  
+            <ref local="bean"/>  
+        </property>  
+    </bean> 
+    -->
+      
+    <bean id="permissionCheckBeforeAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">  
+        <property name="advice">  
+            <ref local="thePermissionCheckBeforeAdvice"/>  
+        </property>  
+        <property name="pattern">  
+            <value>.*</value>  
+        </property>  
+    </bean>  
+      
+    <bean id="permissionThrowAdvisor" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">  
+        <property name="advice">  
+            <ref local="thePermissionThrowsAdvice"/>  
+        </property>  
+        <property name="pattern">  
+            <value>.*</value>  
+        </property>  
+    </bean>  
+      
+    <bean id="thePermissionCheckBeforeAdvice" class="erp.ws.aop.permission.PermissionCheckAdvice"/>  
+    <bean id="thePermissionThrowsAdvice" class="erp.ws.aop.permission.PermissionThrowsAdvice"/>  
+    
+</beans>

@@ -1,0 +1,58 @@
+http://mvnrepository.com/
+http://search.maven.org/
+http://repository.sonatype.org/content/groups/public/
+http://people.apache.org/repo/m2-snapshot-repository/
+http://people.apache.org/repo/m2-incubating-repository/
+
+example of pom
+http://blog.csdn.net/sweblish/article/details/8510359
+use copy
+http://bbs.csdn.net/topics/370161120
+
+
+http://blog.csdn.net/johnnywww/article/details/7964326,this passage introduces several methods to package java program.
+把第三方包注册到本地库，然后把jar直接拷到本地库文件夹，注意jar后面要加版本号，否则报错
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\sboapi-8.8.jar -DgroupId=sap.sbo.sboapi -DartifactId=sboapi -Dversion=8.8  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\sbowrapper-8.8.jar  -DgroupId=sap.sbo.sbowrapper  -DartifactId=sbowrapper  -Dversion=8.8  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\datepicker.jar  -DgroupId=com.datepicker  -DartifactId=datepicker  -Dversion=1.0.0 -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\AbsoluteLayout.jar  -DgroupId=com.AbsoluteLayout  -DartifactId=AbsoluteLayout  -Dversion=2.0.3 -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\comm.jar  -DgroupId=javax.comm  -DartifactId=comm -Dversion=2.0.3 -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\libloader-1.2.3.jar  -DgroupId=pentaho.libloader  -DartifactId=libloader  -Dversion=1.2.3  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\libpixie-1.2.2.jar  -DgroupId=pentaho.libpixie  -DartifactId=libpixie  -Dversion=1.2.2  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\librepository-1.2.3.jar  -DgroupId=pentaho.librepository  -DartifactId=librepository  -Dversion=1.2.3  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\libserializer-1.2.2.jar  -DgroupId=pentaho.libserializer  -DartifactId=libserializer  -Dversion=1.2.2  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\libxml-1.2.2.jar  -DgroupId=pentaho.libxml -DartifactId=libxml  -Dversion=1.2.2  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\pentaho-connections-2.2.3.jar  -DgroupId=pentaho.connections  -DartifactId=pconnections  -Dversion=2.2.3  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\pentaho-publisher-1.6.0.jar  -DgroupId=pentaho.publisher  -DartifactId=publisher  -Dversion=1.6.0  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\pentaho-reporting-engine-classic-core-3.8.2-GA.jar  -DgroupId=pentaho.reporting.engine.classic.core  -DartifactId=prenginecc  -Dversion=3.8.2-GA  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\pentaho-reporting-engine-classic-extensions-3.8.2-GA.jar  -DgroupId=pentaho.reporting.engine.classic.extensions  -DartifactId=prenginece  -Dversion=3.8.2-GA  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\pentaho-reporting-engine-legacy-charts-3.8.2-GA.jar  -DgroupId=pentaho.reporting.engine.legacy.charts  -DartifactId=prenginelc  -Dversion=3.8.2-GA  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\bsf-2.4.0.jar  -DgroupId=pentaho.bsf  -DartifactId=bsf  -Dversion=2.4.0  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\bsh-1.3.0.jar  -DgroupId=pentaho.bsh  -DartifactId=bsh  -Dversion=1.3.0  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\jfreereport-output-support-itext-0.8.7.jar  -DgroupId=jfreereport.output.support.itext  -DartifactId=jfreeroutputsitext  -Dversion=0.8.7  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\libbase-1.2.2.jar  -DgroupId=pentaho.libbase  -DartifactId=libbase  -Dversion=1.2.2  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\libdocbundle-1.2.3.jar  -DgroupId=pentaho.libdocbundle  -DartifactId=libdocbundle  -Dversion=1.2.3 -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\libfonts-1.2.3.jar  -DgroupId=pentaho.libfonts  -DartifactId=libfonts  -Dversion=1.2.3  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\libformat-1.2.4.jar  -DgroupId=pentaho.libformat  -DartifactId=libformat  -Dversion=1.2.4  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\libformula-1.2.3.jar  -DgroupId=pentaho.libformula  -DartifactId=libformula  -Dversion=1.2.3  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\libswing-1.2.4.jar  -DgroupId=pentaho.libswing  -DartifactId=libswing  -Dversion=1.2.4  -Dpackaging=jar  -DgeneratePom=true 
+
+spring annotations just needs to be imported on the low version of jdk,if you use hegh version jdk more than 1.5,it is no need 
+
+command:
+ 
+assembly:assembly
+exec:java -Dexec.mainClass="erp.ws.sbo.client.swing.app.appMain"
+package
+
+Hint:
+When type "<" in xml file,there will show a menu
+
+
+Three methods to run java use maven
+http://www.tuicool.com/articles/UJJvim
+How to use assembly
+http://www.blogjava.net/aoxj/archive/2009/01/16/251615.html
+http://maven.apache.org/plugins/maven-assembly-plugin/usage.html
+how to use launch4j
+http://launch4j.sourceforge.net/docs.html#Configuration_file

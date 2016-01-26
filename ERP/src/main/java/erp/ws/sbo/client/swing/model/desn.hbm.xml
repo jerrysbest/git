@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 4, 2013 10:25:55 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="erp.ws.sbo.client.swing.model.desn" table="[@DESN]" schema="dbo" catalog="NQS">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="ifdraft" type="boolean">
+            <column name="Ifdraft" not-null="true" />
+        </property>
+        <property name="objType" type="int">
+            <column name="ObjType" not-null="true" />
+        </property>
+        <property name="docEntry" type="int">
+            <column name="DocEntry" not-null="true" />
+        </property>
+        <property name="lineNum" type="int">
+            <column name="LineNum" not-null="true" />
+        </property>
+        <property name="itemcode" type="string">
+            <column name="Itemcode" length="20" not-null="true" />
+        </property>
+        <property name="length" type="big_decimal">
+            <column name="length" precision="12" scale="3" not-null="true" />
+        </property>
+        <property name="sn" type="string">
+            <column name="SN" length="50" not-null="true" />
+        </property>
+        <property name="weight" type="big_decimal">
+            <column name="Weight" precision="18" scale="3" not-null="true" />
+        </property>
+        <property name="direction" type="string">
+            <column name="Direction" length="1" not-null="true" />
+        </property>
+        <property name="ifPaSn" type="boolean">
+            <column name="ifPaSN" not-null="true" />
+        </property>
+        <property name="paSn" type="string">
+            <column name="PaSN" length="50" />
+        </property>
+        <property name="wareHouse" type="string">
+            <column name="WareHouse" length="50" />
+        </property>
+        <property name="cardCode" type="string">
+            <column name="CardCode" length="50" />
+        </property>
+        <property name="memo" type="string">
+            <column name="Memo" />
+        </property>
+        <property name="workCenter" type="string">
+            <column name="WorkCenter" length="50" />
+        </property>
+        <property name="cdatetime" type="timestamp">
+            <column name="cdatetime" length="23" not-null="true" />
+        </property>
+        <property name="udatetime" type="timestamp">
+            <column name="udatetime" length="23" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
