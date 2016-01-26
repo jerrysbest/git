@@ -7,7 +7,7 @@ http://people.apache.org/repo/m2-incubating-repository/
 
 http://blog.csdn.net/johnnywww/article/details/7964326,this passage introduces several methods to package java program.
 把第三方包注册到本地库，然后把jar直接拷到本地库文件夹，注意jar后面要加版本号，否则报错
-mvn install:install-file -Dfile=E:\gitrepository\git\sboerp\lib\sboapi-8.8.jar -DgroupId=sap.sbo.sboapi -DartifactId=sboapi -Dversion=8.8  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\sboapi-8.8.jar -DgroupId=sap.sbo.sboapi -DartifactId=sboapi -Dversion=8.8  -Dpackaging=jar  -DgeneratePom=true 
 mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\sbowrapper-8.8.jar  -DgroupId=sap.sbo.sbowrapper  -DartifactId=sbowrapper  -Dversion=8.8  -Dpackaging=jar  -DgeneratePom=true 
 mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\datepicker.jar  -DgroupId=com.datepicker  -DartifactId=datepicker  -Dversion=1.0.0 -Dpackaging=jar  -DgeneratePom=true 
 mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\AbsoluteLayout.jar  -DgroupId=com.AbsoluteLayout  -DartifactId=AbsoluteLayout  -Dversion=2.0.3 -Dpackaging=jar  -DgeneratePom=true 
@@ -38,8 +38,11 @@ command:
  
 assembly:assembly
 exec:java -Dexec.mainClass="erp.ws.sbo.client.swing.app.appMain"
+package
+
 
 Three methods to run java use maven
 http://www.tuicool.com/articles/UJJvim
 How to use assembly
 http://www.blogjava.net/aoxj/archive/2009/01/16/251615.html
+http://maven.apache.org/plugins/maven-assembly-plugin/usage.html
