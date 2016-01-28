@@ -39,7 +39,6 @@ import javax.swing.event.TableModelListener;
 import erp.ws.aop.permission.PermissionDeniedException;
 import erp.ws.sbo.client.swing.app.appMain;
 import erp.ws.sbo.client.swing.dao.DaoFactory;
-import erp.ws.sbo.client.swing.dao.IDoc;
 import erp.ws.sbo.client.swing.model.ColDocTitle;
 import erp.ws.sbo.client.swing.model.DocTitle;
 import erp.ws.sbo.client.swing.model.snstatus;
@@ -176,10 +175,10 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 						 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));		 			 
 					}  
 					else{
-	 	             Double wgtpm=Double.valueOf(ob[0][6].toString())/(Double.valueOf(ob[0][5].toString())); 	 	           
-					 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));
-					 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(wgtpm*Double.valueOf(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));		 	          
-					 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
+		 	             Double wgtpm=Double.valueOf(ob[0][6].toString())/(Double.valueOf(ob[0][5].toString())); 	 	           
+						 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));
+						 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(wgtpm*Double.valueOf(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));		 	          
+						 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
 	 			     }
 					v.getTxt_createcode().setText("");
 				}
@@ -375,11 +374,10 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		 			 
 					}  
 					else{
-	 	             Double wgtpm=Double.valueOf(ob[0][6].toString())/(Double.valueOf(ob[0][5].toString())); 
-	 	           
-					 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));
-					 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(wgtpm*Double.valueOf(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));		 	          
-					 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
+		 	             Double wgtpm=Double.valueOf(ob[0][6].toString())/(Double.valueOf(ob[0][5].toString())); 	 	           
+						 v.getTxt_cweight().setText(String.valueOf(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v.getTxt_weight().getText()==null?"0":v.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));
+						 v.getTxt_sweight().setText(String.valueOf(new BigDecimal(wgtpm*Double.valueOf(v.getTxt_length().getText()==null?"0":v.getTxt_length().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));		 	          
+						 v.getTxt_deviation().setText(String.valueOf(new BigDecimal(Double.valueOf(v.getTxt_sweight().getText()==null?"0":v.getTxt_sweight().getText())-Double.valueOf(v.getTxt_cweight().getText()==null?"0":v.getTxt_cweight().getText())).setScale(3, BigDecimal.ROUND_HALF_UP)));
 	 			     }
 					v.getTxt_createcode().setText("");
 				}
