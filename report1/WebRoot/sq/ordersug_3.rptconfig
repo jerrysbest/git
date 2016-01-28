@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <list-property name="configVars">
+        <structure>
+            <property name="name">__isdisplay__cardcode1_483_0</property>
+            <property name="value">000</property>
+        </structure>
+        <structure>
+            <property name="name">__isdisplay__cardcode2_484_1</property>
+            <property name="value">zzzzz</property>
+        </structure>
+        <structure>
+            <property name="name">__isdisplay__slp11_34_2</property>
+            <property name="value">-无销售员工-</property>
+        </structure>
+        <structure>
+            <property name="name">__isdisplay__slp12_35_3</property>
+            <property name="value">内勤一区魏彩莲</property>
+        </structure>
+        <structure>
+            <property name="name">__isdisplay__datetime1_36_4</property>
+            <property name="value">201301011</property>
+        </structure>
+        <structure>
+            <property name="name">__isdisplay__datetime2_37_5</property>
+            <property name="value">2033010124</property>
+        </structure>
+        <structure>
+            <property name="name">__isdisplay__itemcode1_489_6</property>
+            <property name="value">000</property>
+        </structure>
+        <structure>
+            <property name="name">__isdisplay__itemcode2_490_7</property>
+            <property name="value">zzzzz</property>
+        </structure>
+        <structure>
+            <property name="name">__isdisplay__docnum1_546_8</property>
+            <property name="value">0</property>
+        </structure>
+        <structure>
+            <property name="name">__isdisplay__docnum2_547_9</property>
+            <property name="value">99999</property>
+        </structure>
+        <structure>
+            <property name="name">slp11_34_10</property>
+            <property name="value">-1</property>
+        </structure>
+        <structure>
+            <property name="name">slp11_34_type_</property>
+            <property name="value">string</property>
+        </structure>
+        <structure>
+            <property name="name">slp11_34_expr_</property>
+            <property name="value">dataSetRow["slpcode"]</property>
+        </structure>
+        <structure>
+            <property name="name">docnum2_547_11</property>
+            <property name="value">99999</property>
+        </structure>
+        <structure>
+            <property name="name">docnum2_547_type_</property>
+            <property name="value">integer</property>
+        </structure>
+        <structure>
+            <property name="name">docnum2_547_expr_</property>
+            <property name="value">dataSetRow["docnum"]</property>
+        </structure>
+        <structure>
+            <property name="name">docnum1_546_12</property>
+            <property name="value">0</property>
+        </structure>
+        <structure>
+            <property name="name">docnum1_546_type_</property>
+            <property name="value">integer</property>
+        </structure>
+        <structure>
+            <property name="name">docnum1_546_expr_</property>
+            <property name="value">dataSetRow["docnum"]</property>
+        </structure>
+        <structure>
+            <property name="name">cardcode1_483_13</property>
+            <property name="value">000</property>
+        </structure>
+        <structure>
+            <property name="name">cardcode1_483_type_</property>
+            <property name="value">string</property>
+        </structure>
+        <structure>
+            <property name="name">cardcode1_483_expr_</property>
+            <property name="value">dataSetRow["cardcode"]</property>
+        </structure>
+        <structure>
+            <property name="name">cardcode2_484_14</property>
+            <property name="value">zzzzz</property>
+        </structure>
+        <structure>
+            <property name="name">cardcode2_484_type_</property>
+            <property name="value">string</property>
+        </structure>
+        <structure>
+            <property name="name">cardcode2_484_expr_</property>
+            <property name="value">dataSetRow["cardcode"]</property>
+        </structure>
+        <structure>
+            <property name="name">datetime1_36_15</property>
+            <property name="value">201301011</property>
+        </structure>
+        <structure>
+            <property name="name">datetime1_36_type_</property>
+            <property name="value">string</property>
+        </structure>
+        <structure>
+            <property name="name">datetime2_37_16</property>
+            <property name="value">2033010124</property>
+        </structure>
+        <structure>
+            <property name="name">datetime2_37_type_</property>
+            <property name="value">string</property>
+        </structure>
+        <structure>
+            <property name="name">itemcode2_490_17</property>
+            <property name="value">zzzzz</property>
+        </structure>
+        <structure>
+            <property name="name">itemcode2_490_type_</property>
+            <property name="value">string</property>
+        </structure>
+        <structure>
+            <property name="name">itemcode1_489_18</property>
+            <property name="value">000</property>
+        </structure>
+        <structure>
+            <property name="name">itemcode1_489_type_</property>
+            <property name="value">string</property>
+        </structure>
+        <structure>
+            <property name="name">slp12_35_19</property>
+            <property name="value">50</property>
+        </structure>
+        <structure>
+            <property name="name">slp12_35_type_</property>
+            <property name="value">string</property>
+        </structure>
+        <structure>
+            <property name="name">slp12_35_expr_</property>
+            <property name="value">dataSetRow["slpcode"]</property>
+        </structure>
+    </list-property>
+</report>

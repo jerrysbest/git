@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.1.v201408290142 Build &lt;4.4.1.v20140916-1320></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="7">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+            <property name="odaURL">jdbc:sqlserver://10.0.13.19:1433;databaseName=bpmapp</property>
+            <property name="odaUser">sa</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">QG9tZGIx</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="history_order" id="8">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">orderNo</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">orderNo</text-property>
+                    <text-property name="heading">orderNo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">lineNum</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">lineNum</text-property>
+                    <text-property name="heading">lineNum</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cinvcode</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cinvcode</text-property>
+                    <text-property name="heading">cinvcode</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">quantity</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">quantity</text-property>
+                    <text-property name="heading">quantity</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">orderdate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">orderdate</text-property>
+                    <text-property name="heading">orderdate</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">deldate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">deldate</text-property>
+                    <text-property name="heading">deldate</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">rquantity</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">rquantity</text-property>
+                    <text-property name="heading">rquantity</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">state</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">state</text-property>
+                    <text-property name="heading">state</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">GAP</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">GAP</text-property>
+                    <text-property name="heading">GAP</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">Memo</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">Memo</text-property>
+                    <text-property name="heading">Memo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">total到货</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">total到货</text-property>
+                    <text-property name="heading">total到货</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">发货次数</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">发货次数</text-property>
+                    <text-property name="heading">发货次数</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">首次发货时间</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">首次发货时间</text-property>
+                    <text-property name="heading">首次发货时间</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">OTD</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">OTD</text-property>
+                    <text-property name="heading">OTD</text-property>
+                </structure>
+            </list-property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">between</property>
+                    <expression name="expr" type="javascript">row["orderNo"]</expression>
+                    <simple-property-list name="value1">
+                        <value>0</value>
+                    </simple-property-list>
+                    <expression name="value2">1000000000000000</expression>
+                </structure>
+                <structure>
+                    <property name="operator">between</property>
+                    <expression name="expr" type="javascript">row["cinvcode"]</expression>
+                    <simple-property-list name="value1">
+                        <value>0</value>
+                    </simple-property-list>
+                    <expression name="value2">zzzzz</expression>
+                </structure>
+                <structure>
+                    <property name="operator">eq</property>
+                    <expression name="expr" type="javascript">row["quantity"]</expression>
+                    <simple-property-list name="value1">
+                        <value>new java.math.BigDecimal("10.00")</value>
+                    </simple-property-list>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">orderNo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">lineNum</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">cinvcode</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">quantity</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">orderdate</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">deldate</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">rquantity</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">state</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">GAP</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">Memo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">total到货</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">发货次数</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">首次发货时间</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">OTD</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">orderNo</property>
+                    <property name="nativeName">orderNo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">lineNum</property>
+                    <property name="nativeName">lineNum</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">cinvcode</property>
+                    <property name="nativeName">cinvcode</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">quantity</property>
+                    <property name="nativeName">quantity</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">orderdate</property>
+                    <property name="nativeName">orderdate</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">deldate</property>
+                    <property name="nativeName">deldate</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">rquantity</property>
+                    <property name="nativeName">rquantity</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">state</property>
+                    <property name="nativeName">state</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">GAP</property>
+                    <property name="nativeName">GAP</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">Memo</property>
+                    <property name="nativeName">Memo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">total到货</property>
+                    <property name="nativeName">total到货</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">发货次数</property>
+                    <property name="nativeName">发货次数</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">首次发货时间</property>
+                    <property name="nativeName">首次发货时间</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">OTD</property>
+                    <property name="nativeName">OTD</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[  select a.orderNo,a.lineNum,a.cinvcode,a.quantity,
+	a.orderdate,a.deldate,a.rquantity,state=case when a.quantity=a.rquantity then '全部'
+    when a.quantity>a.rquantity then '部分'
+    else '未到货'end,
+    isnull(a.quantity,0)-isnull(a.rquantity,0) as GAP,a.Memo, sum(b.quantity) AS total到货,count(b.lineNum)as 发货次数,min(b.shipdate)as 首次发货时间,
+    OTD= isnull(c.quantity,0)/a.quantity
+	 from dbo.pd_porder a 
+	 inner join  dbo.pd_GoodReceive b on a.orderNo=b.orderNo and a.linenum=b.linenum
+	 left join  dbo.pd_GoodReceive c on a.orderNo=c.orderNo and a.linenum=b.linenum 
+	 and c.shipdate<=a.deldate
+	 group by a.lineNum,a.orderNo,a.lineNum,a.cinvcode,
+	 a.quantity,a.orderdate,a.deldate,a.rquantity,a.Memo,c.quantity
+]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <cubes>
+        <tabular-cube name="Data Cube" id="9">
+            <property name="dataSet">history_order</property>
+        </tabular-cube>
+    </cubes>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab-cell" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="NewStyle" id="255"/>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="57">
+            <property name="dataSet">history_order</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">orderNo</property>
+                    <text-property name="displayName">orderNo</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["orderNo"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">lineNum</property>
+                    <text-property name="displayName">lineNum</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["lineNum"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">cinvcode</property>
+                    <text-property name="displayName">cinvcode</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cinvcode"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">quantity</property>
+                    <text-property name="displayName">quantity</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["quantity"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">orderdate</property>
+                    <text-property name="displayName">orderdate</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["orderdate"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">deldate</property>
+                    <text-property name="displayName">deldate</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["deldate"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">rquantity</property>
+                    <text-property name="displayName">rquantity</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["rquantity"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">state</property>
+                    <text-property name="displayName">state</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["state"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">GAP</property>
+                    <text-property name="displayName">GAP</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["GAP"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">Memo</property>
+                    <text-property name="displayName">Memo</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["Memo"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">total到货</property>
+                    <text-property name="displayName">total到货</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["total到货"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">发货次数</property>
+                    <text-property name="displayName">发货次数</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["发货次数"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">首次发货时间</property>
+                    <text-property name="displayName">首次发货时间</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["首次发货时间"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">OTD</property>
+                    <text-property name="displayName">OTD</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["OTD"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <column id="131"/>
+            <column id="132"/>
+            <column id="133"/>
+            <column id="134"/>
+            <column id="135"/>
+            <column id="136"/>
+            <column id="137"/>
+            <column id="138"/>
+            <column id="139"/>
+            <column id="140"/>
+            <column id="141"/>
+            <column id="142"/>
+            <column id="143"/>
+            <column id="144"/>
+            <header>
+                <row id="145">
+                    <property name="style">NewStyle</property>
+                    <property name="backgroundColor">#008040</property>
+                    <cell id="146">
+                        <text id="222">
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[在途量查询]]></text-property>
+                        </text>
+                    </cell>
+                    <cell id="147"/>
+                    <cell id="148"/>
+                    <cell id="149"/>
+                    <cell id="150"/>
+                    <cell id="151"/>
+                    <cell id="152"/>
+                    <cell id="153"/>
+                    <cell id="154"/>
+                    <cell id="155"/>
+                    <cell id="156"/>
+                    <cell id="157"/>
+                    <cell id="158"/>
+                    <cell id="159"/>
+                </row>
+                <row id="58">
+                    <property name="backgroundColor">#008040</property>
+                    <cell id="59">
+                        <label id="60">
+                            <text-property name="text">订单号</text-property>
+                        </label>
+                    </cell>
+                    <cell id="61">
+                        <label id="62">
+                            <text-property name="text">订单行号</text-property>
+                        </label>
+                    </cell>
+                    <cell id="63">
+                        <label id="64">
+                            <text-property name="text">物料编码</text-property>
+                        </label>
+                    </cell>
+                    <cell id="65">
+                        <label id="66">
+                            <text-property name="text">订货数量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="67">
+                        <label id="68">
+                            <text-property name="text">下单日期</text-property>
+                        </label>
+                    </cell>
+                    <cell id="69">
+                        <label id="70">
+                            <text-property name="text">要求发货日期</text-property>
+                        </label>
+                    </cell>
+                    <cell id="71">
+                        <label id="72">
+                            <text-property name="text">已到货数量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="73">
+                        <label id="74">
+                            <text-property name="text">到货状态</text-property>
+                        </label>
+                    </cell>
+                    <cell id="75">
+                        <label id="76">
+                            <text-property name="text">GAP</text-property>
+                        </label>
+                    </cell>
+                    <cell id="77">
+                        <label id="78">
+                            <text-property name="text">Memo</text-property>
+                        </label>
+                    </cell>
+                    <cell id="79">
+                        <label id="80">
+                            <property name="whiteSpace">nowrap</property>
+                            <text-property name="text">total到货</text-property>
+                        </label>
+                    </cell>
+                    <cell id="81">
+                        <label id="82">
+                            <text-property name="text">发货次数</text-property>
+                        </label>
+                    </cell>
+                    <cell id="83">
+                        <label id="84">
+                            <text-property name="text">首次发货时间</text-property>
+                        </label>
+                    </cell>
+                    <cell id="85">
+                        <label id="86">
+                            <text-property name="text">OTD</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="87">
+                    <cell id="88">
+                        <data id="89">
+                            <property name="resultSetColumn">orderNo</property>
+                        </data>
+                    </cell>
+                    <cell id="90">
+                        <data id="91">
+                            <property name="resultSetColumn">lineNum</property>
+                        </data>
+                    </cell>
+                    <cell id="92">
+                        <data id="93">
+                            <property name="resultSetColumn">cinvcode</property>
+                        </data>
+                    </cell>
+                    <cell id="94">
+                        <data id="95">
+                            <property name="resultSetColumn">quantity</property>
+                        </data>
+                    </cell>
+                    <cell id="96">
+                        <data id="97">
+                            <property name="resultSetColumn">orderdate</property>
+                        </data>
+                    </cell>
+                    <cell id="98">
+                        <data id="99">
+                            <property name="resultSetColumn">deldate</property>
+                        </data>
+                    </cell>
+                    <cell id="100">
+                        <data id="101">
+                            <property name="resultSetColumn">rquantity</property>
+                        </data>
+                    </cell>
+                    <cell id="102">
+                        <data id="103">
+                            <property name="resultSetColumn">state</property>
+                        </data>
+                    </cell>
+                    <cell id="104">
+                        <data id="105">
+                            <property name="resultSetColumn">GAP</property>
+                        </data>
+                    </cell>
+                    <cell id="106">
+                        <data id="107">
+                            <property name="resultSetColumn">Memo</property>
+                        </data>
+                    </cell>
+                    <cell id="108">
+                        <data id="109">
+                            <property name="resultSetColumn">total到货</property>
+                        </data>
+                    </cell>
+                    <cell id="110">
+                        <data id="111">
+                            <property name="resultSetColumn">发货次数</property>
+                        </data>
+                    </cell>
+                    <cell id="112">
+                        <data id="113">
+                            <property name="resultSetColumn">首次发货时间</property>
+                        </data>
+                    </cell>
+                    <cell id="114">
+                        <data id="115">
+                            <property name="resultSetColumn">OTD</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="116">
+                    <cell id="117"/>
+                    <cell id="118"/>
+                    <cell id="119"/>
+                    <cell id="120"/>
+                    <cell id="121"/>
+                    <cell id="122"/>
+                    <cell id="123"/>
+                    <cell id="124"/>
+                    <cell id="125"/>
+                    <cell id="126"/>
+                    <cell id="127"/>
+                    <cell id="128"/>
+                    <cell id="129"/>
+                    <cell id="130"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

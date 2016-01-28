@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.0.v201306041519 Build &lt;4.3.0.v20130611-1045></property>
+    <property name="units">pt</property>
+    <property name="iconFile">/templates/simple_listing.gif</property>
+    <property name="cheatSheet">org.eclipse.birt.report.designer.ui.cheatsheet.simplelisting</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <parameter-group name="datetime" id="487">
+            <text-property name="displayName">日期时间</text-property>
+            <parameters>
+                <scalar-parameter name="datetime1" id="36">
+                    <text-property name="helpText">开始时间(2013-01-01)</text-property>
+                    <text-property name="promptText">开始时间</text-property>
+                    <property name="valueType">static</property>
+                    <property name="dataType">string</property>
+                    <property name="distinct">true</property>
+                    <simple-property-list name="defaultValue">
+                        <value type="constant">2013-01-01</value>
+                    </simple-property-list>
+                    <list-property name="selectionList"/>
+                    <property name="paramType">simple</property>
+                    <property name="controlType">text-box</property>
+                    <structure name="format">
+                        <property name="category">Unformatted</property>
+                    </structure>
+                </scalar-parameter>
+                <scalar-parameter name="datetime2" id="37">
+                    <text-property name="helpText">结束时间(2033-01-01)</text-property>
+                    <text-property name="promptText">结束时间</text-property>
+                    <property name="valueType">static</property>
+                    <property name="dataType">string</property>
+                    <property name="distinct">true</property>
+                    <simple-property-list name="defaultValue">
+                        <value type="constant">2033-01-01</value>
+                    </simple-property-list>
+                    <list-property name="selectionList"/>
+                    <property name="paramType">simple</property>
+                    <property name="controlType">text-box</property>
+                    <structure name="format">
+                        <property name="category">Unformatted</property>
+                    </structure>
+                </scalar-parameter>
+            </parameters>
+        </parameter-group>
+        <parameter-group name="itemcode" id="488">
+            <text-property name="displayName">物料编码</text-property>
+            <parameters>
+                <scalar-parameter name="itemcode1" id="489">
+                    <text-property name="helpText">物料编码1</text-property>
+                    <text-property name="promptText">物料编码1</text-property>
+                    <property name="valueType">static</property>
+                    <property name="dataType">string</property>
+                    <property name="distinct">true</property>
+                    <simple-property-list name="defaultValue">
+                        <value type="constant">000</value>
+                    </simple-property-list>
+                    <list-property name="selectionList"/>
+                    <property name="paramType">simple</property>
+                    <property name="controlType">text-box</property>
+                    <structure name="format">
+                        <property name="category">Unformatted</property>
+                    </structure>
+                </scalar-parameter>
+                <scalar-parameter name="itemcode2" id="490">
+                    <text-property name="helpText">物料编码2</text-property>
+                    <text-property name="promptText">物料编码2</text-property>
+                    <property name="valueType">static</property>
+                    <property name="dataType">string</property>
+                    <property name="distinct">true</property>
+                    <simple-property-list name="defaultValue">
+                        <value type="constant">zzzzz</value>
+                    </simple-property-list>
+                    <list-property name="selectionList"/>
+                    <property name="paramType">simple</property>
+                    <property name="controlType">text-box</property>
+                    <structure name="format">
+                        <property name="category">Unformatted</property>
+                    </structure>
+                </scalar-parameter>
+            </parameters>
+        </parameter-group>
+        <parameter-group name="docnum" id="545">
+            <text-property name="displayName">单号</text-property>
+            <parameters>
+                <scalar-parameter name="docnum1" id="546">
+                    <text-property name="helpText">开始单号</text-property>
+                    <text-property name="promptText">开始单号</text-property>
+                    <property name="valueType">dynamic</property>
+                    <property name="dataSetName">docnum</property>
+                    <expression name="valueExpr" type="javascript">dataSetRow["docnum"]</expression>
+                    <expression name="labelExpr" type="javascript">dataSetRow["docnum"]</expression>
+                    <expression name="sortByColumn">dataSetRow["docnum"]</expression>
+                    <property name="sortDirection">asc</property>
+                    <property name="dataType">integer</property>
+                    <property name="distinct">true</property>
+                    <simple-property-list name="defaultValue">
+                        <value type="constant">0</value>
+                    </simple-property-list>
+                    <list-property name="selectionList"/>
+                    <property name="paramType">simple</property>
+                    <property name="controlType">list-box</property>
+                    <property name="mustMatch">false</property>
+                    <property name="fixedOrder">false</property>
+                    <structure name="format">
+                        <property name="category">Unformatted</property>
+                    </structure>
+                </scalar-parameter>
+                <scalar-parameter name="docnum2" id="547">
+                    <text-property name="helpText">结束单号</text-property>
+                    <text-property name="promptText">结束单号</text-property>
+                    <property name="valueType">dynamic</property>
+                    <property name="dataSetName">docnum</property>
+                    <expression name="valueExpr" type="javascript">dataSetRow["docnum"]</expression>
+                    <expression name="labelExpr" type="javascript">dataSetRow["docnum"]</expression>
+                    <expression name="sortByColumn">dataSetRow["docnum"]</expression>
+                    <property name="sortDirection">desc</property>
+                    <property name="dataType">integer</property>
+                    <property name="distinct">true</property>
+                    <simple-property-list name="defaultValue">
+                        <value type="constant">99999</value>
+                    </simple-property-list>
+                    <list-property name="selectionList"/>
+                    <property name="paramType">simple</property>
+                    <property name="controlType">list-box</property>
+                    <property name="mustMatch">false</property>
+                    <property name="fixedOrder">false</property>
+                    <structure name="format">
+                        <property name="category">Unformatted</property>
+                    </structure>
+                </scalar-parameter>
+            </parameters>
+        </parameter-group>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="NQS" id="27">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+            <property name="odaURL">jdbc:sqlserver://127.0.0.1:1433;databaseName=NQS</property>
+            <property name="odaUser">sa</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">MTIz</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="exceedproduction" id="28">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">单号</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">单号</text-property>
+                    <text-property name="heading">单号</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">日期</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">日期</text-property>
+                    <text-property name="heading">日期</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">物料编码</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">物料编码</text-property>
+                    <text-property name="heading">物料编码</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">订单数量</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">订单数量</text-property>
+                    <text-property name="heading">订单数量</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">仓库</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">仓库</text-property>
+                    <text-property name="heading">仓库</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">入库单号</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">入库单号</text-property>
+                    <text-property name="heading">入库单号</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">入库日期</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">入库日期</text-property>
+                    <text-property name="heading">入库日期</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">入库数量</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">入库数量</text-property>
+                    <text-property name="heading">入库数量</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">item1</property>
+                    <property name="paramName">itemcode1</property>
+                    <property name="dataType">string</property>
+                    <property name="position">1</property>
+                    <expression name="defaultValue" type="javascript">0</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">item2</property>
+                    <property name="paramName">itemcode2</property>
+                    <property name="dataType">string</property>
+                    <property name="position">2</property>
+                    <expression name="defaultValue" type="javascript">zzzzz</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">datetime1</property>
+                    <property name="paramName">datetime1</property>
+                    <property name="dataType">string</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">datetime2</property>
+                    <property name="paramName">datetime2</property>
+                    <property name="dataType">string</property>
+                    <property name="position">4</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">docnum1</property>
+                    <property name="paramName">docnum1</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">5</property>
+                    <expression name="defaultValue" type="javascript">0</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">docnum2</property>
+                    <property name="paramName">docnum2</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">6</property>
+                    <expression name="defaultValue" type="javascript">9999999</expression>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">单号</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">日期</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">物料编码</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">订单数量</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">仓库</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">入库单号</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">入库日期</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">入库数量</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">NQS</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">单号</property>
+                    <property name="nativeName">单号</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">日期</property>
+                    <property name="nativeName">日期</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">物料编码</property>
+                    <property name="nativeName">物料编码</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">订单数量</property>
+                    <property name="nativeName">订单数量</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">仓库</property>
+                    <property name="nativeName">仓库</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">入库单号</property>
+                    <property name="nativeName">入库单号</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">入库日期</property>
+                    <property name="nativeName">入库日期</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">入库数量</property>
+                    <property name="nativeName">入库数量</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 单号=a.docnum,日期=convert(nvarchar(10),a.postdate,23),物料编码=a.itemcode,订单数量=a.plannedqty,
+仓库=a.warehouse,入库单号=c.docnum,入库日期=convert(nvarchar(10),c.docdate,23),入库数量=b.quantity  from owor a 
+inner join ign1 b on a.docentry=b.docentry and basetype='202' 
+inner join oign c on c.docentry=b.docentry 
+where b.quantity>a.plannedqty 
+and
+a.itemcode>=? and a.itemcode<=?
+and
+convert(nvarchar(10),a.postdate,23)>=? and convert(nvarchar(10),a.postdate,23)<=? 
+and 
+a.docnum>=? and a.docnum<=? ]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="docnum" id="559">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">docnum</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">docnum</text-property>
+                    <text-property name="heading">docnum</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">docnum</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">NQS</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">docnum</property>
+                    <property name="nativeName">docnum</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select 
+docnum 
+from 
+owor ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>docnum</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>docnum</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>docnum</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="24">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="25">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="26">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="leftMargin">0.125in</property>
+            <property name="rightMargin">0in</property>
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <label id="478">
+            <property name="fontSize">36pt</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">超生产订单入库表</text-property>
+        </label>
+        <table id="698">
+            <property name="dataSet">exceedproduction</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">单号</property>
+                    <text-property name="displayName">单号</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["单号"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">日期</property>
+                    <text-property name="displayName">日期</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["日期"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">物料编码</property>
+                    <text-property name="displayName">物料编码</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["物料编码"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">订单数量</property>
+                    <text-property name="displayName">订单数量</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["订单数量"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">仓库</property>
+                    <text-property name="displayName">仓库</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["仓库"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">入库单号</property>
+                    <text-property name="displayName">入库单号</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["入库单号"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">入库日期</property>
+                    <text-property name="displayName">入库日期</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["入库日期"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">入库数量</property>
+                    <text-property name="displayName">入库数量</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["入库数量"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+            </list-property>
+            <column id="742"/>
+            <column id="743">
+                <property name="width">1.875in</property>
+            </column>
+            <column id="744">
+                <property name="width">1.875in</property>
+            </column>
+            <column id="745">
+                <property name="width">0.7708333333333334in</property>
+            </column>
+            <column id="746"/>
+            <column id="747"/>
+            <column id="748">
+                <property name="width">1.875in</property>
+            </column>
+            <column id="749">
+                <property name="width">0.9791666666666666in</property>
+            </column>
+            <header>
+                <row id="699">
+                    <cell id="700">
+                        <property name="fontSize">24pt</property>
+                        <label id="701">
+                            <text-property name="text">单号</text-property>
+                        </label>
+                    </cell>
+                    <cell id="702">
+                        <property name="fontSize">24pt</property>
+                        <label id="703">
+                            <text-property name="text">日期</text-property>
+                        </label>
+                    </cell>
+                    <cell id="704">
+                        <property name="fontSize">24pt</property>
+                        <label id="705">
+                            <text-property name="text">物料编码</text-property>
+                        </label>
+                    </cell>
+                    <cell id="706">
+                        <property name="fontSize">24pt</property>
+                        <label id="707">
+                            <text-property name="text">订单数量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="708">
+                        <property name="fontSize">24pt</property>
+                        <label id="709">
+                            <text-property name="text">仓库</text-property>
+                        </label>
+                    </cell>
+                    <cell id="710">
+                        <property name="fontSize">24pt</property>
+                        <label id="711">
+                            <text-property name="text">入库单号</text-property>
+                        </label>
+                    </cell>
+                    <cell id="712">
+                        <property name="fontSize">24pt</property>
+                        <label id="713">
+                            <text-property name="text">入库日期</text-property>
+                        </label>
+                    </cell>
+                    <cell id="714">
+                        <property name="fontSize">24pt</property>
+                        <label id="715">
+                            <text-property name="text">入库数量</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="716">
+                    <cell id="717">
+                        <property name="fontSize">24pt</property>
+                        <data id="718">
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">###0{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="resultSetColumn">单号</property>
+                        </data>
+                    </cell>
+                    <cell id="719">
+                        <property name="fontSize">24pt</property>
+                        <data id="720">
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">yyyy-MM-dd</property>
+                            </structure>
+                            <property name="resultSetColumn">日期</property>
+                        </data>
+                    </cell>
+                    <cell id="721">
+                        <property name="fontSize">24pt</property>
+                        <data id="722">
+                            <property name="resultSetColumn">物料编码</property>
+                        </data>
+                    </cell>
+                    <cell id="723">
+                        <property name="fontSize">24pt</property>
+                        <data id="724">
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">###0.000{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="resultSetColumn">订单数量</property>
+                        </data>
+                    </cell>
+                    <cell id="725">
+                        <property name="fontSize">24pt</property>
+                        <data id="726">
+                            <property name="resultSetColumn">仓库</property>
+                        </data>
+                    </cell>
+                    <cell id="727">
+                        <property name="fontSize">24pt</property>
+                        <data id="728">
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">###0{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="resultSetColumn">入库单号</property>
+                        </data>
+                    </cell>
+                    <cell id="729">
+                        <property name="fontSize">24pt</property>
+                        <data id="730">
+                            <structure name="dateTimeFormat">
+                                <property name="category">Custom</property>
+                                <property name="pattern">yyyy-MM-dd</property>
+                            </structure>
+                            <property name="resultSetColumn">入库日期</property>
+                        </data>
+                    </cell>
+                    <cell id="731">
+                        <property name="fontSize">24pt</property>
+                        <data id="732">
+                            <structure name="numberFormat">
+                                <property name="category">Fixed</property>
+                                <property name="pattern">###0.000{RoundingMode=HALF_UP}</property>
+                            </structure>
+                            <property name="resultSetColumn">入库数量</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="733">
+                    <cell id="734">
+                        <property name="fontSize">24pt</property>
+                    </cell>
+                    <cell id="735">
+                        <property name="fontSize">24pt</property>
+                    </cell>
+                    <cell id="736">
+                        <property name="fontSize">24pt</property>
+                    </cell>
+                    <cell id="737">
+                        <property name="fontSize">24pt</property>
+                    </cell>
+                    <cell id="738">
+                        <property name="fontSize">24pt</property>
+                    </cell>
+                    <cell id="739">
+                        <property name="fontSize">24pt</property>
+                    </cell>
+                    <cell id="740">
+                        <property name="fontSize">24pt</property>
+                    </cell>
+                    <cell id="741">
+                        <property name="fontSize">24pt</property>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

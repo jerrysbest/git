@@ -1,0 +1,3302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.1.v201408290142 Build &lt;4.4.1.v20140916-1320></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="开始物料" id="239">
+            <text-property name="helpText">开始物料</text-property>
+            <text-property name="promptText">开始物料</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">0</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="结束物料" id="240">
+            <text-property name="helpText">结束物料</text-property>
+            <text-property name="promptText">结束物料</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">z</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="7">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+            <property name="odaURL">jdbc:sqlserver://192.168.13.11:1433;databaseName=bpmapp</property>
+            <property name="odaUser">sa</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">QG9tZGIx</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Data Set" id="8">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">sNo</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">sNo</text-property>
+                    <text-property name="heading">sNo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cinvcode</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cinvcode</text-property>
+                    <text-property name="heading">cinvcode</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cinvname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cinvname</text-property>
+                    <text-property name="heading">cinvname</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">subcinvcode</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">subcinvcode</text-property>
+                    <text-property name="heading">subcinvcode</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">subcinvname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">subcinvname</text-property>
+                    <text-property name="heading">subcinvname</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">specification</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">specification</text-property>
+                    <text-property name="heading">specification</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">unit</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">unit</text-property>
+                    <text-property name="heading">unit</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">standedusage</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">standedusage</text-property>
+                    <text-property name="heading">standedusage</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">currIquantity</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">currIquantity</text-property>
+                    <text-property name="heading">currIquantity</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">nstockin</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">nstockin</text-property>
+                    <text-property name="heading">nstockin</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">当月预测值</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">当月预测值</text-property>
+                    <text-property name="heading">当月预测值</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">当月预计出库量</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">当月预计出库量</text-property>
+                    <text-property name="heading">当月预计出库量</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">当月月末库存</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">当月月末库存</text-property>
+                    <text-property name="heading">当月月末库存</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n1月预测值</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n1月预测值</text-property>
+                    <text-property name="heading">n1月预测值</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n1预计出库量</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n1预计出库量</text-property>
+                    <text-property name="heading">n1预计出库量</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n1stockin</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n1stockin</text-property>
+                    <text-property name="heading">n1stockin</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n1月月末库存</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n1月月末库存</text-property>
+                    <text-property name="heading">n1月月末库存</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n2月预测值</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n2月预测值</text-property>
+                    <text-property name="heading">n2月预测值</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n2预计出库量</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n2预计出库量</text-property>
+                    <text-property name="heading">n2预计出库量</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n2stockin</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n2stockin</text-property>
+                    <text-property name="heading">n2stockin</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n2月月末库存</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n2月月末库存</text-property>
+                    <text-property name="heading">n2月月末库存</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n3月预测值</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n3月预测值</text-property>
+                    <text-property name="heading">n3月预测值</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n3预计出库量</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n3预计出库量</text-property>
+                    <text-property name="heading">n3预计出库量</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n3stockin</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n3stockin</text-property>
+                    <text-property name="heading">n3stockin</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n3月月末库存</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n3月月末库存</text-property>
+                    <text-property name="heading">n3月月末库存</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n4月预测值</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n4月预测值</text-property>
+                    <text-property name="heading">n4月预测值</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n4预计出库量</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n4预计出库量</text-property>
+                    <text-property name="heading">n4预计出库量</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n4stockin</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n4stockin</text-property>
+                    <text-property name="heading">n4stockin</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n4月月末库存</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n4月月末库存</text-property>
+                    <text-property name="heading">n4月月末库存</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n5月预测值</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n5月预测值</text-property>
+                    <text-property name="heading">n5月预测值</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n5预计出库量</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n5预计出库量</text-property>
+                    <text-property name="heading">n5预计出库量</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n5stockin</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n5stockin</text-property>
+                    <text-property name="heading">n5stockin</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">n5月月末库存</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">n5月月末库存</text-property>
+                    <text-property name="heading">n5月月末库存</text-property>
+                </structure>
+            </list-property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">between</property>
+                    <expression name="expr" type="javascript">row["cinvcode"]</expression>
+                    <simple-property-list name="value1">
+                        <value>params["开始物料"].value</value>
+                    </simple-property-list>
+                    <expression name="value2">params["结束物料"].value</expression>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">sNo</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">cinvcode</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">cinvname</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">subcinvcode</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">subcinvname</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">specification</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">unit</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">standedusage</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">currIquantity</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">nstockin</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">当月预测值</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">当月预计出库量</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">当月月末库存</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">n1月预测值</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">n1预计出库量</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">n1stockin</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">n1月月末库存</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">n2月预测值</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">n2预计出库量</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">20</property>
+                        <property name="name">n2stockin</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">21</property>
+                        <property name="name">n2月月末库存</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">22</property>
+                        <property name="name">n3月预测值</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">23</property>
+                        <property name="name">n3预计出库量</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">24</property>
+                        <property name="name">n3stockin</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">25</property>
+                        <property name="name">n3月月末库存</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">26</property>
+                        <property name="name">n4月预测值</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">27</property>
+                        <property name="name">n4预计出库量</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">28</property>
+                        <property name="name">n4stockin</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">29</property>
+                        <property name="name">n4月月末库存</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">30</property>
+                        <property name="name">n5月预测值</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">31</property>
+                        <property name="name">n5预计出库量</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">32</property>
+                        <property name="name">n5stockin</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">33</property>
+                        <property name="name">n5月月末库存</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">sNo</property>
+                    <property name="nativeName">sNo</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">cinvcode</property>
+                    <property name="nativeName">cinvcode</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">cinvname</property>
+                    <property name="nativeName">cinvname</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">subcinvcode</property>
+                    <property name="nativeName">subcinvcode</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">subcinvname</property>
+                    <property name="nativeName">subcinvname</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">specification</property>
+                    <property name="nativeName">specification</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">unit</property>
+                    <property name="nativeName">unit</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">standedusage</property>
+                    <property name="nativeName">standedusage</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">currIquantity</property>
+                    <property name="nativeName">currIquantity</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">nstockin</property>
+                    <property name="nativeName">nstockin</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">当月预测值</property>
+                    <property name="nativeName">当月预测值</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">当月预计出库量</property>
+                    <property name="nativeName">当月预计出库量</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">当月月末库存</property>
+                    <property name="nativeName">当月月末库存</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">n1月预测值</property>
+                    <property name="nativeName">n1月预测值</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">n1预计出库量</property>
+                    <property name="nativeName">n1预计出库量</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">n1stockin</property>
+                    <property name="nativeName">n1stockin</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">n1月月末库存</property>
+                    <property name="nativeName">n1月月末库存</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">n2月预测值</property>
+                    <property name="nativeName">n2月预测值</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">n2预计出库量</property>
+                    <property name="nativeName">n2预计出库量</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">20</property>
+                    <property name="name">n2stockin</property>
+                    <property name="nativeName">n2stockin</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">21</property>
+                    <property name="name">n2月月末库存</property>
+                    <property name="nativeName">n2月月末库存</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">22</property>
+                    <property name="name">n3月预测值</property>
+                    <property name="nativeName">n3月预测值</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">23</property>
+                    <property name="name">n3预计出库量</property>
+                    <property name="nativeName">n3预计出库量</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">24</property>
+                    <property name="name">n3stockin</property>
+                    <property name="nativeName">n3stockin</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">25</property>
+                    <property name="name">n3月月末库存</property>
+                    <property name="nativeName">n3月月末库存</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">26</property>
+                    <property name="name">n4月预测值</property>
+                    <property name="nativeName">n4月预测值</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">27</property>
+                    <property name="name">n4预计出库量</property>
+                    <property name="nativeName">n4预计出库量</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">28</property>
+                    <property name="name">n4stockin</property>
+                    <property name="nativeName">n4stockin</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">29</property>
+                    <property name="name">n4月月末库存</property>
+                    <property name="nativeName">n4月月末库存</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">30</property>
+                    <property name="name">n5月预测值</property>
+                    <property name="nativeName">n5月预测值</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">31</property>
+                    <property name="name">n5预计出库量</property>
+                    <property name="nativeName">n5预计出库量</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">32</property>
+                    <property name="name">n5stockin</property>
+                    <property name="nativeName">n5stockin</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">33</property>
+                    <property name="name">n5月月末库存</property>
+                    <property name="nativeName">n5月月末库存</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[--select mb.[cinvcode],mb.standedusage,mb.nstockout,当月预测值=ma.nstockout * ma.standedusage from 
+--[bpmapp].[dbo].[pd_materials] ma left join  erp1.UFDATA_012_2012.dbo.CurrentStock cu on ma.subcinvcode=cu.cInvCode   inner join [bpmapp].[dbo].[pd_materials] mb on ma.subcinvcode=mb.cinvcode where mb.cinvcode='FB1510-0103-1'
+select 
+a.sNo,
+a.cinvcode,
+a.cinvname,
+a.[subcinvcode],
+a.[subcinvname],
+a.[specification],
+a.[unit],
+a.[standedusage],
+a.currIquantity,
+a.nstockin,
+a.当月预测值,
+a.当月预计出库量,
+当月月末库存=case when b.mes is not null then b.mes else a.当月月末库存 end,
+a.[n1月预测值],
+a.n1预计出库量,
+a.[n1stockin],
+n1月月末库存=case when b.mes is not null then b.mes else a.当月月末库存 end+a.n1stockin-a.n1预计出库量,
+a.[n2月预测值],
+a.n2预计出库量,
+a.[n2stockin], 
+n2月月末库存=case when b.mes is not null then b.mes else a.当月月末库存 end+a.n1stockin-a.n1预计出库量+a.n2stockin-a.n2预计出库量,
+a.[n3月预测值],
+a.n3预计出库量,
+a.[n3stockin],
+n3月月末库存=case when b.mes is not null then b.mes else a.当月月末库存 end+a.n1stockin-a.n1预计出库量+a.n2stockin-a.n2预计出库量+a.n3stockin-a.n3预计出库量,
+a.[n4月预测值],
+a.n4预计出库量,
+a.[n4stockin],
+n4月月末库存=case when b.mes is not null then b.mes else a.当月月末库存 end+a.n1stockin-a.n1预计出库量+n2stockin-a.n2预计出库量+a.n3stockin-a.n3预计出库量+a.n4stockin-a.n4预计出库量,
+a.[n5月预测值],
+a.n5预计出库量,
+a.[n5stockin],
+n5月月末库存=case when b.mes is not null then b.mes else a.当月月末库存 end+a.n1stockin-n1预计出库量+a.n2stockin-a.n2预计出库量+a.n3stockin-a.n3预计出库量+a.n4stockin-a.n4预计出库量+a.n5stockin-a.n5预计出库量	
+ from 
+(
+/******/
+select
+a.sNo, 
+a.cinvcode,
+a.cinvname,
+a.subcinvcode,
+a.subcinvname,
+a.specification,
+a.unit,
+a.standedusage,
+currIquantity=isnull(a.currIquantity,0), 
+a.nstockin,
+a.当月预测值,
+a.当月预计出库量,
+当月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量,0), 
+a.n1月预测值,
+a.n1预计出库量,
+a.n1stockin,
+n1月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量+a.n1stockin-a.n1预计出库量,0),
+a.n2月预测值,
+a.n2预计出库量,
+a.n2stockin,
+n2月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量+a.n1stockin-a.n1预计出库量+a.n2stockin-a.n2预计出库量,0),
+a.n3月预测值,
+a.n3预计出库量,
+a.n3stockin,
+n3月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量+a.n1stockin-a.n1预计出库量+a.n2stockin-a.n2预计出库量+a.n3stockin-a.n3预计出库量,0),
+a.n4月预测值,
+a.n4预计出库量,
+a.n4stockin,
+n4月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量+a.n1stockin-a.n1预计出库量+a.n2stockin-a.n2预计出库量+a.n3stockin-a.n3预计出库量+a.n4stockin-a.n4预计出库量,0),
+a.n5月预测值,
+a.n5预计出库量,
+a.n5stockin,
+n5月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量+a.n1stockin-a.n1预计出库量+a.n2stockin-a.n2预计出库量+a.n3stockin-a.n3预计出库量+a.n4stockin-a.n4预计出库量+a.n5stockin-a.n5预计出库量,0)
+from(
+select 
+distinct
+mb.sNo, 
+mb.cinvcode,
+cu.currIquantity,
+mb.nstockin,
+mb.cinvname,
+当月预计出库量=mb.standedusage*ma.nstockout * ma.standedusage,
+n1预计出库量=ma.n1stockout * ma.standedusage *mb.standedusage,
+n2预计出库量=ma.n2stockout * ma.standedusage *mb.standedusage,
+n3预计出库量=ma.n3stockout * ma.standedusage*mb.standedusage,
+n4预计出库量=ma.n4stockout * ma.standedusage*mb.standedusage,
+n5预计出库量=ma.n5stockout * ma.standedusage*mb.standedusage,
+mb.subcinvcode,
+mb.subcinvname,
+mb.specification,
+mb.unit,
+mb.standedusage,
+当月预测值=ma.nstockout * ma.standedusage,
+n1月预测值=ma.n1stockout * ma.standedusage,
+mb.[n1stockin],
+n2月预测值=ma.n2stockout * ma.standedusage,
+mb.[n2stockin],
+n3月预测值=ma.n3stockout * ma.standedusage,
+mb.[n3stockin],
+n4月预测值=ma.n4stockout * ma.standedusage,
+mb.[n4stockin],
+n5月预测值=ma.n5stockout * ma.standedusage,
+mb.[n5stockin]
+ from [bpmapp].[dbo].[pd_materials] ma 
+ inner join [bpmapp].[dbo].[pd_materials] mb on ma.subcinvcode=mb.cinvcode 
+ left join (
+ select cinvcode,currIquantity=sum(isnull(iquantity,0)-isnull(fOutQuantity,0)) from erp1.UFDATA_012_2012.dbo.CurrentStock where cWhCode='026'  group by cInvCode
+ )
+cu on mb.subcinvcode=cu.cInvCode   
+group by  
+mb.sNo,
+mb.[cinvcode], 
+mb.[cinvname],
+mb.nstockin,
+mb.[subcinvcode],
+mb.[subcinvname],
+mb.[specification],
+mb.[unit],
+mb.[standedusage],
+mb.[n1stockin],
+mb.[n2stockin],
+mb.[n3stockin],
+mb.[n4stockin],
+mb.[n5stockin],
+ma.standedusage,
+ma.nstockout,
+ma.n1stockout,
+ma.n2stockout,
+ma.n3stockout,
+ma.n4stockout,
+ma.n5stockout,
+cu.currIquantity
+)
+a  
+) a left join 
+( select a.sno,a.subcinvcode,a.currIquantity,mes=a.curriquantity+sum(b.nstockin-b.当月预计出库量) from 
+(select
+a.sNo, 
+a.cinvcode,
+a.cinvname,
+a.subcinvcode,
+a.subcinvname,
+a.specification,
+a.unit,
+a.standedusage,
+currIquantity=isnull(a.currIquantity,0), 
+a.nstockin,
+a.当月预测值,
+a.当月预计出库量,
+当月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量,0), 
+a.n1月预测值,
+a.n1预计出库量,
+a.n1stockin,
+n1月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量+a.n1stockin-a.n1预计出库量,0),
+a.n2月预测值,
+a.n2预计出库量,
+a.n2stockin,
+n2月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量+a.n1stockin-a.n1预计出库量+a.n2stockin-a.n2预计出库量,0),
+a.n3月预测值,
+a.n3预计出库量,
+a.n3stockin,
+n3月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量+a.n1stockin-a.n1预计出库量+a.n2stockin-a.n2预计出库量+a.n3stockin-a.n3预计出库量,0),
+a.n4月预测值,
+a.n4预计出库量,
+a.n4stockin,
+n4月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量+a.n1stockin-a.n1预计出库量+a.n2stockin-a.n2预计出库量+a.n3stockin-a.n3预计出库量+a.n4stockin-a.n4预计出库量,0),
+a.n5月预测值,
+a.n5预计出库量,
+a.n5stockin,
+n5月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量+a.n1stockin-a.n1预计出库量+a.n2stockin-a.n2预计出库量+a.n3stockin-a.n3预计出库量+a.n4stockin-a.n4预计出库量+a.n5stockin-a.n5预计出库量,0)
+from(
+select 
+distinct
+mb.sNo, 
+mb.cinvcode,
+cu.currIquantity,
+mb.nstockin,
+mb.cinvname,
+当月预计出库量=mb.standedusage*ma.nstockout * ma.standedusage,
+n1预计出库量=ma.n1stockout * ma.standedusage *mb.standedusage,
+n2预计出库量=ma.n2stockout * ma.standedusage *mb.standedusage,
+n3预计出库量=ma.n3stockout * ma.standedusage*mb.standedusage,
+n4预计出库量=ma.n4stockout * ma.standedusage*mb.standedusage,
+n5预计出库量=ma.n5stockout * ma.standedusage*mb.standedusage,
+mb.subcinvcode,
+mb.subcinvname,
+mb.specification,
+mb.unit,
+mb.standedusage,
+当月预测值=ma.nstockout * ma.standedusage,
+n1月预测值=ma.n1stockout * ma.standedusage,
+mb.[n1stockin],
+n2月预测值=ma.n2stockout * ma.standedusage,
+mb.[n2stockin],
+n3月预测值=ma.n3stockout * ma.standedusage,
+mb.[n3stockin],
+n4月预测值=ma.n4stockout * ma.standedusage,
+mb.[n4stockin],
+n5月预测值=ma.n5stockout * ma.standedusage,
+mb.[n5stockin]
+ from [bpmapp].[dbo].[pd_materials] ma 
+ inner join [bpmapp].[dbo].[pd_materials] mb on ma.subcinvcode=mb.cinvcode 
+ left join (
+ select cinvcode,currIquantity=sum(isnull(iquantity,0)-isnull(fOutQuantity,0)) from erp1.UFDATA_012_2012.dbo.CurrentStock where cWhCode='026'  group by cInvCode
+ )
+cu on mb.subcinvcode=cu.cInvCode   
+group by  
+mb.sNo,
+mb.[cinvcode], 
+mb.[cinvname],
+mb.nstockin,
+mb.[subcinvcode],
+mb.[subcinvname],
+mb.[specification],
+mb.[unit],
+mb.[standedusage],
+mb.[n1stockin],
+mb.[n2stockin],
+mb.[n3stockin],
+mb.[n4stockin],
+mb.[n5stockin],
+ma.standedusage,
+ma.nstockout,
+ma.n1stockout,
+ma.n2stockout,
+ma.n3stockout,
+ma.n4stockout,
+ma.n5stockout,
+cu.currIquantity
+)
+a  
+)a inner join 
+(select
+a.sNo, 
+a.cinvcode,
+a.cinvname,
+a.subcinvcode,
+a.subcinvname,
+a.specification,
+a.unit,
+a.standedusage,
+currIquantity=isnull(a.currIquantity,0), 
+a.nstockin,
+a.当月预测值,
+a.当月预计出库量,
+当月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量,0), 
+a.n1月预测值,
+a.n1预计出库量,
+a.n1stockin,
+n1月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量+a.n1stockin-a.n1预计出库量,0),
+a.n2月预测值,
+a.n2预计出库量,
+a.n2stockin,
+n2月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量+a.n1stockin-a.n1预计出库量+a.n2stockin-a.n2预计出库量,0),
+a.n3月预测值,
+a.n3预计出库量,
+a.n3stockin,
+n3月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量+a.n1stockin-a.n1预计出库量+a.n2stockin-a.n2预计出库量+a.n3stockin-a.n3预计出库量,0),
+a.n4月预测值,
+a.n4预计出库量,
+a.n4stockin,
+n4月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量+a.n1stockin-a.n1预计出库量+a.n2stockin-a.n2预计出库量+a.n3stockin-a.n3预计出库量+a.n4stockin-a.n4预计出库量,0),
+a.n5月预测值,
+a.n5预计出库量,
+a.n5stockin,
+n5月月末库存=isnull(a.currIquantity+a.nstockin-a.当月预计出库量+a.n1stockin-a.n1预计出库量+a.n2stockin-a.n2预计出库量+a.n3stockin-a.n3预计出库量+a.n4stockin-a.n4预计出库量+a.n5stockin-a.n5预计出库量,0)
+from(
+select 
+distinct
+mb.sNo, 
+mb.cinvcode,
+cu.currIquantity,
+mb.nstockin,
+mb.cinvname,
+当月预计出库量=mb.standedusage*ma.nstockout * ma.standedusage,
+n1预计出库量=ma.n1stockout * ma.standedusage *mb.standedusage,
+n2预计出库量=ma.n2stockout * ma.standedusage *mb.standedusage,
+n3预计出库量=ma.n3stockout * ma.standedusage*mb.standedusage,
+n4预计出库量=ma.n4stockout * ma.standedusage*mb.standedusage,
+n5预计出库量=ma.n5stockout * ma.standedusage*mb.standedusage,
+mb.subcinvcode,
+mb.subcinvname,
+mb.specification,
+mb.unit,
+mb.standedusage,
+当月预测值=ma.nstockout * ma.standedusage,
+n1月预测值=ma.n1stockout * ma.standedusage,
+mb.[n1stockin],
+n2月预测值=ma.n2stockout * ma.standedusage,
+mb.[n2stockin],
+n3月预测值=ma.n3stockout * ma.standedusage,
+mb.[n3stockin],
+n4月预测值=ma.n4stockout * ma.standedusage,
+mb.[n4stockin],
+n5月预测值=ma.n5stockout * ma.standedusage,
+mb.[n5stockin]
+ from [bpmapp].[dbo].[pd_materials] ma 
+ inner join [bpmapp].[dbo].[pd_materials] mb on ma.subcinvcode=mb.cinvcode 
+ left join (
+ select cinvcode,currIquantity=sum(isnull(iquantity,0)-isnull(fOutQuantity,0)) from erp1.UFDATA_012_2012.dbo.CurrentStock where cWhCode='026'  group by cInvCode
+ )
+cu on mb.subcinvcode=cu.cInvCode   
+group by  
+mb.sNo,
+mb.[cinvcode], 
+mb.[cinvname],
+mb.nstockin,
+mb.[subcinvcode],
+mb.[subcinvname],
+mb.[specification],
+mb.[unit],
+mb.[standedusage],
+mb.[n1stockin],
+mb.[n2stockin],
+mb.[n3stockin],
+mb.[n4stockin],
+mb.[n5stockin],
+ma.standedusage,
+ma.nstockout,
+ma.n1stockout,
+ma.n2stockout,
+ma.n3stockout,
+ma.n4stockout,
+ma.n5stockout,
+cu.currIquantity
+)
+a  
+) b on a.sno>=b.sno and a.subcinvcode=b.subcinvcode
+--where a.subcinvcode='AE 142-1005'
+group by a.sno,a.subcinvcode,a.currIquantity ) b on a.sno=b.sNo and a.subcinvcode=b.subcinvcode where a.sno is not null 
+order by a.sno,a.subcinvcode
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cinvcode</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cinvcode</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cinvcode</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cinvname</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cinvname</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cinvname</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>subcinvcode</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>subcinvcode</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>subcinvcode</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>subcinvname</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>subcinvname</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>subcinvname</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>specification</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>specification</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>specification</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>unit</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>unit</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>unit</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>standedusage</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>18</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>standedusage</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>standedusage</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>currIquantity</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>38</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>currIquantity</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>currIquantity</design:label>
+            <design:formattingHints>
+              <design:displaySize>40</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>nstockin</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>18</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>nstockin</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>nstockin</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>当月预测值</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>37</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>当月预测值</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>当月预测值</design:label>
+            <design:formattingHints>
+              <design:displaySize>39</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>当月预计出库量</design:name>
+              <design:position>11</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>38</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>当月预计出库量</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>当月预计出库量</design:label>
+            <design:formattingHints>
+              <design:displaySize>40</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>当月月末库存</design:name>
+              <design:position>12</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>38</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>当月月末库存</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>当月月末库存</design:label>
+            <design:formattingHints>
+              <design:displaySize>40</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n1月预测值</design:name>
+              <design:position>13</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>37</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n1月预测值</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n1月预测值</design:label>
+            <design:formattingHints>
+              <design:displaySize>39</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n1预计出库量</design:name>
+              <design:position>14</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>38</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n1预计出库量</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n1预计出库量</design:label>
+            <design:formattingHints>
+              <design:displaySize>40</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n1stockin</design:name>
+              <design:position>15</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>18</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n1stockin</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n1stockin</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n1月月末库存</design:name>
+              <design:position>16</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>38</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n1月月末库存</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n1月月末库存</design:label>
+            <design:formattingHints>
+              <design:displaySize>40</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n2月预测值</design:name>
+              <design:position>17</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>37</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n2月预测值</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n2月预测值</design:label>
+            <design:formattingHints>
+              <design:displaySize>39</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n2预计出库量</design:name>
+              <design:position>18</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>38</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n2预计出库量</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n2预计出库量</design:label>
+            <design:formattingHints>
+              <design:displaySize>40</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n2stockin</design:name>
+              <design:position>19</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>18</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n2stockin</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n2stockin</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n2月月末库存</design:name>
+              <design:position>20</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>38</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n2月月末库存</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n2月月末库存</design:label>
+            <design:formattingHints>
+              <design:displaySize>40</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n3月预测值</design:name>
+              <design:position>21</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>37</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n3月预测值</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n3月预测值</design:label>
+            <design:formattingHints>
+              <design:displaySize>39</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n3预计出库量</design:name>
+              <design:position>22</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>38</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n3预计出库量</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n3预计出库量</design:label>
+            <design:formattingHints>
+              <design:displaySize>40</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n3stockin</design:name>
+              <design:position>23</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>18</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n3stockin</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n3stockin</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n3月月末库存</design:name>
+              <design:position>24</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>38</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n3月月末库存</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n3月月末库存</design:label>
+            <design:formattingHints>
+              <design:displaySize>40</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n4月预测值</design:name>
+              <design:position>25</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>37</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n4月预测值</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n4月预测值</design:label>
+            <design:formattingHints>
+              <design:displaySize>39</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n4预计出库量</design:name>
+              <design:position>26</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>38</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n4预计出库量</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n4预计出库量</design:label>
+            <design:formattingHints>
+              <design:displaySize>40</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n4stockin</design:name>
+              <design:position>27</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>18</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n4stockin</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n4stockin</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n4月月末库存</design:name>
+              <design:position>28</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>38</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n4月月末库存</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n4月月末库存</design:label>
+            <design:formattingHints>
+              <design:displaySize>40</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n5月预测值</design:name>
+              <design:position>29</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>37</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n5月预测值</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n5月预测值</design:label>
+            <design:formattingHints>
+              <design:displaySize>39</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n5预计出库量</design:name>
+              <design:position>30</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>38</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n5预计出库量</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n5预计出库量</design:label>
+            <design:formattingHints>
+              <design:displaySize>40</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n5stockin</design:name>
+              <design:position>31</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>18</design:precision>
+            <design:scale>2</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n5stockin</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n5stockin</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>n5月月末库存</design:name>
+              <design:position>32</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>38</design:precision>
+            <design:scale>6</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>n5月月末库存</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>n5月月末库存</design:label>
+            <design:formattingHints>
+              <design:displaySize>40</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab-cell" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="9">
+            <property name="dataSet">Data Set</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">cinvcode</property>
+                    <text-property name="displayName">cinvcode</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cinvcode"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cinvname</property>
+                    <text-property name="displayName">cinvname</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cinvname"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">subcinvcode</property>
+                    <text-property name="displayName">subcinvcode</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["subcinvcode"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">subcinvname</property>
+                    <text-property name="displayName">subcinvname</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["subcinvname"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">specification</property>
+                    <text-property name="displayName">specification</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["specification"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">unit</property>
+                    <text-property name="displayName">unit</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["unit"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">standedusage</property>
+                    <text-property name="displayName">standedusage</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["standedusage"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">currIquantity</property>
+                    <text-property name="displayName">currIquantity</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["currIquantity"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">nstockin</property>
+                    <text-property name="displayName">nstockin</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["nstockin"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">当月预测值</property>
+                    <text-property name="displayName">当月预测值</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["当月预测值"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">当月预计出库量</property>
+                    <text-property name="displayName">当月预计出库量</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["当月预计出库量"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">当月月末库存</property>
+                    <text-property name="displayName">当月月末库存</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["当月月末库存"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n1月预测值</property>
+                    <text-property name="displayName">n1月预测值</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n1月预测值"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n1预计出库量</property>
+                    <text-property name="displayName">n1预计出库量</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n1预计出库量"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n1stockin</property>
+                    <text-property name="displayName">n1stockin</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n1stockin"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n1月月末库存</property>
+                    <text-property name="displayName">n1月月末库存</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n1月月末库存"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n2月预测值</property>
+                    <text-property name="displayName">n2月预测值</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n2月预测值"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n2预计出库量</property>
+                    <text-property name="displayName">n2预计出库量</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n2预计出库量"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n2stockin</property>
+                    <text-property name="displayName">n2stockin</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n2stockin"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n2月月末库存</property>
+                    <text-property name="displayName">n2月月末库存</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n2月月末库存"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n3月预测值</property>
+                    <text-property name="displayName">n3月预测值</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n3月预测值"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n3预计出库量</property>
+                    <text-property name="displayName">n3预计出库量</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n3预计出库量"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n3stockin</property>
+                    <text-property name="displayName">n3stockin</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n3stockin"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n3月月末库存</property>
+                    <text-property name="displayName">n3月月末库存</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n3月月末库存"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n4月预测值</property>
+                    <text-property name="displayName">n4月预测值</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n4月预测值"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n4预计出库量</property>
+                    <text-property name="displayName">n4预计出库量</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n4预计出库量"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n4stockin</property>
+                    <text-property name="displayName">n4stockin</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n4stockin"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n4月月末库存</property>
+                    <text-property name="displayName">n4月月末库存</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n4月月末库存"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n5月预测值</property>
+                    <text-property name="displayName">n5月预测值</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n5月预测值"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n5预计出库量</property>
+                    <text-property name="displayName">n5预计出库量</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n5预计出库量"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n5stockin</property>
+                    <text-property name="displayName">n5stockin</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n5stockin"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">n5月月末库存</property>
+                    <text-property name="displayName">n5月月末库存</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["n5月月末库存"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">sNo</property>
+                    <text-property name="displayName">sNo</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["sNo"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <column id="245"/>
+            <column id="173"/>
+            <column id="174"/>
+            <column id="175"/>
+            <column id="176"/>
+            <column id="177"/>
+            <column id="178"/>
+            <column id="179"/>
+            <column id="180"/>
+            <column id="181"/>
+            <column id="182"/>
+            <column id="183"/>
+            <column id="184"/>
+            <column id="185"/>
+            <column id="186"/>
+            <column id="187"/>
+            <column id="188"/>
+            <column id="189"/>
+            <column id="190"/>
+            <column id="191"/>
+            <column id="192"/>
+            <column id="193"/>
+            <column id="194"/>
+            <column id="195"/>
+            <column id="196"/>
+            <column id="197"/>
+            <column id="198"/>
+            <column id="199"/>
+            <column id="200"/>
+            <column id="201"/>
+            <column id="202"/>
+            <column id="203"/>
+            <column id="204"/>
+            <header>
+                <row id="205">
+                    <property name="backgroundColor">#00FF00</property>
+                    <cell id="241">
+                        <property name="colSpan">33</property>
+                        <property name="rowSpan">1</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <text id="238">
+                            <property name="contentType">auto</property>
+                            <text-property name="content"><![CDATA[二级BOM]]></text-property>
+                        </text>
+                    </cell>
+                </row>
+                <row id="10">
+                    <property name="backgroundColor">#00FF00</property>
+                    <cell id="242">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="246">
+                            <text-property name="text">生产顺序</text-property>
+                        </label>
+                    </cell>
+                    <cell id="11">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="12">
+                            <text-property name="text">产品编号</text-property>
+                        </label>
+                    </cell>
+                    <cell id="13">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="14">
+                            <text-property name="text">产品名称</text-property>
+                        </label>
+                    </cell>
+                    <cell id="15">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="16">
+                            <text-property name="text">组成物理编码</text-property>
+                        </label>
+                    </cell>
+                    <cell id="17">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="18">
+                            <text-property name="text">组成物料名称</text-property>
+                        </label>
+                    </cell>
+                    <cell id="19">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="20">
+                            <text-property name="text">规格型号</text-property>
+                        </label>
+                    </cell>
+                    <cell id="21">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="22">
+                            <text-property name="text">单位</text-property>
+                        </label>
+                    </cell>
+                    <cell id="23">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="24">
+                            <text-property name="text">标准用量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="25">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="26">
+                            <text-property name="text">现存量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="27">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="28">
+                            <text-property name="text">当月预计入库量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="29">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="30">
+                            <text-property name="text">当月预测值</text-property>
+                        </label>
+                    </cell>
+                    <cell id="31">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="32">
+                            <text-property name="text">当月预计出库量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="33">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="34">
+                            <text-property name="text">当月月末库存</text-property>
+                        </label>
+                    </cell>
+                    <cell id="35">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="36">
+                            <text-property name="text">n+1月预测值</text-property>
+                        </label>
+                    </cell>
+                    <cell id="37">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="38">
+                            <text-property name="text">n+1预计出库量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="39">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="40">
+                            <text-property name="text">n+1月预计入库量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="41">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="42">
+                            <text-property name="text">n+1月月末库存</text-property>
+                        </label>
+                    </cell>
+                    <cell id="43">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="44">
+                            <text-property name="text">n+2月预测值</text-property>
+                        </label>
+                    </cell>
+                    <cell id="45">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="46">
+                            <text-property name="text">n+2预计出库量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="47">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="48">
+                            <text-property name="text">n+2月预计入库量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="49">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="50">
+                            <text-property name="text">n+2月月末库存</text-property>
+                        </label>
+                    </cell>
+                    <cell id="51">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="52">
+                            <text-property name="text">n+3月预测值</text-property>
+                        </label>
+                    </cell>
+                    <cell id="53">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="54">
+                            <text-property name="text">n+3预计出库量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="55">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="56">
+                            <text-property name="text">n+3月预计入库量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="57">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="58">
+                            <text-property name="text">n+3月月末库存</text-property>
+                        </label>
+                    </cell>
+                    <cell id="59">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="60">
+                            <text-property name="text">n+4月预测值</text-property>
+                        </label>
+                    </cell>
+                    <cell id="61">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="62">
+                            <text-property name="text">n+4预计出库量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="63">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="64">
+                            <text-property name="text">n+4月预计入库量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="65">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="66">
+                            <text-property name="text">n4月月末库存</text-property>
+                        </label>
+                    </cell>
+                    <cell id="67">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="68">
+                            <text-property name="text">n+5月预测值</text-property>
+                        </label>
+                    </cell>
+                    <cell id="69">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="70">
+                            <text-property name="text">n5预计出库量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="71">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="72">
+                            <text-property name="text">n+5月预计入库量</text-property>
+                        </label>
+                    </cell>
+                    <cell id="73">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <label id="74">
+                            <text-property name="text">n5月月末库存</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="75">
+                    <cell id="243">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="247">
+                            <property name="resultSetColumn">sNo</property>
+                        </data>
+                    </cell>
+                    <cell id="76">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="77">
+                            <property name="resultSetColumn">cinvcode</property>
+                        </data>
+                    </cell>
+                    <cell id="78">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="79">
+                            <property name="resultSetColumn">cinvname</property>
+                        </data>
+                    </cell>
+                    <cell id="80">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="81">
+                            <property name="resultSetColumn">subcinvcode</property>
+                        </data>
+                    </cell>
+                    <cell id="82">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="83">
+                            <property name="resultSetColumn">subcinvname</property>
+                        </data>
+                    </cell>
+                    <cell id="84">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="85">
+                            <property name="resultSetColumn">specification</property>
+                        </data>
+                    </cell>
+                    <cell id="86">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="87">
+                            <property name="resultSetColumn">unit</property>
+                        </data>
+                    </cell>
+                    <cell id="88">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="89">
+                            <property name="resultSetColumn">standedusage</property>
+                        </data>
+                    </cell>
+                    <cell id="90">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="91">
+                            <property name="resultSetColumn">currIquantity</property>
+                        </data>
+                    </cell>
+                    <cell id="92">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="93">
+                            <property name="resultSetColumn">nstockin</property>
+                        </data>
+                    </cell>
+                    <cell id="94">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="95">
+                            <property name="resultSetColumn">当月预测值</property>
+                        </data>
+                    </cell>
+                    <cell id="96">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="97">
+                            <property name="resultSetColumn">当月预计出库量</property>
+                        </data>
+                    </cell>
+                    <cell id="98">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="99">
+                            <property name="resultSetColumn">当月月末库存</property>
+                        </data>
+                    </cell>
+                    <cell id="100">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="101">
+                            <property name="resultSetColumn">n1月预测值</property>
+                        </data>
+                    </cell>
+                    <cell id="102">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="103">
+                            <property name="resultSetColumn">n1预计出库量</property>
+                        </data>
+                    </cell>
+                    <cell id="104">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="105">
+                            <property name="resultSetColumn">n1stockin</property>
+                        </data>
+                    </cell>
+                    <cell id="106">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="107">
+                            <property name="resultSetColumn">n1月月末库存</property>
+                        </data>
+                    </cell>
+                    <cell id="108">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="109">
+                            <property name="resultSetColumn">n2月预测值</property>
+                        </data>
+                    </cell>
+                    <cell id="110">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="111">
+                            <property name="resultSetColumn">n2预计出库量</property>
+                        </data>
+                    </cell>
+                    <cell id="112">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="113">
+                            <property name="resultSetColumn">n2stockin</property>
+                        </data>
+                    </cell>
+                    <cell id="114">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="115">
+                            <property name="resultSetColumn">n2月月末库存</property>
+                        </data>
+                    </cell>
+                    <cell id="116">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="117">
+                            <property name="resultSetColumn">n3月预测值</property>
+                        </data>
+                    </cell>
+                    <cell id="118">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="119">
+                            <property name="resultSetColumn">n3预计出库量</property>
+                        </data>
+                    </cell>
+                    <cell id="120">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="121">
+                            <property name="resultSetColumn">n3stockin</property>
+                        </data>
+                    </cell>
+                    <cell id="122">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="123">
+                            <property name="resultSetColumn">n3月月末库存</property>
+                        </data>
+                    </cell>
+                    <cell id="124">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="125">
+                            <property name="resultSetColumn">n4月预测值</property>
+                        </data>
+                    </cell>
+                    <cell id="126">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="127">
+                            <property name="resultSetColumn">n4预计出库量</property>
+                        </data>
+                    </cell>
+                    <cell id="128">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="129">
+                            <property name="resultSetColumn">n4stockin</property>
+                        </data>
+                    </cell>
+                    <cell id="130">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="131">
+                            <property name="resultSetColumn">n4月月末库存</property>
+                        </data>
+                    </cell>
+                    <cell id="132">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="133">
+                            <property name="resultSetColumn">n5月预测值</property>
+                        </data>
+                    </cell>
+                    <cell id="134">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="135">
+                            <property name="resultSetColumn">n5预计出库量</property>
+                        </data>
+                    </cell>
+                    <cell id="136">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="137">
+                            <property name="resultSetColumn">n5stockin</property>
+                        </data>
+                    </cell>
+                    <cell id="138">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                        <data id="139">
+                            <property name="resultSetColumn">n5月月末库存</property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="140">
+                    <cell id="244">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="141">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="142">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="143">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="144">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="145">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="146">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="147">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="148">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="149">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="150">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="151">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="152">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="153">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="154">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="155">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="156">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="157">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="158">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="159">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="160">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="161">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="162">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="163">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="164">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="165">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="166">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="167">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="168">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="169">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="170">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="171">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                    <cell id="172">
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">medium</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">medium</property>
+                        <property name="whiteSpace">nowrap</property>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

@@ -1,0 +1,24 @@
+<Context path="/ufdata_012_2012" docBase="ufdata_012_2012"
+reloadable="true" crossContext="true">
+<Resource name="jdbc/ufdata_012_2012" auth="Container" type="javax.sql.DataSource"
+maxActive="100" maxIdle="30" maxWait="10000"
+username="sa" password="@omdb1" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+url="jdbc:sqlserver://192.168.13.226:1433;DatabaseName=ufdata_012_2012"/>
+ 
+<Resource name="jdbc/ufdata_015_2012" auth="Container" type="javax.sql.DataSource"
+maxActive="100" maxIdle="30" maxWait="10000"
+username="sa" password="@omdb1" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+url="jdbc:sqlserver://192.168.13.226:1433;DatabaseName=ufdata_015_2012"/>
+
+<Resource name="jdbc/ufdata_019_2013" auth="Container" type="javax.sql.DataSource"
+maxActive="100" maxIdle="30" maxWait="10000"
+username="sa" password="@omdb1" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+url="jdbc:sqlserver://192.168.13.226:1433;DatabaseName=ufdata_019_2013"/>
+
+<Resource name="jdbc/ufdata_030_2013" auth="Container" type="javax.sql.DataSource"
+maxActive="100" maxIdle="30" maxWait="10000"
+username="sa" password="@omdb1" driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver"
+url="jdbc:sqlserver://192.168.13.226:1433;DatabaseName=ufdata_030_2013"/>
+
+
+</Context> 

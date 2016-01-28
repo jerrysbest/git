@@ -1,0 +1,2391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.4.1.v201408290142 Build &lt;4.4.1.v20140916-1320></property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">28</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">28</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">28</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">auto layout</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="year" id="175">
+            <text-property name="helpText">year</text-property>
+            <text-property name="promptText">year</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="year1" id="184">
+            <text-property name="helpText">year1</text-property>
+            <text-property name="promptText">year1</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="month" id="529">
+            <text-property name="helpText">month</text-property>
+            <text-property name="promptText">month</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">1</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="month1" id="530">
+            <text-property name="helpText">month1</text-property>
+            <text-property name="promptText">month1</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">12</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="doctype" id="250">
+            <text-property name="helpText">doctype</text-property>
+            <text-property name="promptText">doctype</text-property>
+            <property name="valueType">static</property>
+            <property name="sortBy">label</property>
+            <property name="sortDirection">asc</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">销售发货</property>
+                    <property name="label">销售发货</property>
+                </structure>
+                <structure>
+                    <property name="value">其他出库</property>
+                    <property name="label">其他出库</property>
+                </structure>
+            </list-property>
+            <property name="paramType">multi-value</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="comcode" id="251">
+            <text-property name="helpText">comcode</text-property>
+            <text-property name="promptText">comcode</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">015</property>
+                    <property name="label">015</property>
+                </structure>
+                <structure>
+                    <property name="value">030</property>
+                    <property name="label">030</property>
+                </structure>
+            </list-property>
+            <property name="paramType">multi-value</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="cinvcode" id="252">
+            <text-property name="helpText">cinvcode</text-property>
+            <text-property name="promptText">cinvcode</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">0</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="cinvcode1" id="253">
+            <text-property name="helpText">cinvcode1</text-property>
+            <text-property name="promptText">cinvcode1</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">zzzzzz</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="pcatagory" id="254">
+            <text-property name="helpText">产品类别</text-property>
+            <text-property name="promptText">产品类别</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">0</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="pcatagory1" id="255">
+            <text-property name="helpText">产品类别1</text-property>
+            <text-property name="promptText">产品类别1</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">试剂</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="only total" id="531">
+            <text-property name="helpText">only total</text-property>
+            <text-property name="promptText">only total</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">boolean</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">False</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">check-box</property>
+            <structure name="format"/>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="UFSERVER" id="27">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+            <property name="odaURL">jdbc:sqlserver://192.168.13.11:1433;databaseName=bpmapp</property>
+            <property name="odaUser">sa</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">QG9tZGIx</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="sales details" id="28">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">id</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">id</text-property>
+                    <text-property name="heading">id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">comcode</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">comcode</text-property>
+                    <text-property name="heading">comcode</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">doctype</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">doctype</text-property>
+                    <text-property name="heading">doctype</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ccode</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ccode</text-property>
+                    <text-property name="heading">ccode</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ddate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ddate</text-property>
+                    <text-property name="heading">ddate</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">month</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">month</text-property>
+                    <text-property name="heading">month</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cSTName</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cSTName</text-property>
+                    <text-property name="heading">cSTName</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ccuscode</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ccuscode</text-property>
+                    <text-property name="heading">ccuscode</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ccusname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">ccusname</text-property>
+                    <text-property name="heading">ccusname</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cDepName</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cDepName</text-property>
+                    <text-property name="heading">cDepName</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cCusDefine5</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cCusDefine5</text-property>
+                    <text-property name="heading">cCusDefine5</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cCCName</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cCCName</text-property>
+                    <text-property name="heading">cCCName</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cwhcode</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cwhcode</text-property>
+                    <text-property name="heading">cwhcode</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cwhname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cwhname</text-property>
+                    <text-property name="heading">cwhname</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cinvcode</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cinvcode</text-property>
+                    <text-property name="heading">cinvcode</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cInvName</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cInvName</text-property>
+                    <text-property name="heading">cInvName</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">iQuantity</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">iQuantity</text-property>
+                    <text-property name="heading">iQuantity</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cbatch</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cbatch</text-property>
+                    <text-property name="heading">cbatch</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">dvDate</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">dvDate</text-property>
+                    <text-property name="heading">dvDate</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">iNatUnitPrice</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">iNatUnitPrice</text-property>
+                    <text-property name="heading">iNatUnitPrice</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">iNatMoney</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">iNatMoney</text-property>
+                    <text-property name="heading">iNatMoney</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cMemo</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">cMemo</text-property>
+                    <text-property name="heading">cMemo</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cCusDefine11</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">cCusDefine11</text-property>
+                    <text-property name="heading">cCusDefine11</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cCusDefine12</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">cCusDefine12</text-property>
+                    <text-property name="heading">cCusDefine12</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">category</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">category</text-property>
+                    <text-property name="heading">category</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">type</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">type</text-property>
+                    <text-property name="heading">type</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">month_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">month_id</text-property>
+                    <text-property name="heading">month_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">qtr_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">qtr_id</text-property>
+                    <text-property name="heading">qtr_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">year_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">year_id</text-property>
+                    <text-property name="heading">year_id</text-property>
+                </structure>
+            </list-property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">between</property>
+                    <expression name="expr" type="javascript">row["year_id"]</expression>
+                    <simple-property-list name="value1">
+                        <value>params["year"].value</value>
+                    </simple-property-list>
+                    <expression name="value2">params["year1"].value</expression>
+                </structure>
+                <structure>
+                    <property name="operator">in</property>
+                    <expression name="expr" type="javascript">row["doctype"]</expression>
+                    <simple-property-list name="value1">
+                        <value>params["doctype"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="operator">in</property>
+                    <expression name="expr" type="javascript">row["comcode"]</expression>
+                    <simple-property-list name="value1">
+                        <value>params["comcode"].value</value>
+                    </simple-property-list>
+                </structure>
+                <structure>
+                    <property name="operator">between</property>
+                    <expression name="expr" type="javascript">row["cinvcode"]</expression>
+                    <simple-property-list name="value1">
+                        <value>params["cinvcode"].value</value>
+                    </simple-property-list>
+                    <expression name="value2">params["cinvcode1"].value</expression>
+                </structure>
+                <structure>
+                    <property name="operator">between</property>
+                    <expression name="expr" type="javascript">row["category"]</expression>
+                    <simple-property-list name="value1">
+                        <value>params["pcatagory"].value</value>
+                    </simple-property-list>
+                    <expression name="value2">params["pcatagory1"].value</expression>
+                </structure>
+                <structure>
+                    <property name="operator">between</property>
+                    <expression name="expr" type="javascript">row["month_id"]</expression>
+                    <simple-property-list name="value1">
+                        <value>params["month"].value</value>
+                    </simple-property-list>
+                    <expression name="value2">params["month1"].value</expression>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">id</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">comcode</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">doctype</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">ccode</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">ddate</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">month</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">cSTName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">ccuscode</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">ccusname</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">cDepName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">cCusDefine5</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">cCCName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">cwhcode</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">cwhname</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">cinvcode</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">cInvName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">iQuantity</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">cbatch</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">dvDate</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">20</property>
+                        <property name="name">iNatUnitPrice</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">21</property>
+                        <property name="name">iNatMoney</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">22</property>
+                        <property name="name">cMemo</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">23</property>
+                        <property name="name">cCusDefine11</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">24</property>
+                        <property name="name">cCusDefine12</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">25</property>
+                        <property name="name">category</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">26</property>
+                        <property name="name">type</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">27</property>
+                        <property name="name">month_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">28</property>
+                        <property name="name">qtr_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">29</property>
+                        <property name="name">year_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">UFSERVER</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">id</property>
+                    <property name="nativeName">id</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">comcode</property>
+                    <property name="nativeName">comcode</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">doctype</property>
+                    <property name="nativeName">doctype</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">ccode</property>
+                    <property name="nativeName">ccode</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">ddate</property>
+                    <property name="nativeName">ddate</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">month</property>
+                    <property name="nativeName">month</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">cSTName</property>
+                    <property name="nativeName">cSTName</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">ccuscode</property>
+                    <property name="nativeName">ccuscode</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">ccusname</property>
+                    <property name="nativeName">ccusname</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">cDepName</property>
+                    <property name="nativeName">cDepName</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">cCusDefine5</property>
+                    <property name="nativeName">cCusDefine5</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">cCCName</property>
+                    <property name="nativeName">cCCName</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">cwhcode</property>
+                    <property name="nativeName">cwhcode</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">cwhname</property>
+                    <property name="nativeName">cwhname</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">cinvcode</property>
+                    <property name="nativeName">cinvcode</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">cInvName</property>
+                    <property name="nativeName">cInvName</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">iQuantity</property>
+                    <property name="nativeName">iQuantity</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">cbatch</property>
+                    <property name="nativeName">cbatch</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">dvDate</property>
+                    <property name="nativeName">dvDate</property>
+                    <property name="dataType">date-time</property>
+                    <property name="nativeDataType">93</property>
+                </structure>
+                <structure>
+                    <property name="position">20</property>
+                    <property name="name">iNatUnitPrice</property>
+                    <property name="nativeName">iNatUnitPrice</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">2</property>
+                </structure>
+                <structure>
+                    <property name="position">21</property>
+                    <property name="name">iNatMoney</property>
+                    <property name="nativeName">iNatMoney</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">3</property>
+                </structure>
+                <structure>
+                    <property name="position">22</property>
+                    <property name="name">cMemo</property>
+                    <property name="nativeName">cMemo</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">23</property>
+                    <property name="name">cCusDefine11</property>
+                    <property name="nativeName">cCusDefine11</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">24</property>
+                    <property name="name">cCusDefine12</property>
+                    <property name="nativeName">cCusDefine12</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">25</property>
+                    <property name="name">category</property>
+                    <property name="nativeName">category</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">26</property>
+                    <property name="name">type</property>
+                    <property name="nativeName">type</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">27</property>
+                    <property name="name">month_id</property>
+                    <property name="nativeName">month_id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">28</property>
+                    <property name="name">qtr_id</property>
+                    <property name="nativeName">qtr_id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">29</property>
+                    <property name="name">year_id</property>
+                    <property name="nativeName">year_id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT  a.id 
+      ,a.comcode 
+      ,a.doctype 
+      ,a.ccode 
+      ,a.ddate 
+      ,a.month 
+      ,a.cSTName 
+      ,a.ccuscode 
+      ,a.ccusname 
+      ,a.cDepName 
+      ,a.cCusDefine5 
+      ,a.cCCName 
+      ,a.cwhcode 
+      ,a.cwhname 
+      ,a.cinvcode 
+      ,a.cInvName 
+      ,a.iQuantity 
+      ,a.cbatch 
+      ,a.dvDate 
+      ,a.iNatUnitPrice 
+      ,a.iNatMoney 
+      ,a.cMemo 
+      ,a.cCusDefine11 
+      ,a.cCusDefine12 
+      ,b.category
+      ,b.type
+      ,c.month_id
+      ,c.qtr_id
+      ,c.year_id
+FROM [bpmapp].[dbo].[pd_sales_details] a 
+inner join pd_inventory b on a.cinvcode=b.cinvcode 
+inner join pd_dim_time c on c.TIME_ID=a.ddate ]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>37</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>id</design:label>
+            <design:formattingHints>
+              <design:displaySize>37</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>comcode</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>3</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>comcode</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>comcode</design:label>
+            <design:formattingHints>
+              <design:displaySize>3</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>doctype</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>4</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>doctype</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>doctype</design:label>
+            <design:formattingHints>
+              <design:displaySize>4</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ccode</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>30</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ccode</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ccode</design:label>
+            <design:formattingHints>
+              <design:displaySize>30</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ddate</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ddate</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ddate</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>month</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>2</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>month</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>month</design:label>
+            <design:formattingHints>
+              <design:displaySize>2</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cSTName</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cSTName</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cSTName</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ccuscode</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ccuscode</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ccuscode</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ccusname</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>98</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ccusname</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ccusname</design:label>
+            <design:formattingHints>
+              <design:displaySize>98</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cDepName</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cDepName</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cDepName</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cCusDefine5</design:name>
+              <design:position>11</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>60</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cCusDefine5</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cCusDefine5</design:label>
+            <design:formattingHints>
+              <design:displaySize>60</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cCCName</design:name>
+              <design:position>12</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cCCName</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cCCName</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cwhcode</design:name>
+              <design:position>13</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cwhcode</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cwhcode</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cwhname</design:name>
+              <design:position>14</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cwhname</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cwhname</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cinvcode</design:name>
+              <design:position>15</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>60</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cinvcode</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cinvcode</design:label>
+            <design:formattingHints>
+              <design:displaySize>60</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cInvName</design:name>
+              <design:position>16</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cInvName</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cInvName</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>iQuantity</design:name>
+              <design:position>17</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>30</design:precision>
+            <design:scale>10</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>iQuantity</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>iQuantity</design:label>
+            <design:formattingHints>
+              <design:displaySize>32</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cbatch</design:name>
+              <design:position>18</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>60</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cbatch</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cbatch</design:label>
+            <design:formattingHints>
+              <design:displaySize>60</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>dvDate</design:name>
+              <design:position>19</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>93</design:nativeDataTypeCode>
+            <design:precision>23</design:precision>
+            <design:scale>3</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>dvDate</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>dvDate</design:label>
+            <design:formattingHints>
+              <design:displaySize>23</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>iNatUnitPrice</design:name>
+              <design:position>20</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>2</design:nativeDataTypeCode>
+            <design:precision>30</design:precision>
+            <design:scale>10</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>iNatUnitPrice</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>iNatUnitPrice</design:label>
+            <design:formattingHints>
+              <design:displaySize>32</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>iNatMoney</design:name>
+              <design:position>21</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>3</design:nativeDataTypeCode>
+            <design:precision>19</design:precision>
+            <design:scale>4</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>iNatMoney</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>iNatMoney</design:label>
+            <design:formattingHints>
+              <design:displaySize>21</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cMemo</design:name>
+              <design:position>22</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>255</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cMemo</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cMemo</design:label>
+            <design:formattingHints>
+              <design:displaySize>255</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cCusDefine11</design:name>
+              <design:position>23</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cCusDefine11</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cCusDefine11</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>cCusDefine12</design:name>
+              <design:position>24</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>cCusDefine12</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>cCusDefine12</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <cubes>
+        <tabular-cube name="客户数统计" id="29">
+            <property name="dimensions">
+                <tabular-dimension name="产品类别" id="94">
+                    <property name="defaultHierarchy">NewTabularHierarchy1</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy1" id="95">
+                            <property name="levels">
+                                <tabular-level name="category" id="116">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">category</property>
+                                </tabular-level>
+                                <tabular-level name="cinvcode" id="97">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">cinvcode</property>
+                                </tabular-level>
+                                <tabular-level name="cInvName" id="98">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">cInvName</property>
+                                </tabular-level>
+                                <tabular-level name="comcode" id="96">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">comcode</property>
+                                </tabular-level>
+                                <tabular-level name="doctype" id="259">
+                                    <property name="dataType">string</property>
+                                    <property name="columnName">doctype</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+                <tabular-dimension name="date" id="136">
+                    <property name="defaultHierarchy">NewTabularHierarchy2</property>
+                    <property name="hierarchies">
+                        <tabular-hierarchy name="NewTabularHierarchy2" id="137">
+                            <property name="levels">
+                                <tabular-level name="year_id" id="140">
+                                    <property name="dataType">integer</property>
+                                    <property name="columnName">year_id</property>
+                                </tabular-level>
+                                <tabular-level name="qtr_id" id="139">
+                                    <property name="dataType">integer</property>
+                                    <property name="columnName">qtr_id</property>
+                                </tabular-level>
+                                <tabular-level name="month_id" id="138">
+                                    <property name="dataType">integer</property>
+                                    <property name="columnName">month_id</property>
+                                </tabular-level>
+                            </property>
+                        </tabular-hierarchy>
+                    </property>
+                </tabular-dimension>
+            </property>
+            <property name="measureGroups">
+                <tabular-measure-group name="Summary quantity" id="158">
+                    <property name="measures">
+                        <tabular-measure name="iQuantity" id="159">
+                            <expression name="measureExpression" type="javascript">dataSetRow["iQuantity"]</expression>
+                            <property name="dataType">decimal</property>
+                        </tabular-measure>
+                    </property>
+                </tabular-measure-group>
+                <tabular-measure-group name="Summary amount" id="160">
+                    <property name="measures">
+                        <tabular-measure name="iNatMoney" id="161">
+                            <expression name="measureExpression" type="javascript">dataSetRow["iNatMoney"]</expression>
+                            <property name="dataType">decimal</property>
+                        </tabular-measure>
+                    </property>
+                </tabular-measure-group>
+            </property>
+            <property name="dataSet">sales details</property>
+        </tabular-cube>
+    </cubes>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab-cell" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="type">custom</property>
+            <property name="orientation">landscape</property>
+            <property name="height">297mm</property>
+            <property name="width">100%</property>
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="245">
+            <property name="width">7.041666666666667in</property>
+            <column id="246">
+                <property name="width">7.041666666666667in</property>
+            </column>
+            <row id="247">
+                <cell id="248">
+                    <text id="249">
+                        <property name="fontWeight">bold</property>
+                        <property name="textAlign">center</property>
+                        <property name="contentType">auto</property>
+                        <text-property name="content"><![CDATA[历 史 销 量 汇 总]]></text-property>
+                    </text>
+                </cell>
+            </row>
+        </grid>
+        <extended-item extensionName="Crosstab" extensionVersion="3.7.0" id="60">
+            <property name="cube">客户数统计</property>
+            <property name="measures">
+                <extended-item extensionName="MeasureView" id="506">
+                    <property name="measure">iQuantity</property>
+                    <property name="detail">
+                        <extended-item extensionName="AggregationCell" id="507">
+                            <property name="aggregationOnRow">产品类别/doctype</property>
+                            <property name="aggregationOnColumn">date/month_id</property>
+                            <property name="content">
+                                <data id="508">
+                                    <structure name="numberFormat">
+                                        <property name="category">Fixed</property>
+                                        <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                                    </structure>
+                                    <property name="whiteSpace">nowrap</property>
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">params["only total"].value</expression>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">iQuantity_产品类别/doctype_date/month_id</property>
+                                    <list-property name="action">
+                                        <structure>
+                                            <property name="linkType">drill-through</property>
+                                            <property name="reportName">sales_details.rptdesign</property>
+                                            <property name="targetWindow">_blank</property>
+                                            <property name="targetFileType">report-design</property>
+                                            <list-property name="paramBindings">
+                                                <structure>
+                                                    <property name="paramName">year</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["year_id"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">year1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["year_id"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">comcode</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["comcode"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">cinvcode</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["cinvcode"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">cinvcode1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["cinvcode"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">doctype</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["doctype"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">month</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["month_id"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">month1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["month_id"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">pcatagory</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["category"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">pcatagory1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["category"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">customer</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">0</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">customer1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">'ZZZZZ'</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                            </list-property>
+                                        </structure>
+                                    </list-property>
+                                </data>
+                            </property>
+                        </extended-item>
+                    </property>
+                    <property name="aggregations">
+                        <extended-item extensionName="AggregationCell" id="518">
+                            <property name="aggregationOnRow">产品类别/cinvcode</property>
+                            <property name="aggregationOnColumn">date/month_id</property>
+                            <property name="content">
+                                <data id="519">
+                                    <structure name="numberFormat">
+                                        <property name="category">Fixed</property>
+                                        <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                                    </structure>
+                                    <property name="whiteSpace">nowrap</property>
+                                    <property name="resultSetColumn">iQuantity_产品类别/cinvcode_date/month_id</property>
+                                    <list-property name="action">
+                                        <structure>
+                                            <property name="linkType">drill-through</property>
+                                            <property name="reportName">sales_details.rptdesign</property>
+                                            <property name="targetWindow">_blank</property>
+                                            <property name="targetFileType">report-design</property>
+                                            <list-property name="paramBindings">
+                                                <structure>
+                                                    <property name="paramName">year</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["year_id"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">year1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["year_id"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">comcode</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">params["comcode"].value</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">cinvcode</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["cinvcode"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">cinvcode1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["cinvcode"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">doctype</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">params["doctype"].value</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">month</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["month_id"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">month1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["month_id"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">pcatagory</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["category"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">pcatagory1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["category"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">customer</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">0</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">customer1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">'ZZZZZ'</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                            </list-property>
+                                        </structure>
+                                    </list-property>
+                                </data>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="AggregationCell" id="522">
+                            <property name="aggregationOnRow">产品类别/cinvcode</property>
+                            <property name="aggregationOnColumn">date/year_id</property>
+                            <property name="content">
+                                <data id="523">
+                                    <property name="whiteSpace">nowrap</property>
+                                    <property name="resultSetColumn">iQuantity_产品类别/cinvcode_date/year_id</property>
+                                    <list-property name="action">
+                                        <structure>
+                                            <property name="linkType">drill-through</property>
+                                            <property name="reportName">sales_details.rptdesign</property>
+                                            <property name="targetWindow">_blank</property>
+                                            <property name="targetFileType">report-design</property>
+                                            <list-property name="paramBindings">
+                                                <structure>
+                                                    <property name="paramName">year</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["year_id"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">year1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["year_id"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">comcode</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">params["comcode"].value</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">cinvcode</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["cinvcode"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">cinvcode1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["cinvcode"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">doctype</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">params["doctype"].value</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">month</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">1</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">month1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">12</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">pcatagory</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["category"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">pcatagory1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["category"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">customer</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">0</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">customer1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">'ZZZZZZ'</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                            </list-property>
+                                        </structure>
+                                    </list-property>
+                                </data>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="AggregationCell" id="524">
+                            <property name="aggregationOnRow">产品类别/doctype</property>
+                            <property name="aggregationOnColumn">date/year_id</property>
+                            <property name="content">
+                                <data id="525">
+                                    <structure name="numberFormat">
+                                        <property name="category">Fixed</property>
+                                        <property name="pattern">###0.00{RoundingMode=HALF_UP}</property>
+                                    </structure>
+                                    <property name="whiteSpace">nowrap</property>
+                                    <list-property name="visibility">
+                                        <structure>
+                                            <property name="format">all</property>
+                                            <expression name="valueExpr" type="javascript">params["only total"].value</expression>
+                                        </structure>
+                                    </list-property>
+                                    <property name="resultSetColumn">iQuantity_产品类别/doctype_date/year_id</property>
+                                    <list-property name="action">
+                                        <structure>
+                                            <property name="linkType">drill-through</property>
+                                            <property name="reportName">sales_details.rptdesign</property>
+                                            <property name="targetWindow">_blank</property>
+                                            <property name="targetFileType">report-design</property>
+                                            <list-property name="paramBindings">
+                                                <structure>
+                                                    <property name="paramName">year</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["year_id"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">year1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["year_id"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">comcode</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["comcode"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">cinvcode</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["cinvcode"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">cinvcode1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["cinvcode"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">doctype</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["doctype"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">month</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">0</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">month1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">12</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">pcatagory</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["category"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">pcatagory1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">data["category"]</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">customer</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">0</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                                <structure>
+                                                    <property name="paramName">customer1</property>
+                                                    <simple-property-list name="expression">
+                                                        <value type="javascript">'ZZZZZ'</value>
+                                                    </simple-property-list>
+                                                </structure>
+                                            </list-property>
+                                        </structure>
+                                    </list-property>
+                                </data>
+                            </property>
+                        </extended-item>
+                    </property>
+                    <property name="header">
+                        <extended-item extensionName="CrosstabCell" id="509">
+                            <property name="content">
+                                <label id="510">
+                                    <property name="backgroundColor">#0080FF</property>
+                                    <property name="whiteSpace">nowrap</property>
+                                    <text-property name="text">数量 </text-property>
+                                </label>
+                            </property>
+                        </extended-item>
+                        <extended-item extensionName="CrosstabCell" id="526">
+                            <property name="content">
+                                <label id="527">
+                                    <property name="backgroundColor">#0080FF</property>
+                                    <property name="whiteSpace">nowrap</property>
+                                    <text-property name="text">数量 </text-property>
+                                </label>
+                            </property>
+                        </extended-item>
+                    </property>
+                </extended-item>
+            </property>
+            <property name="rows">
+                <extended-item extensionName="CrosstabView" id="68">
+                    <property name="views">
+                        <extended-item extensionName="DimensionView" id="460">
+                            <property name="dimension">产品类别</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View" id="461">
+                                    <property name="level">产品类别/category</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="462">
+                                            <property name="content">
+                                                <data name="category" id="463">
+                                                    <property name="whiteSpace">nowrap</property>
+                                                    <property name="resultSetColumn">category</property>
+                                                    <list-property name="action">
+                                                        <structure>
+                                                            <property name="linkType">drill-through</property>
+                                                            <property name="reportName">sales_analysis_productcategory.rptdesign</property>
+                                                            <property name="targetWindow">_blank</property>
+                                                            <property name="targetFileType">report-design</property>
+                                                            <list-property name="paramBindings">
+                                                                <structure>
+                                                                    <property name="paramName">year</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">params["year"].value</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">year1</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">params["year1"].value</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">doctype</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">params["doctype"].value</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">comcode</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">params["comcode"].value</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">cinvcode</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">params["cinvcode"].value</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">cinvcode1</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">params["cinvcode1"].value</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">pcatagory</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">data["category"]</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">pcatagory1</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">data["category"]</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">month</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">params["month"].value</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">month1</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">params["month1"].value</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                            </list-property>
+                                                        </structure>
+                                                    </list-property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                                <extended-item extensionName="LevelView" name="NewLevel View1" id="464">
+                                    <property name="level">产品类别/cinvcode</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="465">
+                                            <property name="content">
+                                                <data name="cinvcode" id="467">
+                                                    <property name="whiteSpace">nowrap</property>
+                                                    <property name="resultSetColumn">cinvcode</property>
+                                                    <list-property name="action">
+                                                        <structure>
+                                                            <property name="linkType">drill-through</property>
+                                                            <property name="reportName">sales_analysis_product.rptdesign</property>
+                                                            <property name="targetWindow">_blank</property>
+                                                            <property name="targetFileType">report-design</property>
+                                                            <list-property name="paramBindings">
+                                                                <structure>
+                                                                    <property name="paramName">year</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">params["year"].value</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">year1</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">params["year1"].value</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">doctype</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">params["doctype"].value</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">comcode</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">params["comcode"].value</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">cinvcode</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">data["cinvcode"]</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">cinvcode1</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">data["cinvcode"]</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">pcatagory</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">data["category"]</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">pcatagory1</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">data["category"]</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">month</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">params["month"].value</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                                <structure>
+                                                                    <property name="paramName">month1</property>
+                                                                    <simple-property-list name="expression">
+                                                                        <value type="javascript">params["month1"].value</value>
+                                                                    </simple-property-list>
+                                                                </structure>
+                                                            </list-property>
+                                                        </structure>
+                                                    </list-property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                    <property name="aggregationHeader">
+                                        <extended-item extensionName="CrosstabCell" id="517">
+                                            <property name="content">
+                                                <data name="cinvcode_TOTAL" id="520">
+                                                    <property name="whiteSpace">nowrap</property>
+                                                    <property name="resultSetColumn">cinvcode_TOTAL</property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                                <extended-item extensionName="LevelView" name="NewLevel View3" id="474">
+                                    <property name="level">产品类别/comcode</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="475">
+                                            <property name="content">
+                                                <data name="comcode" id="477">
+                                                    <property name="whiteSpace">nowrap</property>
+                                                    <list-property name="visibility">
+                                                        <structure>
+                                                            <property name="format">all</property>
+                                                            <expression name="valueExpr" type="javascript">params["only total"].value</expression>
+                                                        </structure>
+                                                    </list-property>
+                                                    <property name="resultSetColumn">comcode</property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                                <extended-item extensionName="LevelView" name="NewLevel View4" id="479">
+                                    <property name="level">产品类别/doctype</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="480">
+                                            <property name="content">
+                                                <data name="doctype" id="482">
+                                                    <property name="whiteSpace">nowrap</property>
+                                                    <list-property name="visibility">
+                                                        <structure>
+                                                            <property name="format">all</property>
+                                                            <expression name="valueExpr" type="javascript">params["only total"].value</expression>
+                                                        </structure>
+                                                    </list-property>
+                                                    <property name="resultSetColumn">doctype</property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                    </property>
+                    <property name="grandTotalLocation">after</property>
+                </extended-item>
+            </property>
+            <property name="columns">
+                <extended-item extensionName="CrosstabView" id="141">
+                    <property name="views">
+                        <extended-item extensionName="DimensionView" id="484">
+                            <property name="dimension">date</property>
+                            <property name="levels">
+                                <extended-item extensionName="LevelView" name="NewLevel View5" id="485">
+                                    <property name="level">date/year_id</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="486">
+                                            <property name="content">
+                                                <data name="year_id" id="487">
+                                                    <property name="backgroundColor">#FFFF80</property>
+                                                    <property name="resultSetColumn">year_id</property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                    <property name="aggregationHeader">
+                                        <extended-item extensionName="CrosstabCell" id="521">
+                                            <property name="content">
+                                                <data name="year_id_TOTAL" id="528">
+                                                    <property name="resultSetColumn">year_id_TOTAL</property>
+                                                </data>
+                                            </property>
+                                            <property name="backgroundColor">#FFFF80</property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                                <extended-item extensionName="LevelView" name="NewLevel View6" id="488">
+                                    <property name="level">date/qtr_id</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="489">
+                                            <property name="content">
+                                                <data name="qtr_id" id="495">
+                                                    <property name="backgroundColor">#C0C0C0</property>
+                                                    <property name="resultSetColumn">qtr_id</property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                                <extended-item extensionName="LevelView" name="NewLevel View7" id="497">
+                                    <property name="level">date/month_id</property>
+                                    <property name="member">
+                                        <extended-item extensionName="CrosstabCell" id="498">
+                                            <property name="content">
+                                                <data name="month_id" id="504">
+                                                    <property name="backgroundColor">#00FFFF</property>
+                                                    <property name="resultSetColumn">month_id</property>
+                                                </data>
+                                            </property>
+                                        </extended-item>
+                                    </property>
+                                </extended-item>
+                            </property>
+                        </extended-item>
+                    </property>
+                    <property name="grandTotalLocation">after</property>
+                </extended-item>
+            </property>
+            <property name="header">
+                <extended-item extensionName="CrosstabCell" id="490"/>
+                <extended-item extensionName="CrosstabCell" id="491"/>
+                <extended-item extensionName="CrosstabCell" id="493"/>
+                <extended-item extensionName="CrosstabCell" id="494">
+                    <property name="content">
+                        <label id="496">
+                            <property name="backgroundColor">#FFFF80</property>
+                            <text-property name="text">年</text-property>
+                        </label>
+                    </property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="499"/>
+                <extended-item extensionName="CrosstabCell" id="500"/>
+                <extended-item extensionName="CrosstabCell" id="502"/>
+                <extended-item extensionName="CrosstabCell" id="503">
+                    <property name="content">
+                        <label id="505">
+                            <property name="backgroundColor">#C0C0C0</property>
+                            <text-property name="text">季度</text-property>
+                        </label>
+                    </property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="511"/>
+                <extended-item extensionName="CrosstabCell" id="512"/>
+                <extended-item extensionName="CrosstabCell" id="514"/>
+                <extended-item extensionName="CrosstabCell" id="515">
+                    <property name="content">
+                        <label id="516">
+                            <property name="backgroundColor">#00FFFF</property>
+                            <text-property name="text">月</text-property>
+                        </label>
+                    </property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="351">
+                    <property name="content">
+                        <label id="356">
+                            <property name="backgroundColor">#0080FF</property>
+                            <property name="whiteSpace">nowrap</property>
+                            <text-property name="text">产品类别</text-property>
+                        </label>
+                    </property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="466">
+                    <property name="content">
+                        <label id="468">
+                            <property name="backgroundColor">#0080FF</property>
+                            <property name="whiteSpace">nowrap</property>
+                            <text-property name="text">物料编码</text-property>
+                        </label>
+                    </property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="476">
+                    <property name="content">
+                        <label id="478">
+                            <property name="backgroundColor">#0080FF</property>
+                            <property name="whiteSpace">nowrap</property>
+                            <text-property name="text">公司代码</text-property>
+                        </label>
+                    </property>
+                </extended-item>
+                <extended-item extensionName="CrosstabCell" id="481">
+                    <property name="content">
+                        <label id="483">
+                            <property name="backgroundColor">#0080FF</property>
+                            <property name="whiteSpace">nowrap</property>
+                            <text-property name="text">单据类型</text-property>
+                        </label>
+                    </property>
+                </extended-item>
+            </property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">medium</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">medium</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">medium</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">medium</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">iQuantity</property>
+                    <expression name="expression">measure["iQuantity"]</expression>
+                    <property name="dataType">decimal</property>
+                    <property name="aggregateFunction">SUM</property>
+                </structure>
+                <structure>
+                    <property name="name">category</property>
+                    <expression name="expression">dimension["产品类别"]["category"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cinvcode</property>
+                    <expression name="expression">dimension["产品类别"]["cinvcode"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">comcode</property>
+                    <expression name="expression">dimension["产品类别"]["comcode"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">doctype</property>
+                    <expression name="expression">dimension["产品类别"]["doctype"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">year_id</property>
+                    <expression name="expression">dimension["date"]["year_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">qtr_id</property>
+                    <expression name="expression">dimension["date"]["qtr_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">month_id</property>
+                    <expression name="expression">dimension["date"]["month_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">iQuantity_产品类别/doctype_date/month_id</property>
+                    <expression name="expression">measure["iQuantity"]</expression>
+                    <property name="dataType">decimal</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>产品类别/doctype</value>
+                        <value>date/month_id</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                </structure>
+                <structure>
+                    <property name="name">iQuantity_产品类别/cinvcode_date/month_id</property>
+                    <expression name="expression">measure["iQuantity"]</expression>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>产品类别/cinvcode</value>
+                        <value>date/month_id</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                </structure>
+                <structure>
+                    <property name="name">cinvcode_TOTAL</property>
+                    <expression name="expression">dimension["产品类别"]["cinvcode"]+" TOTAL"</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">iQuantity_产品类别/cinvcode_date/year_id</property>
+                    <expression name="expression">measure["iQuantity"]</expression>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>产品类别/cinvcode</value>
+                        <value>date/year_id</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                </structure>
+                <structure>
+                    <property name="name">iQuantity_产品类别/doctype_date/year_id</property>
+                    <expression name="expression">measure["iQuantity"]</expression>
+                    <property name="dataType">float</property>
+                    <simple-property-list name="aggregateOn">
+                        <value>产品类别/doctype</value>
+                        <value>date/year_id</value>
+                    </simple-property-list>
+                    <property name="aggregateFunction">SUM</property>
+                </structure>
+                <structure>
+                    <property name="name">year_id_TOTAL</property>
+                    <expression name="expression">dimension["date"]["year_id"]+" TOTAL"</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+        </extended-item>
+    </body>
+</report>

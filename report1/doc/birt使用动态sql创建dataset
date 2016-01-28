@@ -1,0 +1,34 @@
+Eclipse Birt可以使用sql query来创建数据集，通过在报表中设置参数(Parameter)来传递客户端的用户输入，同时可以设置data set参数并且与报表参数关联(这两个参数是不同的),这样可以将客户端的用户输入传递给data set的参数供sql query的where语句使用,这是通常的创建sql语句的做法，但是种方法只适合固定的sql语句，对于动态的sql就不适用了。 
+如有这样一条sql query 
+Sql代码  收藏代码
+select user.first_name firstName,user.second_name secondName,user.sex sex,user.age age,user.birth_day birthDay  
+from user_table user  
+where user.second_name = ?  
+ and  user.sex = ?  
+
+定义两个报表参数SecondName,Sex定义两个data set参数secondname,sex并与报表参数关联，用户查看报表时必须要输入姓和性别作为查询条件,如果不输则对应的参数值就是null，假如查姓李的人，性别不输，则sql语句就变成这样select ... from ... where user.second_name = '李' and user.sex = null 显然这样的sql是查不出结果的，哪有sex是null的人呢？对于这种情况应该是如果用户某一个参数不输则不将它做为查询条件，上面的sql应该变成select ... from ... where user.second_name = '李'就合理了，把所有姓李的人不分男女都查出来，这就需要使用动态sql语句了，方法有两种： 
+一、date set编辑器中有property binging的属性，可以在右边的query text框中设输入sql语句，或者用expression生成器辅助生成sql语句，上面的例子用种方法应该写成 
+Javascript代码  收藏代码
+var query = " select user.first_name firstName,user.second_name secondName,user.sex sex,user.age age,user.birth_day birthDay";  
+    query += " from user_table user";  
+    query += " where user.second_name = ?"  
+    if(param["Sex"].value != null){  
+        query += " and  user.sex = '" + param["Sex"].value + "'";  
+    }  
+    this.text = query;  
+
+二、利用script，在data set的before open事件中 
+Javascript代码  收藏代码
+var query = " select user.first_name firstName,user.second_name secondName,user.sex sex,user.age age,user.birth_day birthDay";  
+    query += " from user_table user";  
+    query += " where user.second_name = ?"  
+var sex = reportContext.getParameterValue("Sex");  
+if(sex != null){  
+   query += " and  user.sex = '" + sex + "'";   
+}  
+this.queryText = query;  
+
+
+    这两种方法的区别在于：第一种方法是在报表run的时候创建data set，因此在data set编辑器里是没有办法像通常那样预览的 而第二种方法是写在data set的beforeOpen中的，所以在打开data set之前会创建data set因此可以像通常那样预览数据集结果等等 
+      第一种方法中用param["sex"].value获得Sex参数值，而第二种方法需要利用reportContext来获取Sex参数的值 
+      另外需要注意的是在拼凑sql时要细心，例如如果参数是String类型时前后一定要加上一对''(具体的取决于所使用的数据库，笔者使用的是oracle) 
