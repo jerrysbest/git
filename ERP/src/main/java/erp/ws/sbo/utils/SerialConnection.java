@@ -32,6 +32,7 @@ package erp.ws.sbo.utils;
 
 import javax.comm.*;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -362,7 +363,9 @@ public class SerialConnection implements SerialPortEventListener,
 		   }
 		   else if(view.equals("OignView"))
 		   {
-			   v2.getTxt_cweight().setText(String.valueOf(new BigDecimal(v2.getTxt_weight().getText()==null?"0":v2.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v2.getTxt_pweight().getText()==null?"0":v2.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));    	
+			   JOptionPane.showMessageDialog(null,v2.getTxt_weight().getText());
+			   JOptionPane.showMessageDialog(null,v2.getTxt_pweight().getText());
+			   v2.getTxt_cweight().setText(String.valueOf(new BigDecimal((v2.getTxt_weight().getText()==null||v2.getTxt_weight().getText().equals(""))?"0":v2.getTxt_weight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP).subtract(new BigDecimal(v2.getTxt_pweight().getText()==null?"0":v2.getTxt_pweight().getText()).setScale(3,BigDecimal.ROUND_HALF_UP))));    	
 			   if(new BigDecimal(v2.getTxt_length().getText()==null?"0":v2.getTxt_length().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP)))
 			   {
 				  v2.getTxt_sweight().setText(v2.getTxt_cweight().getText());			  

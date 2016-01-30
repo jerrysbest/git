@@ -13,12 +13,15 @@
 
 package erp.ws.sbo.client.swing.dao.impl;
 
+import java.awt.Cursor;
 import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.Enumeration;
 
+import javax.comm.CommPortIdentifier;
 import javax.swing.JOptionPane;
 
 import org.hibernate.HibernateException;
@@ -63,6 +66,7 @@ public class OignDoc implements IDoc<OignView>{
 	private IStockTransfer oskt;
 	private DbUtils<?,?> dbu=new DbUtils<ColDocTitle,DocTitle>();	
 	private SNL snl=new SNL();	
+	private CommPortIdentifier portId=null;
 	public OignDoc(){
 	
 	}
@@ -755,6 +759,22 @@ public class OignDoc implements IDoc<OignView>{
 	@Override
 	public void add(OignView v) throws PermissionDeniedException{
 		// TODO Auto-generated method stub
+		v.getCom_port().removeAllItems();	  
+        Enumeration<?> en = CommPortIdentifier.getPortIdentifiers();
+        //JOptionPane.showMessageDialog(v, en.hasMoreElements());
+        // iterate through the ports.
+        while (en.hasMoreElements()) {
+        	//JOptionPane.showMessageDialog(v, en.nextElement());
+            portId = (CommPortIdentifier) en.nextElement();	            
+            if (portId!=null&&portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
+            	v.getCom_port().addItem(portId.getName());
+            }
+        }	       
+		Cursor previousCursor = v.getCursor();
+	    v.setNewCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+	    v.setParameters();
+	    
+	    
 		v.getOd1().setDs(docTitleStatus.add);
 		v.getOd1().setDocTitleStatus(v);
 		//JOptionPane.showMessageDialog(null, "2");

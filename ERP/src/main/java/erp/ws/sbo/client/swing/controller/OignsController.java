@@ -117,10 +117,10 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	        	if(((JTextField)v.getCom_specification().getEditor().getEditorComponent()).getText().equals("")
 			    ||v.getTxt_MNo().getText().equals("")||v.getTxt_Qinspector().getText().equals("")||
 	             new BigDecimal(v.getTxt_cweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
-	            || new BigDecimal(v.getTxt_weight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
-	            ||(new BigDecimal(v.getTxt_pweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))<0)
-	            ||new BigDecimal(v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
-	            ||new BigDecimal(v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))<0
+	            || new BigDecimal((v.getTxt_weight().getText()==null||v.getTxt_weight().getText().equals(""))?"0":v.getTxt_weight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
+	            ||(new BigDecimal((v.getTxt_pweight().getText()==null||v.getTxt_pweight().getText().equals(""))?"0":v.getTxt_pweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))<0)
+	            ||new BigDecimal((v.getTxt_sweight().getText()==null||v.getTxt_sweight().getText().equals(""))?"0":v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).equals(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))
+	            ||new BigDecimal((v.getTxt_sweight().getText()==null||v.getTxt_sweight().getText().equals(""))?"0":v.getTxt_sweight().getText()).setScale(3, BigDecimal.ROUND_HALF_UP).compareTo(new BigDecimal(0).setScale(3, BigDecimal.ROUND_HALF_UP))<0
 	            )           
 				{
 	                JOptionPane.showMessageDialog(v,"物料代码,机号,净重,毛重,公司名称,不能为空或0,当米段为0时,"+v.getTxt_pweight().getText()+"皮重不能小于0,"+v.getTxt_sweight().getText()+"标准重必须大于0");
@@ -433,20 +433,20 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	    if(e.getActionCommand().equals("打开串口")&&v.getOd().ds.getValue()==5)
 		{		 
 	    	JOptionPane.showMessageDialog(v, "串口打开");
-	    	v.getCom_port().removeAllItems();	  
-	        Enumeration<?> en = CommPortIdentifier.getPortIdentifiers();
-	        
-	        // iterate through the ports.
-	        while (en.hasMoreElements()) {
-	        	//JOptionPane.showMessageDialog(v, en.nextElement());
-	            portId = (CommPortIdentifier) en.nextElement();	            
-	            if (portId!=null&&portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
-	            	v.getCom_port().addItem(portId.getName());
-	            }
-	        }	       
+//	    	v.getCom_port().removeAllItems();	  
+//	        Enumeration<?> en = CommPortIdentifier.getPortIdentifiers();
+//	        JOptionPane.showMessageDialog(v, en.hasMoreElements());
+//	        // iterate through the ports.
+//	        while (en.hasMoreElements()) {
+//	        	//JOptionPane.showMessageDialog(v, en.nextElement());
+//	            portId = (CommPortIdentifier) en.nextElement();	            
+//	            if (portId!=null&&portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
+//	            	v.getCom_port().addItem(portId.getName());
+//	            }
+//	        }	       
 			Cursor previousCursor = v.getCursor();
-		    v.setNewCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		    v.setParameters();
+//		    v.setNewCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+//		    v.setParameters();
 		    		   
 		    try {
 		    	 connection=new SerialConnection(v, v.getParameters(), 
@@ -522,6 +522,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	        } catch (IOException e) {  
 	            e.printStackTrace();  
 	        }  */
+			JOptionPane.showMessageDialog(v,"称重");
 			if(v.getCom_port().getSelectedItem()==null)
 			{
 				 JOptionPane.showMessageDialog(v,"请先打开串口");	              
