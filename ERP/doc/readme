@@ -36,6 +36,7 @@ mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\libfont
 mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\libformat-1.2.4.jar  -DgroupId=pentaho.libformat  -DartifactId=libformat  -Dversion=1.2.4  -Dpackaging=jar  -DgeneratePom=true 
 mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\libformula-1.2.3.jar  -DgroupId=pentaho.libformula  -DartifactId=libformula  -Dversion=1.2.3  -Dpackaging=jar  -DgeneratePom=true 
 mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\pentaho\libswing-1.2.4.jar  -DgroupId=pentaho.libswing  -DartifactId=libswing  -Dversion=1.2.4  -Dpackaging=jar  -DgeneratePom=true 
+mvn install:install-file  -Dfile=E:\gitrepository\git\sboerp\lib\jna-1.0.jar  -DgroupId=tsc  -DartifactId=tsclib  -Dversion=1.0  -Dpackaging=jar  -DgeneratePom=true 
 
 spring annotations just needs to be imported on the low version of jdk,if you use hegh version jdk more than 1.5,it is no need 
 
