@@ -1,0 +1,5 @@
+Add ¡°JNA.jar¡± into the JAVA project.
+ Copy the ¡°TscLib.Dll¡± to the folder \\WINDOWS\system32 AND 
+ C:\Program Files (x86)\Java\jre6\bin 
+ C:\Program Files (x86)\Java\jdk1.6.0_32\bin
+ C:\Program Files (x86)\Java\jdk1.6.0_32\jre\bin

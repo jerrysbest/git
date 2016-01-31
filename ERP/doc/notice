@@ -1,0 +1,59 @@
+1.程序报错不能找到主类，结果把applicationcontext中的aop，tx相关的去掉就没问题了。applicationcontext本身有问题也可能找不到主类。
+  在 2008虚拟机中没有问题，或许是win7的缘故又或者 是myeclipse盗版？
+  以后可以 用 eclipse
+ 2程序打包说明，打包好后，首先运行初始化脚本，其次初始化自定义表，退出，再次登录初始化字段。
+  针对 不同数据库还比较麻烦，因为model中还要改数据库
+ 3.sap系统中price写入的是折扣后的价格，造成折扣的原因比如算出来的单价是三位小数，折扣后两位就出现折扣了。初始设置时小数位设为3位试试
+ 4.数据库存储过程
+   zdy_workflow
+   zdy_wfmessage
+ 5.表格被更新后无法绑定combobox列
+ 6.添加自定义字段需要更新 mvc和dratodoc
+ 7.自定义存储过程zdy_pay_yj，还有 工作流的存储过程需要添加
+ 8.关于jacob，jacob是java调用c#com接口程序需要用到的开源 组件
+  8.1.将jacob.jar导入到项目的lib中去 
+  8.2.将Jacob.dll放至“WINDOWS\SYSTEM32”下面(或者放在对应的jdk目录下 如：C:\Program Files\Java\jdk1.6.0_10\bin)
+  8.3.如果还不可以 就将jacob.dll文件放到使用的tomcat的bin目录下，将jacob.jar放在tomcat的lib目录下
+  8.4jacob的使用是需要基于dll文件的。具体放的位置可以从System.out.println(System.getProperty("java.library.path"));的结果中寻找。
+9.关于com组件注册
+       编译以后，就要以在开发环境中注册了新生成的com组件,在客户环境中，通过regasm.exe注册com组件
+  regasm.exe的默认安装路径为:C:\Windows\Microsoft.NET\Framework\v2.0.50727\RegAsm.exe
+     使用方法:cmd "你的windows文件夹\Microsoft.NET\Framework\v2.0.50727\regasm.exe" "你的dll路径"
+     强签名的dll文件添加到缓存中。
+      执行命令：gacutil -i ClassLibrary1.DLL (执行这个命令需要TestCom.DLL 具有强名称)
+        gacutil 程序在VS目录 Microsoft Visual Studio 8\SDK\v2.0\Bin 目录下，复制到JAVA环境中。
+      查看windows中已注册的com组件，开始-所有程序-Microsoft Visual Studio 2010-Microsoft Windows SDK Tools-OLE-COM Object Viewer (x64)
+10.doclineModel事件 itemendedit 中的特殊价格查询改了，去掉了物料大类的概念
+    hql="select a.id.itemCode,a.price from Itm1 a,Oitm b,Ospp c "+
+			 "where a.id.itemCode=b.itemCode and "+
+			" c.id.itemCode=b.itemCode and a.id.priceList=c.listNum "+ // 之前是 c.id.itemCode=b.UMtdl and a.id.priceList=c.listNum 
+			" and c.id.cardCode='01ZCJG' and b.itemCode='"+Itcode+"'";			
+	  hql="select a.id.itemCode,a.price from Itm1 a,Oitm b,Ospp c,Ocrd d "+ 
+		" where "+
+	 " a.id.itemCode=b.itemCode and c.id.itemCode=b.itemCode and a.id.priceList=c.listNum "+ //之前是c.id.itemCode=b.UMtdl
+      "and d.UJgqdz=c.id.cardCode "+
+	 " and d.cardCode='" + cc + "' and b.itemCode='"+Itcode+"' ";
+11.如果要实现多数据库的连接需要改的地方，登陆后把所有对象映射到登录的数据库
+11.1 model中增加另一个或多个数据库的映射文件
+11.2 applicationcontext 文件中增加appconfig1,datasource1,sessionfactory1等
+11.3 loginscontroller中增加多登录据库选择的sql
+11.4 listtab要修改添加数据库参数,appmain中lt,config,还有所有crud操作的类做成一个公共static类放在appmain里面,登陆后重新初始化这些类，
+             以对应相应的数据库。
+11.5 MdbHibernateUtils,
+HibernateSessionFactory和HibernateUtils作用都是一样的。不同之处是一个是自动生成的。一个是自己写的。
+这个方法要改成可以连接多数据库的，也要登录号就改。appmain中的很多static类可以放到这个里面。此类我理解
+    是个数据库的工具类，连接数据库，crud操作和建立线程
+    首先，很明显，sessionFactory肯定是创建session用的（要区别这个session和httpSession是不一样的），创建session的过程不外乎就是读取配置文件，
+    根据配置文件创建一个sessionFactory，再用这个sessionFactory去创建一个session
+12.运行SWT程序时,出现上java.lang.UnsatisfiedLinkError: no swt-win32-3236 in java.library.path异常,
+ 主要原因于在于,Windows平台中SWT应用程序需要本地化的DLL库的支持才能运行,它们分别是swt-awt-win32-3236.dll和swt-win32-3236.dll。
+ 文件名后的数学3236会因为不同版本的Eclipse会有所差异。它们在eclipse安装路径/plugins/org.eclipse.swt.win32.***.jar包内，
+ 将它们复制到Windows主引导区（即Windows的安装盘符）的“Windows/system32”目录中即可。若找不到对应数字序号的文件，
+ 可将其他的如Eclipse3.2.1中的swt-awt-win32-3235.dll和swt-win32-3235.dll改名为swt-awt-win32-3236.dll和swt-win32-3236.dll后再复制。
+
+ 
+ 
+
+			
+			
+	
