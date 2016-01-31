@@ -71,7 +71,7 @@ public final class appMain {
 	public static DocMenuView  dmv;
 	public static LoginView lg;
 	public static FootView fv;
-	public static String rpurl,Mno,username1,branch;
+	public static String rpurl,Mno,com,username1,branch;
 	public static User user=new User();
    
 	public static void main(String[] args) throws PermissionDeniedException {
@@ -104,7 +104,7 @@ public final class appMain {
 			
 		    jd.add(lg);
 		    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		    lg.setBounds(screenSize.width/2-200, screenSize.height/5, 400,330);
+		    lg.setBounds(screenSize.width/2-200, screenSize.height/5, 400,380);
 		    v.setVisible(true);
 
 		   /* }

@@ -760,19 +760,9 @@ public class OignDoc implements IDoc<OignView>{
 	public void add(OignView v) throws PermissionDeniedException{
 		// TODO Auto-generated method stub
 		v.getCom_port().removeAllItems();	  
-        Enumeration<?> en = CommPortIdentifier.getPortIdentifiers();
-        //JOptionPane.showMessageDialog(v, en.hasMoreElements());
-        // iterate through the ports.
-        while (en.hasMoreElements()) {
-        	//JOptionPane.showMessageDialog(v, en.nextElement());
-            portId = (CommPortIdentifier) en.nextElement();	            
-            if (portId!=null&&portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
-            	v.getCom_port().addItem(portId.getName());
-            }
-        }	       
+        v.getCom_port().addItem(appMain.com);
 	    v.setParameters();
-	    
-	    
+	    	    
 		v.getOd1().setDs(docTitleStatus.add);
 		v.getOd1().setDocTitleStatus(v);
 		//JOptionPane.showMessageDialog(null, "2");

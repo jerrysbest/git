@@ -186,7 +186,9 @@ public class LoginsController implements ActionListener{
 				 	System.out.println(appMain.user.getPrivilages());
 			        appMain.user1=v.getTf_user1().getText().toString().trim();
 			        appMain.Mno=((ComboBoxItem)v.getMNo_comp().getSelectedItem()).getValue().toString();
-		            JOptionPane.showMessageDialog(null,"登陆成功");
+			        appMain.com=v.getComm_comp().getSelectedItem().toString().substring(3);
+			        
+		            JOptionPane.showMessageDialog(null,"登陆成功,串口号"+appMain.com);
 		            LeftMenuView lm=new LeftMenuView();
 		    		FootView foot=new FootView();
 				    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();    	

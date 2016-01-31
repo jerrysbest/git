@@ -557,7 +557,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		// TODO Auto-generated method stub
 		if(arg0.getActionCommand().equals("打开串口")&&v.getOd().ds.getValue()==3)
 		{		    			
-	    	v.getCom_port().removeAllItems();	  
+	    	/*v.getCom_port().removeAllItems();	  
 	        Enumeration<?> en = CommPortIdentifier.getPortIdentifiers();
 	        //JOptionPane.showMessageDialog(v, en);
 	        // iterate through the ports.
@@ -570,7 +570,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	        }	       
 			Cursor previousCursor = v.getCursor();
 		    v.setNewCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-		    v.setParameters();
+		    v.setParameters();*/
 		    		   
 		    try {
 		    	 connection=new SerialConnection(v, v.getParameters(), 
@@ -584,11 +584,8 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			 v.getBt_close().setEnabled(false);
 			 v.getBt_cweight().setEnabled(false);
 			 v.getBt_weight().setEnabled(false);
-			 v.setNewCursor(previousCursor);
 			 return;
 		    }
-		 
-		    v.setNewCursor(previousCursor);
 			
 		}
 		else if(arg0.getActionCommand().equals("关闭串口")&&v.getOd().ds.getValue()==3)

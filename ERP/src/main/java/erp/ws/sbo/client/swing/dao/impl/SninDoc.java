@@ -605,6 +605,10 @@ public class SninDoc extends SninAbsDoc{
 	@Override
 	public void add(SninView v) throws PermissionDeniedException{
 		// TODO Auto-generated method stub
+		v.getCom_port().removeAllItems();	  
+        v.getCom_port().addItem(appMain.com);
+        v.setParameters();
+        
 		v.getDsv().getOd().setGridStatus(docLineStatus.add);
 		v.getJta_SN().setText("");
 	    // something about doctitle

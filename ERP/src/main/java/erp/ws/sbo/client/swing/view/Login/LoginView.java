@@ -1,11 +1,16 @@
 package erp.ws.sbo.client.swing.view.Login;
 
 import java.awt.Container;
+import java.util.Enumeration;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.comm.CommPortIdentifier;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
@@ -24,6 +29,7 @@ public class LoginView extends JInternalFrame{
 	}
 	private LoginsController c = new LoginsController(this);
 	private SpringLayout lay = new SpringLayout();
+	private CommPortIdentifier portId=null;
 	String hql="select isnull(u_mno,'00'),whsname from owhs where u_mno is not null and u_mno<>''";
 	JLabel lable_lserver = new JLabel("许可服务器");	
 	JLabel lable_dserver = new JLabel("数据服务器");
@@ -32,6 +38,7 @@ public class LoginView extends JInternalFrame{
 	JLabel lable_user1 = new JLabel("用户号");
 	JLabel lable_pas1 = new JLabel("密码1");
 	JLabel lable_MNo = new JLabel("机号");
+	JLabel lable_comm = new JLabel("串口和秤");
 	JLabel lable_comp = new JLabel("公司");
 	JButton btn_login = new JButton("登陆");
 	JTextField tf_lserver=new JTextField();	
@@ -42,6 +49,7 @@ public class LoginView extends JInternalFrame{
 	JPasswordField tf_pas1=new JPasswordField();
 	JComboBox tf_comp=new JComboBox();
 	JUComboBox MNo_comp=new JUComboBox(hql);
+	JComboBox comm_comp=new JComboBox();
     public void initComponents()
     {   	   	
     	this.tf_dserver.setName("tf_dserver");
@@ -49,8 +57,24 @@ public class LoginView extends JInternalFrame{
     	this.tf_user.setName("tf_user");
     	this.tf_pas.setName("tf_pas");
     	this.tf_comp.setName("tf_comp");
+    	Enumeration<?> en = CommPortIdentifier.getPortIdentifiers();
+        //JOptionPane.showMessageDialog(v, en.hasMoreElements());
+        // iterate through the ports.
+    	Set<String> setcom=new HashSet<String>();
+        while (en.hasMoreElements()) {        	
+            portId = (CommPortIdentifier) en.nextElement();	 
+            //JOptionPane.showMessageDialog(null, portId.isCurrentlyOwned() );            
+            if (portId!=null&&portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
+            	System.out.println(portId.getName());
+            	setcom.add(portId.getName());
+            }
+        }	
+        for (String str : setcom) {
+        	this.comm_comp.addItem(str);
+        }
+
     	this.setDefaultCloseOperation(JInternalFrame.EXIT_ON_CLOSE);	 
-        this.setSize(400,430);
+        this.setSize(400,460);
         this.setName("LOGV");
 		Container con = getContentPane();		
 		con.setLayout(lay);
@@ -84,15 +108,17 @@ public class LoginView extends JInternalFrame{
 		 lay.putConstraint(SpringLayout.NORTH, lable_MNo, 210, SpringLayout.NORTH, con);
 		 lay.putConstraint(SpringLayout.WEST, MNo_comp, 130,SpringLayout.WEST, con);
 		 lay.putConstraint(SpringLayout.NORTH, MNo_comp, 210, SpringLayout.NORTH, con);
+		 lay.putConstraint(SpringLayout.WEST, lable_comm, 60,SpringLayout.WEST, con);
+		 lay.putConstraint(SpringLayout.NORTH, lable_comm, 240, SpringLayout.NORTH, con);
+		 lay.putConstraint(SpringLayout.WEST, comm_comp, 130,SpringLayout.WEST, con);
+		 lay.putConstraint(SpringLayout.NORTH, comm_comp, 240, SpringLayout.NORTH, con);
 		 lay.putConstraint(SpringLayout.WEST, lable_comp, 60,SpringLayout.WEST, con);
-		 lay.putConstraint(SpringLayout.NORTH, lable_comp, 240, SpringLayout.NORTH, con);
+		 lay.putConstraint(SpringLayout.NORTH, lable_comp, 270, SpringLayout.NORTH, con);
 		 lay.putConstraint(SpringLayout.WEST, tf_comp, 130,SpringLayout.WEST, con);
-		 lay.putConstraint(SpringLayout.NORTH, tf_comp, 240, SpringLayout.NORTH, con);
-		 
-		
-		 
+		 lay.putConstraint(SpringLayout.NORTH, tf_comp, 270, SpringLayout.NORTH, con);
+
 		 lay.putConstraint(SpringLayout.WEST, btn_login, 180, SpringLayout.WEST, con);
-		 lay.putConstraint(SpringLayout.NORTH, btn_login, 270, SpringLayout.NORTH,con);
+		 lay.putConstraint(SpringLayout.NORTH, btn_login, 300, SpringLayout.NORTH,con);
        
 		 tf_user.setColumns(15);
 		 tf_pas.setColumns(15);
@@ -109,12 +135,14 @@ public class LoginView extends JInternalFrame{
          con.add(lable_pas1);
          con.add(lable_comp);
          con.add(lable_MNo);
+         con.add(lable_comm);
          con.add(tf_user);
          con.add(tf_pas);
          con.add(tf_user1);
          con.add(tf_pas1);
          con.add(tf_comp);
          con.add(MNo_comp);
+         con.add(comm_comp);
          con.add(tf_lserver);
          con.add(tf_dserver);
          con.add(btn_login);
@@ -182,5 +210,11 @@ public class LoginView extends JInternalFrame{
 	}
 	public void setMNo_comp(JUComboBox mNo_comp) {
 		MNo_comp = mNo_comp;
+	}
+	public JComboBox getComm_comp() {
+		return comm_comp;
+	}
+	public void setComm_comp(JComboBox comm_comp) {
+		this.comm_comp = comm_comp;
 	}
 }
