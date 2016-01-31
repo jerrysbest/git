@@ -339,8 +339,9 @@ public class SerialConnection implements SerialPortEventListener,
 					break;
 				    }
 				    if ((char)newData!='w'&&(char)newData!='n'&&(char)newData!='k'&&(char)newData!='g'&&(char)newData!='\r'&&(char)newData!='\n') {
-				   	
-				    	inputBuffer.append((char)newData);
+				   	    if(String.valueOf((char)newData).matches("^\\d+\\.\\d+|\\d+$")){
+				    	   inputBuffer.append((char)newData);
+				   	    }
 				    }
 		    	} catch (IOException ex) {
 		    	    System.err.println(ex);
@@ -423,8 +424,9 @@ public class SerialConnection implements SerialPortEventListener,
     					break;
     				    }
     				    if ((char)newData!='w'&&(char)newData!='n'&&(char)newData!='k'&&(char)newData!='g'&&(char)newData!='\r'&&(char)newData!='\n') {
-    				   	
-    				    	inputBuffer.append((char)newData);
+    				    	 if(String.valueOf((char)newData).matches("^\\d+\\.\\d+|\\d+$")){
+    				    	   inputBuffer.append((char)newData);
+    				    	 }
     				    }
     		    	} catch (IOException ex) {
     		    	    System.err.println(ex);

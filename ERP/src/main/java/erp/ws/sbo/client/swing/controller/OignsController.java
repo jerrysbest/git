@@ -443,16 +443,18 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 //	            if (portId!=null&&portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
 //	            	v.getCom_port().addItem(portId.getName());
 //	            }
-//	        }	       
-			Cursor previousCursor = v.getCursor();
-//		    v.setNewCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+//	        }	
 //		    v.setParameters();
+			Cursor previousCursor = v.getCursor();
+		    v.setNewCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
 		    		   
 		    try {
 		    	 connection=new SerialConnection(v, v.getParameters(), 
 						 v.getJta_sendw(), v.getJta_receivew(),v.getTxt_weight(),v.getTxt_cweight(),v.getTxt_deviation(),v);
 		    	 connection.openConnection(v.getCom_port().getSelectedItem().toString());
 		    	 v.portOpened();
+		    	 v.setNewCursor(previousCursor);
 		    } catch (SerialConnectionException e2) {
 		
 			 JOptionPane.showMessageDialog(null,"端口打开错误,"+ e2.getMessage()+"重新设定端口以及相关参数:操作请注意序列号入库单关闭前先关闭串口，否则只能退出程序重新登录");
@@ -464,7 +466,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			 return;
 		    }
 		 
-		    v.setNewCursor(previousCursor);
+		    
 			
 		}
 		else if(e.getActionCommand().equals("关闭串口")&&v.getOd().ds.getValue()==5)
@@ -474,7 +476,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 			{
 			  connection.closeConnection();
 			}
-			v.getCom_port().removeAllItems();
+			//v.getCom_port().removeAllItems();
 			v.getBt_open().setEnabled(true);
 			v.getBt_close().setEnabled(false);
 			v.getBt_cweight().setEnabled(false);

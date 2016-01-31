@@ -770,8 +770,6 @@ public class OignDoc implements IDoc<OignView>{
             	v.getCom_port().addItem(portId.getName());
             }
         }	       
-		Cursor previousCursor = v.getCursor();
-	    v.setNewCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
 	    v.setParameters();
 	    
 	    
