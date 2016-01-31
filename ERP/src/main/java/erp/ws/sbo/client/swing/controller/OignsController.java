@@ -451,7 +451,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		    try {
 		    	 connection=new SerialConnection(v, v.getParameters(), 
 						 v.getJta_sendw(), v.getJta_receivew(),v.getTxt_weight(),v.getTxt_cweight(),v.getTxt_deviation(),v);
-		    	connection.openConnection(v.getCom_port().getSelectedItem().toString());
+		    	 connection.openConnection(v.getCom_port().getSelectedItem().toString());
 		    	 v.portOpened();
 		    } catch (SerialConnectionException e2) {
 		

@@ -51,8 +51,9 @@ public class Snprint {
     public void print(String width,String height,String speed,String density,String sensor,String vertical,String offset,
     		String codetype,String barcode,SninView v) {
         //TscLibDll.INSTANCE.about();
-        TscLibDll.INSTANCE.openport("TSC TTP-342M Pro");
+    	//JOptionPane.showMessageDialog(v,"TSC TTP-342M Pro");
         
+        TscLibDll.INSTANCE.openport("TSC TTP-342M Pro");
         //TscLibDll.INSTANCE.
         //TscLibDll.INSTANCE.downloadpcx("C:\\UL.PCX", "UL.PCX");
         //TscLibDll.INSTANCE.sendcommand("REM ***** This is a test by JAVA. *****");

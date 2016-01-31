@@ -385,9 +385,9 @@
 		<version>2.6.12</version>
 	  </dependency>      
       <dependency>
-		<groupId>net.java.dev.jna</groupId>
-		<artifactId>jna</artifactId>
-		<version>4.1.0</version>
+		<groupId>tsc</groupId>
+		<artifactId>tsclib</artifactId>
+		<version>1.0</version>
 	  </dependency>
      
       
