@@ -89,7 +89,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		//打序列号
 		if(!appMain.branch.equals("-2")&&e.getKeyCode()==10&&(e.getSource()==v.getTxt_pweight()||e.getSource()==v.getTxt_length()))
 		{
-			if(v.getCom_port().getSelectedItem()==null)
+			if(v.getBt_open().isEnabled())
 			{
 				JOptionPane.showMessageDialog(v,"请先打开串口");	              
 				return;
@@ -639,7 +639,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	        } catch (IOException e) {  
 	            e.printStackTrace();  
 	        }  */
-			if(v.getCom_port().getSelectedItem()==null)
+			if(v.getBt_open().isEnabled())
 			{
 				JOptionPane.showMessageDialog(v,"请先打开串口");	              
 				return;
@@ -688,7 +688,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		}
 		else if(arg0.getActionCommand().equals("生成序列号")&&v.getOd().ds.getValue()==3)
 		{
-			if(v.getCom_port().getSelectedItem()==null)
+			if(v.getBt_open().isEnabled())
 			{
 				 JOptionPane.showMessageDialog(v,"请先打开串口");	              
 				return;

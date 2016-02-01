@@ -86,7 +86,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		}
 		if(e.getKeyCode()==10&&(e.getSource()==v.getTxt_pweight()||e.getSource()==v.getTxt_length()))
 		{
-			if(v.getCom_port().getSelectedItem()==null)
+			if(v.getBt_open().isEnabled())
 			{
 				JOptionPane.showMessageDialog(v,"请先打开串口");	              
 				return;
@@ -524,8 +524,8 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 	        } catch (IOException e) {  
 	            e.printStackTrace();  
 	        }  */
-			JOptionPane.showMessageDialog(v,"称重");
-			if(v.getCom_port().getSelectedItem()==null)
+			//JOptionPane.showMessageDialog(v,"称重");
+			if(v.getBt_open().isEnabled())
 			{
 				 JOptionPane.showMessageDialog(v,"请先打开串口");	              
 				return;
@@ -574,7 +574,7 @@ ListSelectionListener,InternalFrameListener,ActionListener,KeyListener,FocusList
 		}
 		else if(e.getActionCommand().equals("生成序列号")&&v.getOd().ds.getValue()==5)
 		{	
-			if(v.getCom_port().getSelectedItem()==null)
+			if(v.getBt_open().isEnabled())
 			{
 				 JOptionPane.showMessageDialog(v,"请先打开串口");	              
 				return;
