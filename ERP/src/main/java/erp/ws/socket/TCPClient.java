@@ -13,10 +13,10 @@ public class TCPClient {
 	 public static void main(String[] args) throws Exception {
 	  if (args.length == 2) {
 	   try {
-	    Configuration.TCPIP = args[0];
-	    Configuration.TCPPort = Integer.parseInt(args[1]);
+		    Configuration.TCPIP = args[0];
+		    Configuration.TCPPort = Integer.parseInt(args[1]);
 	   } catch (Exception ex) {
-	    System.exit(1);
+	        System.exit(1);
 	   }
 	  }
 	  socket = new Socket();
@@ -27,7 +27,6 @@ public class TCPClient {
 	  BufferedReader wt = new BufferedReader(new InputStreamReader(System.in));
 
 	  while (true) {
-
 	     if (wt.ready()) {
 	        String str = wt.readLine();
 		    out.writeUTF(str);
