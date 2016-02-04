@@ -26,18 +26,15 @@ public class ServerThreadCode extends Thread{
     {}  
 
     public ServerThreadCode(Socket s) throws IOException 
-
     {
 
            clientSocket = s;            
 
            //初始化sin和sout的句柄
 
-           sin = new BufferedReader(new InputStreamReader(clientSocket
+           sin = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-                         .getInputStream()));
-
-     sout = new PrintWriter(new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream())), true);             
+           sout = new PrintWriter(new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream())), true);             
 
            //开启线程
 
@@ -54,14 +51,10 @@ public class ServerThreadCode extends Thread{
            try 
 
            {
-
                   //用循环来监听通讯内容
-
                   for(;;) 
-
                   {
-
-             String str = sin.readLine();
+                        String str = sin.readLine();
 
                          //如果接收到的是byebye，退出本次通讯
 

@@ -10,7 +10,6 @@ public class SocketThreadServer {
     static final int portNo = 3333;
 
     public static void main(String[] args) throws IOException 
-
     {
 
            //服务器端的socket
@@ -24,14 +23,13 @@ public class SocketThreadServer {
            {
 
                   for(;;)                          
-
                   {
 
-               //阻塞,直到有客户端连接
+                    //阻塞,直到有客户端连接
 
-                         Socket socket = s.accept();
+                    Socket socket = s.accept();
 
-                         //通过构造函数，启动线程
+                    //通过构造函数，启动线程
 
                      new ServerThreadCode(socket);
 
