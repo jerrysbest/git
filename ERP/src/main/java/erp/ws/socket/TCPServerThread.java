@@ -25,13 +25,13 @@ public class TCPServerThread extends Thread{
 	   // Mutil User but can parallel
 	   while (true) {
 	    if (in.available() > 0) {
-	     String str = in.readUTF();
-	     System.out.println(str);
-	     out.writeUTF(str + " has receive....");
-	     out.flush();
-	     if (str.equals("end") || (null == str)) {
-	      break;
-	     }
+		     String str = in.readUTF();
+		     System.out.println(str);
+		     out.writeUTF(str + " has receive....");
+		     out.flush();
+		     if (str.equals("end") || (null == str)) {
+		      break;
+		     }
 	    } else {
 	     if (wt.ready()) {
 		      String str = wt.readLine();
