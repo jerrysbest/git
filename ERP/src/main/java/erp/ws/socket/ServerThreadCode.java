@@ -92,7 +92,7 @@ public class ServerThreadCode extends Thread{
 
                   try 
 
-         {
+                  {
 
                          clientSocket.close();
 
