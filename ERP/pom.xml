@@ -517,7 +517,7 @@
 	     <artifactId>prenginece</artifactId>  
          <version>3.8.2-GA</version>  
        </dependency>
-        <dependency>  
+       <dependency>  
 	     <groupId>pentaho.reporting.engine.legacy.charts</groupId>  
 	     <artifactId>prenginelc</artifactId>  
          <version>3.8.2-GA</version>  
@@ -527,7 +527,12 @@
 	      <artifactId>junit</artifactId>
 	      <version>4.12</version>
 	      <scope>test</scope>
-	    </dependency>               
+	   </dependency> 
+	   <dependency>
+		  <groupId>org.apache.activemq</groupId>
+		  <artifactId>activemq-core</artifactId>
+		  <version>5.7.0</version>
+	   </dependency>              
   </dependencies>
 
 </project>
