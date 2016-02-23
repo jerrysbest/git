@@ -40,7 +40,7 @@ public class Server {
         }    
     } 
     //最后三位是id
-    private String GetId(Socket client){
+    private synchronized String GetId(Socket client){
     	return client.getRemoteSocketAddress().toString().replace("/", "").substring(client.getRemoteSocketAddress().toString().replace("/", "").length()-3);
     } 
     //判断是否是erp客户端
@@ -58,7 +58,7 @@ public class Server {
     }
     private class HandlerThread implements Runnable {    
         private Socket socket,commsocket;    
-        private Object lock;
+        private Object lock=new Object();;
         public HandlerThread(Socket client) {    
             socket = client; 
             new Thread(this).start();    

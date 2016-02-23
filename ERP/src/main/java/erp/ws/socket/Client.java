@@ -18,17 +18,23 @@ public class Client {
     public static void main(String[] args) {    
         System.out.println("客户端启动...");    
         System.out.println("当接收到服务器端字符为 \"OK\" 的时候, 客户端将终止\n");   
+        Socket socket = null;  
+        try {  
+        	//创建一个流套接字并将其连接到指定主机上的指定端口号  ,erp登陆即占用端口，防止两个人登陆一个电子称
+            socket = new Socket();   
+            SocketAddress localAddr=new InetSocketAddress("127.0.0.1",12358);
+            SocketAddress RemoteAddr=new InetSocketAddress(IP_ADDR, PORT);
+            socket.bind(localAddr);
+            socket.connect(RemoteAddr);  
+            System.out.println("客户端本地IP地址: " + socket.getLocalSocketAddress());    
+            System.out.println("客户端远程IP地址: " + socket.getRemoteSocketAddress());   
+        }catch (Exception e) {  
+            System.out.println("客户端异常:" + e.getMessage());   
+        } 
         while (true) {    
-            Socket socket = null;  
+           
             try {  
-                //创建一个流套接字并将其连接到指定主机上的指定端口号  
-                socket = new Socket();   
-                SocketAddress localAddr=new InetSocketAddress("127.0.0.1",12358);
-                SocketAddress RemoteAddr=new InetSocketAddress(IP_ADDR, PORT);
-                socket.bind(localAddr);
-                socket.connect(RemoteAddr);
-                System.out.println("客户端本地IP地址: " + socket.getLocalSocketAddress());    
-                System.out.println("客户端远程IP地址: " + socket.getRemoteSocketAddress());    
+                 
                 //读取服务器端数据    
                 DataInputStream input = new DataInputStream(socket.getInputStream());    
                 //向服务器端发送数据    
@@ -46,19 +52,19 @@ public class Client {
                     break;    
                 }    
                   
-                out.close();  
-                input.close();  
+//                out.close();  
+//                input.close();  
             } catch (Exception e) {  
                 System.out.println("客户端异常:" + e.getMessage());   
             } finally {  
-                if (socket != null) {  
-                    try {  
-                        socket.close();  
-                    } catch (IOException e) {  
-                        socket = null;   
-                        System.out.println("客户端 finally 异常:" + e.getMessage());   
-                    }  
-                }  
+//                if (socket != null) {  
+//                    try {  
+//                        socket.close();  
+//                    } catch (IOException e) {  
+//                        socket = null;   
+//                        System.out.println("客户端 finally 异常:" + e.getMessage());   
+//                    }  
+//                }  
             }  
         }    
     } 
