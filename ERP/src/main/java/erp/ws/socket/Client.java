@@ -4,12 +4,16 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;  
 import java.io.DataOutputStream;  
 import java.io.IOException;  
-import java.io.InputStreamReader;  
-import java.net.Socket; 
+import java.io.InputStreamReader;
+import java.net.InetSocketAddress;
+import java.net.Socket;
+import java.net.SocketAddress;
+
+
 
 public class Client {
 	public static final String IP_ADDR = "localhost";//服务器地址   
-    public static final int PORT = 12345;//服务器端口号    
+    public static final int PORT = 4197;//服务器端口号    
       
     public static void main(String[] args) {    
         System.out.println("客户端启动...");    
@@ -18,8 +22,13 @@ public class Client {
             Socket socket = null;  
             try {  
                 //创建一个流套接字并将其连接到指定主机上的指定端口号  
-                socket = new Socket(IP_ADDR, PORT);    
-                    
+                socket = new Socket();   
+                SocketAddress localAddr=new InetSocketAddress("127.0.0.1",12358);
+                SocketAddress RemoteAddr=new InetSocketAddress(IP_ADDR, PORT);
+                socket.bind(localAddr);
+                socket.connect(RemoteAddr);
+                System.out.println("客户端本地IP地址: " + socket.getLocalSocketAddress());    
+                System.out.println("客户端远程IP地址: " + socket.getRemoteSocketAddress());    
                 //读取服务器端数据    
                 DataInputStream input = new DataInputStream(socket.getInputStream());    
                 //向服务器端发送数据    

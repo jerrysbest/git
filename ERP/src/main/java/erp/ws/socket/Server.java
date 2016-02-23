@@ -39,16 +39,12 @@ public class Server {
         public HandlerThread(Socket client) {    
             socket = client;  
           //判断与本客户端是否一致
-       	   if(socket.getInetAddress().equals(""))
-       	   {
-       		 
-       	   }
             new Thread(this).start();    
         }    
     
         public void run() {    
             try { 
-            	
+            	System.out.println("客户端地址"+socket.getInetAddress()); 
                 // 向客户端回复信息    
                 DataOutputStream out = new DataOutputStream(socket.getOutputStream());    
 
