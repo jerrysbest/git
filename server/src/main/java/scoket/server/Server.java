@@ -32,6 +32,7 @@ public class Server {
                 Socket client = serverSocket.accept();                     
                 System.out.println("服务器与客户端获得连接"+client.getLocalSocketAddress().toString().replace("/", "")); 
                 System.out.println("服务器与客户端获得连接"+client.getRemoteSocketAddress().toString().replace("/", "")); 
+               //是否需要再开一个线程，将已经关闭的socket移除map
                 map.put(client.getRemoteSocketAddress().toString().replace("/", ""),client);
                 new HandlerThread(client);    
             }    
